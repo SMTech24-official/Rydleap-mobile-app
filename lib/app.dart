@@ -189,10 +189,10 @@ class Rydleap extends StatelessWidget {
         //     fontFamily: "Outfit",
         //     fontWeight: FontWeight.w400),
         bodyLarge: TextStyle(
-            color: Colors.white,
-            fontSize: 3.5.w,
+            color: AppColors.white,
+            fontSize: 7.w,
             fontFamily: "Outfit",
-            fontWeight: FontWeight.w600),
+            fontWeight: FontWeight.w400),
         bodySmall: TextStyle(
             color: AppColors.textGrey,
             fontSize: 2.5.w,

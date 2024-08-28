@@ -4,6 +4,7 @@ import 'package:rydleap/core/shared/widgets/background_widget.dart';
 import 'package:rydleap/core/utility/assets_paths.dart';
 import 'package:rydleap/feature/auth/controller/auth_controller.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/login.dart';
+import 'package:rydleap/feature/auth/presentaion/screens/your_location.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -17,8 +18,10 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _moveToNextScreen() async {
     await Future.delayed(const Duration(seconds: 4));
     bool isLoggedIn = await AuthController.checkAuthState();
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => isLoggedIn ? Home() : Login()));
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (context) => isLoggedIn ? Home() : YourLocation()));
   }
 
   @override
@@ -31,10 +34,10 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BackgroundWidget(
-        // centerWidget: Center(
-        //   child: SvgPicture.asset(AssetsPaths.logo),
-        // ),
-      ),
+          // centerWidget: Center(
+          //   child: SvgPicture.asset(AssetsPaths.logo),
+          // ),
+          ),
     );
   }
 }
