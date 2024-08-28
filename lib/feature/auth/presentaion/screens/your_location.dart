@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 
+import '../../../home/presentation/screens/home.dart';
+
 class YourLocation extends StatelessWidget {
   const YourLocation({super.key});
 
@@ -59,7 +61,12 @@ class YourLocation extends StatelessWidget {
               child: Column(
                 children: [
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => Home()));
+
+
+                    },
                     child: Text(
                       'Yes, I am',
                       style: TextStyle(color: Colors.black),
