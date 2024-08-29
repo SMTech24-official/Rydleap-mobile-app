@@ -17,6 +17,7 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Custombackground(
         bottomContainerHeight: screenHeight() * 0.5,
         widget: Padding(
