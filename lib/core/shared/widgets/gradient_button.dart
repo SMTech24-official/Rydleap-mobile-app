@@ -28,8 +28,8 @@ class GradientElevatedButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
-          backgroundColor: Colors.transparent, 
-          shadowColor: Colors.transparent, 
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
         ),
         onPressed: onPressed,
         child: Text(text),
