@@ -19,6 +19,9 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   bool isChecked = false;
+  bool checkPass = false;
+  bool checkRePass = false;
+  List<String> passItems = [""];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,15 +55,93 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
             ),
             CustomTextfield(
               controller: passwordController,
+              obsecureText: checkPass,
               hintext: "Password",
+              suffixIcon: checkPass
+                  ? Icon(
+                      Icons.visibility_off,
+                      color: Color(0xffF8F8F8),
+                      size: getWidth(16),
+                    )
+                  : Icon(
+                      Icons.visibility,
+                      color: Color(0xffF8F8F8),
+                      size: getWidth(16),
+                    ),
+              onTap: () {
+                setState(() {
+                  checkPass = !checkPass;
+                });
+              },
             ),
             SizedBox(
               height: getHeight(18),
             ),
             CustomTextfield(
-              controller: confirmPasswordController,
-              hintext: "Re-password",
+                controller: confirmPasswordController,
+                hintext: "Re-password",
+                obsecureText: true,
+                suffixIcon: Icon(
+                  Icons.error_outline,
+                  color: Color(0xffF50D0D),
+                  size: getWidth(16),
+                ),
+                // ? Icon(
+                //     Icons.error_outline,
+                //     color: Color(0xffF50D0D),
+                //     size: getWidth(16),
+                //   )
+                // : Icon(Icons.error),
+                onTap: () {
+                  setState(() {
+                    checkRePass = !checkRePass;
+                  });
+                }),
+            SizedBox(
+              height: getHeight(16),
             ),
+            Row(
+              children: [
+                Icon(
+                  Icons.error_outline,
+                  color: Color(0xffF50D0D),
+                  size: getWidth(16),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  "Create your Password",
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ],
+            ),
+            ListView.builder(
+                shrinkWrap: true,
+                itemCount: 3,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Row(
+                      children: [
+                        Container(
+                          height: getWidth(12),
+                          width: getWidth(12),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(1),
+                              border: Border.all(color: Color(0xff9B9A9A))),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "At least 8 characters",
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      ],
+                    ),
+                  );
+                }),
             Spacer(),
             CustomBlurButton(
                 text: "Continue",

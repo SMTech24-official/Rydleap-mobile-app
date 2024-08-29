@@ -83,7 +83,17 @@ class Rydleap extends StatelessWidget {
           color: Color(0xffECECEC),
           fontWeight: FontWeight.w400,
         ),
-        // bodyMedium: TextStyle(color: Colors.white, fontSize: 4.5.w),
+        bodyMedium: TextStyle(
+          fontSize: 2.7.w,
+          color: Color(0xffEEEEEE),
+          fontWeight: FontWeight.w400,
+        ),
+        bodySmall: TextStyle(
+          fontSize: 2.3.w,
+          color: Color(0xffD6D3D3),
+          fontWeight: FontWeight.w400,
+        ),
+
         // labelLarge: TextStyle(
         //     color: Colors.white,
         //     fontSize: 3.w,
