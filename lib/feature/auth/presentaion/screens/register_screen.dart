@@ -9,10 +9,10 @@ import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/global_widgets/phone_input.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/components/or_sign_in_with.dart';
-import 'package:rydleap/feature/auth/presentaion/name_email_screen.dart';
+import 'package:rydleap/feature/auth/presentaion/screens/name_email_screen.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

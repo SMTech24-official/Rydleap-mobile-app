@@ -32,17 +32,16 @@ class CustomPhoneInput extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: getWidth(16)),
       child: Center(
         child: IntlPhoneField(
-          showCursor: true, // Show or hide the cursor
+          showCursor: true,
           decoration: InputDecoration(
-            contentPadding: const EdgeInsets.only(top: 4), // Center the content
+            contentPadding: const EdgeInsets.only(top: 4),
             hintText: "Phone Number",
             hintStyle: TextStyle(
-                color: Color(0xffC3BBBB),
-                fontSize: getWidth(15),
-                fontWeight: FontWeight.w400),
+              color: Color(0xffC3BBBB),
+              fontSize: getWidth(15),
+              fontWeight: FontWeight.w400,
+            ),
             labelStyle: const TextStyle(color: Colors.black),
-
-            // Remove borders and underline
             border: InputBorder.none,
             focusedBorder: InputBorder.none,
             enabledBorder: InputBorder.none,
@@ -52,8 +51,18 @@ class CustomPhoneInput extends StatelessWidget {
           initialCountryCode: 'UK',
           dropdownIcon: const Icon(
             Icons.arrow_drop_down,
+            color: Color(0xffC3BBBB), // Dropdown icon color to match hintText
           ),
-          disableLengthCheck: true, // Disables the number length hint like 0/10
+          dropdownTextStyle: TextStyle(
+            color: const Color(0xffC3BBBB), // Country code text color
+            fontSize: getWidth(15), // Match hintText font size
+            fontWeight: FontWeight.w400,
+          ),
+          dropdownDecoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8), // Rounded borders
+            border: Border.all(color: Colors.transparent), // Transparent border
+          ),
+          disableLengthCheck: true,
           onChanged: (phone) {
             print(phone.completeNumber);
           },
