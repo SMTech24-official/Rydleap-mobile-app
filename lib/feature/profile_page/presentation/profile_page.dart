@@ -1,14 +1,9 @@
-
-
-
-
 import 'package:flutter/cupertino.dart';
 
-class ProfilePage extends StatelessWidget{
+class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Text('Profile Page');
+    return Center(child: Text('Profile Page'));
   }
-
 }
