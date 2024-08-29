@@ -18,6 +18,8 @@ class AppColors {
   static const Color lightGrey = Color(0xFFD0D0D0);
   static const Color nestBlue = Color(0xFF0757AC);
   static const Color white = Color(0xffffffff);
+  static const Color navy_blue = Color(0xff001B26);
+  static const Color lemon = Color(0xffDEFF11);
 
   static Color getShade(Color color, {bool darker = false, double value = .1}) {
     assert(value >= 0 && value <= 1, 'shade values must be between 0 and 1');
