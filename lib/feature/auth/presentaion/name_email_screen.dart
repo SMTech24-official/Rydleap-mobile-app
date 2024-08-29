@@ -6,6 +6,7 @@ import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:rydleap/feature/home/presentation/screens/home.dart';
 
 class NameEmailScreen extends StatefulWidget {
   const NameEmailScreen({super.key});
@@ -158,7 +159,12 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
               ),
             ),
             Spacer(),
-            CustomGradientButton(text: "Confirm", onTap: () {})
+            CustomGradientButton(
+                text: "Confirm",
+                onTap: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => Home()));
+                })
           ],
         ),
       ),
