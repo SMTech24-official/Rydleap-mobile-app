@@ -8,7 +8,7 @@ class AppColors {
   static const Color lightBG = Color(0xfffcfcff);
   static const Color darkBG = Colors.black;
   static const Color primaryPurple = Color(0xFF6334DC);
-  static const Color textGrey = Color(0xFF808080);
+
   static const Color textWhite = Color.fromARGB(255, 255, 255, 255);
   static const Color primaryWhiteSmoke = Color(0xFFF5F5F5);
   static const Color mediumYellow = Color(0xffFDB846);
@@ -50,8 +50,9 @@ class AppColors {
   }
 
   static const Color mainColor = Color(0xff141414);
-  static const Color textGray = Color(0xffB3B3B3);
-  static const Color dividerColor = Color(0xff1F1F1F);
+  static const Color textBlack = Color(0xff0D2528);
+  static const Color textGrey = Color(0xff8B8484);
+  static const Color textYellow = Color(0xffFFDD2D);
   static const Color musicTabBorderDark = Color(0xff666666);
   static const Color checkGreen = Color(0xff00E45B);
   static const Color textGreen = Color(0xff6AD26E);
