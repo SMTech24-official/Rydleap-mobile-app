@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
+import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
+import 'package:rydleap/core/global_widgets/global_variable.dart';
+import 'package:rydleap/core/shared/widgets/gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:rydleap/feature/auth/presentaion/screens/login.dart';
 
 import '../../../home/presentation/screens/home.dart';
 
@@ -60,6 +65,15 @@ class YourLocation extends StatelessWidget {
               padding: EdgeInsets.only(left: 2.w, right: 3.w, top: 10.w),
               child: Column(
                 children: [
+
+                  CustomGradientButton(
+                    onTap: () {
+                      CustomGlobalVariable.userType = 'User';
+                      Navigator.push(
+                          context, MaterialPageRoute(builder: (_) => Login()));
+                    },
+                    text: "User",
+
                   ElevatedButton(
                     onPressed: () {
 
@@ -71,14 +85,18 @@ class YourLocation extends StatelessWidget {
                       'Yes, I am',
                       style: TextStyle(color: Colors.black),
                     ),
+
                   ),
                   SizedBox(
                     height: 3.w,
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text('No'),
-                  ),
+                  CustomBlurButton(
+                      text: "Driver",
+                      onTap: () {
+                        CustomGlobalVariable.userType = 'Driver';
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => Login()));
+                      })
                 ],
               ),
             )
