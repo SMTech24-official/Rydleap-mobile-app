@@ -7,6 +7,8 @@ import 'package:rydleap/core/shared/widgets/gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/login.dart';
 
+import '../../../home/presentation/screens/home.dart';
+
 class YourLocation extends StatelessWidget {
   const YourLocation({super.key});
 
@@ -63,6 +65,7 @@ class YourLocation extends StatelessWidget {
               padding: EdgeInsets.only(left: 2.w, right: 3.w, top: 10.w),
               child: Column(
                 children: [
+
                   CustomGradientButton(
                     onTap: () {
                       CustomGlobalVariable.userType = 'User';
@@ -70,6 +73,19 @@ class YourLocation extends StatelessWidget {
                           context, MaterialPageRoute(builder: (_) => Login()));
                     },
                     text: "User",
+
+                  ElevatedButton(
+                    onPressed: () {
+
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => Home()));
+
+
+                    },
+                    child: Text(
+                      'Yes, I am',
+                      style: TextStyle(color: Colors.black),
+                    ),
+
                   ),
                   SizedBox(
                     height: 3.w,
