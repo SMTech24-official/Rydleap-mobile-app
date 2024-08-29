@@ -4,7 +4,9 @@ import 'package:rydleap/core/utility/app_colors.dart';
 
 class CustomTextfield extends StatelessWidget {
   final TextEditingController controller;
-  const CustomTextfield({super.key, required this.controller});
+  final String hintext;
+  const CustomTextfield(
+      {super.key, required this.controller, required this.hintext});
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +46,7 @@ class CustomTextfield extends StatelessWidget {
                 fontSize: getWidth(15)), // Set text color to black
 
             decoration: InputDecoration(
+              hintText: hintext,
               enabledBorder: OutlineInputBorder(borderSide: BorderSide.none),
               focusedBorder: OutlineInputBorder(borderSide: BorderSide.none),
               border: InputBorder.none, // Remove default border

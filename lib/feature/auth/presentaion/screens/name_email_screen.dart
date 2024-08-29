@@ -6,6 +6,7 @@ import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:rydleap/feature/auth/presentaion/screens/create_password.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
 import 'package:rydleap/nav_page.dart';
 
@@ -42,12 +43,14 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
           children: [
             CustomTextfield(
               controller: nameController,
+              hintext: "Name",
             ),
             SizedBox(
               height: getHeight(18),
             ),
             CustomTextfield(
               controller: emailController,
+              hintext: "Email",
             ),
             SizedBox(
               height: getHeight(18),
@@ -163,8 +166,12 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
             CustomGradientButton(
                 text: "Confirm",
                 onTap: () {
+                  // Navigator.push(
+                  //     context, MaterialPageRoute(builder: (_) => NavPage()));
                   Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => NavPage()));
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => CreatePasswordScreen()));
                 })
           ],
         ),

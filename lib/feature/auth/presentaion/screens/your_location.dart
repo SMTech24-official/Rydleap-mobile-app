@@ -5,7 +5,7 @@ import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/shared/widgets/gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
-import 'package:rydleap/feature/auth/presentaion/screens/login.dart';
+import 'package:rydleap/feature/auth/presentaion/screens/register_screen.dart';
 
 import '../../../home/presentation/screens/home.dart';
 
@@ -68,8 +68,8 @@ class YourLocation extends StatelessWidget {
                   CustomGradientButton(
                     onTap: () {
                       CustomGlobalVariable.userType = 'User';
-                      Navigator.push(
-                          context, MaterialPageRoute(builder: (_) => Login()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => RegisterScreen()));
                     },
                     text: "User",
                   ),
@@ -80,8 +80,10 @@ class YourLocation extends StatelessWidget {
                       text: "Driver",
                       onTap: () {
                         CustomGlobalVariable.userType = 'Driver';
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => Login()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => RegisterScreen()));
                       })
                 ],
               ),
