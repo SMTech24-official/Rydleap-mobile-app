@@ -19,12 +19,12 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   Future<void> _moveToNextScreen() async {
-    await Future.delayed(const Duration(seconds: 4));
-    bool isLoggedIn = await AuthController.checkAuthState();
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => isLoggedIn ? Home() : YourLocation()));
+    // await Future.delayed(const Duration(seconds: 4));
+    // bool isLoggedIn = await AuthController.checkAuthState();
+    // Navigator.pushReplacement(
+    //     context,
+    //     MaterialPageRoute(
+    //         builder: (context) => isLoggedIn ? Home() : YourLocation()));
   }
 
   @override
@@ -36,31 +36,29 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(8),
-        child: Column(
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(top: 5.h, left: 5.w),
-              child: Stack(
-                alignment: Alignment.center,
-                children: <Widget>[
-                  Image.asset(
-                    'assets/images/Ellipse_9.png',
-                    width: 150.w,
-                    height: 60.h,
-                  ),
-                  Image.asset(
-                    'assets/images/Ellipse_2.png',
-                    width: 80.w,
-                    height: 20.h,
-                  ),
-                  Image.asset(AppImagese.appLogo)
-                ],
-              ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Container(
+            child: Stack(
+              alignment: Alignment.center,
+              children: <Widget>[
+                Image.asset(
+                  'assets/images/Ellipse_9.png',
+                  width: 150.w,
+                  height: 60.h,
+                  fit: BoxFit.fill,
+                ),
+                Image.asset(
+                  'assets/images/Ellipse_2.png',
+                  width: 80.w,
+                  height: 20.h,
+                ),
+                Image.asset(AppImagese.appLogo)
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
