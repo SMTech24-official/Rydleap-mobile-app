@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:rydleap/core/app_imagese.dart';
-import 'package:rydleap/core/shared/widgets/background_widget.dart';
-import 'package:rydleap/core/utility/app_colors.dart';
-import 'package:rydleap/core/utility/assets_paths.dart';
+
 import 'package:rydleap/feature/auth/controller/auth_controller.dart';
-import 'package:rydleap/feature/auth/presentaion/screens/register_screen.dart';
+
 import 'package:rydleap/feature/auth/presentaion/screens/your_location.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
 
