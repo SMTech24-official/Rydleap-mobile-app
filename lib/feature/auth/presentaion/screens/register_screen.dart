@@ -21,7 +21,9 @@ class RegisterScreen extends StatelessWidget {
       body: Custombackground(
         bottomContainerHeight: screenHeight() * 0.5,
         widget: Padding(
-          padding: EdgeInsets.only(top: getHeight(82)),
+          padding: EdgeInsets.only(
+            top: getHeight(82),
+          ),
           child: Container(
             margin: EdgeInsets.only(left: getWidth(18)),
             child: Column(
@@ -104,6 +106,9 @@ class RegisterScreen extends StatelessWidget {
                 icon: AppIcons.facebookIcon,
                 text: "Sign in with Facebook",
                 onTap: () {}),
+            SizedBox(
+              height: getHeight(20),
+            )
           ],
         ),
       ),

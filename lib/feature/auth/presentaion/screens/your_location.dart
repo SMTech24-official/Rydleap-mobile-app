@@ -60,9 +60,7 @@ class YourLocation extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(
-            height: 2.w,
-          ),
+          Spacer(),
           Container(
             padding: EdgeInsets.symmetric(horizontal: getWidth(18)),
             child: Column(
@@ -78,7 +76,7 @@ class YourLocation extends StatelessWidget {
                 SizedBox(
                   height: 3.w,
                 ),
-                CustomBlurButton(
+                CustomGradientButton(
                     text: "Driver",
                     onTap: () {
                       CustomGlobalVariable.userType = 'Driver';
@@ -87,6 +85,9 @@ class YourLocation extends StatelessWidget {
                     })
               ],
             ),
+          ),
+          SizedBox(
+            height: getHeight(20),
           )
         ],
       ),

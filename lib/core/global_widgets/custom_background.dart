@@ -6,14 +6,15 @@ import 'package:rydleap/core/app_sizes.dart';
 class Custombackground extends StatelessWidget {
   final Widget widget;
   final Widget child;
+  final Widget? icon;
   final double bottomContainerHeight;
 
-  const Custombackground({
-    super.key,
-    required this.widget,
-    required this.bottomContainerHeight,
-    required this.child,
-  });
+  const Custombackground(
+      {super.key,
+      required this.widget,
+      required this.bottomContainerHeight,
+      required this.child,
+      this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +41,9 @@ class Custombackground extends StatelessWidget {
               ),
             ],
           ),
+        ),
+        SizedBox(
+          child: icon,
         ),
         widget,
         Align(

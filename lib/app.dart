@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/shared/screen/splashScreen.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
@@ -28,10 +29,9 @@ class Rydleap extends StatelessWidget {
       appBarTheme: AppBarTheme(backgroundColor: Colors.black),
       iconTheme: IconThemeData(color: Color(0xffD9D9D9), size: 24),
       inputDecorationTheme: InputDecorationTheme(
-        hintStyle: TextStyle(
-            color: AppColors.textGrey,
-            fontSize: 2.5.w,
-            fontFamily: "Outfit",
+        hintStyle: GoogleFonts.nunito(
+            color: Color(0xffC3BBBB),
+            fontSize: getWidth(15),
             fontWeight: FontWeight.w400),
         // fillColor: AppColors.mainColor,
         fillColor: Colors.white,
@@ -67,29 +67,29 @@ class Rydleap extends StatelessWidget {
             iconColor: WidgetStateColor.resolveWith((states) => Colors.white)),
       ),
       textTheme: TextTheme(
-        titleLarge: TextStyle(
+        titleLarge: GoogleFonts.nunito(
           fontSize: 7.w,
           color: Colors.white,
           fontWeight: FontWeight.w400,
         ),
 
-        titleMedium: TextStyle(
-          fontSize: 4.w,
+        titleMedium: GoogleFonts.nunito(
+          fontSize: getWidth(20),
           color: Colors.white,
           fontWeight: FontWeight.w500,
         ),
-        titleSmall: TextStyle(
-          fontSize: 3.w,
+        titleSmall: GoogleFonts.nunito(
+          fontSize: getWidth(15),
           color: Color(0xffECECEC),
           fontWeight: FontWeight.w400,
         ),
-        bodyMedium: TextStyle(
-          fontSize: 2.7.w,
+        bodyMedium: GoogleFonts.nunito(
+          fontSize: getWidth(14),
           color: Color(0xffEEEEEE),
           fontWeight: FontWeight.w400,
         ),
-        bodySmall: TextStyle(
-          fontSize: 2.3.w,
+        bodySmall: GoogleFonts.nunito(
+          fontSize: getWidth(12),
           color: Color(0xffD6D3D3),
           fontWeight: FontWeight.w400,
         ),
