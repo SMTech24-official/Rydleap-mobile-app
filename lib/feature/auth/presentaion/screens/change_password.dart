@@ -7,6 +7,7 @@ import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
+import 'package:rydleap/feature/auth/presentaion/screens/login_screen.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});
@@ -273,33 +274,63 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       builder: (BuildContext context) {
         return Align(
           alignment: Alignment.center, // Center the container on the screen
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: getWidth(38)),
-            height: getHeight(238),
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: getHeight(95),
-                  width: getWidth(95),
-                  child: Image.asset(AppImagese.successIcon),
-                ),
-                Text(
-                  'Your password has been changed successfully!',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.nunito(
-                    color: Color(0xff001B26),
-                    fontSize: getWidth(17),
-                    fontWeight: FontWeight.w500,
+          child: Stack(
+            children: [
+              Container(
+                height: screenHeight(),
+                width: double.infinity,
+                color: Colors.transparent,
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: getWidth(38)),
+                  height: getHeight(238),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: getHeight(95),
+                        width: getWidth(95),
+                        child: Image.asset(AppImagese.successIcon),
+                      ),
+                      Text(
+                        'Your password has been changed successfully!',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.nunito(
+                          color: Color(0xff001B26),
+                          fontSize: getWidth(17),
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+              Positioned(
+                top:
+                    getHeight(30), // Adjust the top margin for the close button
+                right: getWidth(
+                    20), // Adjust the right margin for the close button
+                child: SizedBox(
+                  height: getHeight(26),
+                  width: getWidth(26),
+                  child: IconButton(
+                    icon: Icon(Icons.close, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => LoginScreen()));
+                    },
+                  ),
+                ),
+              ),
+            ],
           ),
         );
       },
