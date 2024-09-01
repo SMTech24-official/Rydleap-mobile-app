@@ -6,7 +6,6 @@ import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
-import 'package:rydleap/core/utility/app_colors.dart';
 
 class CreatePasswordScreen extends StatefulWidget {
   const CreatePasswordScreen({super.key});
@@ -18,10 +17,57 @@ class CreatePasswordScreen extends StatefulWidget {
 class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
-  bool isChecked = false;
   bool checkPass = false;
-  bool checkRePass = false;
-  List<String> passItems = [""];
+
+  bool isConditionMet = false;
+
+  bool containsNumber(String password) {
+    return password.contains(RegExp(r'\d'));
+  }
+
+  bool containsSpecialCharacter(String password) {
+    return password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+  }
+
+  List<String> passwordCondition = [
+    "At least 8 characters",
+    "Includes a number",
+    "Includes a special character",
+  ];
+
+  bool get isPasswordStrong {
+    String password = passwordController.text;
+    return password.length >= 8 &&
+        containsNumber(password) &&
+        containsSpecialCharacter(password);
+  }
+
+  bool get isPasswordMatch {
+    return passwordController.text == confirmPasswordController.text &&
+        passwordController.text.isNotEmpty;
+  }
+
+  String get passwordStrengthMessage {
+    if (isPasswordMatch && isPasswordStrong) {
+      return "Strong";
+    } else if (isPasswordMatch && !isPasswordStrong) {
+      return "Week";
+    } else {
+      return "Passwords do not match.";
+    }
+  }
+
+  Widget get passwordStrengthIcon {
+    if (isPasswordMatch && isPasswordStrong) {
+      return Image.asset(AppIcons.checkCircle);
+    } else {
+      return Icon(
+        Icons.error_outline,
+        color: Colors.red,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +80,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
             child: Container(
               height: getHeight(129),
               width: getWidth(138),
-              child: Image.asset(AppImagese.appLogo),
+              child: Image.asset(AppImagese.lockIcon),
             ),
           ),
         ),
@@ -57,98 +103,140 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
               controller: passwordController,
               obsecureText: checkPass,
               hintext: "Password",
-              suffixIcon: checkPass
-                  ? Icon(
-                      Icons.visibility_off,
-                      color: Color(0xffF8F8F8),
-                      size: getWidth(16),
-                    )
-                  : Icon(
-                      Icons.visibility,
-                      color: Color(0xffF8F8F8),
-                      size: getWidth(16),
-                    ),
-              onTap: () {
-                setState(() {
-                  checkPass = !checkPass;
-                });
+              suffixIcon: InkWell(
+                onTap: () {
+                  setState(() {
+                    checkPass = !checkPass;
+                  });
+                },
+                child: SizedBox(
+                  height: getHeight(24),
+                  width: getWidth(24),
+                  child: Icon(
+                    checkPass ? Icons.visibility_off : Icons.visibility,
+                    color: Color(0xffF8F8F8),
+                  ),
+                ),
+              ),
+              onChanged: (value) {
+                setState(() {});
               },
             ),
             SizedBox(
               height: getHeight(18),
             ),
             CustomTextfield(
-                controller: confirmPasswordController,
-                hintext: "Re-password",
-                obsecureText: true,
-                suffixIcon: Icon(
-                  Icons.error_outline,
-                  color: Color(0xffF50D0D),
-                  size: getWidth(16),
-                ),
-                // ? Icon(
-                //     Icons.error_outline,
-                //     color: Color(0xffF50D0D),
-                //     size: getWidth(16),
-                //   )
-                // : Icon(Icons.error),
-                onTap: () {
-                  setState(() {
-                    checkRePass = !checkRePass;
-                  });
-                }),
+              controller: confirmPasswordController,
+              obsecureText: checkPass,
+              hintext: "Re-password",
+              suffixIcon: SizedBox(
+                  height: getHeight(24),
+                  width: getWidth(24),
+                  child: passwordStrengthIcon),
+              onTap: () {
+                setState(() {
+                  checkPass = !checkPass;
+                });
+              },
+              onChanged: (value) {
+                setState(() {});
+              },
+            ),
             SizedBox(
               height: getHeight(16),
             ),
             Row(
               children: [
-                Icon(
-                  Icons.error_outline,
-                  color: Color(0xffF50D0D),
-                  size: getWidth(16),
-                ),
+                SizedBox(
+                    height: getHeight(24),
+                    width: getWidth(24),
+                    child: passwordStrengthIcon),
                 SizedBox(
                   width: 10,
                 ),
                 Text(
-                  "Create your Password",
+                  passwordStrengthMessage,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ],
             ),
             ListView.builder(
-                shrinkWrap: true,
-                itemCount: 3,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: Row(
-                      children: [
-                        Container(
-                          height: getWidth(12),
-                          width: getWidth(12),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(1),
-                              border: Border.all(color: Color(0xff9B9A9A))),
+              shrinkWrap: true,
+              itemCount: passwordCondition.length,
+              itemBuilder: (context, index) {
+                final condition = passwordCondition[index];
+
+                switch (index) {
+                  case 0:
+                    isConditionMet = passwordController.text.length >= 8;
+                    break;
+                  case 1:
+                    isConditionMet = containsNumber(passwordController.text);
+                    break;
+                  case 2:
+                    isConditionMet =
+                        containsSpecialCharacter(passwordController.text);
+                    break;
+                }
+
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: getWidth(12),
+                        width: getWidth(12),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(1),
+                          border: Border.all(
+                            color: isConditionMet
+                                ? Colors.white
+                                : Color(0xff9B9A9A),
+                          ),
+                          color: isConditionMet
+                              ? Color(0xff30B64D)
+                              : Color(0xffF50D0D),
                         ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "At least 8 characters",
-                          style: Theme.of(context).textTheme.bodySmall,
-                        ),
-                      ],
-                    ),
-                  );
-                }),
+                        child: isConditionMet
+                            ? Icon(
+                                Icons.check,
+                                color: Colors.white,
+                                size: getWidth(10),
+                              )
+                            : Icon(
+                                Icons.close,
+                                color: Colors.white,
+                                size: getWidth(10),
+                              ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        condition,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color:
+                                  Theme.of(context).textTheme.bodySmall?.color,
+                            ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
             Spacer(),
-            CustomBlurButton(
-                text: "Continue",
-                onTap: () {
-                  // Navigator.push(
-                  //     context, MaterialPageRoute(builder: (_) => NavPage()));
-                })
+            isPasswordMatch && isPasswordStrong
+                ? CustomGradientButton(text: "Continue", onTap: () {})
+                : CustomBlurButton(text: "Continue", onTap: () {}
+                    // isPasswordMatch && isPasswordStrong
+                    //     ? () {
+                    //         // Navigate to the next page
+                    //       }
+                    //     : null, // Disable the button if conditions are not met
+                    ),
+            SizedBox(
+              height: getHeight(20),
+            ),
           ],
         ),
       ),

@@ -27,7 +27,7 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
       resizeToAvoidBottomInset: false,
       body: Custombackground(
         widget: Padding(
-          padding: EdgeInsets.only(top: getHeight(50)),
+          padding: EdgeInsets.only(top: getHeight(44)),
           child: Align(
             alignment: Alignment.topCenter,
             child: Container(
@@ -172,7 +172,10 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
                       context,
                       MaterialPageRoute(
                           builder: (_) => CreatePasswordScreen()));
-                })
+                }),
+            SizedBox(
+              height: getHeight(20),
+            )
           ],
         ),
       ),

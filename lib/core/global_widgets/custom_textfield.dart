@@ -7,6 +7,7 @@ class CustomTextfield extends StatelessWidget {
   final String hintext;
   final Widget? suffixIcon;
   final VoidCallback? onTap;
+  final ValueChanged<String>? onChanged;
   bool obsecureText;
   CustomTextfield(
       {super.key,
@@ -14,6 +15,7 @@ class CustomTextfield extends StatelessWidget {
       required this.hintext,
       this.suffixIcon,
       this.onTap,
+      this.onChanged,
       this.obsecureText = false});
 
   @override
@@ -43,6 +45,7 @@ class CustomTextfield extends StatelessWidget {
       child: TextField(
         controller: controller,
         obscureText: obsecureText,
+        onChanged: onChanged,
         style: TextStyle(
             color: Color(0xffC3BBBB),
             fontWeight: FontWeight.w400,
