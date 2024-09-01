@@ -27,7 +27,7 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
       resizeToAvoidBottomInset: false,
       body: Custombackground(
         widget: Padding(
-          padding: EdgeInsets.only(top: getHeight(44)),
+          padding: EdgeInsets.only(top: getHeight(50)),
           child: Align(
             alignment: Alignment.topCenter,
             child: Container(

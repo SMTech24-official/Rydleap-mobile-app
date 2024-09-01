@@ -6,7 +6,7 @@ import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
-import 'package:rydleap/feature/auth/presentaion/login_screen.dart';
+import 'package:rydleap/feature/auth/presentaion/screens/login_screen.dart';
 
 class CreatePasswordScreen extends StatefulWidget {
   const CreatePasswordScreen({super.key});
@@ -16,8 +16,8 @@ class CreatePasswordScreen extends StatefulWidget {
 }
 
 class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _confirmPasswordController = TextEditingController();
   bool checkPass = false;
 
   bool isConditionMet = false;
@@ -37,15 +37,15 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
   ];
 
   bool get isPasswordStrong {
-    String password = passwordController.text;
+    String password = _passwordController.text;
     return password.length >= 8 &&
         containsNumber(password) &&
         containsSpecialCharacter(password);
   }
 
   bool get isPasswordMatch {
-    return passwordController.text == confirmPasswordController.text &&
-        passwordController.text.isNotEmpty;
+    return _passwordController.text == _confirmPasswordController.text &&
+        _passwordController.text.isNotEmpty;
   }
 
   String get passwordStrengthMessage {
@@ -101,7 +101,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
               height: getHeight(24),
             ),
             CustomTextfield(
-              controller: passwordController,
+              controller: _passwordController,
               obsecureText: checkPass,
               hintext: "Password",
               suffixIcon: InkWell(
@@ -127,7 +127,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
               height: getHeight(18),
             ),
             CustomTextfield(
-              controller: confirmPasswordController,
+              controller: _confirmPasswordController,
               obsecureText: checkPass,
               hintext: "Re-password",
               suffixIcon: SizedBox(
@@ -169,14 +169,14 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
 
                 switch (index) {
                   case 0:
-                    isConditionMet = passwordController.text.length >= 8;
+                    isConditionMet = _passwordController.text.length >= 8;
                     break;
                   case 1:
-                    isConditionMet = containsNumber(passwordController.text);
+                    isConditionMet = containsNumber(_passwordController.text);
                     break;
                   case 2:
                     isConditionMet =
-                        containsSpecialCharacter(passwordController.text);
+                        containsSpecialCharacter(_passwordController.text);
                     break;
                 }
 
@@ -230,6 +230,8 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                 ? CustomGradientButton(
                     text: "Continue",
                     onTap: () {
+                      _passwordController.clear();
+                      _confirmPasswordController.clear();
                       Navigator.push(context,
                           MaterialPageRoute(builder: (_) => LoginScreen()));
                     })
@@ -252,8 +254,8 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
 
   @override
   void dispose() {
-    passwordController.clear();
-    confirmPasswordController.clear();
+    _passwordController.clear();
+    _confirmPasswordController.clear();
     super.dispose();
   }
 }

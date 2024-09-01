@@ -74,12 +74,12 @@ class Rydleap extends StatelessWidget {
         ),
 
         titleMedium: GoogleFonts.nunito(
-          fontSize: 4.w,
+          fontSize: getWidth(20),
           color: Colors.white,
           fontWeight: FontWeight.w500,
         ),
         titleSmall: GoogleFonts.nunito(
-          fontSize: 3.w,
+          fontSize: getWidth(15),
           color: Color(0xffECECEC),
           fontWeight: FontWeight.w400,
         ),

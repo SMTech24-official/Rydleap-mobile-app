@@ -8,6 +8,7 @@ import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/create_password.dart';
+import 'package:rydleap/feature/auth/presentaion/screens/otp_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -26,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
       resizeToAvoidBottomInset: false,
       body: Custombackground(
         widget: Padding(
-          padding: EdgeInsets.only(top: getHeight(44)),
+          padding: EdgeInsets.only(top: getHeight(50)),
           child: Align(
             alignment: Alignment.topCenter,
             child: Container(
@@ -115,7 +116,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 AppTextButton(
                   text: "Forgotten password?",
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => OtpScreen()));
+                  },
                   fontWeight: FontWeight.w400,
                   textSize: getWidth(5),
                 )
@@ -130,10 +134,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 onTap: () {
                   // Navigator.push(
                   //     context, MaterialPageRoute(builder: (_) => NavPage()));
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => CreatePasswordScreen()));
                 }),
             SizedBox(
               height: getHeight(20),

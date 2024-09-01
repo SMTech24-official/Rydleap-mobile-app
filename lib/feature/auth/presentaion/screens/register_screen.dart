@@ -106,9 +106,9 @@ class RegisterScreen extends StatelessWidget {
                 icon: AppIcons.facebookIcon,
                 text: "Sign in with Facebook",
                 onTap: () {}),
-            // SizedBox(
-            //   height: getHeight(20),
-            // )
+            SizedBox(
+              height: getHeight(20),
+            )
           ],
         ),
       ),
