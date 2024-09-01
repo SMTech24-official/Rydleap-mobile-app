@@ -4,11 +4,10 @@ import 'package:rydleap/core/utility/app_colors.dart';
 
 class CustomBlurButton extends StatelessWidget {
   final String text;
-  final VoidCallback onTap;
+
   const CustomBlurButton({
     super.key,
     required this.text,
-    required this.onTap,
   });
 
   @override
@@ -19,7 +18,6 @@ class CustomBlurButton extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(getWidth(46)),
         splashColor: Colors.grey,
-        onTap: onTap,
         child: Container(
           height: getHeight(50),
           width: double.infinity,

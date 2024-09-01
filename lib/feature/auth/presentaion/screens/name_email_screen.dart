@@ -18,8 +18,8 @@ class NameEmailScreen extends StatefulWidget {
 }
 
 class _NameEmailScreenState extends State<NameEmailScreen> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
   bool isChecked = false;
   @override
   Widget build(BuildContext context) {
@@ -42,15 +42,17 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomTextfield(
-              controller: nameController,
+              controller: _nameController,
               hintext: "Name",
+              suffixIcon: SizedBox(),
             ),
             SizedBox(
               height: getHeight(18),
             ),
             CustomTextfield(
-              controller: emailController,
+              controller: _emailController,
               hintext: "Email",
+              suffixIcon: SizedBox(),
             ),
             SizedBox(
               height: getHeight(18),
@@ -184,8 +186,8 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
 
   @override
   void dispose() {
-    nameController.clear();
-    emailController.clear();
+    _nameController.clear();
+    _emailController.clear();
     super.dispose();
   }
 }

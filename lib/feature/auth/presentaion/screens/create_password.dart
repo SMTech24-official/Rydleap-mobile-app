@@ -6,6 +6,7 @@ import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
+import 'package:rydleap/feature/auth/presentaion/login_screen.dart';
 
 class CreatePasswordScreen extends StatefulWidget {
   const CreatePasswordScreen({super.key});
@@ -59,7 +60,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
 
   Widget get passwordStrengthIcon {
     if (isPasswordMatch && isPasswordStrong) {
-      return Image.asset(AppIcons.checkCircle);
+      return Image.asset(AppIcons.checkFill);
     } else {
       return Icon(
         Icons.error_outline,
@@ -226,14 +227,20 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
             ),
             Spacer(),
             isPasswordMatch && isPasswordStrong
-                ? CustomGradientButton(text: "Continue", onTap: () {})
-                : CustomBlurButton(text: "Continue", onTap: () {}
+                ? CustomGradientButton(
+                    text: "Continue",
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => LoginScreen()));
+                    })
+                : CustomBlurButton(
+                    text: "Continue",
                     // isPasswordMatch && isPasswordStrong
                     //     ? () {
                     //         // Navigate to the next page
                     //       }
                     //     : null, // Disable the button if conditions are not met
-                    ),
+                  ),
             SizedBox(
               height: getHeight(20),
             ),

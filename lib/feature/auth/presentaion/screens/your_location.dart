@@ -78,7 +78,7 @@ class YourLocation extends StatelessWidget {
                 SizedBox(
                   height: 3.w,
                 ),
-                CustomBlurButton(
+                CustomGradientButton(
                     text: "Driver",
                     onTap: () {
                       CustomGlobalVariable.userType = 'Driver';
