@@ -6,4 +6,5 @@ class AppImagese {
   static const String successIcon = "assets/images/success_icon.png";
   static const String locationImage = "assets/images/location.png";
   static const String notificationImage = "assets/images/notification.png";
+  static const String profileImage = "assets/images/profile.png";
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
-import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_container.dart';
 
 class Custombackground extends StatelessWidget {
