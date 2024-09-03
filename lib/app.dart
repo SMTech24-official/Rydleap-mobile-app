@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -68,9 +67,9 @@ class Rydleap extends StatelessWidget {
       ),
       textTheme: TextTheme(
         titleLarge: GoogleFonts.nunito(
-          fontSize: 7.w,
+          fontSize: getWidth(23),
           color: Colors.white,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w600,
         ),
 
         titleMedium: GoogleFonts.nunito(
@@ -81,6 +80,11 @@ class Rydleap extends StatelessWidget {
         titleSmall: GoogleFonts.nunito(
           fontSize: getWidth(15),
           color: Color(0xffECECEC),
+          fontWeight: FontWeight.w400,
+        ),
+        bodyLarge: GoogleFonts.nunito(
+          fontSize: getWidth(18),
+          color: Color(0xffEEEEEE),
           fontWeight: FontWeight.w400,
         ),
         bodyMedium: GoogleFonts.nunito(
