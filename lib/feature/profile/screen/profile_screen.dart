@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
@@ -9,15 +13,93 @@ import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/profile/dummy_data/about_model.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
+
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  File? _selectedImage;
+
+  final ImagePicker _picker = ImagePicker();
+
+  final String _imageKey = "stored_image_path";
+
+  Future<void> _pickImage(ImageSource source) async {
+    try {
+      final XFile? image = await _picker.pickImage(source: source);
+      if (image != null) {
+        setState(() {
+          _selectedImage = File(image.path);
+        });
+        // _storeImagePath(image.path);
+      }
+    } catch (e) {
+      print('Failed to pick image: $e');
+    }
+  }
+
+  Future<bool> _checkPermissions(ImageSource source) async {
+    if (source == ImageSource.camera) {
+      final cameraStatus = await Permission.camera.status;
+      if (cameraStatus.isGranted) {
+        final result = await Permission.camera.request();
+        return result.isGranted;
+      }
+    } else if (source == ImageSource.gallery) {
+      final storageStatus = await Permission.photos.request();
+      if (storageStatus.isGranted) {
+        final result = await Permission.photos.request();
+        return result.isGranted;
+      }
+    }
+    return true;
+  }
+
+  void _showImageSourceSelection(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: AppColors.appbarColor,
+      builder: (context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: Icon(Icons.camera_alt),
+              title: Text('Take a Photo'),
+              onTap: () async {
+                if (await _checkPermissions(ImageSource.gallery)) {
+                  _pickImage(ImageSource.camera);
+                }
+
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.photo_library),
+              title: Text('Choose from Gallery'),
+              onTap: () async {
+                if (await _checkPermissions(ImageSource.gallery)) {
+                  _pickImage(ImageSource.gallery);
+                }
+
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: Color(0xff001B26),
+          backgroundColor: AppColors.appbarColor,
           leading: SizedBox(
               height: getHeight(26),
               width: getWidth(26),
@@ -65,14 +147,19 @@ class ProfileScreen extends StatelessWidget {
                         Positioned(
                           bottom: 5,
                           right: 2,
-                          child: Container(
-                            height: getHeight(16),
-                            width: getWidth(16),
-                            decoration: BoxDecoration(
-                              color: Color(0xff001B26),
-                              shape: BoxShape.circle,
+                          child: InkWell(
+                            onTap: () {
+                              _showImageSourceSelection(context);
+                            },
+                            child: Container(
+                              height: getHeight(16),
+                              width: getWidth(16),
+                              decoration: BoxDecoration(
+                                color: Color(0xff001B26),
+                                shape: BoxShape.circle,
+                              ),
+                              child: Image.asset(AppIcons.editProfile),
                             ),
-                            child: Image.asset(AppIcons.edit),
                           ),
                         ),
                       ],

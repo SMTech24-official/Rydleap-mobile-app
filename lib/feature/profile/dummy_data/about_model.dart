@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rydleap/core/app_icons.dart';
+import 'package:rydleap/feature/profile/screen/profile_settings.dart';
 
 class AboutModel {
   final String title;
@@ -14,7 +16,7 @@ List<AboutModel> aboutItems = [
       title: "Settings",
       icon: AppIcons.settings,
       onTap: () {
-        print("Settings");
+        Get.to(ProfileSettings());
       }),
   AboutModel(
       title: "Promotions and offers",
