@@ -69,12 +69,11 @@ class RegisterScreen extends StatelessWidget {
             CustomGradientButton(text: "Get OTP", onTap: () {}),
             Container(
               width: getWidth(120),
-              height: 37,
               child: Column(
                 children: [
                   Text(
                     "Privacy Policy",
-                    style: TextStyle(
+                    style: GoogleFonts.nunito(
                       color: Color(0xffF9F9F9),
                       fontSize: getWidth(14),
                       fontWeight: FontWeight.w500,

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
+import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/profile/dummy_data/about_model.dart';
 
@@ -49,14 +51,31 @@ class ProfileScreen extends StatelessWidget {
                     height: getHeight(40),
                   ),
                   Center(
-                    child: Container(
-                      height: getHeight(54),
-                      width: getWidth(54),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                            image: AssetImage(AppImagese.profileImage)),
-                      ),
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: getHeight(54),
+                          width: getWidth(54),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                                image: AssetImage(AppImagese.profileImage)),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 5,
+                          right: 2,
+                          child: Container(
+                            height: getHeight(16),
+                            width: getWidth(16),
+                            decoration: BoxDecoration(
+                              color: Color(0xff001B26),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.asset(AppIcons.edit),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   //profile section
@@ -155,7 +174,12 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
-                    child: CustomBlurButton(text: "Log Out"),
+                    child: CustomBlurButton(
+                      text: "Log Out",
+                      textColor: CustomGlobalVariable.userType == 'Driver'
+                          ? Color(0xffFE0F00)
+                          : AppColors.textGrey,
+                    ),
                   )
                 ],
               ),
