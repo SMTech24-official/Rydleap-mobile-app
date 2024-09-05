@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/feature/profile/screen/profile_settings.dart';
+import 'package:rydleap/feature/profile/widgets/contact_support/contact_support.dart';
 import 'package:rydleap/feature/profile/widgets/report_problem/report_problem.dart';
 import 'package:rydleap/feature/profile/widgets/ride_history/ride_history.dart';
 
@@ -60,6 +61,6 @@ List<AboutModel> aboutItems = [
       title: "Contact us",
       icon: AppIcons.contact,
       onTap: () {
-        print("Contact us");
+        Get.to(ContactSupportScreen());
       }),
 ];
