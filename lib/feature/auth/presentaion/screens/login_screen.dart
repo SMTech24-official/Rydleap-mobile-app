@@ -20,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   bool isChecked = false;
+  bool isTap = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

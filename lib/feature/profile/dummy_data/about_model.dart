@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/feature/profile/screen/profile_settings.dart';
+import 'package:rydleap/feature/profile/widgets/report_problem/report_problem.dart';
 import 'package:rydleap/feature/profile/widgets/ride_history/ride_history.dart';
 
 class AboutModel {
@@ -17,7 +18,7 @@ List<AboutModel> aboutItems = [
       title: "Settings",
       icon: AppIcons.settings,
       onTap: () {
-        Get.to(ProfileSettings());
+        // Get.to(ProfileSettings());
       }),
   AboutModel(
       title: "Promotions and offers",
@@ -53,7 +54,7 @@ List<AboutModel> aboutItems = [
       title: "Report a Problem",
       icon: AppIcons.report,
       onTap: () {
-        print("Report a Problem");
+        Get.to(ReportProblemScreen());
       }),
   AboutModel(
       title: "Contact us",

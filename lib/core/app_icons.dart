@@ -12,6 +12,7 @@ class AppIcons {
   static const String payment = "assets/icons/payment.png";
   static const String promotion = "assets/icons/promotion.png";
   static const String report = "assets/icons/report.png";
+  static const String reportWhite = "assets/icons/report_white.png";
   static const String settings = "assets/icons/settings.png";
   static const String editProfile = "assets/icons/edit.png";
   static const String edit = "assets/icons/edit_icon.png";

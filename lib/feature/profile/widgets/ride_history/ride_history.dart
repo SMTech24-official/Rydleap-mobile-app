@@ -84,7 +84,8 @@ class _RideHistoryScreenState extends State<RideHistoryScreen> {
                 ),
                 Expanded(
                   child: ListView.builder(
-                      itemCount: 5,
+                      padding: EdgeInsets.zero,
+                      itemCount: 7,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 16.0),

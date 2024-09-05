@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -12,6 +13,7 @@ import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/profile/dummy_data/about_model.dart';
+import 'package:rydleap/feature/profile/screen/profile_settings.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -125,6 +127,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 60.h,
               fit: BoxFit.cover,
             ),
+            //online container
+            CustomGlobalVariable.userType == 'Driver'
+                ? Positioned(
+                    top: getHeight(17),
+                    right: getWidth(30),
+                    child: Container(
+                      padding: EdgeInsets.only(
+                        left: 10,
+                        right: 10,
+                      ),
+                      height: getHeight(18),
+                      // width: getWidth(40),
+                      decoration: BoxDecoration(
+                          color: Color(0xff03989E),
+                          borderRadius: BorderRadius.circular(100)),
+                      child: Center(
+                        child: Text(
+                          "Online",
+                          style: GoogleFonts.nunito(
+                              fontSize: getWidth(10),
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ),
+                    ),
+                  )
+                : SizedBox(),
+            //profile image section
             Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -165,6 +194,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ],
                     ),
                   ),
+
                   //profile section
                   Container(
                     width: getWidth(162),
@@ -201,6 +231,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               fontSize: getWidth(15),
                               fontWeight: FontWeight.w400),
                         ),
+                        InkWell(
+                          onTap: () {
+                            Get.to(ProfileSettings());
+                          },
+                          child: Container(
+                            height: getHeight(20),
+                            width: getWidth(40),
+                            decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(0.12),
+                                borderRadius: BorderRadius.circular(3)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Edit",
+                                  style: GoogleFonts.nunito(
+                                      color: Color(0xffB6B3B3),
+                                      fontSize: getWidth(10),
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                Icon(
+                                  Icons.arrow_drop_down,
+                                  size: getWidth(12),
+                                  color: Color(0xffB6B3B3),
+                                )
+                              ],
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),
