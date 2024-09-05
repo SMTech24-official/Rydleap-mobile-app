@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/feature/profile/screen/profile_settings.dart';
-import 'package:rydleap/feature/profile/widgets/ride_history.dart';
+import 'package:rydleap/feature/profile/widgets/ride_history/ride_history.dart';
 
 class AboutModel {
   final String title;
