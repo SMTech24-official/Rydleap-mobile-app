@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:rydleap/feature/profile/widgets/contact_support/call_support.dart';
+import 'package:rydleap/feature/profile/widgets/contact_support/email_support.dart';
 
 class ContactSupportScreen extends StatelessWidget {
   const ContactSupportScreen({super.key});
@@ -70,7 +73,9 @@ class ContactSupportScreen extends StatelessWidget {
                             fontWeight: FontWeight.w400),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(CallSupportScreen());
+                        },
                         child: Icon(
                           Icons.arrow_forward_ios,
                           size: 12,
@@ -101,7 +106,9 @@ class ContactSupportScreen extends StatelessWidget {
                             fontWeight: FontWeight.w400),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(EmailSupportScreen());
+                        },
                         child: Icon(
                           Icons.arrow_forward_ios,
                           size: 12,

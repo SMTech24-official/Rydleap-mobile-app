@@ -307,6 +307,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 onTap: data.onTap,
                                 child: Icon(
                                   Icons.arrow_forward_ios,
+                                  size: 16,
                                 ),
                               ),
                             ],

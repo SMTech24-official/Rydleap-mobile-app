@@ -19,4 +19,6 @@ class AppIcons {
   static const String search = "assets/icons/search.png";
   static const String arrowUp = "assets/icons/arrow_up.png";
   static const String arrowDown = "assets/icons/arrow_down.png";
+  static const String phone = "assets/icons/phone.png";
+  static const String send = "assets/icons/send.png";
 }
