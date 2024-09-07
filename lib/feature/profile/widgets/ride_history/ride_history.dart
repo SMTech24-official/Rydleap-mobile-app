@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rydleap/core/app_icons.dart';
-import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
@@ -28,7 +26,8 @@ class _RideHistoryScreenState extends State<RideHistoryScreen> {
         centerTitle: true,
         backgroundColor: AppColors.appbarColor,
         title: Text(
-          "Ride history",
+         CustomGlobalVariable.userType == 'Driver'
+                ?"Drive history": "Ride history",
           style: GoogleFonts.inter(
             fontSize: getWidth(20),
             fontWeight: FontWeight.w600,

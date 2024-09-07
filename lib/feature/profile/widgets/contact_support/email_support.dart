@@ -8,7 +8,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
-import 'package:rydleap/core/global_widgets/custom_next_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 
 class EmailSupportScreen extends StatefulWidget {

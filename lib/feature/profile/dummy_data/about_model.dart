@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/change_password.dart';
-import 'package:rydleap/feature/profile/screen/profile_settings.dart';
 import 'package:rydleap/feature/profile/widgets/contact_support/contact_support.dart';
+import 'package:rydleap/feature/profile/widgets/language/language_screen.dart';
 import 'package:rydleap/feature/profile/widgets/report_problem/report_problem.dart';
 import 'package:rydleap/feature/profile/widgets/ride_history/ride_history.dart';
+import 'package:rydleap/feature/profile/widgets/settings/settings_screen.dart';
 
 class AboutModel {
   final String title;
@@ -22,7 +23,7 @@ List<AboutModel> userItems = [
       title: "Settings",
       icon: AppIcons.settings,
       onTap: () {
-        // Get.to(ProfileSettings());
+        Get.to(SettingsScreen());
       }),
   AboutModel(
       title: "Promotions and offers",
@@ -52,7 +53,7 @@ List<AboutModel> userItems = [
       title: "Language",
       icon: AppIcons.language,
       onTap: () {
-        print("Language");
+        Get.to(LanguageScreen());
       }),
   AboutModel(
       title: "Report a Problem",
@@ -75,7 +76,7 @@ List<AboutModel> driverItems = [
       title: "Settings",
       icon: AppIcons.settings,
       onTap: () {
-        // Get.to(ProfileSettings());
+         Get.to(SettingsScreen());
       }),
 
   AboutModel(
@@ -100,7 +101,7 @@ List<AboutModel> driverItems = [
       title: "Language",
       icon: AppIcons.language,
       onTap: () {
-        print("Language");
+       Get.to(LanguageScreen());
       }),
   AboutModel(
       title: "Report a Problem",

@@ -76,7 +76,8 @@ class _ReportProblemScreenState extends State<ReportProblemScreen> {
                     isSelected[index] = !isSelected[index];
                   });
                 },
-                child: Padding(
+                child: 
+                Padding(
                   padding: EdgeInsets.only(bottom: getHeight(14.5)),
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: getWidth(15)),

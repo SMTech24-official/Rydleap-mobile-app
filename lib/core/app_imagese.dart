@@ -8,4 +8,9 @@ class AppImagese {
   static const String notificationImage = "assets/images/notification.png";
   static const String profileImage = "assets/images/profile.png";
   static const String note = "assets/images/note.png";
+  //flag images
+  static const String uk = "assets/images/uk.png";
+  static const String sapin = "assets/images/spain.png";
+  static const String portugal = "assets/images/portugal.png";
+  static const String franch = "assets/images/franch.png";
 }

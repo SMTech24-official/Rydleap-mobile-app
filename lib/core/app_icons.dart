@@ -21,4 +21,7 @@ class AppIcons {
   static const String arrowDown = "assets/icons/arrow_down.png";
   static const String phone = "assets/icons/phone.png";
   static const String send = "assets/icons/send.png";
+  static const String carIcon = "assets/icons/car_icon.png";
+  static const String note = "assets/icons/note.png";
+  static const String paymentIcon = "assets/icons/payment_icon.png";
 }
