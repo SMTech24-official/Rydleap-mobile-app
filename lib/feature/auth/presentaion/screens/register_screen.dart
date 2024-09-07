@@ -10,6 +10,7 @@ import 'package:rydleap/core/global_widgets/phone_input.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/components/or_sign_in_with.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/name_email_screen.dart';
+import 'package:rydleap/feature/home/presentation/screens/home.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -105,7 +106,10 @@ class RegisterScreen extends StatelessWidget {
             CustomGlassButton(
                 icon: AppIcons.facebookIcon,
                 text: "Sign in with Facebook",
-                onTap: () {}),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => Home()));
+                }),
             SizedBox(
               height: getHeight(20),
             )
