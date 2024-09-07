@@ -4,6 +4,7 @@ import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/change_password.dart';
 import 'package:rydleap/feature/profile/widgets/contact_support/contact_support.dart';
 import 'package:rydleap/feature/profile/widgets/language/language_screen.dart';
+import 'package:rydleap/feature/profile/widgets/notifcation/notification_screen.dart';
 import 'package:rydleap/feature/profile/widgets/promotion_offers/promotion_offers.dart';
 import 'package:rydleap/feature/profile/widgets/report_problem/report_problem.dart';
 import 'package:rydleap/feature/profile/widgets/ride_history/ride_history.dart';
@@ -88,9 +89,9 @@ List<AboutModel> driverItems = [
       }),
   AboutModel(
       title: "Notifications",
-      icon: AppIcons.payment,
+      icon: AppIcons.notification,
       onTap: () {
-        print("Notifications");
+       Get.to(NotificationScreen());
       }),
   AboutModel(
       title: "Drive History",
