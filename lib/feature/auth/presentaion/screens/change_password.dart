@@ -273,7 +273,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     context: context,
     isScrollControlled: true, // Make the bottom sheet take the full screen
     backgroundColor: Colors.transparent, // Transparent background
-    barrierColor: Colors.white.withOpacity(0.5),
+    barrierColor: Color(
+          0xff001B26).withOpacity(0.8),
     builder: (BuildContext context) {
       return Align(
         alignment: Alignment.center, // Center the container on the screen

@@ -208,7 +208,7 @@ class _ReportProblem2State extends State<ReportProblem2> {
       isScrollControlled: true, // Make the bottom sheet take the full screen
       backgroundColor: Colors.transparent, // Transparent background
       barrierColor: Color(
-          0xff001B26), // Semi-transparent black background for the barrier
+          0xff001B26).withOpacity(0.8), // Semi-transparent black background for the barrier
       builder: (BuildContext context) {
         return Align(
           alignment: Alignment.center, // Center the container on the screen
@@ -252,7 +252,7 @@ class _ReportProblem2State extends State<ReportProblem2> {
               ),
               Positioned(
                 top:
-                    getHeight(30), // Adjust the top margin for the close button
+                    getHeight(40), // Adjust the top margin for the close button
                 right: getWidth(
                     20), // Adjust the right margin for the close button
                 child: SizedBox(
