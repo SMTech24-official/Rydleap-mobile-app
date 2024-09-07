@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:rydleap/core/shared/widgets/background_widget.dart';
-import 'package:rydleap/core/utility/assets_paths.dart';
+import 'package:flutter_sizer/flutter_sizer.dart';
+
+import 'package:rydleap/core/app_imagese.dart';
+
 import 'package:rydleap/feature/auth/controller/auth_controller.dart';
-import 'package:rydleap/feature/auth/presentaion/screens/login.dart';
+
 import 'package:rydleap/feature/auth/presentaion/screens/your_location.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
 
@@ -33,11 +34,30 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BackgroundWidget(
-          // centerWidget: Center(
-          //   child: SvgPicture.asset(AssetsPaths.logo),
-          // ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Container(
+            child: Stack(
+              alignment: Alignment.center,
+              children: <Widget>[
+                Image.asset(
+                  'assets/images/Ellipse_9.png',
+                  width: 150.w,
+                  height: 60.h,
+                  fit: BoxFit.fill,
+                ),
+                Image.asset(
+                  'assets/images/Ellipse_2.png',
+                  width: 80.w,
+                  height: 20.h,
+                ),
+                Image.asset(AppImagese.appLogo)
+              ],
+            ),
           ),
+        ],
+      ),
     );
   }
 }
