@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/profile/widgets/ride_history/custom_search.dart';
 import 'package:rydleap/feature/profile/widgets/ride_history/history_container.dart';
@@ -33,18 +34,11 @@ class _RideHistoryScreenState extends State<RideHistoryScreen> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        leading: Padding(
-          padding: EdgeInsets.only(left: getWidth(20)),
-          child: SizedBox(
-            height: getHeight(26),
-            width: getWidth(26),
-            child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back_ios),
-            ),
-          ),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back_ios,size: 16,),
         ),
       ),
       body: Stack(
@@ -74,7 +68,8 @@ class _RideHistoryScreenState extends State<RideHistoryScreen> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
                   child: Text(
-                    "Your previous rides with Redleap drivers",
+                   CustomGlobalVariable.userType == 'Driver'
+                ? "Your previous Drives with Redleap Rideers":"Your previous Rides with Redleap Drivers",
                     style: GoogleFonts.nunito(
                         fontSize: getWidth(14), fontWeight: FontWeight.w400),
                   ),

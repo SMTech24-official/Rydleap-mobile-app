@@ -153,7 +153,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   )
                 : SizedBox(),
-            //profile image section
+            
             Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -161,6 +161,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   SizedBox(
                     height: getHeight(40),
                   ),
+                  //profile image section
                   Center(
                     child: Stack(
                       children: [
@@ -270,9 +271,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: ListView.builder(
                       padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
                       shrinkWrap: true,
-                      itemCount: aboutItems.length,
+                      itemCount:CustomGlobalVariable.userType == 'Driver'
+                ?driverItems.length: userItems.length,
                       itemBuilder: (context, index) {
-                        final data = aboutItems[index];
+                        final data =CustomGlobalVariable.userType == 'Driver'
+                ?driverItems[index]: userItems[index];
                         return Container(
                           padding:
                               EdgeInsets.symmetric(vertical: getHeight(14.5)),

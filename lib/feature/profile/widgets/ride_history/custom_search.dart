@@ -13,7 +13,7 @@ class CustomSearch extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: getWidth(38)),
-      height: getHeight(30),
+      height: getHeight(50),
       // width: getWidth(125),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(70)),
