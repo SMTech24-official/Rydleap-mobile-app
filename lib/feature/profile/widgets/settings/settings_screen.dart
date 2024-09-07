@@ -84,7 +84,7 @@ class SettingsScreen extends StatelessWidget {
                             
                           ],
                         ),
-                        IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward_ios,size: 16,))
+                        IconButton(onPressed: data.onTap, icon: Icon(Icons.arrow_forward_ios,size: 16,))
                       ],
                     ),
                   ),
