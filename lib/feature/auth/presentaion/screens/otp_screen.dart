@@ -44,6 +44,7 @@ class OtpScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: getHeight(35),),
               Text(
                 "Enter 4-digit code",
                 style: Theme.of(context).textTheme.titleMedium,

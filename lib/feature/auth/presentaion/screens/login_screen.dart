@@ -41,6 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: getHeight(35),),
             Text(
               "Log In",
               style: Theme.of(context).textTheme.titleMedium,

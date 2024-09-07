@@ -40,6 +40,7 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: getHeight(35),),
             CustomTextfield(
               controller: _nameController,
               hintext: "Name",

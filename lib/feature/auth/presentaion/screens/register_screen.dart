@@ -65,9 +65,11 @@ class RegisterScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            SizedBox(height: getHeight(20),),
             CustomPhoneInput(),
             CustomGradientButton(text: "Get OTP", onTap: () {}),
             Container(
+              
               width: getWidth(120),
               child: Column(
                 children: [
