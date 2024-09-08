@@ -6,6 +6,8 @@ import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/profile/components/custom_switch_button.dart';
+import 'package:rydleap/feature/profile/widgets/privacy_settings/components/privacy_dropdown.dart';
+import 'package:rydleap/feature/profile/widgets/ride_history/history_container.dart';
 
 class PrivacySettingsScreen extends StatefulWidget {
   const PrivacySettingsScreen({super.key});
@@ -126,30 +128,30 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
                 SizedBox(
                   height: getHeight(54),
                 ),
-                Spacer(),
-                Column(
-                  children: [
-                    CustomSwitchButton(
-                      text: "Activity Status",
-                      value: activeStatus,
-                      onChanged: (value) {
-                        setState(() {
-                          activeStatus = value;
-                        });
-                      },
-                      color: adPersonalization
-                          ? Colors.white.withOpacity(0.1)
-                          : Colors.white.withOpacity(0.02),
-                    ),
-                    SizedBox(height: getHeight(90),),
-                    CustomGradientButton(text: "Save", onTap: () {}),
-                    SizedBox(height: getHeight(20),)
-                  ],
+                CustomPrivacyDropdown(),
+                SizedBox(height:getHeight(12), ),
+                CustomSwitchButton(
+                  text: "Activity Status",
+                  value: activeStatus,
+                  onChanged: (value) {
+                    setState(() {
+                      activeStatus = value;
+                    });
+                  },
+                  color: adPersonalization
+                      ? Colors.white.withOpacity(0.1)
+                      : Colors.white.withOpacity(0.02),
                 ),
+                // SizedBox(height: getHeight(90),),
+                Spacer(),
+                    CustomGradientButton(text: "Save", onTap: () {}),
+                    SizedBox(height: getHeight(20),),
               ],
             ),
-          )
-        ],
+          ),
+      
+          
+           ],
       ),
     );
   }

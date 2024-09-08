@@ -5,6 +5,7 @@ class AppIcons {
   static const String captcha = "assets/icons/captcha.png";
   static const String checkFill = "assets/icons/check_circle.png";
   static const String checkOutline = "assets/icons/check_outline.png";
+  static const String checkGrey = "assets/icons/check_grey.png";
   static const String contact = "assets/icons/contact.png";
   static const String history = "assets/icons/history.png";
   static const String key = "assets/icons/key.png";
