@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:rydleap/feature/auth/dirver_registration/components/driver_licence.dart';
 import 'package:rydleap/feature/auth/dirver_registration/components/driver_textfield.dart';
+import 'package:rydleap/feature/auth/presentaion/screens/change_password.dart';
 
 class DriverRegistrationScreen extends StatelessWidget {
   const DriverRegistrationScreen({super.key});
@@ -122,7 +126,7 @@ class DriverRegistrationScreen extends StatelessWidget {
             DriverTextfield(controller: _licenceController),
             Spacer(),
             CustomGradientButton(text: "Continue", onTap: (){
-
+              Get.to(DriverLicence());
             }),
             SizedBox(height: getHeight(20),)
 
