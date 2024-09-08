@@ -13,14 +13,14 @@ import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/dirver_registration/components/driver_insurance.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class DriverPhoto extends StatefulWidget {
-  const DriverPhoto({super.key});
+class VehiclePhoto extends StatefulWidget {
+  const VehiclePhoto({super.key});
 
   @override
-  State<DriverPhoto> createState() => _DriverPhotoState();
+  State<VehiclePhoto> createState() => _VehiclePhotoState();
 }
 
-class _DriverPhotoState extends State<DriverPhoto> {
+class _VehiclePhotoState extends State<VehiclePhoto> {
   File? _selectedImage;
 
   final ImagePicker _picker = ImagePicker();

@@ -7,6 +7,7 @@ class AppImagese {
   static const String locationImage = "assets/images/location.png";
   static const String notificationImage = "assets/images/notification.png";
   static const String profileImage = "assets/images/profile.png";
+  static const String profileImageLarge = "assets/images/profile_large.png";
   static const String note = "assets/images/note.png";
   //flag images
   static const String uk = "assets/images/uk.png";

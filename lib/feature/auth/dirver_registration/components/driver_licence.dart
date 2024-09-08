@@ -9,7 +9,7 @@ import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
-import 'package:rydleap/feature/auth/dirver_registration/components/driver_photo.dart';
+import 'package:rydleap/feature/auth/dirver_registration/components/vehicle_photo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DriverLicence extends StatefulWidget {
@@ -259,7 +259,7 @@ class _DriverLicenceState extends State<DriverLicence> {
                           height: getHeight(50),
                           child: CustomGradientButton(
                               text: "Submit", onTap: () {
-                                Get.to(DriverPhoto());
+                                Get.to(VehiclePhoto());
                               })),
                     )
                   ],

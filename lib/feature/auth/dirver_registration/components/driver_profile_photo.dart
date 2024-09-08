@@ -1,26 +1,25 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:rydleap/core/app_icons.dart';
+import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
-import 'package:rydleap/feature/auth/dirver_registration/components/driver_profile_photo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class DriverInsurance extends StatefulWidget {
-  const DriverInsurance({super.key});
+class DriverProfilePhoto extends StatefulWidget {
+  const DriverProfilePhoto({super.key});
 
   @override
-  State<DriverInsurance> createState() => _DriverInsuranceState();
+  State<DriverProfilePhoto> createState() => _DriverProfilePhotoState();
 }
 
-class _DriverInsuranceState extends State<DriverInsurance> {
-File? _selectedImage;
+class _DriverProfilePhotoState extends State<DriverProfilePhoto> {
+  File? _selectedImage;
 
   final ImagePicker _picker = ImagePicker();
 
@@ -143,68 +142,64 @@ File? _selectedImage;
               height: getHeight(32),
             ),
             Text(
-              "Take a Photo of your Vehicle Insurance",
+              "Upload your profile photo",
               style: GoogleFonts.inter(
                   fontSize: getWidth(25), fontWeight: FontWeight.w600),
             ),
             SizedBox(
-              height: getHeight(38),
+              height: getHeight(58),
             ),
             //image section
-            Container(
-              height: getHeight(180),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                    "assets/images/frame.png",
-                  ),
-                  fit: BoxFit.fill,
-                ),
-              ),
-              child: Stack(
+            Center(
+              child: Column(
                 children: [
-                  _selectedImage != null
-                      ? Positioned.fill(
-                          child: Image.file(
-                            _selectedImage!,
-                            fit: BoxFit
-                                .cover, // This will make the image cover the entire container
-                          ),
-                        )
-                      : Align(
-                          alignment: Alignment.center,
-                          child: InkWell(
-                            onTap: () {
-                              _showImageSourceSelection(context);
-                            },
-                            child: Container(
-                              height: getHeight(37),
-                              width: getWidth(114),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(51),
-                                color: Color(0xff3AD896),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Image.asset(AppIcons.upload),
-                                  SizedBox(
-                                      width: getWidth(
-                                          8)), // Add spacing between the icon and text
-                                  Text(
-                                    "Upload",
-                                    style: GoogleFonts.nunito(
-                                      fontSize: getWidth(12),
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
+                  Container(
+  height: getHeight(144),
+  width: getWidth(144),
+  decoration: BoxDecoration(
+    shape: BoxShape.circle,
+    image: DecorationImage(
+      image: _selectedImage != null
+          ? FileImage(_selectedImage!) as ImageProvider
+          : AssetImage(AppImagese.profileImageLarge),
+      fit: BoxFit.cover, // This will make the image cover the entire container
+    ),
+  ),
+),
+
+                  Transform.translate(
+                    offset: Offset(0, -20),
+                    child: InkWell(
+                      onTap: (){
+                        _showImageSourceSelection(context);
+                      },
+                      child: Container(
+                        height: getHeight(37),
+                        width: getWidth(114),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(51),
+                          color: Color(0xff3AD896),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Image.asset(AppIcons.upload),
+                            SizedBox(
+                                width: getWidth(
+                                    8)), // Add spacing between the icon and text
+                            Text(
+                              "Upload",
+                              style: GoogleFonts.nunito(
+                                fontSize: getWidth(12),
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
-                          ),
+                          ],
                         ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -216,7 +211,7 @@ File? _selectedImage;
               child: Text(
                 _selectedImage != null
                     ? "Submit this image if you think it's readable or tap on re-upload button to upload another one."
-                    : "Make sure your name, VIN insurance company, and expiration date are clear and visiable",
+                    : "Make sure your Vehicle’s Make, Model, Year, Licence, Plate, VIN and expiration are clear and vesiable.",
                 style: GoogleFonts.nunito(
                     color: Color(0xffE1E1E1),
                     fontSize: getWidth(12),
@@ -258,9 +253,7 @@ File? _selectedImage;
                       child: SizedBox(
                           height: getHeight(50),
                           child: CustomGradientButton(
-                              text: "Submit", onTap: () {
-                                 Get.to(DriverProfilePhoto());
-                              })),
+                              text: "Submit", onTap: () {})),
                     )
                   ],
                 )),
