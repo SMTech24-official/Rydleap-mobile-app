@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -9,17 +10,17 @@ import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
-import 'package:rydleap/feature/auth/dirver_registration/components/driver_photo.dart';
+import 'package:rydleap/feature/auth/dirver_registration/components/driver_insurance.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class DriverLicence extends StatefulWidget {
-  const DriverLicence({super.key});
+class DriverPhoto extends StatefulWidget {
+  const DriverPhoto({super.key});
 
   @override
-  State<DriverLicence> createState() => _DriverLicenceState();
+  State<DriverPhoto> createState() => _DriverPhotoState();
 }
 
-class _DriverLicenceState extends State<DriverLicence> {
+class _DriverPhotoState extends State<DriverPhoto> {
   File? _selectedImage;
 
   final ImagePicker _picker = ImagePicker();
@@ -143,7 +144,7 @@ class _DriverLicenceState extends State<DriverLicence> {
               height: getHeight(32),
             ),
             Text(
-              "Take a Photo of your Driver's Licence",
+              "Take a Photo of your Vehicle Registration Sticker",
               style: GoogleFonts.inter(
                   fontSize: getWidth(25), fontWeight: FontWeight.w600),
             ),
@@ -216,7 +217,7 @@ class _DriverLicenceState extends State<DriverLicence> {
               child: Text(
                 _selectedImage != null
                     ? "Submit this image if you think it's readable or tap on re-upload button to upload another one."
-                    : "Make sure your Driver’s Licence is not expired.Please click a clearer photo and avoid using flash",
+                    : "Make sure your Vehicle’s Make, Model, Year, Licence, Plate, VIN and expiration are clear and vesiable.",
                 style: GoogleFonts.nunito(
                     color: Color(0xffE1E1E1),
                     fontSize: getWidth(12),
@@ -259,7 +260,7 @@ class _DriverLicenceState extends State<DriverLicence> {
                           height: getHeight(50),
                           child: CustomGradientButton(
                               text: "Submit", onTap: () {
-                                Get.to(DriverPhoto());
+                                 Get.to(DriverInsurance());
                               })),
                     )
                   ],

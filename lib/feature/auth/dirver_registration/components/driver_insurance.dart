@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -9,18 +8,17 @@ import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
-import 'package:rydleap/feature/auth/dirver_registration/components/driver_photo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class DriverLicence extends StatefulWidget {
-  const DriverLicence({super.key});
+class DriverInsurance extends StatefulWidget {
+  const DriverInsurance({super.key});
 
   @override
-  State<DriverLicence> createState() => _DriverLicenceState();
+  State<DriverInsurance> createState() => _DriverInsuranceState();
 }
 
-class _DriverLicenceState extends State<DriverLicence> {
-  File? _selectedImage;
+class _DriverInsuranceState extends State<DriverInsurance> {
+File? _selectedImage;
 
   final ImagePicker _picker = ImagePicker();
 
@@ -143,7 +141,7 @@ class _DriverLicenceState extends State<DriverLicence> {
               height: getHeight(32),
             ),
             Text(
-              "Take a Photo of your Driver's Licence",
+              "Take a Photo of your Vehicle Insurance",
               style: GoogleFonts.inter(
                   fontSize: getWidth(25), fontWeight: FontWeight.w600),
             ),
@@ -216,7 +214,7 @@ class _DriverLicenceState extends State<DriverLicence> {
               child: Text(
                 _selectedImage != null
                     ? "Submit this image if you think it's readable or tap on re-upload button to upload another one."
-                    : "Make sure your Driver’s Licence is not expired.Please click a clearer photo and avoid using flash",
+                    : "Make sure your name, VIN insurance company, and expiration date are clear and visiable",
                 style: GoogleFonts.nunito(
                     color: Color(0xffE1E1E1),
                     fontSize: getWidth(12),
@@ -259,7 +257,7 @@ class _DriverLicenceState extends State<DriverLicence> {
                           height: getHeight(50),
                           child: CustomGradientButton(
                               text: "Submit", onTap: () {
-                                Get.to(DriverPhoto());
+                                // Get.to(DriverPhoto());
                               })),
                     )
                   ],
