@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
@@ -60,7 +61,7 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
             fit: BoxFit.fill,
           ),
           Padding(
-            padding:  EdgeInsets.symmetric(horizontal: getWidth(20)),
+            padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
             child: Column(
               children: [
                 SizedBox(
@@ -129,7 +130,9 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
                   height: getHeight(54),
                 ),
                 CustomPrivacyDropdown(),
-                SizedBox(height:getHeight(12), ),
+                SizedBox(
+                  height: getHeight(12),
+                ),
                 CustomSwitchButton(
                   text: "Activity Status",
                   value: activeStatus,
@@ -144,15 +147,107 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
                 ),
                 // SizedBox(height: getHeight(90),),
                 Spacer(),
-                    CustomGradientButton(text: "Save", onTap: () {}),
-                    SizedBox(height: getHeight(20),),
+                CustomGradientButton(
+                    text: "Save",
+                    onTap: () {
+                      _customBottomSheet(context);
+                    }),
+                SizedBox(
+                  height: getHeight(20),
+                ),
               ],
             ),
           ),
-      
-          
-           ],
+        ],
       ),
+    );
+  }
+
+  Future<dynamic> _customBottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true, // Make the bottom sheet take the full screen
+      backgroundColor: Colors.transparent, // Transparent background
+      barrierColor: Color(0xff001B26).withOpacity(0.8),
+      builder: (BuildContext context) {
+        return Align(
+          alignment: Alignment.center, // Center the container on the screen
+          child: Stack(
+            children: [
+              Container(
+                height: screenHeight(),
+                width: double.infinity,
+                color: Colors.transparent,
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: getWidth(38)),
+                  height: getHeight(238),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: getHeight(95),
+                        width: getWidth(95),
+                        child: Image.asset(AppImagese.successIcon),
+                      ),
+                      Text(
+                        'Saved!',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.nunito(
+                          color: Color(0xff001B26),
+                          fontSize: getWidth(17),
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(height: getHeight(42),),
+                      Container(
+                        height: getHeight(40),
+                        width: getWidth(104),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(88),
+                            color: Color(0xff3AD896)),
+                        child: Center(
+                          child: Text(
+                            "Done",
+                            style: GoogleFonts.inter(
+                                fontSize: getWidth(14),
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                top: getHeight(40),
+                right: getWidth(20),
+                child: SizedBox(
+                  height: getHeight(26),
+                  width: getWidth(26),
+                  child: IconButton(
+                    icon: Icon(Icons.close, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context); // Close the bottom sheet
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (_) => LoginScreen()),
+                      // );
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

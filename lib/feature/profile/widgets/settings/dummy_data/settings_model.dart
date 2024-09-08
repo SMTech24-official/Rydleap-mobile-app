@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/feature/profile/widgets/privacy_settings/privacy_settings_screen.dart';
+import 'package:rydleap/feature/profile/widgets/settings/components/documents.dart';
 
 class SettingsModel {
   final String icon,title;
@@ -15,7 +16,7 @@ List <SettingsModel>settingsItems=[
     icon: AppIcons.note, 
     title: "Documents",
     onTap: (){
-      print("Documents");
+         Get.to(DocumentsScreen());
     }
     ),
     SettingsModel(

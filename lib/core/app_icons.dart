@@ -26,4 +26,6 @@ class AppIcons {
   static const String note = "assets/icons/note.png";
   static const String paymentIcon = "assets/icons/payment_icon.png";
   static const String notification = "assets/icons/notification.png";
+  static const String error = "assets/icons/error.png";
+  static const String watch = "assets/icons/watch.png";
 }
