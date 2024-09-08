@@ -154,23 +154,23 @@ class _DriverProfilePhotoState extends State<DriverProfilePhoto> {
               child: Column(
                 children: [
                   Container(
-  height: getHeight(144),
-  width: getWidth(144),
-  decoration: BoxDecoration(
-    shape: BoxShape.circle,
-    image: DecorationImage(
-      image: _selectedImage != null
-          ? FileImage(_selectedImage!) as ImageProvider
-          : AssetImage(AppImagese.profileImageLarge),
-      fit: BoxFit.cover, // This will make the image cover the entire container
-    ),
-  ),
-),
-
+                    height: getHeight(144),
+                    width: getWidth(144),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: _selectedImage != null
+                            ? FileImage(_selectedImage!) as ImageProvider
+                            : AssetImage(AppImagese.profileImageLarge),
+                        fit: BoxFit
+                            .cover, // This will make the image cover the entire container
+                      ),
+                    ),
+                  ),
                   Transform.translate(
                     offset: Offset(0, -20),
                     child: InkWell(
-                      onTap: (){
+                      onTap: () {
                         _showImageSourceSelection(context);
                       },
                       child: Container(
@@ -253,7 +253,9 @@ class _DriverProfilePhotoState extends State<DriverProfilePhoto> {
                       child: SizedBox(
                           height: getHeight(50),
                           child: CustomGradientButton(
-                              text: "Submit", onTap: () {})),
+                              text: "Submit", onTap: () {
+                                _customBottomSheet(context);
+                              })),
                     )
                   ],
                 )),
@@ -265,4 +267,102 @@ class _DriverProfilePhotoState extends State<DriverProfilePhoto> {
       ),
     );
   }
+  Future<dynamic> _customBottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true, // Make the bottom sheet take the full screen
+      backgroundColor: Colors.transparent, // Transparent background
+      barrierColor: Color(
+          0xff001B26).withOpacity(0.8), // Semi-transparent black background for the barrier
+      builder: (BuildContext context) {
+        return Align(
+          alignment: Alignment.center, // Center the container on the screen
+          child: Stack(
+            children: [
+              Container(
+                height: screenHeight(),
+                width: double.infinity,
+                color: Colors.transparent,
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: getWidth(38)),
+                  height: getHeight(297),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        // height: getHeight(120),
+                        width: getWidth(95),
+                        child: Image.asset(AppImagese.application),
+                      ),
+                      Text(
+                        'Your application submitted and is under review.',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.nunito(
+                          color: Color(0xff001B26),
+                          fontSize: getWidth(17),
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        'You will be notified with application status.',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.nunito(
+                          color: Color(0xff001B26),
+                          fontSize: getWidth(12),
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(height: getHeight(25),),
+                      Container(
+                        height: getHeight(37),
+                        width: getWidth(114),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(51),
+                          color: Color(0xff3AD896),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Done",
+                            style: GoogleFonts.nunito(
+                              fontSize: getWidth(12),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                top:
+                    getHeight(40), // Adjust the top margin for the close button
+                right: getWidth(
+                    20), // Adjust the right margin for the close button
+                child: SizedBox(
+                  height: getHeight(26),
+                  width: getWidth(26),
+                  child: IconButton(
+                    icon: Icon(Icons.close, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
 }
