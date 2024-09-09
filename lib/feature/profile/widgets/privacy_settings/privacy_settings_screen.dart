@@ -8,7 +8,6 @@ import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/profile/components/custom_switch_button.dart';
 import 'package:rydleap/feature/profile/widgets/privacy_settings/components/privacy_dropdown.dart';
-import 'package:rydleap/feature/profile/widgets/ride_history/history_container.dart';
 
 class PrivacySettingsScreen extends StatefulWidget {
   const PrivacySettingsScreen({super.key});

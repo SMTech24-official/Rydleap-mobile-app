@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:rydleap/feature/safety_tips/dummy_data/safety_model.dart';
 
 class SafetyTipsScreen extends StatelessWidget {
   const SafetyTipsScreen({super.key});
@@ -68,20 +69,45 @@ class SafetyTipsScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                // The ListView.builder with flexible height inside the scroll view
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: 100,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: EdgeInsets.symmetric(vertical: 8),
-                        child: Text(
-                          "Item $index",
-                          style: GoogleFonts.inter(fontSize: 16),
-                        ),
-                      );
-                    },
+                SizedBox(
+                  height: getHeight(18),
+                ),
+                Text(
+                  "Your safety is our top priority. Follow these tips to ensure a safe and secure ride experience. ",
+                  style: GoogleFonts.nunito(
+                    fontSize: getWidth(16),
+                    fontWeight: FontWeight.w400,
                   ),
+                ),
+                SizedBox(
+                  height: getHeight(30),
+                ),
+                // The ListView.builder with flexible height inside the scroll view
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: safetyItems.length,
+                  itemBuilder: (context, index) {
+                    final data = safetyItems[index];
+                    return Padding(
+                      padding: EdgeInsets.only(bottom: getHeight(15)),
+                      child: ListTile(
+                        title: Text(
+                          data.title,
+                          style: GoogleFonts.inter(
+                              fontSize: getWidth(17),
+                              fontWeight: FontWeight.w500),
+                        ),
+                        
+                        subtitle: Text(
+                          data.subTitle,
+                          style: GoogleFonts.nunito(
+                              fontSize: getWidth(14),
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xffDED9D9)),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -92,16 +118,77 @@ class SafetyTipsScreen extends StatelessWidget {
             left: 0,
             right: 0,
             child: Container(
-              color: Colors.white,
-              height: getHeight(100),
-              width: double.infinity,
-              child: Center(
-                child: Text(
-                  "Fixed Bottom Container",
-                  style: GoogleFonts.inter(fontSize: 18),
-                ),
-              ),
-            ),
+                height: getHeight(100),
+                width: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //back buton
+                    Material(
+                      borderRadius: BorderRadius.circular(88),
+                      color: Colors.white,
+                      child: InkWell(
+                        splashColor: Colors.grey.withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(88),
+                        onTap: (){
+                          print("Back");
+                        },
+                        child: Container(
+                          height: getHeight(40),
+                          width: getWidth(100),
+                          decoration: BoxDecoration(
+                              
+                              borderRadius: BorderRadius.circular(88),
+                              border:
+                                  Border.all(color: Color(0xff3AD896), width: 0.4)),
+                          child: Center(
+                            child: Text(
+                              "Back",
+                              style: GoogleFonts.nunito(
+                                
+                                  fontSize: getWidth(13),
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xffB7BBBD)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(width: getWidth(39),),
+                    //report button
+                    Material(
+                      borderRadius: BorderRadius.circular(88),
+                      color: Color(0xff3AD896),
+                      child: InkWell(
+                        splashColor: Colors.grey.withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(88),
+                        onTap: (){
+                          print("Back");
+                        },
+                        child: Container(
+                          height: getHeight(40),
+                          width: getWidth(100),
+                          decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              borderRadius: BorderRadius.circular(88),
+                              border:
+                                  Border.all(color:Colors.white,  width: 0.4)),
+                          child: Center(
+                            child: Text(
+                              "Report",
+                              style: GoogleFonts.nunito(
+                                
+                                  fontSize: getWidth(13),
+                                  fontWeight: FontWeight.w400,
+                                  color: Color(0xff001B26)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    
+                  ],
+                )),
           ),
         ],
       ),

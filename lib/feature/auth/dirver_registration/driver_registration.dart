@@ -7,7 +7,6 @@ import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/dirver_registration/components/driver_licence.dart';
 import 'package:rydleap/feature/auth/dirver_registration/components/driver_textfield.dart';
-import 'package:rydleap/feature/auth/presentaion/screens/change_password.dart';
 
 class DriverRegistrationScreen extends StatelessWidget {
   const DriverRegistrationScreen({super.key});
