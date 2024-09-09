@@ -7,6 +7,9 @@ import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/pickup_and_drop_input_tile.dart';
 import 'package:rydleap/core/global_widgets/ride_type_tile.dart';
 
+import '../../../core/global_widgets/ride_type_tile_with_image.dart';
+import '../../schedule_your_ride/presentation/schedule_your_ride.dart';
+
 class RequestARide extends StatefulWidget {
   @override
   State<RequestARide> createState() => _RequestARideState();
@@ -20,7 +23,7 @@ class _RequestARideState extends State<RequestARide>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
 
     // Handle tab switching
     _tabController!.addListener(() {
@@ -74,70 +77,90 @@ class _RequestARideState extends State<RequestARide>
         ),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          PickupAndDropInputTile(
-            backGroundColor: Colors.black,
-            width: 90.w,
-          ),
+          Column(
+            children: [
+              PickupAndDropInputTile(
+                backGroundColor: Colors.black,
+                width: 90.w,
+              ),
 
-          TabBar(
-            controller: _tabController,
-            tabs: [
-              Tab(text: 'Economy'),
-              Tab(text: 'Premium'),
-              Tab(text: 'Shared'),
+              TabBar(
+                controller: _tabController,
+                tabs: [
+                  Tab(text: 'Economy'),
+                  Tab(text: 'Premium'),
+                  Tab(text: 'Shared'),
+                  InkWell(
+                    onTap: (){
+
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => ScheduleYourRide()));
+                    },
+                      child: Icon(Icons.calendar_today_outlined)
+                  )
+                ],
+              ),
+
+              Container(
+                width: screenWidth(),
+                height: 260,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  controller: _scrollController,
+                  shrinkWrap: true,
+                  children: [
+                    RideTypeTileWithImage(
+                      title: 'Economy',
+                      subtitle: '\$10-15',
+                      time: '5 mins away',
+                      backgroundColor: Colors.black,
+                      textColor: Colors.white, image: 'assets/icons/economy_icon.png',
+                    ),
+                    RideTypeTileWithImage(
+                      title: 'Premium',
+                      subtitle: '\$15-20',
+                      time: '3 mins away',
+                      backgroundColor: Colors.white,
+                      textColor: Colors.black, image: 'assets/icons/premium_icon.png',
+                    ),
+                    RideTypeTileWithImage(
+                      title: 'Shared',
+                      subtitle: '\$05-10',
+                      time: '10 mins away',
+                      backgroundColor: Colors.green.shade500,
+                      textColor: Colors.amber, image: 'assets/icons/economy_icon.png',
+                    ),
+                  ],
+                ),
+              ),
+
+
+
+
             ],
           ),
 
+
+
           Container(
-            width: screenWidth(),
-            height: 129,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              controller: _scrollController,
-              shrinkWrap: true,
-              children: [
-                RideTypeTile(
-                  title: 'Economy',
-                  subtitle: '\$10-15',
-                  time: '5 mins away',
-                  backgroundColor: Colors.black,
-                  textColor: Colors.white,
-                ),
-                RideTypeTile(
-                  title: 'Premium',
-                  subtitle: '\$15-20',
-                  time: '3 mins away',
-                  backgroundColor: Colors.white,
-                  textColor: Colors.black,
-                ),
-                RideTypeTile(
-                  title: 'Shared',
-                  subtitle: '\$05-10',
-                  time: '10 mins away',
-                  backgroundColor: Colors.green.shade500,
-                  textColor: Colors.amber,
-                ),
-              ],
+            margin: EdgeInsets.symmetric(vertical: 20),
+            child: CustomGradientButton(
+              text: 'Ride Request',
+              onTap: () {},
+              width: getWidth(335),
+              icon: Icons.directions_car,
             ),
           ),
+          // SizedBox(height: 12,),
 
-          CustomGradientButton(
-            text: 'Schedule Ride',
-            onTap: () {},
-            width: getWidth(335),
-            icon: Icons.calendar_today_outlined,
-          ),
-
-          SizedBox(height: 12,),
-
-          CustomGradientButton(
-            text: 'Back',
-            onTap: () {},
-            width: getWidth(335),
-            colorList: [Color(0xff9B9B9B),Color(0xff9B9B9B),],
-          ),
+          // CustomGradientButton(
+          //   text: 'Back',
+          //   onTap: () {},
+          //   width: getWidth(335),
+          //   colorList: [Color(0xff9B9B9B),Color(0xff9B9B9B),],
+          // ),
 
 
 
