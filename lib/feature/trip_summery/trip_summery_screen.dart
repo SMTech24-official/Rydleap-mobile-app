@@ -11,6 +11,7 @@ import 'package:rydleap/feature/auth/dirver_registration/components/driver_insur
 import 'package:rydleap/feature/trip_summery/components/custom_datetime_text.dart';
 import 'package:rydleap/feature/trip_summery/components/custom_pickup_dropoff.dart';
 import 'package:rydleap/feature/trip_summery/widgets/ratings.dart';
+import 'package:rydleap/feature/trip_summery/widgets/share_ride.dart';
 
 class TripSummeryScreen extends StatelessWidget {
   const TripSummeryScreen({super.key});
@@ -125,7 +126,9 @@ class TripSummeryScreen extends StatelessWidget {
                   height: getHeight(12),
                 ),
                 InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(ShareRideScreen());
+                    },
                     child: CustomBlurButton(text: "Share my Ride!")),
                 SizedBox(
                   height: getHeight(20),

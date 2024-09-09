@@ -29,4 +29,10 @@ class AppIcons {
   static const String error = "assets/icons/error.png";
   static const String watch = "assets/icons/watch.png";
   static const String upload = "assets/icons/upload.png";
+  static const String message = "assets/icons/message.png";
+  static const String gmail = "assets/icons/gmail.png";
+  static const String whatsup = "assets/icons/whats.png";
+  static const String facebook = "assets/icons/facebook.png";
+  static const String messanger = "assets/icons/messanger.png";
+  static const String instagram = "assets/icons/insta.png";
 }

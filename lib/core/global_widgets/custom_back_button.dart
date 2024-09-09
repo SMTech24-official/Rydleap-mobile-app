@@ -8,16 +8,13 @@ class CustomBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: getHeight(24),
-      width: getWidth(24),
-      child: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios,
-          )),
-    );
+    return IconButton(
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        icon: Icon(
+          Icons.arrow_back_ios,
+          size: 16,
+        ));
   }
 }

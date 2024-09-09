@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/custom_next_button.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
@@ -39,19 +40,7 @@ class _ReportProblemScreenState extends State<ReportProblemScreen> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: AppColors.appbarColor,
-        leading: Padding(
-          padding: EdgeInsets.only(left: getWidth(20)),
-          child: SizedBox(
-            height: getHeight(26),
-            width: getWidth(26),
-            child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.close),
-            ),
-          ),
-        ),
+        leading: CustomCloseButton()
       ),
       body: Stack(
         children: [
