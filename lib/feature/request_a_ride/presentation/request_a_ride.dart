@@ -1,25 +1,19 @@
-
-
-
-
-
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/custom_icon_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/pickup_and_drop_input_tile.dart';
+import 'package:rydleap/core/global_widgets/ride_type_tile.dart';
 
-class RequestARide extends StatefulWidget{
-
+class RequestARide extends StatefulWidget {
   @override
   State<RequestARide> createState() => _RequestARideState();
 }
 
-class _RequestARideState extends State<RequestARide> with SingleTickerProviderStateMixin {
-
-
-
+class _RequestARideState extends State<RequestARide>
+    with SingleTickerProviderStateMixin {
   TabController? _tabController;
   ScrollController _scrollController = ScrollController();
 
@@ -48,10 +42,6 @@ class _RequestARideState extends State<RequestARide> with SingleTickerProviderSt
     super.dispose();
   }
 
-
-
-
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -61,12 +51,12 @@ class _RequestARideState extends State<RequestARide> with SingleTickerProviderSt
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(onPressed: (){
-              Navigator.pop(context);
-            }, icon: Icon(Icons.arrow_back_ios)),
-
+            IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back_ios)),
             Text('Request a ride'),
-
             CircleAvatar(
               radius: 17,
               backgroundColor: Colors.white,
@@ -86,64 +76,59 @@ class _RequestARideState extends State<RequestARide> with SingleTickerProviderSt
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-
-
-
-          PickupAndDropInputTile(backGroundColor: Colors.black, width: 90.w,),
-
-
-
+          PickupAndDropInputTile(
+            backGroundColor: Colors.black,
+            width: 90.w,
+          ),
 
           TabBar(
             controller: _tabController,
             tabs: [
-              Tab(text: 'Tab 1'),
-              Tab(text: 'Tab 2'),
-              Tab(text: 'Tab 3'),
+              Tab(text: 'Economy'),
+              Tab(text: 'Premium'),
+              Tab(text: 'Shared'),
             ],
           ),
 
-
           Container(
             width: screenWidth(),
-            height: 300,
+            height: 129,
             child: ListView(
               scrollDirection: Axis.horizontal,
               controller: _scrollController,
               shrinkWrap: true,
               children: [
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.red,
-                  ),
-                  width: MediaQuery.of(context).size.width/2,
-
-                  child: Center(child: Text('Content for Tab 1', style: TextStyle(fontSize: 24))),
+                RideTypeTile(
+                  title: 'Economy',
+                  subtitle: '\$10-15',
+                  time: '5 mins away',
+                  backgroundColor: Colors.black,
+                  textColor: Colors.white,
                 ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10),
-                  width: MediaQuery.of(context).size.width/2,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.green,
-                  ),
-                  child: Center(child: Text('Content for Tab 2', style: TextStyle(fontSize: 24))),
+                RideTypeTile(
+                  title: 'Premium',
+                  subtitle: '\$15-20',
+                  time: '3 mins away',
+                  backgroundColor: Colors.white,
+                  textColor: Colors.black,
                 ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10),
-                  width: MediaQuery.of(context).size.width/2,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.blue,
-                  ),
-                  child: Center(child: Text('Content for Tab 3', style: TextStyle(fontSize: 24))),
+                RideTypeTile(
+                  title: 'Shared',
+                  subtitle: '\$05-10',
+                  time: '10 mins away',
+                  backgroundColor: Colors.green.shade500,
+                  textColor: Colors.amber,
                 ),
               ],
             ),
           ),
 
+          CustomIconGradientButton(
+            text: 'Schedule Ride',
+            onTap: () {},
+            width: getWidth(335),
+            icon: Icons.calendar_today_outlined,
+          )
 
           // Container(
           //   height: 50.h,
@@ -210,16 +195,7 @@ class _RequestARideState extends State<RequestARide> with SingleTickerProviderSt
           //     ),
           //   ),
           // ),
-
-
-
-
-
-
-
-
-
-      ],
+        ],
       ),
     );
   }
