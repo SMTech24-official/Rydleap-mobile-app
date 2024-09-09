@@ -3,6 +3,7 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/custom_back_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/safety_tips/dummy_data/safety_model.dart';
 
@@ -23,18 +24,7 @@ class SafetyTipsScreen extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        leading: Padding(
-          padding: EdgeInsets.only(left: getWidth(20)),
-          child: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios,
-              size: 20,
-            ),
-          ),
-        ),
+        leading: CustomBackButton()
       ),
       body: Stack(
         children: [

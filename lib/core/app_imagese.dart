@@ -11,6 +11,7 @@ class AppImagese {
   static const String note = "assets/images/note.png";
   static const String application = "assets/images/application.png";
   static const String safety = "assets/images/safety.png";
+  static const String termsPolicy = "assets/images/terms_policy.png";
   //flag images
   static const String uk = "assets/images/uk.png";
   static const String sapin = "assets/images/spain.png";
