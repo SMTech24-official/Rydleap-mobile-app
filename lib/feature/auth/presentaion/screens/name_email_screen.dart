@@ -3,10 +3,12 @@ import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
-import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
+import 'package:rydleap/core/global_widgets/custom_gradient.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/create_password.dart';
+
+import '../../../../core/global_widgets/custom_gradient_button.dart';
 
 class NameEmailScreen extends StatefulWidget {
   const NameEmailScreen({super.key});

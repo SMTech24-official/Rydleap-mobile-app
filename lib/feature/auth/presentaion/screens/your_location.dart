@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:rydleap/core/app_sizes.dart';
 
-import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
+import 'package:rydleap/core/global_widgets/custom_gradient.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
 
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/register_screen.dart';
+
+import '../../../../core/global_widgets/custom_gradient_button.dart';
 
 class YourLocation extends StatelessWidget {
   const YourLocation({super.key});

@@ -5,10 +5,15 @@ import 'package:rydleap/core/utility/app_colors.dart';
 class CustomGradientButton extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
+  final IconData? icon;
+  final List<Color>? colorList;
+  final double? width;
+
+
   const CustomGradientButton({
     super.key,
     required this.text,
-    required this.onTap,
+    required this.onTap, this.icon, this.colorList, this.width,
   });
 
   @override
@@ -18,7 +23,7 @@ class CustomGradientButton extends StatelessWidget {
       child: Ink(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [
+            colors: colorList??[
               Color(0xffDEFF11),
               Color(0xffF0F9BE),
             ],
@@ -33,15 +38,24 @@ class CustomGradientButton extends StatelessWidget {
           onTap: onTap,
           child: Container(
             height: getHeight(50),
-            width: double.infinity,
+            width: width??double.infinity,
             alignment: Alignment.center,
-            child: Text(
-              text,
-              style: TextStyle(
-                color: AppColors.textBlack,
-                fontSize: getWidth(18),
-                fontWeight: FontWeight.w400,
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+
+                icon!=null?Icon(icon,color: Colors.black,size: 16,):SizedBox(),
+                SizedBox(width: 10,),
+
+                Text(
+                  text,
+                  style: TextStyle(
+                    color: AppColors.textBlack,
+                    fontSize: getWidth(18),
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
             ),
           ),
         ),

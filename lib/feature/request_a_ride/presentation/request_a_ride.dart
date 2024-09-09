@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
-import 'package:rydleap/core/global_widgets/custom_icon_gradient_button.dart';
+import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/pickup_and_drop_input_tile.dart';
 import 'package:rydleap/core/global_widgets/ride_type_tile.dart';
 
@@ -123,12 +123,23 @@ class _RequestARideState extends State<RequestARide>
             ),
           ),
 
-          CustomIconGradientButton(
+          CustomGradientButton(
             text: 'Schedule Ride',
             onTap: () {},
             width: getWidth(335),
             icon: Icons.calendar_today_outlined,
-          )
+          ),
+
+          SizedBox(height: 12,),
+
+          CustomGradientButton(
+            text: 'Back',
+            onTap: () {},
+            width: getWidth(335),
+            colorList: [Color(0xff9B9B9B),Color(0xff9B9B9B),],
+          ),
+
+
 
           // Container(
           //   height: 50.h,

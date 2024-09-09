@@ -2,18 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 
-class CustomIconGradientButton extends StatelessWidget {
+class CustomGradient extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
-  final IconData? icon;
-  final List<Color>? colorList;
-  final double? width;
-
-
-  const CustomIconGradientButton({
+  const CustomGradient({
     super.key,
     required this.text,
-    required this.onTap, this.icon, this.colorList, this.width,
+    required this.onTap,
   });
 
   @override
@@ -23,7 +18,7 @@ class CustomIconGradientButton extends StatelessWidget {
       child: Ink(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: colorList??[
+            colors: [
               Color(0xffDEFF11),
               Color(0xffF0F9BE),
             ],
@@ -38,24 +33,15 @@ class CustomIconGradientButton extends StatelessWidget {
           onTap: onTap,
           child: Container(
             height: getHeight(50),
-            width: width??double.infinity,
+            width: double.infinity,
             alignment: Alignment.center,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-
-                icon!=null?Icon(icon,color: Colors.black,size: 16,):SizedBox(),
-                SizedBox(width: 10,),
-
-                Text(
-                  text,
-                  style: TextStyle(
-                    color: AppColors.textBlack,
-                    fontSize: getWidth(18),
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
+            child: Text(
+              text,
+              style: TextStyle(
+                color: AppColors.textBlack,
+                fontSize: getWidth(18),
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ),
         ),
