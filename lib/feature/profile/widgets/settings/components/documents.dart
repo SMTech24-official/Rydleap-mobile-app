@@ -3,6 +3,7 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 
 class DocumentsScreen extends StatelessWidget {
@@ -13,15 +14,7 @@ class DocumentsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.textBlack,
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.close,
-            size: 20,
-          ),
-        ),
+        leading: CustomCloseButton()
       ),
       body: Stack(
         children: [

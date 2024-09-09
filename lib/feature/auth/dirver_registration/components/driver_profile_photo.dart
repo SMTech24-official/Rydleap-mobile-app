@@ -7,6 +7,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -123,15 +124,7 @@ class _DriverProfilePhotoState extends State<DriverProfilePhoto> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.close,
-            size: 20,
-          ),
-        ),
+        leading: CustomCloseButton()
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: getWidth(20)),

@@ -8,6 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/custom_save_button.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
@@ -109,17 +110,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppColors.appbarColor,
-          leading: Padding(
-            padding: EdgeInsets.only(left: getWidth(20)),
-            child: SizedBox(
-                height: getHeight(26),
-                width: getWidth(26),
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(Icons.arrow_back_ios))),
-          ),
+          leading: CustomCloseButton(),
           actions: [CustomSaveButton()],
         ),
         body: Stack(

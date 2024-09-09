@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/profile/widgets/notifcation/widget/all.dart';
 import 'package:rydleap/feature/profile/widgets/notifcation/widget/today.dart';
@@ -42,19 +43,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
           style: GoogleFonts.inter(
               fontSize: getWidth(20), fontWeight: FontWeight.w600),
         ),
-        leading: Padding(
-          padding: EdgeInsets.only(left: getWidth(20)),
-          child: SizedBox(
-            height: getHeight(26),
-            width: getWidth(26),
-            child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.close),
-            ),
-          ),
-        ),
+        leading: CustomCloseButton()
       ),
       body: Stack(
         children: [

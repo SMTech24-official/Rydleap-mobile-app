@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:rydleap/feature/auth/dirver_registration/components/driver_insurance.dart';
 import 'package:rydleap/feature/trip_summery/components/custom_datetime_text.dart';
 import 'package:rydleap/feature/trip_summery/components/custom_pickup_dropoff.dart';
+import 'package:rydleap/feature/trip_summery/widgets/ratings.dart';
 
 class TripSummeryScreen extends StatelessWidget {
   const TripSummeryScreen({super.key});
@@ -114,7 +118,9 @@ class TripSummeryScreen extends StatelessWidget {
                     title3: "",
                     subTitle3: ""),
                 Spacer(),
-                CustomGradientButton(text: "Rate our Driver", onTap: () {}),
+                CustomGradientButton(text: "Rate our Driver", onTap: () {
+                  Get.to(RatingsScreen());
+                }),
                 SizedBox(
                   height: getHeight(12),
                 ),
