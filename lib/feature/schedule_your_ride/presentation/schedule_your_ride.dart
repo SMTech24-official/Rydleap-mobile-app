@@ -252,71 +252,7 @@ class _ScheduleYourRideState extends State<ScheduleYourRide>
 
 
 
-          // Container(
-          //   height: 50.h,
-          //   width: 100.w,
-          //   child: DefaultTabController(
-          //     length: 3,
-          //     child: Scaffold(
-          //       appBar: AppBar(
-          //         automaticallyImplyLeading: false,
-          //         title: const TabBar(
-          //           tabs: [
-          //
-          //
-          //             Text('Economy'),
-          //             Text('Premium'),
-          //             Text('Shared'),
-          //
-          //             // Tab(icon: Icon(Icons.directions_car)),
-          //             // Tab(icon: Icon(Icons.directions_transit)),
-          //             // Tab(icon: Icon(Icons.directions_bike)),
-          //             // Tab(icon: Icon(Icons.directions_bike)),
-          //           ],
-          //         ),
-          //         // title: const Text('Tabs Demo'),
-          //       ),
-          //       body: TabBarView(
-          //         children: [
-          //               Container(
-          //                 // margin: EdgeInsets.symmetric(horizontal: 10),
-          //                 height: 157,
-          //                   width: screenWidth()/2,
-          //
-          //                   decoration: BoxDecoration(
-          //                     borderRadius: BorderRadius.circular(10),
-          //                     color: Colors.blue
-          //                   ),
-          //                   child: Text("data")
-          //
-          //
-          //
-          //               ),
-          //               Container(
-          //                   // margin: EdgeInsets.symmetric(horizontal: 10),
-          //                   height: 157,
-          //                   width: screenWidth()/2,
-          //
-          //                   decoration: BoxDecoration(
-          //                       borderRadius: BorderRadius.circular(10),
-          //                       color: Colors.blue
-          //                   ),
-          //                   child: Text("data")),
-          //               Container(
-          //                   // margin: EdgeInsets.symmetric(horizontal: 10),
-          //                   height: 157,
-          //                   width: screenWidth()/2,
-          //
-          //                   decoration: BoxDecoration(
-          //                       borderRadius: BorderRadius.circular(10),
-          //                       color: Colors.blue
-          //                   ),
-          //                   child: Text("data")),
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          // ),
+
         ],
       ),
     );

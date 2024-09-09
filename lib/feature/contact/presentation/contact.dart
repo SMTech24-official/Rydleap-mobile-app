@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../../core/utility/app_colors.dart';
+
 class Contact extends StatelessWidget{
 
 
@@ -49,10 +51,39 @@ class Contact extends StatelessWidget{
           ),
 
 
+          SizedBox(height: 16,),
 
 
-          Container(
+          SingleChildScrollView(
+            child: Container(
+              height: 45.2.h,
+              width: 100.w,
 
+              child: Container(
+
+                height: 10.h,
+                width: 100.w,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(15),
+                    topLeft: Radius.circular(15),
+                  ),
+                  color: Colors.black,
+                  border: Border.all(width: 1,color: Colors.amber ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.lightPrimary,
+                      spreadRadius: 7,
+                      blurRadius: 22,
+                      offset: Offset(0, 3), // changes position of shadow
+                    ),
+                  ],
+
+                ),
+
+
+              ),
+            ),
           )
 
 
