@@ -11,6 +11,7 @@ import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/components/or_sign_in_with.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/name_email_screen.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
+import 'package:rydleap/feature/profile/screen/profile_screen.dart';
 
 import '../../../../core/global_widgets/custom_gradient_button.dart';
 
@@ -104,7 +105,10 @@ class RegisterScreen extends StatelessWidget {
             CustomGlassButton(
                 icon: AppIcons.appleIcon,
                 text: "Sign in with Apple",
-                onTap: () {}),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => ProfileScreen()));
+                }),
             CustomGlassButton(
                 icon: AppIcons.facebookIcon,
                 text: "Sign in with Facebook",
