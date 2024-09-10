@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
+import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:rydleap/feature/auth/dirver_registration/components/driver_insurance.dart';
 import 'package:rydleap/feature/profile/widgets/balance/components/custom_account_textfield.dart';
 
 class AddAccountScreen extends StatefulWidget {
@@ -21,7 +25,6 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
       TextEditingController();
   final TextEditingController _accountNumberController =
       TextEditingController();
-  final TextEditingController _dobController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _zipCodeController = TextEditingController();
   bool checkPass = false;
@@ -62,8 +65,6 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
     if (picked != null && picked != _selectedDate) {
       setState(() {
         _selectedDate = picked;
-        _dobController.text =
-            "${picked.day}/${picked.month}/${picked.year}"; // Update the text field
       });
     }
   }
@@ -186,6 +187,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
             CustomGradientButton(
               text: "Submit",
               onTap: () {
+                _customBottomSheet(context);
                 setState(() {
                   isRoutingNumberValid =
                       _routingNumberController.text.length >= 8;
@@ -209,9 +211,101 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
     _accountHolderController.dispose();
     _routingNumberController.dispose();
     _accountNumberController.dispose();
-    _dobController.dispose();
     _addressController.dispose();
     _zipCodeController.dispose();
     super.dispose();
   }
+ Future<dynamic> _customBottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true, // Make the bottom sheet take the full screen
+      backgroundColor: Colors.transparent, // Transparent background
+      barrierColor: Color(
+          0xff001B26).withOpacity(0.8), // Semi-transparent black background for the barrier
+      builder: (BuildContext context) {
+        return Align(
+          alignment: Alignment.center, // Center the container on the screen
+          child: Stack(
+            children: [
+              Container(
+                height: screenHeight(),
+                width: double.infinity,
+                color: Colors.transparent,
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: getWidth(38)),
+                  height: getHeight(281),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        // height: getHeight(120),
+                        width: getWidth(95),
+                        child: Image.asset(AppImagese.successIcon),
+                      ),
+                      SizedBox(height: getHeight(12),),
+                      Text(
+                        ' Your Bank Account has been successfully linked.',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.nunito(
+                          color: Color(0xff001B26),
+                          fontSize: getWidth(17),
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(height: getHeight(36),),
+                      InkWell(
+                        onTap: (){
+                          Get.back();
+                        },
+                        child: Container(
+                              height: getHeight(40),
+                              width: getWidth(104),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(88),
+                                  color: Color(0xff3AD896)),
+                              child: Center(
+                                child: Text(
+                                  "Done",
+                                  style: GoogleFonts.inter(
+                                      fontSize: getWidth(14),
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ),
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                top:
+                    getHeight(40), // Adjust the top margin for the close button
+                right: getWidth(
+                    20), // Adjust the right margin for the close button
+                child: SizedBox(
+                  height: getHeight(26),
+                  width: getWidth(26),
+                  child: IconButton(
+                    icon: Icon(Icons.close, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
 }

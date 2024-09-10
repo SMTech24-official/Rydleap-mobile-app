@@ -6,22 +6,22 @@ class CustomAccountTextfield extends StatefulWidget {
   final TextEditingController controller;
   final String hinText;
   final TextInputType? keyboardType;
-  final bool readOnly;
+
   final bool obscureText;
   final Widget? suffixIcon;
   final Color borderColor;
-  final VoidCallback? onTap;
+
 
   const CustomAccountTextfield({
     super.key,
     required this.controller,
     required this.hinText,
     this.keyboardType,
-    this.readOnly = false,
+
     this.obscureText = false,
     this.suffixIcon,
     this.borderColor = Colors.white,
-    this.onTap,
+
   });
 
   @override
@@ -41,8 +41,7 @@ class _CustomAccountTextfieldState extends State<CustomAccountTextfield> {
         borderRadius: BorderRadius.circular(getWidth(8)),
       ),
       child: TextField(
-        onTap: widget.onTap,
-        readOnly: widget.readOnly,
+   
         controller: widget.controller,
         keyboardType: widget.keyboardType,
         obscureText: widget.obscureText,
