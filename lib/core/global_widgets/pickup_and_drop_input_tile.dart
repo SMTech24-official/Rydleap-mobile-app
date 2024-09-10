@@ -13,8 +13,11 @@ class PickupAndDropInputTile extends StatelessWidget{
 
   final Color backGroundColor;
   final double width;
+  final String hintTextPickup;
+  final String hintTextDestination;
+  final bool readOnly;
 
-  const PickupAndDropInputTile({super.key, required this.backGroundColor, required this.width});
+  const PickupAndDropInputTile({super.key, required this.backGroundColor, required this.width, required this.hintTextPickup, required this.hintTextDestination, required this.readOnly});
 
 
 
@@ -39,14 +42,14 @@ class PickupAndDropInputTile extends StatelessWidget{
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomCircle(radious: 7, color: Colors.amber),
+                CustomCircle(radious: 7, color: Colors.amber, backgroundColor: backGroundColor,),
 
                 Icon(Icons.more_vert),
 
                 // for(int i=0;i<4;i++)
                 //   CircleAvatar(radius: 2,backgroundColor: Colors.black,),
 
-                CustomCircle(radious: 7, color: Colors.purpleAccent),
+                CustomCircle(radious: 7, color: Colors.purpleAccent, backgroundColor: backGroundColor,),
               ],
             ),
             Container(
@@ -60,12 +63,14 @@ class PickupAndDropInputTile extends StatelessWidget{
                     width: 70.w,
                     padding: EdgeInsets.fromLTRB(10, 10, 20, 0),
                     child: TextFormField(
-                      style: TextStyle(color: Colors.black, fontSize: 14),
+                      readOnly: readOnly,
+                      style: TextStyle(color: Colors.grey, fontSize: 14,),
                       decoration: InputDecoration(
-                        hintText: 'Pickup location',
+                        hintText: hintTextPickup,
                         hintStyle: TextStyle(fontSize: 14),
                         enabledBorder: InputBorder.none,
                         focusedBorder: InputBorder.none,
+
                       ),
                     ),
                   ),
@@ -88,9 +93,10 @@ class PickupAndDropInputTile extends StatelessWidget{
                     width: 70.w,
                     padding: EdgeInsets.fromLTRB(10, 0, 20, 10),
                     child: TextFormField(
-                      style: TextStyle(color: Colors.black, fontSize: 14),
+                      readOnly: readOnly,
+                      style: TextStyle(color: Colors.grey, fontSize: 14),
                       decoration: InputDecoration(
-                        hintText: 'Enter Dropoff',
+                        hintText: hintTextDestination,
                         hintStyle: TextStyle(fontSize: 14),
                         enabledBorder: InputBorder.none,
                         focusedBorder: InputBorder.none,

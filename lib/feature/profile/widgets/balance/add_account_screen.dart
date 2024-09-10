@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
+import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/custom_buttomsheet/bottomsheet_onebutton.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
@@ -21,29 +25,54 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
       TextEditingController();
   final TextEditingController _accountNumberController =
       TextEditingController();
-  final TextEditingController _dobController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _zipCodeController = TextEditingController();
   bool checkPass = false;
   bool isRoutingNumberValid = true;
-  DateTime selectedDate = DateTime.now();
+  DateTime? _selectedDate;
 
   Future<void> _selectDate(BuildContext context) async {
-    final DateTime? pickedDate = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: selectedDate, // default date
-      firstDate: DateTime(2000),  // earliest selectable date
-      lastDate: DateTime(2100),   // latest selectable date
+      initialDate: _selectedDate ?? DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2101),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            primaryColor: Color(0xff3AD896),
+            buttonTheme: ButtonThemeData(
+              textTheme: ButtonTextTheme.primary,
+            ),
+            dialogBackgroundColor: Colors.white,
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                  // primary: Color(0xff3AD896),
+                  ),
+            ),
+            colorScheme: ColorScheme.light(
+              primary: Color(0xff3AD896),
+              onPrimary: Colors.white,
+              surface: AppColors.appbarColor,
+              onSurface: Colors.white,
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
 
-    if (pickedDate != null && pickedDate != selectedDate)
+    if (picked != null && picked != _selectedDate) {
       setState(() {
-        selectedDate = pickedDate;
+        _selectedDate = picked;
       });
+    }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.appbarColor,
       appBar: AppBar(
         centerTitle: true,
@@ -83,7 +112,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                           width: getWidth(8),
                         ),
                         Text(
-                          "Routing Number needs to br in 8-digits",
+                          "Routing Number needs to be in 8 digits",
                           style: GoogleFonts.nunito(
                               fontSize: getWidth(8),
                               fontWeight: FontWeight.w400,
@@ -114,15 +143,33 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
             ),
             SizedBox(height: getHeight(24)),
             InkWell(
-              onTap: (){
-               setState(() {
-                  _selectDate(context);
-               });
+              onTap: () {
+                _selectDate(context);
               },
-              child: CustomAccountTextfield(
-                controller: _dobController,
-                hinText: "Date of Birth",
-                readOnly: true,
+              child: Container(
+                height: getHeight(41),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: _selectedDate == null
+                      ? Colors.transparent
+                      : Colors.white.withOpacity(0.5),
+                  border: Border.all(color: Colors.white, width: 0.6),
+                  borderRadius: BorderRadius.circular(getWidth(8)),
+                ),
+                child: Padding(
+                  padding:
+                      EdgeInsets.only(left: getWidth(15), top: getHeight(10)),
+                  child: Text(
+                    _selectedDate == null
+                        ? 'Date of Birth'
+                        : _selectedDate!.toLocal().toString().split(' ')[0],
+                    style: GoogleFonts.nunito(
+                      fontSize: getWidth(15),
+                      fontWeight: FontWeight.w400,
+                      color: const Color(0xffDCDCDC),
+                    ),
+                  ),
+                ),
               ),
             ),
             SizedBox(height: getHeight(24)),
@@ -140,9 +187,10 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
             CustomGradientButton(
               text: "Submit",
               onTap: () {
-                  setState(() {
-                  _selectDate(context);
-               });
+                // _customBottomSheet(context);
+                bottomSheetOneButton(context, 
+                " Your Bank Account has been successfully linked.", 
+                AppImagese.successIcon);
                 setState(() {
                   isRoutingNumberValid =
                       _routingNumberController.text.length >= 8;
@@ -166,9 +214,9 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
     _accountHolderController.dispose();
     _routingNumberController.dispose();
     _accountNumberController.dispose();
-    _dobController.dispose();
     _addressController.dispose();
     _zipCodeController.dispose();
     super.dispose();
   }
+
 }

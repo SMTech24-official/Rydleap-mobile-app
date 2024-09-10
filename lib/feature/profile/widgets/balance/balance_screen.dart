@@ -3,11 +3,11 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
-import 'package:rydleap/feature/auth/dirver_registration/components/driver_insurance.dart';
 import 'package:rydleap/feature/profile/widgets/balance/add_account_screen.dart';
 
 class BalanceScreen extends StatelessWidget {
@@ -25,6 +25,9 @@ class BalanceScreen extends StatelessWidget {
             style: GoogleFonts.inter(
                 fontSize: getWidth(20), fontWeight: FontWeight.w600),
           ),
+          actions: [
+            Image.asset(AppIcons.payment,color: Colors.white,)
+          ],
         ),
         body: Stack(
           children: [

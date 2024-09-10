@@ -1,5 +1,7 @@
 import 'dart:async';
 
+// import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,7 +9,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/pickup_and_drop_input_tile.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
-import 'package:rydleap/core/utility/custom_circle.dart';
 import 'package:rydleap/core/utility/destination_tile.dart';
 
 import '../../../request_a_ride/presentation/request_a_ride.dart';
@@ -170,13 +171,13 @@ class _HomeState extends State<Home> {
           ),
           Positioned(
               top: 31.5.h,
-              child: PickupAndDropInputTile(backGroundColor: Colors.white, width: 90.w,)
+              child: PickupAndDropInputTile(backGroundColor: Colors.white, width: 90.w, hintTextPickup: 'Pickup location', hintTextDestination: 'Enter Dropoff', readOnly: false,)
 
 
 
               // Container(
               //   margin: EdgeInsets.symmetric(horizontal: 20),
-              //   padding: EdgeInsets.symmetric(horizontal: 10),
+              //   padding: EdgeInsets.symmetric(hori, hintTextDestination: ''zontal: 10),
               //   height: 17.h,
               //   width: 90.w,
               //   decoration: BoxDecoration(
@@ -303,6 +304,51 @@ class _HomeState extends State<Home> {
 
         ],
       ),
+
+
+
+      bottomNavigationBar: CurvedNavigationBar(
+        letIndexChange: (index){
+          return false;
+        },
+        height: 60,
+        index: 1,
+        backgroundColor: AppColors.navy_blue,
+        color: Color(0xffDEFF11),
+        items: <Widget>[
+          CircleAvatar(
+            backgroundColor: Colors.black.withOpacity(0.3),
+              child: Icon(Icons.home_filled, size: 25,color: Colors.black,),
+          ),
+          Icon(Icons.add, size: 30,color: Colors.black,),
+          Icon(Icons.person_2_outlined, size: 30,color: Colors.black,),
+        ],
+        onTap: (index) {
+          //Handle button tap
+        },
+      ),
+
+      // bottomNavigationBar: FluidNavBar(
+      //   defaultIndex: 1,// (1)
+      //   icons: [                                            // (2)
+      //     FluidNavBarIcon(icon: Icons.home_filled),      // (3)
+      //     FluidNavBarIcon(icon: Icons.add),      // (3)
+      //     FluidNavBarIcon(icon: Icons.person),      // (3)
+      //
+      //   ],
+      //   //onChange: _handleNavigationChange,
+      //
+      //
+      //
+      //   style: FluidNavBarStyle(
+      //       barBackgroundColor: Color(0xffDEFF11),
+      //       iconBackgroundColor: Color(0xffDEFF11),
+      //       iconSelectedForegroundColor: Colors.black,
+      //       iconUnselectedForegroundColor: Colors.grey
+      //   ),
+      // ),
+
+
     );
   }
 }

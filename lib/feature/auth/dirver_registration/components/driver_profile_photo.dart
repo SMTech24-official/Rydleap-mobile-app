@@ -7,6 +7,8 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/custom_buttomsheet/bottomsheet_onebutton.dart';
+import 'package:rydleap/core/global_widgets/custom_buttomsheet/button_subtitle.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
@@ -115,17 +117,16 @@ class _DriverProfilePhotoState extends State<DriverProfilePhoto> {
     return Scaffold(
       backgroundColor: AppColors.appbarColor,
       appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: AppColors.appbarColor,
-        title: Text(
-          "Driver Registration",
-          style: GoogleFonts.inter(
-            fontSize: getWidth(20),
-            fontWeight: FontWeight.w600,
+          centerTitle: true,
+          backgroundColor: AppColors.appbarColor,
+          title: Text(
+            "Driver Registration",
+            style: GoogleFonts.inter(
+              fontSize: getWidth(20),
+              fontWeight: FontWeight.w600,
+            ),
           ),
-        ),
-        leading: CustomCloseButton()
-      ),
+          leading: CustomCloseButton()),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
         child: Column(
@@ -246,8 +247,14 @@ class _DriverProfilePhotoState extends State<DriverProfilePhoto> {
                       child: SizedBox(
                           height: getHeight(50),
                           child: CustomGradientButton(
-                              text: "Submit", onTap: () {
-                                _customBottomSheet(context);
+                              text: "Submit",
+                              onTap: () {
+                                // _customBottomSheet(context);
+                                buttonSubTitleBottomSheet(
+                                    context,
+                                    "Your application submitted and is under review.",
+                                    AppImagese.application,
+                                    "You will be notified with application status.");
                               })),
                     )
                   ],
@@ -260,13 +267,14 @@ class _DriverProfilePhotoState extends State<DriverProfilePhoto> {
       ),
     );
   }
+
   Future<dynamic> _customBottomSheet(BuildContext context) {
     return showModalBottomSheet(
       context: context,
       isScrollControlled: true, // Make the bottom sheet take the full screen
       backgroundColor: Colors.transparent, // Transparent background
-      barrierColor: Color(
-          0xff001B26).withOpacity(0.8), // Semi-transparent black background for the barrier
+      barrierColor: Color(0xff001B26).withOpacity(
+          0.8), // Semi-transparent black background for the barrier
       builder: (BuildContext context) {
         return Align(
           alignment: Alignment.center, // Center the container on the screen
@@ -313,7 +321,9 @@ class _DriverProfilePhotoState extends State<DriverProfilePhoto> {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      SizedBox(height: getHeight(25),),
+                      SizedBox(
+                        height: getHeight(25),
+                      ),
                       Container(
                         height: getHeight(37),
                         width: getWidth(114),
@@ -357,5 +367,4 @@ class _DriverProfilePhotoState extends State<DriverProfilePhoto> {
       },
     );
   }
-
 }

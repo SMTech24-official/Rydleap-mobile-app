@@ -113,7 +113,7 @@ class _ReportProblemScreenState extends State<ReportProblemScreen> {
                   onTap: () {
                     Get.to(ReportProblem2());
                   },
-                  icon: SizedBox(),
+                  
                 )),
           )
         ],
