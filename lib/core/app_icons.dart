@@ -28,6 +28,7 @@ class AppIcons {
   static const String paymentIcon = "assets/icons/payment_icon.png";
   static const String notification = "assets/icons/notification.png";
   static const String error = "assets/icons/error.png";
+  static const String errorWhiteOutline = "assets/icons/error_white_outline.png";
   static const String watch = "assets/icons/watch.png";
   static const String upload = "assets/icons/upload.png";
   static const String message = "assets/icons/message.png";

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:rydleap/feature/auth/dirver_registration/components/driver_insurance.dart';
+import 'package:rydleap/feature/profile/widgets/balance/add_account_screen.dart';
 
 class BalanceScreen extends StatelessWidget {
   const BalanceScreen({super.key});
@@ -76,7 +80,9 @@ class BalanceScreen extends StatelessWidget {
                         fontWeight: FontWeight.w400),
                   ),
                   Spacer(),
-                  CustomGradientButton(text: "Add Account", onTap: () {}),
+                  CustomGradientButton(text: "Add Account", onTap: () {
+                    Get.to(AddAccountScreen());
+                  }),
                   SizedBox(height: getHeight(20),)
                 ],
               ),
