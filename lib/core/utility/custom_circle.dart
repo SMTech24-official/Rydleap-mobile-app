@@ -10,8 +10,9 @@ class CustomCircle extends StatelessWidget{
 
   final double radious;
   final Color color;
+  final Color backgroundColor;
 
-  const CustomCircle({super.key, required this.radious, required this.color});
+  const CustomCircle({super.key, required this.radious, required this.color, required this.backgroundColor});
 
 
 
@@ -23,7 +24,7 @@ class CustomCircle extends StatelessWidget{
       backgroundColor: color,
       child: CircleAvatar(
         radius: radious-2,
-        backgroundColor: Colors.white,
+        backgroundColor: backgroundColor,
       ),
     );
   }
