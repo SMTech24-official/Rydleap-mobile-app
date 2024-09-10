@@ -20,7 +20,6 @@ class _LanguageScreenState extends State<LanguageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.textBlack,
-
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: AppColors.appbarColor,

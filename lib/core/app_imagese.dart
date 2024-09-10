@@ -18,4 +18,9 @@ class AppImagese {
   static const String sapin = "assets/images/spain.png";
   static const String portugal = "assets/images/portugal.png";
   static const String franch = "assets/images/franch.png";
+  static const String cash = "assets/images/cash.png";
+  static const String debitAndCreditCard = "assets/images/debit_or_credit_card.png";
+  static const String paypal = "assets/images/paypal.png";
+  static const String question = "assets/images/question.png";
 }
+
