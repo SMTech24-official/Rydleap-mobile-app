@@ -131,7 +131,7 @@ class _ScheduleYourRideState extends State<ScheduleYourRide>
                   margin: EdgeInsets.symmetric(horizontal: 16,vertical: 10),
                     width: screenWidth(),
                     height: 50,
-                    child: Text('${selectedTimeRTL.hour} :${selectedTimeRTL.minute<10?'0':''} ${selectedTimeRTL.minute} ${selectedTimeRTL.period.name}',style: GoogleFonts.nunito(
+                    child: Text('${selectedTimeRTL.hour} :${selectedTimeRTL.minute<10?'0':''}${selectedTimeRTL.minute} ${selectedTimeRTL.period.name}',style: GoogleFonts.nunito(
 
                         fontSize: 15,
                         fontWeight: FontWeight.w400
