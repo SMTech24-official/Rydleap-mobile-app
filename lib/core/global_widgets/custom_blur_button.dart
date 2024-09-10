@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 
 class CustomBlurButton extends StatelessWidget {
   final String text;
+  final Color textColor;
 
-  const CustomBlurButton({
-    super.key,
-    required this.text,
-  });
+  const CustomBlurButton(
+      {super.key, required this.text, this.textColor = AppColors.textGrey});
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +41,9 @@ class CustomBlurButton extends StatelessWidget {
           child: Center(
             child: Text(
               text,
-              style: TextStyle(
-                color: AppColors.textGrey,
-                fontSize: getWidth(18),
+              style: GoogleFonts.nunito(
+                color: textColor,
+                fontSize: getWidth(17.5),
                 fontWeight: FontWeight.w400,
               ),
             ),
