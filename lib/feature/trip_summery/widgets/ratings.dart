@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
+import 'package:rydleap/core/global_widgets/custom_buttomsheet/custom_bottomsheet.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 
@@ -115,7 +116,14 @@ class _RatingsScreenState extends State<RatingsScreen> {
                   ),
                   InkWell(
                     onTap: (){
-                      _customBottomSheet(context);
+                      // _customBottomSheet(context);
+                      customBottomSheet(context, 
+                      "Thank you!",
+                      "", 
+                      AppImagese.like,
+                      getWidth(35),
+                      0
+                      );
                     },
                     child: Container(
                       height: getHeight(40),
@@ -142,77 +150,5 @@ class _RatingsScreenState extends State<RatingsScreen> {
       ),
     );
   }
-  Future<dynamic> _customBottomSheet(BuildContext context) {
-    return showModalBottomSheet(
-      context: context,
-      isScrollControlled: true, // Make the bottom sheet take the full screen
-      backgroundColor: Colors.transparent, // Transparent background
-      barrierColor: Color(0xff001B26).withOpacity(0.8),
-      builder: (BuildContext context) {
-        return Align(
-          alignment: Alignment.center, // Center the container on the screen
-          child: Stack(
-            children: [
-              Container(
-                height: screenHeight(),
-                width: double.infinity,
-                color: Colors.transparent,
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: getWidth(38)),
-                  height: getHeight(238),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: getHeight(95),
-                        width: getWidth(95),
-                        child: Image.asset(AppImagese.like),
-                      ),
-                      SizedBox(height: getHeight(16),),
-                      Center(
-                        child: Text(
-                          "Thank you!",
-                          style: GoogleFonts.nunito(
-                            color: Color(0xff001B26),
-                              fontSize: getWidth(35),
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                top: getHeight(40),
-                right: getWidth(20),
-                child: SizedBox(
-                  height: getHeight(26),
-                  width: getWidth(26),
-                  child: IconButton(
-                    icon: Icon(Icons.close, color: Colors.white),
-                    onPressed: () {
-                      Navigator.pop(context); // Close the bottom sheet
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (_) => LoginScreen()),
-                      // );
-                    },
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
+ 
 }

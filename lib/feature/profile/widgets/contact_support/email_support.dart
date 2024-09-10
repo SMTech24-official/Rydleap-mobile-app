@@ -8,6 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/custom_buttomsheet/custom_bottomsheet.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 
@@ -243,7 +244,16 @@ class _EmailSupportScreenState extends State<EmailSupportScreen> {
                   color: Color(0xff3AD896),
                   child: InkWell(
                     onTap: () {
-                      _customBottomSheet(context);
+                      // _customBottomSheet(context);
+                      customBottomSheet(context, 
+                      "Your support request has been sent.", 
+                      AppImagese.successIcon, 
+                      "Expected response time: 24 hours", 
+                      getWidth(17),
+                      getWidth(12)
+
+                      
+                      );
                     },
                     borderRadius: BorderRadius.circular(getWidth(46)),
                     splashColor: Colors.grey.withOpacity(0.5),
@@ -295,83 +305,4 @@ class _EmailSupportScreenState extends State<EmailSupportScreen> {
     );
   }
 
-  Future<dynamic> _customBottomSheet(BuildContext context) {
-    return showModalBottomSheet(
-      context: context,
-      isScrollControlled: true, // Make the bottom sheet take the full screen
-      backgroundColor: Colors.transparent, // Transparent background
-      barrierColor: Color(
-          0xff001B26).withOpacity(0.8), // Semi-transparent black background for the barrier
-      builder: (BuildContext context) {
-        return Align(
-          alignment: Alignment.center, // Center the container on the screen
-          child: Stack(
-            children: [
-              Container(
-                height: screenHeight(),
-                width: double.infinity,
-                color: Colors.transparent,
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: getWidth(38)),
-                  height: getHeight(238),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        // height: getHeight(120),
-                        width: getWidth(95),
-                        child: Image.asset(AppImagese.successIcon),
-                      ),
-                      Text(
-                        'Your support request has been sent.',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.nunito(
-                          color: Color(0xff001B26),
-                          fontSize: getWidth(17),
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      Text(
-                        'Expected response time: 24 hours',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.nunito(
-                          color: Color(0xff001B26),
-                          fontSize: getWidth(12),
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                top:
-                    getHeight(40), // Adjust the top margin for the close button
-                right: getWidth(
-                    20), // Adjust the right margin for the close button
-                child: SizedBox(
-                  height: getHeight(26),
-                  width: getWidth(26),
-                  child: IconButton(
-                    icon: Icon(Icons.close, color: Colors.white),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-}
+ }
