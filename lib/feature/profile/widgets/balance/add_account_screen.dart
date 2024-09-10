@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
+import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
@@ -21,29 +24,54 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
       TextEditingController();
   final TextEditingController _accountNumberController =
       TextEditingController();
-  final TextEditingController _dobController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _zipCodeController = TextEditingController();
   bool checkPass = false;
   bool isRoutingNumberValid = true;
-  DateTime selectedDate = DateTime.now();
+  DateTime? _selectedDate;
 
   Future<void> _selectDate(BuildContext context) async {
-    final DateTime? pickedDate = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: selectedDate, // default date
-      firstDate: DateTime(2000),  // earliest selectable date
-      lastDate: DateTime(2100),   // latest selectable date
+      initialDate: _selectedDate ?? DateTime.now(),
+      firstDate: DateTime(1900),
+      lastDate: DateTime(2101),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            primaryColor: Color(0xff3AD896),
+            buttonTheme: ButtonThemeData(
+              textTheme: ButtonTextTheme.primary,
+            ),
+            dialogBackgroundColor: Colors.white,
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                  // primary: Color(0xff3AD896),
+                  ),
+            ),
+            colorScheme: ColorScheme.light(
+              primary: Color(0xff3AD896),
+              onPrimary: Colors.white,
+              surface: AppColors.appbarColor,
+              onSurface: Colors.white,
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
 
-    if (pickedDate != null && pickedDate != selectedDate)
+    if (picked != null && picked != _selectedDate) {
       setState(() {
-        selectedDate = pickedDate;
+        _selectedDate = picked;
       });
+    }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.appbarColor,
       appBar: AppBar(
         centerTitle: true,
@@ -83,7 +111,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                           width: getWidth(8),
                         ),
                         Text(
-                          "Routing Number needs to br in 8-digits",
+                          "Routing Number needs to be in 8 digits",
                           style: GoogleFonts.nunito(
                               fontSize: getWidth(8),
                               fontWeight: FontWeight.w400,
@@ -114,15 +142,33 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
             ),
             SizedBox(height: getHeight(24)),
             InkWell(
-              onTap: (){
-               setState(() {
-                  _selectDate(context);
-               });
+              onTap: () {
+                _selectDate(context);
               },
-              child: CustomAccountTextfield(
-                controller: _dobController,
-                hinText: "Date of Birth",
-                readOnly: true,
+              child: Container(
+                height: getHeight(41),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: _selectedDate == null
+                      ? Colors.transparent
+                      : Colors.white.withOpacity(0.5),
+                  border: Border.all(color: Colors.white, width: 0.6),
+                  borderRadius: BorderRadius.circular(getWidth(8)),
+                ),
+                child: Padding(
+                  padding:
+                      EdgeInsets.only(left: getWidth(15), top: getHeight(10)),
+                  child: Text(
+                    _selectedDate == null
+                        ? 'Date of Birth'
+                        : _selectedDate!.toLocal().toString().split(' ')[0],
+                    style: GoogleFonts.nunito(
+                      fontSize: getWidth(15),
+                      fontWeight: FontWeight.w400,
+                      color: const Color(0xffDCDCDC),
+                    ),
+                  ),
+                ),
               ),
             ),
             SizedBox(height: getHeight(24)),
@@ -140,9 +186,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
             CustomGradientButton(
               text: "Submit",
               onTap: () {
-                  setState(() {
-                  _selectDate(context);
-               });
+                _customBottomSheet(context);
                 setState(() {
                   isRoutingNumberValid =
                       _routingNumberController.text.length >= 8;
@@ -166,9 +210,101 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
     _accountHolderController.dispose();
     _routingNumberController.dispose();
     _accountNumberController.dispose();
-    _dobController.dispose();
     _addressController.dispose();
     _zipCodeController.dispose();
     super.dispose();
   }
+ Future<dynamic> _customBottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true, 
+      backgroundColor: Colors.transparent, 
+      barrierColor: Color(
+          0xff001B26).withOpacity(0.8), 
+      builder: (BuildContext context) {
+        return Align(
+          alignment: Alignment.center, 
+          child: Stack(
+            children: [
+              Container(
+                height: screenHeight(),
+                width: double.infinity,
+                color: Colors.transparent,
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: getWidth(38)),
+                  height: getHeight(281),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        // height: getHeight(120),
+                        width: getWidth(95),
+                        child: Image.asset(AppImagese.successIcon),
+                      ),
+                      SizedBox(height: getHeight(12),),
+                      Text(
+                        ' Your Bank Account has been successfully linked.',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.nunito(
+                          color: Color(0xff001B26),
+                          fontSize: getWidth(17),
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(height: getHeight(36),),
+                      InkWell(
+                        onTap: (){
+                          Get.back();
+                        },
+                        child: Container(
+                              height: getHeight(40),
+                              width: getWidth(104),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(88),
+                                  color: Color(0xff3AD896)),
+                              child: Center(
+                                child: Text(
+                                  "Done",
+                                  style: GoogleFonts.inter(
+                                      fontSize: getWidth(14),
+                                      fontWeight: FontWeight.w400),
+                                ),
+                              ),
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                top:
+                    getHeight(40), // Adjust the top margin for the close button
+                right: getWidth(
+                    20), // Adjust the right margin for the close button
+                child: SizedBox(
+                  height: getHeight(26),
+                  width: getWidth(26),
+                  child: IconButton(
+                    icon: Icon(Icons.close, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
 }

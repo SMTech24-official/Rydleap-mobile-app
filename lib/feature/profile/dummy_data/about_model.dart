@@ -4,6 +4,7 @@ import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/change_password.dart';
 import 'package:rydleap/feature/payment_options/screen/payment_options_screen.dart';
 import 'package:rydleap/feature/profile/widgets/balance/balance_screen.dart';
+import 'package:rydleap/feature/profile/widgets/cashout/cashout.dart';
 import 'package:rydleap/feature/profile/widgets/contact_support/contact_support.dart';
 import 'package:rydleap/feature/profile/widgets/language/language_screen.dart';
 import 'package:rydleap/feature/profile/widgets/notifcation/notification_screen.dart';
@@ -87,6 +88,12 @@ List<AboutModel> driverItems = [
       icon: AppIcons.payment,
       onTap: () {
         Get.to(BalanceScreen());
+      }),
+      AboutModel(
+      title: "Cash out",
+      icon: AppIcons.payment,
+      onTap: () {
+        Get.to(CashoutScreen());
       }),
   AboutModel(
       title: "Change Password",

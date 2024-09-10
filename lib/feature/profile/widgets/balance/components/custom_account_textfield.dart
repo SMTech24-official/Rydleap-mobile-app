@@ -5,21 +5,23 @@ import 'package:rydleap/core/app_sizes.dart';
 class CustomAccountTextfield extends StatefulWidget {
   final TextEditingController controller;
   final String hinText;
-  final TextInputType?keyboardType;
-  final bool readOnly;
+  final TextInputType? keyboardType;
+
   final bool obscureText;
-  final Widget?suffixIcon;
+  final Widget? suffixIcon;
   final Color borderColor;
+
 
   const CustomAccountTextfield({
     super.key,
     required this.controller,
     required this.hinText,
     this.keyboardType,
-     this.readOnly=false,
-     this.obscureText=false,
-     this.suffixIcon,
-     this.borderColor=Colors.white
+
+    this.obscureText = false,
+    this.suffixIcon,
+    this.borderColor = Colors.white,
+
   });
 
   @override
@@ -39,10 +41,10 @@ class _CustomAccountTextfieldState extends State<CustomAccountTextfield> {
         borderRadius: BorderRadius.circular(getWidth(8)),
       ),
       child: TextField(
-        readOnly: widget.readOnly,
+   
         controller: widget.controller,
-        keyboardType:widget.keyboardType ,
-        obscureText:widget.obscureText ,
+        keyboardType: widget.keyboardType,
+        obscureText: widget.obscureText,
         onChanged: (text) {
           setState(() {
             // If text is not empty, change background color, otherwise make it transparent
@@ -52,7 +54,7 @@ class _CustomAccountTextfieldState extends State<CustomAccountTextfield> {
           });
         },
         decoration: InputDecoration(
-          suffixIcon:widget.suffixIcon ,
+          suffixIcon: widget.suffixIcon,
           hintText: widget.hinText,
           fillColor: fillColor,
           filled: true, // To apply the fill color

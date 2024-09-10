@@ -6,7 +6,6 @@ import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_back_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
-import 'package:rydleap/feature/safety_tips/dummy_data/safety_model.dart';
 import 'package:rydleap/feature/terms_policy/dummy_data/terms_policy_model.dart';
 
 class TermsPolicyScreen extends StatefulWidget {
