@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
-import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_back_button.dart';
-import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 
 class ShareRideScreen extends StatelessWidget {
