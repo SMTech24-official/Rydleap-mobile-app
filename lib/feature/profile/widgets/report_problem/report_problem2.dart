@@ -179,60 +179,67 @@ class _ReportProblem2State extends State<ReportProblem2> {
                 SizedBox(
                   height: getHeight(12),
                 ),
-                InkWell(
-                  onTap: () {
-                    _showImageSourceSelection(context);
-                  },
-                  child: Container(
-                      width: double.infinity,
-                      child: Image.asset(
-                        "assets/images/frame.png",
-                        fit: BoxFit.cover,
-                      )),
+                 Container(
+              height: getHeight(180),
+              width: double.infinity,
+              decoration: BoxDecoration(
+              
+                image: DecorationImage(
+                  image: AssetImage(
+                    "assets/images/frame.png",
+                  ),
+                  fit: BoxFit.fill,
                 ),
-                //  _selectedImage != null
-                //       ? Positioned.fill(
-                //           child: Image.file(
-                //             _selectedImage!,
-                //             fit: BoxFit
-                //                 .cover, // This will make the image cover the entire container
-                //           ),
-                //         )
-                //       : 
-                //       Align(
-                //           alignment: Alignment.center,
-                //           child: InkWell(
-                //             onTap: () {
-                //               _showImageSourceSelection(context);
-                //             },
-                //             child: Container(
-                //               height: getHeight(37),
-                //               width: getWidth(114),
-                //               decoration: BoxDecoration(
-                //                 borderRadius: BorderRadius.circular(51),
-                //                 color: Color(0xff3AD896),
-                //               ),
-                //               child: Row(
-                //                 mainAxisAlignment: MainAxisAlignment.center,
-                //                 crossAxisAlignment: CrossAxisAlignment.center,
-                //                 children: [
-                //                   Image.asset(AppIcons.upload),
-                //                   SizedBox(
-                //                       width: getWidth(
-                //                           8)), // Add spacing between the icon and text
-                //                   Text(
-                //                     "Upload",
-                //                     style: GoogleFonts.nunito(
-                //                       fontSize: getWidth(12),
-                //                       fontWeight: FontWeight.w500,
-                //                     ),
-                //                   ),
-                //                 ],
-                //               ),
-                //             ),
-                //           ),
-                //         ),
-                
+              ),
+              child: Stack(
+                children: [
+                  _selectedImage != null
+                      ? Positioned.fill(
+                          child: Image.file(
+                            _selectedImage!,
+                            fit: BoxFit
+                                .cover, // This will make the image cover the entire container
+                          ),
+                        )
+                      : 
+                      Align(
+                          alignment: Alignment.center,
+                          child: InkWell(
+                            onTap: () {
+                              _showImageSourceSelection(context);
+                            },
+                            child: Container(
+                              height: getHeight(37),
+                              width: getWidth(114),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(51),
+                                color: Color(0xff3AD896),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Image.asset(AppIcons.upload),
+                                  SizedBox(
+                                      width: getWidth(
+                                          8)), // Add spacing between the icon and text
+                                  Text(
+                                    "Upload",
+                                    style: GoogleFonts.nunito(
+                                      fontSize: getWidth(12),
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                ],
+              ),
+            ),
+          
+               
                 Spacer(),
                 CustomNextButton(
                   text: "Submit My Report",
