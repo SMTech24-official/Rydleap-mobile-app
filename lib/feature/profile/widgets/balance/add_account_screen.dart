@@ -8,7 +8,6 @@ import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
-import 'package:rydleap/feature/auth/dirver_registration/components/driver_insurance.dart';
 import 'package:rydleap/feature/profile/widgets/balance/components/custom_account_textfield.dart';
 
 class AddAccountScreen extends StatefulWidget {
@@ -218,13 +217,13 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
  Future<dynamic> _customBottomSheet(BuildContext context) {
     return showModalBottomSheet(
       context: context,
-      isScrollControlled: true, // Make the bottom sheet take the full screen
-      backgroundColor: Colors.transparent, // Transparent background
+      isScrollControlled: true, 
+      backgroundColor: Colors.transparent, 
       barrierColor: Color(
-          0xff001B26).withOpacity(0.8), // Semi-transparent black background for the barrier
+          0xff001B26).withOpacity(0.8), 
       builder: (BuildContext context) {
         return Align(
-          alignment: Alignment.center, // Center the container on the screen
+          alignment: Alignment.center, 
           child: Stack(
             children: [
               Container(
