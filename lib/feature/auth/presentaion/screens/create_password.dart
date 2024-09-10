@@ -16,8 +16,8 @@ class CreatePasswordScreen extends StatefulWidget {
 }
 
 class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController(text: "12345678@");
+  TextEditingController _confirmPasswordController = TextEditingController(text: "12345678@");
   bool checkPass = false;
 
   bool isConditionMet = false;
@@ -89,6 +89,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: getHeight(35),),
             Text(
               "Create your Password",
               style: Theme.of(context).textTheme.titleMedium,

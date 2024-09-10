@@ -20,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   bool isChecked = false;
+  bool isTap = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: getHeight(35),),
             Text(
               "Log In",
               style: Theme.of(context).textTheme.titleMedium,

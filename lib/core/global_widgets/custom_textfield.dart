@@ -49,7 +49,7 @@ class CustomTextfield extends StatelessWidget {
         controller: controller,
         obscureText: obsecureText,
         onChanged: onChanged,
-        style: TextStyle(
+        style: GoogleFonts.nunito(
           color: Color(0xffC3BBBB),
           fontWeight: FontWeight.w400,
           fontSize: getWidth(15),

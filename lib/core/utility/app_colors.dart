@@ -61,4 +61,5 @@ class AppColors {
   static const Color tabBorderColor = Color(0xff1A1A1A);
   static const Color paymentIconBorderColor = Color(0xff666666);
   static const Color languageBorderColor = Color(0xff3F3F3F);
+  static const Color appbarColor = Color(0xff001B26);
 }
