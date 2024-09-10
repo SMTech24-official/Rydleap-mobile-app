@@ -2,7 +2,7 @@
 
 
 
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -80,7 +80,40 @@ class Contact extends StatelessWidget{
                   ],
 
                 ),
+                child: Column(
+                  children: [
+                    Text('Arrive in 3 mins (120m)'),
 
+
+                    Container(
+
+                      child: Row(
+                        children: [
+                          Column(
+                            children: [
+                              
+                            ],
+                          ),
+
+                          Column(
+                            children: [
+
+                            ],
+                          ),
+
+
+
+                        ],
+                      ),
+
+
+
+                    )
+
+
+
+                  ],
+                )
 
               ),
             ),
