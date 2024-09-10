@@ -10,6 +10,7 @@ import 'package:rydleap/core/global_widgets/phone_input.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/components/or_sign_in_with.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/name_email_screen.dart';
+import 'package:rydleap/feature/driver_dashboard/presentation/driver_dashboard.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
 
 import '../../../../core/global_widgets/custom_gradient_button.dart';
@@ -109,8 +110,19 @@ class RegisterScreen extends StatelessWidget {
                 icon: AppIcons.facebookIcon,
                 text: "Sign in with Facebook",
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => Home()));
+
+
+                  if(CustomGlobalVariable.userType == 'User'){
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => Home()));
+                  }else{
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => DriverDashboard()));
+                  }
+
+
+
+
                 }),
             SizedBox(
               height: getHeight(20),
