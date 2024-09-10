@@ -107,216 +107,218 @@ class _ScheduleYourRideState extends State<ScheduleYourRide>
           ],
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
 
 
 
-          InkWell(
-            onTap: (){
-               selectedTimeRTL=showTimePicker(
-                initialTime: TimeOfDay.now(),
-                context: context,
-              ) as TimeOfDay;
-            },
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                alignment: Alignment.centerLeft,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 1,color: Colors.grey),
-                  borderRadius: BorderRadius.circular(10),
+            InkWell(
+              onTap: (){
+                 selectedTimeRTL=showTimePicker(
+                  initialTime: TimeOfDay.now(),
+                  context: context,
+                ) as TimeOfDay;
+              },
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1,color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  margin: EdgeInsets.symmetric(horizontal: 16,vertical: 10),
+                    width: screenWidth(),
+                    height: 50,
+                    child: Text('${selectedTimeRTL.hour} :${selectedTimeRTL.minute<10?'0':''} ${selectedTimeRTL.minute} ${selectedTimeRTL.period.name}',style: GoogleFonts.nunito(
+
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400
+
+                    ),
+                    ),
                 ),
-                margin: EdgeInsets.symmetric(horizontal: 16,vertical: 10),
+            ),
+
+
+
+
+            InkWell(
+              onTap: (){
+
+
+
+
+                showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    //which date will display when user open the picker
+                    firstDate: DateTime(1950),
+                    //what will be the previous supported year in picker
+                    lastDate: DateTime.now());
+
+
+
+
+              },
+              child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1,color: Colors.grey),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  margin: EdgeInsets.symmetric(horizontal: 16,vertical: 10),
                   width: screenWidth(),
                   height: 50,
-                  child: Text('${selectedTimeRTL.hour} :${selectedTimeRTL.minute<10?'0':''} ${selectedTimeRTL.minute} ${selectedTimeRTL.period.name}',style: GoogleFonts.nunito(
+                  child: Text('00:00',style: GoogleFonts.nunito(
 
                       fontSize: 15,
                       fontWeight: FontWeight.w400
 
-                  ),
-                  ),
-              ),
-          ),
+                  ),)),
+            ),
 
 
 
 
-          InkWell(
-            onTap: (){
+            PickupAndDropInputTile(
+              backGroundColor: Colors.black,
+              width: 90.w, hintTextPickup: 'Pickup location', hintTextDestination: 'Enter Dropoff',
+            ),
 
-
-
-
-              showDatePicker(
-                  context: context,
-                  initialDate: DateTime.now(),
-                  //which date will display when user open the picker
-                  firstDate: DateTime(1950),
-                  //what will be the previous supported year in picker
-                  lastDate: DateTime.now());
-
-
-
-
-            },
-            child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                alignment: Alignment.centerLeft,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 1,color: Colors.grey),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                margin: EdgeInsets.symmetric(horizontal: 16,vertical: 10),
-                width: screenWidth(),
-                height: 50,
-                child: Text('00:00',style: GoogleFonts.nunito(
-
-                    fontSize: 15,
-                    fontWeight: FontWeight.w400
-
-                ),)),
-          ),
-
-
-
-
-          PickupAndDropInputTile(
-            backGroundColor: Colors.black,
-            width: 90.w, hintTextPickup: 'Pickup location', hintTextDestination: 'Enter Dropoff',
-          ),
-
-          TabBar(
-            controller: _tabController,
-            tabs: [
-              Tab(text: 'Economy'),
-              Tab(text: 'Premium'),
-              Tab(text: 'Shared'),
-            ],
-          ),
-
-          Container(
-            width: screenWidth(),
-            height: 129,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              controller: _scrollController,
-              shrinkWrap: true,
-              children: [
-                RideTypeTile(
-                  title: 'Economy',
-                  subtitle: '\$10-15',
-                  time: '5 mins away',
-                  backgroundColor: Colors.black,
-                  textColor: Colors.white,
-                ),
-                RideTypeTile(
-                  title: 'Premium',
-                  subtitle: '\$15-20',
-                  time: '3 mins away',
-                  backgroundColor: Colors.white,
-                  textColor: Colors.black,
-                ),
-                RideTypeTile(
-                  title: 'Shared',
-                  subtitle: '\$05-10',
-                  time: '10 mins away',
-                  backgroundColor: Colors.green.shade500,
-                  textColor: Colors.amber,
-                ),
-
+            TabBar(
+              controller: _tabController,
+              tabs: [
+                Tab(text: 'Economy'),
+                Tab(text: 'Premium'),
+                Tab(text: 'Shared'),
               ],
             ),
-          ),
 
-          CustomGradientButton(
-            text: 'Schedule Ride',
-            onTap: () {
-
-
-
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
+            Container(
+              width: screenWidth(),
+              height: 129,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                controller: _scrollController,
+                shrinkWrap: true,
+                children: [
+                  RideTypeTile(
+                    title: 'Economy',
+                    subtitle: '\$10-15',
+                    time: '5 mins away',
+                    backgroundColor: Colors.black,
+                    textColor: Colors.white,
+                  ),
+                  RideTypeTile(
+                    title: 'Premium',
+                    subtitle: '\$15-20',
+                    time: '3 mins away',
                     backgroundColor: Colors.white,
-                    //title: Text("My title"),
-                    content: Container(
+                    textColor: Colors.black,
+                  ),
+                  RideTypeTile(
+                    title: 'Shared',
+                    subtitle: '\$05-10',
+                    time: '10 mins away',
+                    backgroundColor: Colors.green.shade500,
+                    textColor: Colors.amber,
+                  ),
 
-                      width: getWidth(298),
-                      height: getHeight(257),
-                      child: Column(
-                        children: [
-                          Image.asset(AppImagese.successIcon),
-                          SizedBox(height: 14,),
-                          Text('Your Ride is scheduled!',style: GoogleFonts.nunito(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black),),
+                ],
+              ),
+            ),
+
+            CustomGradientButton(
+              text: 'Schedule Ride',
+              onTap: () {
 
 
 
-                          SizedBox(height: 28,),
-                          InkWell(
-                            onTap: (){
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                              alignment: Alignment.center,
-                              width: getWidth(104),
-                              height: getHeight(40),
-                              decoration: BoxDecoration(
-                                  color: Colors.green,
-                                  borderRadius: BorderRadius.circular(30)
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      backgroundColor: Colors.white,
+                      //title: Text("My title"),
+                      content: Container(
+
+                        width: getWidth(298),
+                        height: getHeight(257),
+                        child: Column(
+                          children: [
+                            Image.asset(AppImagese.successIcon),
+                            SizedBox(height: 14,),
+                            Text('Your Ride is scheduled!',style: GoogleFonts.nunito(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black),),
+
+
+
+                            SizedBox(height: 28,),
+                            InkWell(
+                              onTap: (){
+                                Navigator.pop(context);
+                              },
+                              child: Container(
+                                alignment: Alignment.center,
+                                width: getWidth(104),
+                                height: getHeight(40),
+                                decoration: BoxDecoration(
+                                    color: Colors.green,
+                                    borderRadius: BorderRadius.circular(30)
+                                ),
+                                child: Text('Done',style: GoogleFonts.nunito(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white),),
                               ),
-                              child: Text('Done',style: GoogleFonts.nunito(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white),),
                             ),
-                          ),
-                          
 
 
 
 
 
-                        ],
+
+                          ],
+                        ),
                       ),
-                    ),
-                    // actions: [
-                    //
-                    //
-                    //
-                    //
-                    //
-                    // ],
-                  );
-                },
-              );
+                      // actions: [
+                      //
+                      //
+                      //
+                      //
+                      //
+                      // ],
+                    );
+                  },
+                );
 
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: (_) => Contact()));
+                // Navigator.push(context,
+                //     MaterialPageRoute(builder: (_) => Contact()));
 
-            },
-            width: getWidth(335),
-            icon: Icons.calendar_today_outlined,
-          ),
+              },
+              width: getWidth(335),
+              icon: Icons.calendar_today_outlined,
+            ),
 
-          SizedBox(height: 12,),
+            SizedBox(height: 12,),
 
-          CustomGradientButton(
-            text: 'Back',
-            onTap: () {},
-            width: getWidth(335),
-            colorList: [Color(0xff9B9B9B),Color(0xff9B9B9B),],
-          ),
-
+            CustomGradientButton(
+              text: 'Back',
+              onTap: () {},
+              width: getWidth(335),
+              colorList: [Color(0xff9B9B9B),Color(0xff9B9B9B),],
+            ),
 
 
 
-        ],
+
+          ],
+        ),
       ),
     );
   }
