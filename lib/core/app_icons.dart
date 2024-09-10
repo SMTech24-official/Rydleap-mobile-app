@@ -40,6 +40,7 @@ class AppIcons {
   static const String facebook = "assets/icons/facebook.png";
   static const String messanger = "assets/icons/messanger.png";
   static const String instagram = "assets/icons/insta.png";
+  static const String deleteIcon = "assets/icons/delete_icon.png";
 
 }
 
