@@ -133,7 +133,7 @@ class DriverTracking extends StatelessWidget{
 
                       PickupAndDropInputTile(
                         backGroundColor: Colors.black,
-                        width: 90.w, hintTextPickup: 'Los Angeles', hintTextDestination: 'Los Angeles',
+                        width: 90.w, hintTextPickup: 'Los Angeles', hintTextDestination: 'Los Angeles', readOnly: true,
                       ),
 
                       SizedBox(height: 21,),

@@ -85,7 +85,7 @@ class _RequestARideState extends State<RequestARide>
               children: [
                 PickupAndDropInputTile(
                   backGroundColor: Colors.black,
-                  width: 90.w, hintTextPickup: 'Pickup location', hintTextDestination: 'Enter Dropoff',
+                  width: 90.w, hintTextPickup: 'Pickup location', hintTextDestination: 'Enter Dropoff', readOnly: false,
                 ),
 
                 TabBar(

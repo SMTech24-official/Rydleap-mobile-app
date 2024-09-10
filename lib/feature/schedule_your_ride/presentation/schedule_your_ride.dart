@@ -8,7 +8,7 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_imagese.dart';
-import 'package:rydleap/feature/contact/presentation/contact.dart';
+// import 'package:rydleap/feature/contact/presentation/contact.dart';
 
 import '../../../core/app_sizes.dart';
 import '../../../core/global_widgets/custom_gradient_button.dart';
@@ -83,7 +83,7 @@ class _ScheduleYourRideState extends State<ScheduleYourRide>
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             IconButton(
                 onPressed: () {
@@ -91,19 +91,19 @@ class _ScheduleYourRideState extends State<ScheduleYourRide>
                 },
                 icon: Icon(Icons.arrow_back_ios)),
             Text('Schedule Your Ride'),
-            CircleAvatar(
-              radius: 17,
-              backgroundColor: Colors.white,
-              child: CircleAvatar(
-                radius: 14,
-                child: Icon(
-                  Icons.question_mark,
-                  size: 25,
-                  color: Colors.white,
-                ),
-                backgroundColor: Colors.blue,
-              ),
-            )
+            // CircleAvatar(
+            //   radius: 17,
+            //   backgroundColor: Colors.white,
+            //   child: CircleAvatar(
+            //     radius: 14,
+            //     child: Icon(
+            //       Icons.question_mark,
+            //       size: 25,
+            //       color: Colors.white,
+            //     ),
+            //     backgroundColor: Colors.blue,
+            //   ),
+            // )
           ],
         ),
       ),
@@ -185,7 +185,7 @@ class _ScheduleYourRideState extends State<ScheduleYourRide>
 
             PickupAndDropInputTile(
               backGroundColor: Colors.black,
-              width: 90.w, hintTextPickup: 'Pickup location', hintTextDestination: 'Enter Dropoff',
+              width: 90.w, hintTextPickup: 'Pickup location', hintTextDestination: 'Enter Dropoff', readOnly: false,
             ),
 
             TabBar(

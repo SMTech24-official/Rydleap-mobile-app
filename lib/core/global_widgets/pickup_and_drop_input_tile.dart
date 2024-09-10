@@ -15,8 +15,9 @@ class PickupAndDropInputTile extends StatelessWidget{
   final double width;
   final String hintTextPickup;
   final String hintTextDestination;
+  final bool readOnly;
 
-  const PickupAndDropInputTile({super.key, required this.backGroundColor, required this.width, required this.hintTextPickup, required this.hintTextDestination});
+  const PickupAndDropInputTile({super.key, required this.backGroundColor, required this.width, required this.hintTextPickup, required this.hintTextDestination, required this.readOnly});
 
 
 
@@ -62,6 +63,7 @@ class PickupAndDropInputTile extends StatelessWidget{
                     width: 70.w,
                     padding: EdgeInsets.fromLTRB(10, 10, 20, 0),
                     child: TextFormField(
+                      readOnly: readOnly,
                       style: TextStyle(color: Colors.grey, fontSize: 14,),
                       decoration: InputDecoration(
                         hintText: hintTextPickup,
@@ -91,6 +93,7 @@ class PickupAndDropInputTile extends StatelessWidget{
                     width: 70.w,
                     padding: EdgeInsets.fromLTRB(10, 0, 20, 10),
                     child: TextFormField(
+                      readOnly: readOnly,
                       style: TextStyle(color: Colors.grey, fontSize: 14),
                       decoration: InputDecoration(
                         hintText: hintTextDestination,
