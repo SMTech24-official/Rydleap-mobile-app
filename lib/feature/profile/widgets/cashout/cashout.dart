@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/custom_buttomsheet/button_subtitle.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
@@ -154,7 +155,8 @@ class _CashoutScreenState extends State<CashoutScreen> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
                   child: CustomGradientButton(text: "Cash Out", onTap: () {
-                    _customBottomSheet(context);
+                    // _customBottomSheet(context);
+                    buttonSubTitleBottomSheet(context, "\$1999.34 cashed out Successfully!", AppImagese.successIcon, "Your money should be available after 2 - 3 hours");
                   }),
                 ),
                 SizedBox(

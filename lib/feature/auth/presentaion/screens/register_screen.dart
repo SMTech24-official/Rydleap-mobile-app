@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
@@ -9,8 +11,11 @@ import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/global_widgets/phone_input.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/components/or_sign_in_with.dart';
+import 'package:rydleap/feature/auth/dirver_registration/components/driver_insurance.dart';
+import 'package:rydleap/feature/auth/dirver_registration/driver_registration.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/name_email_screen.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
+import 'package:rydleap/feature/profile/screen/profile_screen.dart';
 
 import '../../../../core/global_widgets/custom_gradient_button.dart';
 
@@ -75,7 +80,9 @@ class RegisterScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             CustomPhoneInput(),
-            CustomGradientButton(text: "Get OTP", onTap: () {}),
+            CustomGradientButton(text: "Get OTP", onTap: () {
+              Get.to(DriverRegistrationScreen());
+            }),
             Container(
               width: getWidth(120),
               height: 37,
@@ -104,7 +111,9 @@ class RegisterScreen extends StatelessWidget {
             CustomGlassButton(
                 icon: AppIcons.appleIcon,
                 text: "Sign in with Apple",
-                onTap: () {}),
+                onTap: () {
+                  Get.to(ProfileScreen());
+                }),
             CustomGlassButton(
                 icon: AppIcons.facebookIcon,
                 text: "Sign in with Facebook",

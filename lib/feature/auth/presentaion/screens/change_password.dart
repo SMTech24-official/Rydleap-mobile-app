@@ -5,6 +5,7 @@ import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
+import 'package:rydleap/core/global_widgets/custom_buttomsheet/custom_bottomsheet.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/login_screen.dart';
@@ -247,7 +248,15 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       _currentPasswordController.clear();
                       _newPasswordController.clear();
                       _confirmPasswordController.clear();
-                      _customBottomSheet(context);
+                      // _customBottomSheet(context);
+                      customBottomSheet(
+                        context, 
+                        "Your password has been changed successfully!",
+                        "",
+                        AppImagese.successIcon,
+                        getWidth(17),
+                        0
+                        );
                     })
                 : CustomBlurButton(
                     text: "Continue",
@@ -266,84 +275,12 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     );
   }
 
-  Future<dynamic> _customBottomSheet(BuildContext context) {
-    return showModalBottomSheet(
-      context: context,
-      isScrollControlled: true, // Make the bottom sheet take the full screen
-      backgroundColor: Colors.transparent, // Transparent background
-      barrierColor: Color(
-          0xff001B26), // Semi-transparent black background for the barrier
-      builder: (BuildContext context) {
-        return Align(
-          alignment: Alignment.center, // Center the container on the screen
-          child: Stack(
-            children: [
-              Container(
-                height: screenHeight(),
-                width: double.infinity,
-                color: Colors.transparent,
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: getWidth(38)),
-                  height: getHeight(238),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: getHeight(95),
-                        width: getWidth(95),
-                        child: Image.asset(AppImagese.successIcon),
-                      ),
-                      Text(
-                        'Your password has been changed successfully!',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.nunito(
-                          color: Color(0xff001B26),
-                          fontSize: getWidth(17),
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                top:
-                    getHeight(30), // Adjust the top margin for the close button
-                right: getWidth(
-                    20), // Adjust the right margin for the close button
-                child: SizedBox(
-                  height: getHeight(26),
-                  width: getWidth(26),
-                  child: IconButton(
-                    icon: Icon(Icons.close, color: Colors.white),
-                    onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => LoginScreen()));
-                    },
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
+ 
   @override
   void dispose() {
-    _currentPasswordController.clear();
-    _newPasswordController.clear();
-    _confirmPasswordController.clear();
+    _currentPasswordController.dispose();
+    _newPasswordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 }
