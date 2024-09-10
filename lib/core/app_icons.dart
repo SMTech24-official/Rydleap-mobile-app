@@ -29,4 +29,5 @@ class AppIcons {
   static const String error = "assets/icons/error.png";
   static const String watch = "assets/icons/watch.png";
   static const String upload = "assets/icons/upload.png";
+  static const String addIcon = "assets/icons/add_icon.png";
 }

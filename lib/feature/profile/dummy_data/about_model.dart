@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/change_password.dart';
+import 'package:rydleap/feature/payment_options/screen/payment_options_screen.dart';
 import 'package:rydleap/feature/profile/widgets/contact_support/contact_support.dart';
 import 'package:rydleap/feature/profile/widgets/language/language_screen.dart';
 import 'package:rydleap/feature/profile/widgets/notifcation/notification_screen.dart';
@@ -43,7 +44,7 @@ List<AboutModel> userItems = [
       title: "Payment Methods",
       icon: AppIcons.payment,
       onTap: () {
-        print("Payment Methods");
+       Get.to(PaymentOptionsScreen());
       }),
   AboutModel(
       title: "Ride History",
