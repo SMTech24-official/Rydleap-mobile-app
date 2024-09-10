@@ -5,10 +5,12 @@ import 'package:rydleap/core/app_imagese.dart';
 
 import '../../../core/app_sizes.dart';
 import '../../../core/global_widgets/custom_background.dart';
+import '../../../core/global_widgets/custom_gradient_button.dart';
 import '../../../core/utility/app_colors.dart';
 
 class CustomPaymentMethodScreen extends StatelessWidget {
-  const CustomPaymentMethodScreen({super.key});
+  final String title,subtitle,imagePath,bottomText;
+  const CustomPaymentMethodScreen({super.key, required this.title, required this.subtitle, required this.imagePath, required this.bottomText});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class CustomPaymentMethodScreen extends StatelessWidget {
               icon: Icon(Icons.arrow_back_ios)),
         ),
         title: Text(
-          'Pay Pal',
+          title,
           style: GoogleFonts.inter(
               fontSize: getWidth(20), fontWeight: FontWeight.w500),
         ),
@@ -66,22 +68,24 @@ class CustomPaymentMethodScreen extends StatelessWidget {
                 children: [
                   Center(
                     child: Image.asset(
-                      AppImagese.payPalLarge,
+                      imagePath,
                       height: getHeight(129),
                       width: getWidth(115),
                     ),
                   ),
                   Text(
-                    "Pay Pal",
+                    title,
                     style: GoogleFonts.nunito(
                         fontSize: getWidth(25), fontWeight: FontWeight.w500),
                   ),
+                  SizedBox(height: getHeight(12),),
                   Text(
-                    "Cash after reaching",
+                   subtitle,
                     style: GoogleFonts.nunito(
                         fontSize: getWidth(15), fontWeight: FontWeight.w400),
                   ),
-                  // CustomGradientButton()
+                  SizedBox(height: getHeight(364),),
+                  CustomGradientButton(text:bottomText, onTap: () {  },)
                 ],
               ),
             )
