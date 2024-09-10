@@ -1,22 +1,20 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/shared/screen/splashScreen.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 
-final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
 class Rydleap extends StatelessWidget {
   const Rydleap({super.key});
-
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   @override
   Widget build(BuildContext context) {
     AppSizes().init(context);
     return FlutterSizer(builder: (context, orientation, screenType) {
-      return GetMaterialApp(
-        navigatorKey: navigatorKey,
+      return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),
         // theme: lightThemeData(),
@@ -71,9 +69,9 @@ class Rydleap extends StatelessWidget {
       ),
       textTheme: TextTheme(
         titleLarge: GoogleFonts.nunito(
-          fontSize: getWidth(23),
+          fontSize: 7.w,
           color: Colors.white,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w400,
         ),
 
         titleMedium: GoogleFonts.nunito(
@@ -84,11 +82,6 @@ class Rydleap extends StatelessWidget {
         titleSmall: GoogleFonts.nunito(
           fontSize: getWidth(15),
           color: Color(0xffECECEC),
-          fontWeight: FontWeight.w400,
-        ),
-        bodyLarge: GoogleFonts.nunito(
-          fontSize: getWidth(18),
-          color: Color(0xffEEEEEE),
           fontWeight: FontWeight.w400,
         ),
         bodyMedium: GoogleFonts.nunito(

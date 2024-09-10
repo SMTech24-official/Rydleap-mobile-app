@@ -8,6 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 
 class EmailSupportScreen extends StatefulWidget {
@@ -107,19 +108,7 @@ class _EmailSupportScreenState extends State<EmailSupportScreen> {
           style: GoogleFonts.inter(
               fontSize: getWidth(20), fontWeight: FontWeight.w600),
         ),
-        leading: Padding(
-          padding: EdgeInsets.only(left: getWidth(20)),
-          child: SizedBox(
-            height: getHeight(26),
-            width: getWidth(26),
-            child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.close),
-            ),
-          ),
-        ),
+        leading: CustomCloseButton()
       ),
       body: Stack(
         children: [

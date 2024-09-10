@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_core/get_core.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_glass_button.dart';
-import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
+import 'package:rydleap/core/global_widgets/custom_gradient.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/global_widgets/phone_input.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/components/or_sign_in_with.dart';
-import 'package:rydleap/feature/auth/dirver_registration/driver_registration.dart';
-import 'package:rydleap/feature/auth/presentaion/screens/change_password.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/name_email_screen.dart';
-import 'package:rydleap/feature/notifications_access/notifications_access_screen.dart';
-import 'package:rydleap/feature/profile/screen/profile_screen.dart';
+import 'package:rydleap/feature/home/presentation/screens/home.dart';
+
+import '../../../../core/global_widgets/custom_gradient_button.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -26,7 +22,7 @@ class RegisterScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Custombackground(
-        bottomContainerHeight: screenHeight() * 0.6,
+        bottomContainerHeight: screenHeight() * 0.5,
         widget: Padding(
           padding: EdgeInsets.only(
             top: getHeight(82),
@@ -41,7 +37,7 @@ class RegisterScreen extends StatelessWidget {
                   height: getHeight(10),
                 ),
                 Container(
-                  width: screenWidth() * 0.65,
+                  width: screenWidth() * 0.5,
                   child: RichText(
                     text: TextSpan(
                       children: [
@@ -49,14 +45,23 @@ class RegisterScreen extends StatelessWidget {
                           text: CustomGlobalVariable.userType == 'Driver'
                               ? "Ai- based travel bookings for drivers by "
                               : "Ai- based travel bookings by ",
-                          style: GoogleFonts.nunito(
-                              color: Colors.white, fontSize: getWidth(40)),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.fontSize,
+                          ),
                         ),
                         TextSpan(
                           text: "“Rydleap”",
-                          style: GoogleFonts.nunito(
-                              color: AppColors.textYellow,
-                              fontSize: getWidth(40)),
+                          style: TextStyle(
+                            color: AppColors.textYellow,
+                            fontSize: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.fontSize,
+                          ),
                         ),
                       ],
                     ),
@@ -69,19 +74,16 @@ class RegisterScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            SizedBox(height: getHeight(20),),
             CustomPhoneInput(),
-            CustomGradientButton(text: "Get OTP", onTap: () {
-              Get.to(DriverRegistrationScreen());
-            }),
+            CustomGradientButton(text: "Get OTP", onTap: () {}),
             Container(
-              
               width: getWidth(120),
+              height: 37,
               child: Column(
                 children: [
                   Text(
                     "Privacy Policy",
-                    style: GoogleFonts.nunito(
+                    style: TextStyle(
                       color: Color(0xffF9F9F9),
                       fontSize: getWidth(14),
                       fontWeight: FontWeight.w500,
@@ -102,16 +104,13 @@ class RegisterScreen extends StatelessWidget {
             CustomGlassButton(
                 icon: AppIcons.appleIcon,
                 text: "Sign in with Apple",
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => ProfileScreen()));
-                }),
+                onTap: () {}),
             CustomGlassButton(
                 icon: AppIcons.facebookIcon,
                 text: "Sign in with Facebook",
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => NotificationsAccessScreen()));
+                      MaterialPageRoute(builder: (_) => Home()));
                 }),
             SizedBox(
               height: getHeight(20),

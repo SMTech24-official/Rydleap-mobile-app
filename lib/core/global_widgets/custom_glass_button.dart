@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import 'package:rydleap/core/app_sizes.dart';
 
@@ -53,7 +52,7 @@ class CustomGlassButton extends StatelessWidget {
               ),
               Text(
                 text,
-                style: GoogleFonts.nunito(
+                style: TextStyle(
                   color: Color(0xffE4DDDD),
                   fontSize: getWidth(15),
                   fontWeight: FontWeight.w400,

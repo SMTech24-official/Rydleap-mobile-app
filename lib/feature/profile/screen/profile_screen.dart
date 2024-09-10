@@ -6,10 +6,12 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
+import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/profile/dummy_data/about_model.dart';
@@ -212,14 +214,7 @@ Future<dynamic> _customBottomSheet(BuildContext context) {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppColors.appbarColor,
-          leading: SizedBox(
-              height: getHeight(26),
-              width: getWidth(26),
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(Icons.close))),
+          leading:CustomCloseButton(),
           title: Text(
             "About me",
             style: GoogleFonts.inter(

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:rydleap/feature/auth/dirver_registration/components/driver_insurance.dart';
+import 'package:rydleap/feature/auth/dirver_registration/components/driver_profile_photo.dart';
 
 class DocumentsScreen extends StatelessWidget {
   const DocumentsScreen({super.key});
@@ -13,15 +18,7 @@ class DocumentsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.textBlack,
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.close,
-            size: 20,
-          ),
-        ),
+        leading: CustomCloseButton()
       ),
       body: Stack(
         children: [
@@ -128,7 +125,9 @@ class DocumentsScreen extends StatelessWidget {
                         ],
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(DriverProfilePhoto());
+                        },
                         child: Icon(
                           Icons.arrow_forward_ios,
                           size: 16,

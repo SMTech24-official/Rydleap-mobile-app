@@ -4,8 +4,8 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:rydleap/core/app_imagese.dart';
 
 import 'package:rydleap/feature/auth/controller/auth_controller.dart';
-import 'package:rydleap/feature/auth/presentaion/screens/loading_animation.dart';
 
+import 'package:rydleap/feature/auth/presentaion/screens/your_location.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -22,8 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-            builder: (context) =>
-                isLoggedIn ? Home() : LoadingAnimationScreen()));
+            builder: (context) => isLoggedIn ? Home() : YourLocation()));
   }
 
   @override

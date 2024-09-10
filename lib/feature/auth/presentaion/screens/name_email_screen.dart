@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
-import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
+import 'package:rydleap/core/global_widgets/custom_gradient.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/create_password.dart';
+
+import '../../../../core/global_widgets/custom_gradient_button.dart';
 
 class NameEmailScreen extends StatefulWidget {
   const NameEmailScreen({super.key});
@@ -40,7 +41,6 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: getHeight(35),),
             CustomTextfield(
               controller: _nameController,
               hintext: "Name",
@@ -67,21 +67,21 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
                       children: [
                         TextSpan(
                           text: "By signing up with",
-                          style: GoogleFonts.nunito(
+                          style: TextStyle(
                               color: Color(0xffDEDEDC),
                               fontSize: getWidth(15),
                               fontWeight: FontWeight.w400),
                         ),
                         TextSpan(
                           text: " “Rydleap” ",
-                          style: GoogleFonts.nunito(
+                          style: TextStyle(
                               color: AppColors.textYellow,
                               fontSize: getWidth(15),
                               fontWeight: FontWeight.w400),
                         ),
                         TextSpan(
                           text: "you agree to our",
-                          style: GoogleFonts.nunito(
+                          style: TextStyle(
                               color: Color(0xffDEDEDC),
                               fontSize: getWidth(15),
                               fontWeight: FontWeight.w400),
@@ -91,7 +91,7 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
                   ),
                   Text(
                     "Terms and Conditions",
-                    style: GoogleFonts.nunito(
+                    style: TextStyle(
                         decoration: TextDecoration.underline,
                         color: Color(0xffDEDEDC),
                         fontSize: getWidth(13),
@@ -131,7 +131,7 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
                             ),
                             Text(
                               "I’m not a robot",
-                              style: GoogleFonts.nunito(
+                              style: TextStyle(
                                   color: Colors.black,
                                   fontSize: getWidth(16),
                                   fontWeight: FontWeight.w500),
@@ -153,7 +153,7 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
                         ),
                         Text(
                           "Privacy - Terms",
-                          style: GoogleFonts.nunito(
+                          style: TextStyle(
                               color: Color(0xffABABAB),
                               fontSize: getWidth(8),
                               fontWeight: FontWeight.w400),

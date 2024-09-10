@@ -7,8 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/add_page/presentation/add_page.dart';
-import 'package:rydleap/feature/profile/screen/profile_screen.dart';
-
+import 'package:rydleap/feature/profile_page/presentation/profile_page.dart';
 
 import 'feature/home/presentation/screens/home.dart';
 
@@ -38,7 +37,7 @@ class _NavPageState extends State<NavPage> {
       screens: [
         Home(),
         AddPage(),
-        ProfileScreen()
+        ProfilePage()
         // Equalizer(),
 
       ],

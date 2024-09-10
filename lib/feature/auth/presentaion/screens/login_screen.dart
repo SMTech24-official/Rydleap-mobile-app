@@ -4,10 +4,12 @@ import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/app_text_button.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
-import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
+import 'package:rydleap/core/global_widgets/custom_gradient.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 
 import 'package:rydleap/feature/auth/presentaion/screens/otp_screen.dart';
+
+import '../../../../core/global_widgets/custom_gradient_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -20,7 +22,6 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   bool isChecked = false;
-  bool isTap = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +42,6 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: getHeight(35),),
             Text(
               "Log In",
               style: Theme.of(context).textTheme.titleMedium,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
-import 'package:rydleap/core/global_widgets/custom_container.dart';
+import 'package:rydleap/core/app_sizes.dart';
 
 class Custombackground extends StatelessWidget {
   final Widget widget;
@@ -46,8 +46,32 @@ class Custombackground extends StatelessWidget {
           child: icon,
         ),
         widget,
-        CustomContainer(
-            bottomContainerHeight: bottomContainerHeight, child: child),
+        Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+                padding: EdgeInsets.only(
+                    top: getHeight(35),
+                    left: getWidth(18),
+                    right: getWidth(18)),
+                height: bottomContainerHeight,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Color(0xff001B26),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40),
+                    ),
+                    border: Border(
+                        top: BorderSide(color: Color(0xffFFDD2D), width: 2)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color(0xffFFDD2D),
+                        offset: Offset(0, 10),
+                        blurRadius: 26,
+                        spreadRadius: 13,
+                      ),
+                    ]),
+                child: child)),
       ],
     );
   }

@@ -4,9 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/pickup_and_drop_input_tile.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/core/utility/custom_circle.dart';
 import 'package:rydleap/core/utility/destination_tile.dart';
+
+import '../../../request_a_ride/presentation/request_a_ride.dart';
 
 class Home extends StatefulWidget {
   Home({super.key});
@@ -87,7 +91,7 @@ class _HomeState extends State<Home> {
           Container(
             height: 100.h,
             width: 100.w,
-            margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
             child: GoogleMap(
               //initialCameraPosition: _kGoogle,
               markers: {
@@ -166,83 +170,137 @@ class _HomeState extends State<Home> {
           ),
           Positioned(
               top: 31.5.h,
+              child: PickupAndDropInputTile(backGroundColor: Colors.white, width: 90.w,)
+
+
+
+              // Container(
+              //   margin: EdgeInsets.symmetric(horizontal: 20),
+              //   padding: EdgeInsets.symmetric(horizontal: 10),
+              //   height: 17.h,
+              //   width: 90.w,
+              //   decoration: BoxDecoration(
+              //       color: Colors.white,
+              //       borderRadius: BorderRadius.circular(20),
+              //       border: Border.all(color: Colors.amberAccent, width: 1.5)),
+              //   child: Row(
+              //     crossAxisAlignment: CrossAxisAlignment.center,
+              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //     children: [
+              //       Column(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         children: [
+              //           CustomCircle(radious: 7, color: Colors.amber),
+              //
+              //           Icon(Icons.more_vert),
+              //
+              //           // for(int i=0;i<4;i++)
+              //           //   CircleAvatar(radius: 2,backgroundColor: Colors.black,),
+              //
+              //           CustomCircle(radious: 7, color: Colors.purpleAccent),
+              //         ],
+              //       ),
+              //       Column(
+              //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: [
+              //           Container(
+              //             height: 11.h / 2,
+              //             width: 70.w,
+              //             padding: EdgeInsets.fromLTRB(10, 10, 20, 0),
+              //             child: TextFormField(
+              //               style: TextStyle(color: Colors.black, fontSize: 14),
+              //               decoration: InputDecoration(
+              //                 hintText: 'Pickup location',
+              //                 hintStyle: TextStyle(fontSize: 14),
+              //                 enabledBorder: InputBorder.none,
+              //                 focusedBorder: InputBorder.none,
+              //               ),
+              //             ),
+              //           ),
+              //           Container(
+              //             height: 40,
+              //             child: Row(
+              //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //               children: [
+              //                 Container(
+              //                   height: 1,
+              //                   width: 70.w,
+              //                   color: Colors.grey,
+              //                 ),
+              //                 Icon(Icons.swap_vert),
+              //               ],
+              //             ),
+              //           ),
+              //           Container(
+              //             height: 11.h / 2,
+              //             width: 70.w,
+              //             padding: EdgeInsets.fromLTRB(10, 0, 20, 10),
+              //             child: TextFormField(
+              //               style: TextStyle(color: Colors.black, fontSize: 14),
+              //               decoration: InputDecoration(
+              //                 hintText: 'Enter Dropoff',
+              //                 hintStyle: TextStyle(fontSize: 14),
+              //                 enabledBorder: InputBorder.none,
+              //                 focusedBorder: InputBorder.none,
+              //               ),
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     ],
+              //   ),
+              // ),
+
+
+          ),
+          
+          Positioned(
+
+            top: 20,
+
+            child: Align(
+              alignment: Alignment.center,
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 20),
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                height: 17.h,
-                width: 90.w,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.amberAccent, width: 1.5)),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CustomCircle(radious: 7, color: Colors.amber),
+                margin: EdgeInsets.symmetric(horizontal: 16),
+                alignment: Alignment.center,
+                color: Colors.grey.shade600.withOpacity(0.6),//Color(0xffE6E6E6).withOpacity(opacity),
+                height: 50,
+                width: screenWidth()-32,
+                child: TextFormField(
 
-                        Icon(Icons.more_vert),
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.location_on_outlined,color: Colors.white,),
+                    hintText: 'Location',
+                    hintStyle: TextStyle(
+                      color: Colors.white
+                    )
+                  ),
 
-                        // for(int i=0;i<4;i++)
-                        //   CircleAvatar(radius: 2,backgroundColor: Colors.black,),
+                ),),
+            ),),
 
-                        CustomCircle(radious: 7, color: Colors.purpleAccent),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 11.h / 2,
-                          width: 70.w,
-                          padding: EdgeInsets.fromLTRB(10, 10, 20, 0),
-                          child: TextFormField(
-                            style: TextStyle(color: Colors.black, fontSize: 14),
-                            decoration: InputDecoration(
-                              hintText: 'Pickup location',
-                              hintStyle: TextStyle(fontSize: 14),
-                              enabledBorder: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 40,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                height: 1,
-                                width: 70.w,
-                                color: Colors.grey,
-                              ),
-                              Icon(Icons.swap_vert),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: 11.h / 2,
-                          width: 70.w,
-                          padding: EdgeInsets.fromLTRB(10, 0, 20, 10),
-                          child: TextFormField(
-                            style: TextStyle(color: Colors.black, fontSize: 14),
-                            decoration: InputDecoration(
-                              hintText: 'Enter Dropoff',
-                              hintStyle: TextStyle(fontSize: 14),
-                              enabledBorder: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ))
+          Positioned(
+              top:21,
+              right: 18,
+              child: Container(
+            height: 47,
+            width: 80,
+            color: Colors.white,
+            child: IconButton(onPressed: (){
+
+
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => RequestARide()));
+
+
+
+            }, icon: Icon(Icons.search,color: Colors.black,)),
+          ))
+
+
+
+
         ],
       ),
     );
