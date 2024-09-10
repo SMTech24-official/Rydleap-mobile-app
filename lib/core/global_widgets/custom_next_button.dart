@@ -5,15 +5,20 @@ import 'package:rydleap/core/app_sizes.dart';
 class CustomNextButton extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
-  final Widget icon;
-  const CustomNextButton(
-      {super.key, required this.text, required this.onTap, required this.icon});
+  final String? icon;
+
+  const CustomNextButton({
+    super.key,
+    required this.text,
+    required this.onTap,
+    this.icon, // icon can be nullable, so no need to require
+  });
 
   @override
   Widget build(BuildContext context) {
     return Material(
       borderRadius: BorderRadius.circular(getWidth(46)),
-      color: Color(0xff3AD896),
+      color: const Color(0xff3AD896),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(getWidth(46)),
@@ -26,8 +31,8 @@ class CustomNextButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(getWidth(46)),
             boxShadow: [
               BoxShadow(
-                color: Color(0xffFFFFFF).withOpacity(0.2),
-                offset: Offset(0, 1),
+                color: const Color(0xffFFFFFF).withOpacity(0.2),
+                offset: const Offset(0, 1),
                 blurRadius: 10,
                 spreadRadius: 1,
               ),
@@ -43,10 +48,15 @@ class CustomNextButton extends StatelessWidget {
                   fontWeight: FontWeight.w400,
                 ),
               ),
-              SizedBox(
-                width: getWidth(11),
-              ),
-              SizedBox(height: getHeight(22), width: getWidth(22), child: icon)
+              
+              if (icon != null) ...[
+                SizedBox(),
+                SizedBox(
+                  height: getHeight(22),
+                  width: getWidth(22),
+                  child: Image.asset(icon!),
+                ),
+              ],
             ],
           ),
         ),

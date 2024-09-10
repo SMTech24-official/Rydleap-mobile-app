@@ -12,6 +12,7 @@ import 'package:rydleap/core/global_widgets/custom_buttomsheet/custom_bottomshee
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/custom_next_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ReportProblem2 extends StatefulWidget {
   const ReportProblem2({super.key});
@@ -21,11 +22,30 @@ class ReportProblem2 extends StatefulWidget {
 }
 
 class _ReportProblem2State extends State<ReportProblem2> {
-  File? _selectedImage;
+ File? _selectedImage;
 
   final ImagePicker _picker = ImagePicker();
 
   final String _imageKey = "stored_image_path";
+  @override
+  void initState() {
+    super.initState();
+    _loadStoredImage();
+  }
+
+  Future<void> _loadStoredImage() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String? imagePath = prefs.getString(_imageKey);
+    if (imagePath != null && mounted) {
+      _selectedImage = File(imagePath);
+      setState(() {});
+    }
+  }
+
+  Future<void> _storeImagePath(String path) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_imageKey, path);
+  }
 
   Future<void> _pickImage(ImageSource source) async {
     try {
@@ -70,10 +90,9 @@ class _ReportProblem2State extends State<ReportProblem2> {
               leading: Icon(Icons.camera_alt),
               title: Text('Take a Photo'),
               onTap: () async {
-                if (await _checkPermissions(ImageSource.gallery)) {
+                if (await _checkPermissions(ImageSource.camera)) {
                   _pickImage(ImageSource.camera);
                 }
-
                 Navigator.pop(context);
               },
             ),
@@ -84,7 +103,6 @@ class _ReportProblem2State extends State<ReportProblem2> {
                 if (await _checkPermissions(ImageSource.gallery)) {
                   _pickImage(ImageSource.gallery);
                 }
-
                 Navigator.pop(context);
               },
             ),
@@ -93,7 +111,6 @@ class _ReportProblem2State extends State<ReportProblem2> {
       },
     );
   }
-
   @override
   Widget build(BuildContext context) {
     final TextEditingController _reprotController = TextEditingController();
@@ -173,6 +190,49 @@ class _ReportProblem2State extends State<ReportProblem2> {
                         fit: BoxFit.cover,
                       )),
                 ),
+                //  _selectedImage != null
+                //       ? Positioned.fill(
+                //           child: Image.file(
+                //             _selectedImage!,
+                //             fit: BoxFit
+                //                 .cover, // This will make the image cover the entire container
+                //           ),
+                //         )
+                //       : 
+                //       Align(
+                //           alignment: Alignment.center,
+                //           child: InkWell(
+                //             onTap: () {
+                //               _showImageSourceSelection(context);
+                //             },
+                //             child: Container(
+                //               height: getHeight(37),
+                //               width: getWidth(114),
+                //               decoration: BoxDecoration(
+                //                 borderRadius: BorderRadius.circular(51),
+                //                 color: Color(0xff3AD896),
+                //               ),
+                //               child: Row(
+                //                 mainAxisAlignment: MainAxisAlignment.center,
+                //                 crossAxisAlignment: CrossAxisAlignment.center,
+                //                 children: [
+                //                   Image.asset(AppIcons.upload),
+                //                   SizedBox(
+                //                       width: getWidth(
+                //                           8)), // Add spacing between the icon and text
+                //                   Text(
+                //                     "Upload",
+                //                     style: GoogleFonts.nunito(
+                //                       fontSize: getWidth(12),
+                //                       fontWeight: FontWeight.w500,
+                //                     ),
+                //                   ),
+                //                 ],
+                //               ),
+                //             ),
+                //           ),
+                //         ),
+                
                 Spacer(),
                 CustomNextButton(
                   text: "Submit My Report",
@@ -186,7 +246,7 @@ class _ReportProblem2State extends State<ReportProblem2> {
                     getWidth(0)
                     );
                   },
-                  icon: Image.asset(AppIcons.reportWhite),
+                  icon: AppIcons.reportWhite,
                 ),
                 SizedBox(
                   height: getHeight(20),

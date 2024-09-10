@@ -166,7 +166,8 @@ class _DriverLicenceState extends State<DriverLicence> {
                                 .cover, // This will make the image cover the entire container
                           ),
                         )
-                      : Align(
+                      : 
+                      Align(
                           alignment: Alignment.center,
                           child: InkWell(
                             onTap: () {
