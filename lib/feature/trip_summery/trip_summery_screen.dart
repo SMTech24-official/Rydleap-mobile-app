@@ -7,7 +7,6 @@ import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
-import 'package:rydleap/feature/auth/dirver_registration/components/driver_insurance.dart';
 import 'package:rydleap/feature/trip_summery/components/custom_datetime_text.dart';
 import 'package:rydleap/feature/trip_summery/components/custom_pickup_dropoff.dart';
 import 'package:rydleap/feature/trip_summery/widgets/ratings.dart';

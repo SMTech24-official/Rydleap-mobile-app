@@ -7,7 +7,6 @@ import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
-import 'package:rydleap/feature/auth/dirver_registration/components/driver_insurance.dart';
 import 'package:rydleap/feature/profile/widgets/balance/add_account_screen.dart';
 
 class BalanceScreen extends StatelessWidget {
