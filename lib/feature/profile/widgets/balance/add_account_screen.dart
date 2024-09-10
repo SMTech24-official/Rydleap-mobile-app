@@ -26,7 +26,21 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
   final TextEditingController _zipCodeController = TextEditingController();
   bool checkPass = false;
   bool isRoutingNumberValid = true;
+  DateTime selectedDate = DateTime.now();
 
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: selectedDate, // default date
+      firstDate: DateTime(2000),  // earliest selectable date
+      lastDate: DateTime(2100),   // latest selectable date
+    );
+
+    if (pickedDate != null && pickedDate != selectedDate)
+      setState(() {
+        selectedDate = pickedDate;
+      });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,10 +113,17 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
               ),
             ),
             SizedBox(height: getHeight(24)),
-            CustomAccountTextfield(
-              controller: _dobController,
-              hinText: "Date of Birth",
-              readOnly: true,
+            InkWell(
+              onTap: (){
+               setState(() {
+                  _selectDate(context);
+               });
+              },
+              child: CustomAccountTextfield(
+                controller: _dobController,
+                hinText: "Date of Birth",
+                readOnly: true,
+              ),
             ),
             SizedBox(height: getHeight(24)),
             CustomAccountTextfield(
@@ -119,6 +140,9 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
             CustomGradientButton(
               text: "Submit",
               onTap: () {
+                  setState(() {
+                  _selectDate(context);
+               });
                 setState(() {
                   isRoutingNumberValid =
                       _routingNumberController.text.length >= 8;
