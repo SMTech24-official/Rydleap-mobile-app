@@ -170,13 +170,13 @@ class _HomeState extends State<Home> {
           ),
           Positioned(
               top: 31.5.h,
-              child: PickupAndDropInputTile(backGroundColor: Colors.white, width: 90.w,)
+              child: PickupAndDropInputTile(backGroundColor: Colors.white, width: 90.w, hintTextPickup: 'Pickup location', hintTextDestination: 'Enter Dropoff',)
 
 
 
               // Container(
               //   margin: EdgeInsets.symmetric(horizontal: 20),
-              //   padding: EdgeInsets.symmetric(horizontal: 10),
+              //   padding: EdgeInsets.symmetric(hori, hintTextDestination: ''zontal: 10),
               //   height: 17.h,
               //   width: 90.w,
               //   decoration: BoxDecoration(

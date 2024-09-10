@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/feature/contact/presentation/contact.dart';
 
 import '../../../core/app_sizes.dart';
@@ -183,7 +184,7 @@ class _ScheduleYourRideState extends State<ScheduleYourRide>
 
           PickupAndDropInputTile(
             backGroundColor: Colors.black,
-            width: 90.w,
+            width: 90.w, hintTextPickup: 'Pickup location', hintTextDestination: 'Enter Dropoff',
           ),
 
           TabBar(
@@ -233,8 +234,70 @@ class _ScheduleYourRideState extends State<ScheduleYourRide>
             text: 'Schedule Ride',
             onTap: () {
 
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => Contact()));
+
+
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    backgroundColor: Colors.white,
+                    //title: Text("My title"),
+                    content: Container(
+
+                      width: getWidth(298),
+                      height: getHeight(257),
+                      child: Column(
+                        children: [
+                          Image.asset(AppImagese.successIcon),
+                          SizedBox(height: 14,),
+                          Text('Your Ride is scheduled!',style: GoogleFonts.nunito(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black),),
+
+
+
+                          SizedBox(height: 28,),
+                          InkWell(
+                            onTap: (){
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: getWidth(104),
+                              height: getHeight(40),
+                              decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius: BorderRadius.circular(30)
+                              ),
+                              child: Text('Done',style: GoogleFonts.nunito(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.white),),
+                            ),
+                          ),
+                          
+
+
+
+
+
+                        ],
+                      ),
+                    ),
+                    // actions: [
+                    //
+                    //
+                    //
+                    //
+                    //
+                    // ],
+                  );
+                },
+              );
+
+              // Navigator.push(context,
+              //     MaterialPageRoute(builder: (_) => Contact()));
 
             },
             width: getWidth(335),
