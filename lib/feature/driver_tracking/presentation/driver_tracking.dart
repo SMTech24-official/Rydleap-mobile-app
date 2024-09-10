@@ -56,7 +56,7 @@ class DriverTracking extends StatelessWidget{
         child: Column(
           children: [
             Container(
-              height: 37.5.h,
+              height: 45.h,
               width: 100.w,
               margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
               child: GoogleMap(
