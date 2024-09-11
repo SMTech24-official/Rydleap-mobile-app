@@ -25,6 +25,8 @@ class AppImagese {
   static const String question = "assets/images/question.png";
   static const String errorImage = "assets/images/error_image.png";
   static const String payPalLarge = "assets/images/paypal_large.png";
+  static const String appleLarge = "assets/images/apple_pay.png";
+  static const String googleLarge = "assets/images/google_pay.png";
 
 }
 

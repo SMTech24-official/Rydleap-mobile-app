@@ -19,13 +19,13 @@ List<PaymentOptionsModel> paymentItems = [
       onTap: () {}),
   PaymentOptionsModel(
       icon: AppImagese.paypal,
-      title: "Paypal",
+      title: "Pay Pal",
       onTap: () {
         Get.to(CustomPaymentMethodScreen(
           title: 'Pay Pal',
           subtitle: 'Use Pay Pal for quick and secure payments',
           imagePath: AppImagese.payPalLarge,
-          bottomText: 'Pay Pal',
+          bottomText: 'Link Pay Pal',
         ));
       }),
   PaymentOptionsModel(
@@ -33,10 +33,10 @@ List<PaymentOptionsModel> paymentItems = [
       title: "Apple Pay",
       onTap: () {
         Get.to(CustomPaymentMethodScreen(
-          title: 'Pay Pal',
-          subtitle: 'Use Pay Pal for quick and secure payments',
-          imagePath: AppImagese.payPalLarge,
-          bottomText: 'Apple Pal',
+          title: 'Apple Pay',
+          subtitle: 'Use Apple Pay for quick and secure payments',
+          imagePath: AppImagese.appleLarge,
+          bottomText: 'Link Apply Pay',
         ));
       }),
   PaymentOptionsModel(
@@ -44,10 +44,10 @@ List<PaymentOptionsModel> paymentItems = [
       title: "Google Pay",
       onTap: () {
         Get.to(CustomPaymentMethodScreen(
-          title: 'Pay Pal',
-          subtitle: 'Use Pay Pal for quick and secure payments',
-          imagePath: AppImagese.payPalLarge,
-          bottomText: 'Google Pay',
+          title: 'Google Pay',
+          subtitle: 'Use Google Pay for quick and secure payments',
+          imagePath: AppImagese.googleLarge,
+          bottomText: 'Link Google Pay',
         ));
       }),
 ];

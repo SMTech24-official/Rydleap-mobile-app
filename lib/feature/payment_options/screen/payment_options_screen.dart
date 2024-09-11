@@ -6,8 +6,8 @@ import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_success_bottom_sheet.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:rydleap/feature/payment_options/screen/add_card_screen.dart';
 import 'package:rydleap/feature/profile/widgets/promotion_offers/promotion_offers.dart';
-
 import '../../../core/global_widgets/custom_background.dart';
 import '../../../core/global_widgets/custom_blur_button.dart';
 import '../dummy_data/payment_options_model.dart';
@@ -146,39 +146,39 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            'Add Payment method',
-                            style: GoogleFonts.nunito(
-                                fontSize: getWidth(15),
-                                fontWeight: FontWeight.w400),
+                          GestureDetector(
+                            onTap: () {
+                              Get.to(AddCardScreen());
+                            },
+                            child: Text(
+                              'Add Payment method',
+                              style: GoogleFonts.nunito(
+                                  fontSize: getWidth(15),
+                                  fontWeight: FontWeight.w400),
+                            ),
                           ),
                           oneSelected
-                              ? GestureDetector(
-                                  onTap: () {
-                                    _deletePaymentMethod(context);
-                                  },
-                                  child: SizedBox(
-                                    height: getHeight(16),
-                                    width: getWidth(40),
-                                    child: Row(
-                                      children: [
-                                        Text(
-                                          'Edit',
-                                          style: GoogleFonts.nunito(
-                                              color: Color(0xFFCABDBD),
-                                              fontSize: getWidth(12),
-                                              fontWeight: FontWeight.w400),
-                                        ),
-                                        SizedBox(
-                                          width: getWidth(2),
-                                        ),
-                                        Image.asset(
-                                          AppIcons.arrowDown,
-                                          height: getHeight(12),
-                                          width: getWidth(12),
-                                        )
-                                      ],
-                                    ),
+                              ? SizedBox(
+                                  height: getHeight(16),
+                                  width: getWidth(40),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        'Edit',
+                                        style: GoogleFonts.nunito(
+                                            color: Color(0xFFCABDBD),
+                                            fontSize: getWidth(12),
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      SizedBox(
+                                        width: getWidth(2),
+                                      ),
+                                      Image.asset(
+                                        AppIcons.arrowDown,
+                                        height: getHeight(12),
+                                        width: getWidth(12),
+                                      )
+                                    ],
                                   ),
                                 )
                               : Image.asset(
@@ -203,8 +203,7 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                         final data = paymentItems[index];
                         bool isSelected = index == selectedIndex;
                         return GestureDetector(
-                          onTap:data.onTap,
-
+                          onTap: data.onTap,
                           child: Container(
                             height: getHeight(45),
                             width: double.infinity,
@@ -274,17 +273,18 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                   oneSelected
                       ? SizedBox.shrink()
                       : GestureDetector(
-                    onTap: (){
-                      Get.to(PromotionOffersScreen());
-                    },
-                        child: Container(
+                          onTap: () {
+                            Get.to(PromotionOffersScreen());
+                          },
+                          child: Container(
                             height: getHeight(45),
                             width: double.infinity,
                             child: Padding(
-                              padding:
-                                  EdgeInsets.symmetric(horizontal: getWidth(10)),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: getWidth(10)),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Promo Code',
@@ -301,26 +301,15 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                               ),
                             ),
                           ),
-                      ),
+                        ),
                   SizedBox(height: getHeight(102)),
                   oneSelected
                       ? GestureDetector(
-                    onTap: (){
-                      // _customErrorBottomSheet(context);
-                      // showSuccessBottomSheet(context: context, text: ' Your Apple Pay has been successfully linked. You can now use it for quick and secure payments.', onButtonTap: (){
-                      //
-                      //   Get.back();
-                      // });
-                      // showSuccessBottomSheet(context: context, text: ' Your Google Pay has been successfully linked. You can now use it for quick and secure payments.', onButtonTap:(){
-                      //   Get.back();
-                      // } );
-                      // _promoCodeBottomSheet(context);
-                      _paypalBottomSheet(context);
-                    },
-                        child: CustomBlurButton(
+                          onTap: () {},
+                          child: CustomBlurButton(
                             text: "Continue",
                           ),
-                      )
+                        )
                       : SizedBox.shrink(),
                 ],
               ),
@@ -328,91 +317,6 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
           ],
         ),
       ),
-    );
-  }
-
-  Future<dynamic> _deletePaymentMethod(BuildContext context) {
-    return showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      barrierColor: Color(0xff001B26).withOpacity(0.8),
-      builder: (BuildContext context) {
-        return Center(
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: getWidth(38)),
-            height: getHeight(250),
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(height: getHeight(10)),
-                SizedBox(
-                  height: getHeight(80),
-                  width: getWidth(80),
-                  child: Image.asset(AppImagese.question),
-                ),
-                SizedBox(height: getHeight(17)),
-                Center(
-                  child: Text(
-                    "Are you sure you want to delete this Payment method?",
-                    textAlign:
-                        TextAlign.center, // Ensuring the text is centered
-                    style: GoogleFonts.nunito(
-                        color: Color(0xff001B26),
-                        fontSize: getWidth(17),
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-                SizedBox(height: getHeight(22)),
-                Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.center, // Center the buttons in the row
-                  children: [
-                    Container(
-                      height: getHeight(40),
-                      width: getWidth(104),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: AppColors.whiteGrayColor,
-                        borderRadius: BorderRadius.circular(88),
-                      ),
-                      child: Text(
-                        'No',
-                        style: GoogleFonts.inter(
-                            fontSize: getWidth(14),
-                            color: AppColors.navy_blue,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                    SizedBox(width: getWidth(14)),
-                    Container(
-                      alignment: Alignment.center,
-                      height: getHeight(40),
-                      width: getWidth(104),
-                      decoration: BoxDecoration(
-                        color: AppColors.redColor,
-                        borderRadius: BorderRadius.circular(88),
-                      ),
-                      child: Text(
-                        'Yes',
-                        style: GoogleFonts.inter(
-                            fontSize: getWidth(14),
-                            color: AppColors.white,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
-      },
     );
   }
 
@@ -435,101 +339,4 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
       },
     );
   }
-  Future<dynamic> _paypalBottomSheet(BuildContext context) {
-    return showModalBottomSheet(
-      context: context,
-      isScrollControlled: true, // Make the bottom sheet take the full screen
-      backgroundColor: Colors.transparent, // Transparent background
-      barrierColor: Color(
-          0xff001B26).withOpacity(0.8), // Semi-transparent black background for the barrier
-      builder: (BuildContext context) {
-        return Align(
-          alignment: Alignment.center, // Center the container on the screen
-          child: Stack(
-            children: [
-              Container(
-                height: screenHeight(),
-                width: double.infinity,
-                color: Colors.transparent,
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: getWidth(38)),
-                  height: getHeight(238),
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(height: getHeight(15),),
-                      SizedBox(
-                        height: getHeight(95),
-                        width: getWidth(96),
-                        child: Image.asset(AppImagese.successIcon),
-                      ),
-                      SizedBox(height: getHeight(16),),
-                      Text(
-                        ' Your Pay Pal has been successfully linked.',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.nunito(
-                          color: Color(0xff001B26),
-                          fontSize: getWidth(17),
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      SizedBox(height: getHeight(10),),
-                      InkWell(
-                        onTap: (){
-                          Get.back();
-                        },
-                        child: Container(
-                          height: getHeight(40),
-                          width: getWidth(104),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(88),
-                              color: Color(0xff3AD896)),
-                          child: Center(
-                            child: Text(
-                              "Done",
-                              style: GoogleFonts.inter(
-                                  fontSize: getWidth(14),
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                top:
-                getHeight(40), // Adjust the top margin for the close button
-                right: getWidth(
-                    20), // Adjust the right margin for the close button
-                child: SizedBox(
-                  height: getHeight(26),
-                  width: getWidth(26),
-                  child: IconButton(
-                    icon: Icon(Icons.close, color: Colors.white),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-
-
-
 }
