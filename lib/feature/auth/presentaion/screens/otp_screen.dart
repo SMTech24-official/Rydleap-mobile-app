@@ -14,10 +14,10 @@ class OtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Custombackground(
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Custombackground(
             icon: CustomBackButton(),
             widget: Padding(
               padding: EdgeInsets.only(top: getHeight(50)),

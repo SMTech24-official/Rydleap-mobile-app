@@ -249,8 +249,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       customBottomSheet(
                         context, 
                         "Your password has been changed successfully!",
-                        "",
+                      
                         AppImagese.successIcon,
+                          "",
                         getWidth(17),
                         0
                         );
@@ -275,9 +276,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
  
   @override
   void dispose() {
-    _currentPasswordController.dispose();
-    _newPasswordController.dispose();
-    _confirmPasswordController.dispose();
+    _currentPasswordController.clear();
+    _newPasswordController.clear();
+    _confirmPasswordController.clear();
     super.dispose();
   }
 }

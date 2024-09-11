@@ -103,8 +103,9 @@ class RegisterScreen extends StatelessWidget {
                 icon: AppIcons.googleIcon,
                 text: "Sign in with Google",
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => NameEmailScreen()));
+                  Get.to(NameEmailScreen());
+                 
+                
                 }),
             CustomGlassButton(
                 icon: AppIcons.appleIcon,
