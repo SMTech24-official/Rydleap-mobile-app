@@ -28,14 +28,17 @@ class CustomProfileTextfield extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           hintText: hinText,
-          suffixIcon: InkWell(
-            onTap: () {
-              print("edit");
-            },
-            child: SizedBox(
-                height: getHeight(24),
-                width: getWidth(24),
-                child: Image.asset(suffixIcon)),
+          suffixIcon: ClipOval(
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                splashColor: Colors.transparent,
+                onTap: () {
+                  print("edit");
+                },
+                child: Image.asset(suffixIcon),
+              ),
+            ),
           ),
           hintStyle: GoogleFonts.nunito(
               fontSize: getWidth(15),

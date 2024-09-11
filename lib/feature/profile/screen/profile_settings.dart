@@ -143,8 +143,11 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               image: DecorationImage(
-                                  image: AssetImage(AppImagese.profileImage),
-                                  fit: BoxFit.cover),
+                                  image:  _selectedImage != null
+                                  ? FileImage(_selectedImage!)
+                                  : AssetImage(AppImagese.profileImage)
+                                      as ImageProvider<Object>,
+                              fit: BoxFit.cover,),
                             ),
                           ),
                           Positioned(
