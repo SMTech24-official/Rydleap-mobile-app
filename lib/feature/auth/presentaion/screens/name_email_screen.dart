@@ -188,6 +188,7 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
               text: "Confirm",
               onTap:  () {
                       Get.to(CreatePasswordScreen());
+                      
                     }
                   
                     
@@ -203,8 +204,8 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
 
   @override
   void dispose() {
-    _nameController.dispose();
-    _emailController.dispose();
+    _nameController.clear();
+    _emailController.clear();
     super.dispose();
   }
 }
