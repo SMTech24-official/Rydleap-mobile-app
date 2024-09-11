@@ -3,7 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/custom_success_bottom_sheet.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:rydleap/feature/profile/widgets/promotion_offers/promotion_offers.dart';
 
 import '../../../core/global_widgets/custom_background.dart';
 import '../../../core/global_widgets/custom_blur_button.dart';
@@ -151,10 +153,10 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                           ),
                           oneSelected
                               ? GestureDetector(
-                            onTap: (){
-                              _customBottomSheet(context);
-                            },
-                                child: SizedBox(
+                                  onTap: () {
+                                    _deletePaymentMethod(context);
+                                  },
+                                  child: SizedBox(
                                     height: getHeight(16),
                                     width: getWidth(40),
                                     child: Row(
@@ -177,7 +179,7 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                                       ],
                                     ),
                                   ),
-                              )
+                                )
                               : Image.asset(
                                   AppIcons.addIcon,
                                   height: getHeight(16),
@@ -200,12 +202,8 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                         final data = paymentItems[index];
                         bool isSelected = index == selectedIndex;
                         return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedIndex = index;
-                              oneSelected = true;
-                            });
-                          },
+                          onTap:data.onTap,
+
                           child: Container(
                             height: getHeight(45),
                             width: double.infinity,
@@ -239,16 +237,24 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                                       ),
                                     ],
                                   ),
-                                  Image.asset(
-                                    isSelected
-                                        ? AppIcons.checkFill
-                                        : AppIcons.addIcon,
-                                    height: isSelected
-                                        ? getHeight(19)
-                                        : getHeight(16),
-                                    width: isSelected
-                                        ? getWidth(19)
-                                        : getWidth(14),
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        selectedIndex = index;
+                                        oneSelected = true;
+                                      });
+                                    },
+                                    child: Image.asset(
+                                      isSelected
+                                          ? AppIcons.checkFill
+                                          : AppIcons.addIcon,
+                                      height: isSelected
+                                          ? getHeight(19)
+                                          : getHeight(16),
+                                      width: isSelected
+                                          ? getWidth(19)
+                                          : getWidth(14),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -266,35 +272,54 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                   SizedBox(height: getHeight(20)),
                   oneSelected
                       ? SizedBox.shrink()
-                      : Container(
-                          height: getHeight(45),
-                          width: double.infinity,
-                          child: Padding(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: getWidth(10)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Promo Code',
-                                  style: GoogleFonts.nunito(
-                                      fontSize: getWidth(15),
-                                      fontWeight: FontWeight.w400),
-                                ),
-                                Image.asset(
-                                  AppIcons.addIcon,
-                                  height: getHeight(16),
-                                  width: getWidth(14),
-                                ),
-                              ],
+                      : GestureDetector(
+                    onTap: (){
+                      Get.to(PromotionOffersScreen());
+                    },
+                        child: Container(
+                            height: getHeight(45),
+                            width: double.infinity,
+                            child: Padding(
+                              padding:
+                                  EdgeInsets.symmetric(horizontal: getWidth(10)),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Promo Code',
+                                    style: GoogleFonts.nunito(
+                                        fontSize: getWidth(15),
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                  Image.asset(
+                                    AppIcons.addIcon,
+                                    height: getHeight(16),
+                                    width: getWidth(14),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
+                      ),
                   SizedBox(height: getHeight(102)),
                   oneSelected
-                      ? CustomBlurButton(
-                          text: "Continue",
-                        )
+                      ? GestureDetector(
+                    onTap: (){
+                      // _customErrorBottomSheet(context);
+                      // showSuccessBottomSheet(context: context, text: ' Your Apple Pay has been successfully linked. You can now use it for quick and secure payments.', onButtonTap: (){
+                      //
+                      //   Get.back();
+                      // });
+                      // showSuccessBottomSheet(context: context, text: ' Your Google Pay has been successfully linked. You can now use it for quick and secure payments.', onButtonTap:(){
+                      //   Get.back();
+                      // } );
+                      // _promoCodeBottomSheet(context);
+                      _paypalBottomSheet(context);
+                    },
+                        child: CustomBlurButton(
+                            text: "Continue",
+                          ),
+                      )
                       : SizedBox.shrink(),
                 ],
               ),
@@ -304,12 +329,118 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
       ),
     );
   }
-  Future<dynamic> _customBottomSheet(BuildContext context) {
+
+  Future<dynamic> _deletePaymentMethod(BuildContext context) {
     return showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       barrierColor: Color(0xff001B26).withOpacity(0.8),
+      builder: (BuildContext context) {
+        return Center(
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: getWidth(38)),
+            height: getHeight(250),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: getHeight(10)),
+                SizedBox(
+                  height: getHeight(80),
+                  width: getWidth(80),
+                  child: Image.asset(AppImagese.question),
+                ),
+                SizedBox(height: getHeight(17)),
+                Center(
+                  child: Text(
+                    "Are you sure you want to delete this Payment method?",
+                    textAlign:
+                        TextAlign.center, // Ensuring the text is centered
+                    style: GoogleFonts.nunito(
+                        color: Color(0xff001B26),
+                        fontSize: getWidth(17),
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+                SizedBox(height: getHeight(22)),
+                Row(
+                  mainAxisAlignment:
+                      MainAxisAlignment.center, // Center the buttons in the row
+                  children: [
+                    Container(
+                      height: getHeight(40),
+                      width: getWidth(104),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: AppColors.whiteGrayColor,
+                        borderRadius: BorderRadius.circular(88),
+                      ),
+                      child: Text(
+                        'No',
+                        style: GoogleFonts.inter(
+                            fontSize: getWidth(14),
+                            color: AppColors.navy_blue,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                    SizedBox(width: getWidth(14)),
+                    Container(
+                      alignment: Alignment.center,
+                      height: getHeight(40),
+                      width: getWidth(104),
+                      decoration: BoxDecoration(
+                        color: AppColors.redColor,
+                        borderRadius: BorderRadius.circular(88),
+                      ),
+                      child: Text(
+                        'Yes',
+                        style: GoogleFonts.inter(
+                            fontSize: getWidth(14),
+                            color: AppColors.white,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+
+  Future<dynamic> showSuccessBottomSheet({
+    required BuildContext context,
+    required String text,
+    required VoidCallback onButtonTap,
+  }) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      barrierColor: Color(0xff001B26).withOpacity(0.8),
+      builder: (BuildContext context) {
+        return CustomSuccessBottomSheet(
+          text: text,
+          onButtonTap: onButtonTap,
+        );
+      },
+    );
+  }
+  Future<dynamic> _paypalBottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      isScrollControlled: true, // Make the bottom sheet take the full screen
+      backgroundColor: Colors.transparent, // Transparent background
+      barrierColor: Color(
+          0xff001B26).withOpacity(0.8), // Semi-transparent black background for the barrier
       builder: (BuildContext context) {
         return Align(
           alignment: Alignment.center, // Center the container on the screen
@@ -333,75 +464,60 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      SizedBox(height: getHeight(15),),
                       SizedBox(
-                        height: getHeight(80),
-                        width: getWidth(80),
-                        child: Image.asset(AppImagese.question),
+                        height: getHeight(95),
+                        width: getWidth(96),
+                        child: Image.asset(AppImagese.successIcon),
                       ),
-                      SizedBox(height: getHeight(17),),
-                      Center(
-                        child: Text(
-                          "Are you sure you want to delete this Payment method?",
-                          style: GoogleFonts.nunito(
-                              color: Color(0xff001B26),
-                              fontSize: getWidth(17),
-                              fontWeight: FontWeight.w500),
+                      SizedBox(height: getHeight(16),),
+                      Text(
+                        ' Your Pay Pal has been successfully linked.',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.nunito(
+                          color: Color(0xff001B26),
+                          fontSize: getWidth(17),
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      SizedBox(height: getHeight(22),),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                      
-                            child: Text('No'),
-                          )
-                          // Expanded(
-                          //   child: TextButton(
-                          //     onPressed: () {
-                          //       Navigator.pop(context);
-                          //     },
-                          //     style: TextButton.styleFrom(
-                          //       padding: EdgeInsets.symmetric(vertical: 15),
-                          //       backgroundColor: Colors.grey[200],
-                          //       shape: RoundedRectangleBorder(
-                          //         borderRadius: BorderRadius.circular(10),
-                          //       ),
-                          //     ),
-                          //     child: Text(
-                          //       'No',
-                          //       style: TextStyle(
-                          //         fontSize: 16,
-                          //         color: Colors.black,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                          // SizedBox(width: 10),
-                          // Expanded(
-                          //   child: TextButton(
-                          //     onPressed: () {
-                          //       // Add your 'Yes' button logic here
-                          //     },
-                          //     style: TextButton.styleFrom(
-                          //       padding: EdgeInsets.symmetric(vertical: 15),
-                          //       backgroundColor: Colors.red,
-                          //       shape: RoundedRectangleBorder(
-                          //         borderRadius: BorderRadius.circular(10),
-                          //       ),
-                          //     ),
-                          //     child: Text(
-                          //       'Yes',
-                          //       style: TextStyle(
-                          //         fontSize: 16,
-                          //         color: Colors.white,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
-                        ],
+                      SizedBox(height: getHeight(10),),
+                      InkWell(
+                        onTap: (){
+                          Get.back();
+                        },
+                        child: Container(
+                          height: getHeight(40),
+                          width: getWidth(104),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(88),
+                              color: Color(0xff3AD896)),
+                          child: Center(
+                            child: Text(
+                              "Done",
+                              style: GoogleFonts.inter(
+                                  fontSize: getWidth(14),
+                                  fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
+                  ),
+                ),
+              ),
+              Positioned(
+                top:
+                getHeight(40), // Adjust the top margin for the close button
+                right: getWidth(
+                    20), // Adjust the right margin for the close button
+                child: SizedBox(
+                  height: getHeight(26),
+                  width: getWidth(26),
+                  child: IconButton(
+                    icon: Icon(Icons.close, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                   ),
                 ),
               ),
@@ -411,7 +527,8 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
       },
     );
   }
+
+
+
+
 }
-
-
-

@@ -23,5 +23,8 @@ class AppImagese {
   static const String debitAndCreditCard = "assets/images/debit_or_credit_card.png";
   static const String paypal = "assets/images/paypal.png";
   static const String question = "assets/images/question.png";
+  static const String errorImage = "assets/images/error_image.png";
+  static const String payPalLarge = "assets/images/paypal_large.png";
+
 }
 
