@@ -152,10 +152,15 @@ class PromotionOffersScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      // _promoCodeSuccessBottomSheet(context);
-                    _promoErrorBottomSheet(context: context, onCancelBottomTap: (){
-                      Get.back();
-                    }, onRetryBottomTap: (){Get.back();});
+
+                      _promoErrorBottomSheet(
+                          context: context,
+                          onCancelBottomTap: () {
+                            Get.back();
+                          },
+                          onRetryBottomTap: () {
+                            Get.back();
+                          });
                     },
                     child: CustomBlurButton(
                       text: "Redeem",
@@ -172,13 +177,14 @@ class PromotionOffersScreen extends StatelessWidget {
       ),
     );
   }
+
   Future<dynamic> _promoCodeSuccessBottomSheet(BuildContext context) {
     return showModalBottomSheet(
       context: context,
       isScrollControlled: true, // Make the bottom sheet take the full screen
       backgroundColor: Colors.transparent, // Transparent background
-      barrierColor: Color(
-          0xff001B26).withOpacity(0.8), // Semi-transparent black background for the barrier
+      barrierColor: Color(0xff001B26).withOpacity(
+          0.8), // Semi-transparent black background for the barrier
       builder: (BuildContext context) {
         return Align(
           alignment: Alignment.center, // Center the container on the screen
@@ -202,13 +208,17 @@ class PromotionOffersScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(height: getHeight(4),),
+                      SizedBox(
+                        height: getHeight(4),
+                      ),
                       SizedBox(
                         height: getHeight(95),
                         width: getWidth(95),
                         child: Image.asset(AppImagese.successIcon),
                       ),
-                      SizedBox(height: getHeight(14),),
+                      SizedBox(
+                        height: getHeight(14),
+                      ),
                       Text(
                         'Promo code success!',
                         textAlign: TextAlign.center,
@@ -227,10 +237,12 @@ class PromotionOffersScreen extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      SizedBox(height: getHeight(21),),
+                      SizedBox(
+                        height: getHeight(21),
+                      ),
                       InkWell(
-                        onTap: (){
-                          Get.back();
+                        onTap: () {
+                          _promoCodeSuccessBottomSheet(context);
                         },
                         child: Container(
                           height: getHeight(40),
@@ -254,7 +266,7 @@ class PromotionOffersScreen extends StatelessWidget {
               ),
               Positioned(
                 top:
-                getHeight(40), // Adjust the top margin for the close button
+                    getHeight(40), // Adjust the top margin for the close button
                 right: getWidth(
                     20), // Adjust the right margin for the close button
                 child: SizedBox(
@@ -276,14 +288,18 @@ class PromotionOffersScreen extends StatelessWidget {
   }
 
   Future<dynamic> _promoErrorBottomSheet(
-      {required BuildContext context, required VoidCallback onCancelBottomTap, required VoidCallback onRetryBottomTap}) {
+      {required BuildContext context,
+      required VoidCallback onCancelBottomTap,
+      required VoidCallback onRetryBottomTap}) {
     return showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       barrierColor: Color(0xff001B26).withOpacity(0.8),
       builder: (BuildContext context) {
-        return CustomErrorBottomSheet(onCancelBottomTap: onCancelBottomTap, onRetryBottomTap: onRetryBottomTap);
+        return CustomErrorBottomSheet(
+            onCancelBottomTap: onCancelBottomTap,
+            onRetryBottomTap: onRetryBottomTap);
       },
     );
   }

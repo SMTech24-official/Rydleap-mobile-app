@@ -11,7 +11,6 @@ class CustomCloseButton extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          
           onTap: (){
              Navigator.pop(context);
           },
