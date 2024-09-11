@@ -150,13 +150,20 @@ class _ReportProblem2State extends State<ReportProblem2> {
                     controller: _reprotController,
                     maxLines: 7,
                     textAlign: TextAlign.start,
+                    style: GoogleFonts.nunito(
+                          fontSize: getWidth(14),
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.textBlack),
                     decoration: InputDecoration(
+                      
                       hintText: "Tell us more about your problem",
 
                       hintStyle: GoogleFonts.nunito(
                           fontSize: getWidth(14),
                           fontWeight: FontWeight.w400,
-                          color: Color(0xffB6B3B3)),
+                          color: Color(0xffB6B3B3),
+                          
+                          ),
                       // contentPadding: EdgeInsets.only(
                       //     bottom: 10.5, left: 15, top: 10.5, right: 15),
                       enabledBorder:

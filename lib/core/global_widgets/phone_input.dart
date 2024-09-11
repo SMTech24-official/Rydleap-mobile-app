@@ -30,43 +30,42 @@ class CustomPhoneInput extends StatelessWidget {
         border: Border.all(color: const Color(0xffA6A7A1), width: 0.4),
       ),
       padding: EdgeInsets.symmetric(horizontal: getWidth(16)),
-      child: Center(
-        child: IntlPhoneField(
-          showCursor: true,
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.only(top: 4),
-            hintText: "Phone Number",
-            hintStyle: TextStyle(
-              color: Color(0xffC3BBBB),
-              fontSize: getWidth(15),
-              fontWeight: FontWeight.w400,
-            ),
-            labelStyle: const TextStyle(color: Colors.black),
-            border: InputBorder.none,
-            focusedBorder: InputBorder.none,
-            enabledBorder: InputBorder.none,
-            disabledBorder: InputBorder.none,
-            errorBorder: InputBorder.none,
-          ),
-          initialCountryCode: 'UK',
-          dropdownIcon: const Icon(
-            Icons.arrow_drop_down,
-            color: Color(0xffC3BBBB), // Dropdown icon color to match hintText
-          ),
-          dropdownTextStyle: TextStyle(
-            color: const Color(0xffC3BBBB), // Country code text color
-            fontSize: getWidth(15), // Match hintText font size
+      child: IntlPhoneField(
+        textAlignVertical: TextAlignVertical.center,
+        showCursor: true,
+        decoration: InputDecoration(
+          contentPadding:  EdgeInsets.only(bottom: getHeight(10)),
+          hintText: "Phone Number",
+          hintStyle: TextStyle(
+            color: Color(0xffC3BBBB),
+            fontSize: getWidth(15),
             fontWeight: FontWeight.w400,
           ),
-          dropdownDecoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8), // Rounded borders
-            border: Border.all(color: Colors.transparent), // Transparent border
-          ),
-          disableLengthCheck: true,
-          onChanged: (phone) {
-            print(phone.completeNumber);
-          },
+          labelStyle: const TextStyle(color: Colors.black),
+          border: InputBorder.none,
+          focusedBorder: InputBorder.none,
+          enabledBorder: InputBorder.none,
+          disabledBorder: InputBorder.none,
+          errorBorder: InputBorder.none,
         ),
+        initialCountryCode: 'UK',
+        dropdownIcon: const Icon(
+          Icons.arrow_drop_down,
+          color: Color(0xffC3BBBB), // Dropdown icon color to match hintText
+        ),
+        dropdownTextStyle: TextStyle(
+          color: const Color(0xffC3BBBB), // Country code text color
+          fontSize: getWidth(15), // Match hintText font size
+          fontWeight: FontWeight.w400,
+        ),
+        dropdownDecoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8), // Rounded borders
+          border: Border.all(color: Colors.transparent), // Transparent border
+        ),
+        disableLengthCheck: true,
+        onChanged: (phone) {
+          print(phone.completeNumber);
+        },
       ),
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
@@ -11,7 +10,6 @@ import 'package:rydleap/feature/profile/widgets/promotion_offers/promotion_offer
 import '../../../core/global_widgets/custom_background.dart';
 import '../../../core/global_widgets/custom_blur_button.dart';
 import '../dummy_data/payment_options_model.dart';
-import 'delete_payment_method.dart';
 
 class PaymentOptionsScreen extends StatefulWidget {
   const PaymentOptionsScreen({super.key});

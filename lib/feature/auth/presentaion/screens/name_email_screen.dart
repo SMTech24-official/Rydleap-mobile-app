@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
-import 'package:rydleap/core/global_widgets/custom_gradient.dart';
+import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/create_password.dart';
-
 import '../../../../core/global_widgets/custom_gradient_button.dart';
 
 class NameEmailScreen extends StatefulWidget {
@@ -21,6 +21,23 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   bool isChecked = false;
+  bool isFormValid = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController.addListener(_validateForm);
+    _emailController.addListener(_validateForm);
+  }
+
+  void _validateForm() {
+    setState(() {
+      isFormValid = _nameController.text.isNotEmpty &&
+          _emailController.text.isNotEmpty &&
+          isChecked;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,7 +117,6 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
                 ],
               ),
             ),
-
             SizedBox(
               height: getHeight(34),
             ),
@@ -123,6 +139,7 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
                               onChanged: (bool? value) {
                                 setState(() {
                                   isChecked = value!;
+                                  _validateForm();
                                 });
                               },
                             ),
@@ -143,7 +160,7 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
                   ),
                   Spacer(),
                   Padding(
-                    padding: EdgeInsets.only(right: getWidth(18)),
+                    padding: EdgeInsets.only(right: getWidth(18), top: getHeight(10)),
                     child: Column(
                       children: [
                         Container(
@@ -165,19 +182,20 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
               ),
             ),
             Spacer(),
-            CustomGradientButton(
-                text: "Confirm",
-                onTap: () {
-                  // Navigator.push(
-                  //     context, MaterialPageRoute(builder: (_) => NavPage()));
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => CreatePasswordScreen()));
-                }),
+            // Confirm button
+           isFormValid
+                  ? CustomGradientButton(
+              text: "Confirm",
+              onTap:  () {
+                      Get.to(CreatePasswordScreen());
+                      
+                    }
+                  
+                    
+            ):CustomBlurButton(text: "Confirm"),
             SizedBox(
               height: getHeight(20),
-            )
+            ),
           ],
         ),
       ),

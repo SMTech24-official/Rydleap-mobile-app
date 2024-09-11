@@ -97,7 +97,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       },
     );
   }
-Future<dynamic> _customBottomSheet(BuildContext context) {
+
+  Future<dynamic> _customBottomSheet(BuildContext context) {
     return showModalBottomSheet(
       context: context,
       isScrollControlled: true, // Make the bottom sheet take the full screen
@@ -126,7 +127,6 @@ Future<dynamic> _customBottomSheet(BuildContext context) {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                     
                       Text(
                         'Are you sure you want to Log Out?',
                         textAlign: TextAlign.center,
@@ -136,7 +136,9 @@ Future<dynamic> _customBottomSheet(BuildContext context) {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      SizedBox(height: getHeight(42),),
+                      SizedBox(
+                        height: getHeight(42),
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -155,9 +157,11 @@ Future<dynamic> _customBottomSheet(BuildContext context) {
                               ),
                             ),
                           ),
-                          SizedBox(width: getWidth(16),),
+                          SizedBox(
+                            width: getWidth(16),
+                          ),
                           InkWell(
-                            onTap: (){
+                            onTap: () {
                               print("logout");
                             },
                             child: Container(
@@ -170,7 +174,7 @@ Future<dynamic> _customBottomSheet(BuildContext context) {
                                 child: Text(
                                   "Log Out",
                                   style: GoogleFonts.inter(
-                                    color: Color(0xff001B26),
+                                      color: Color(0xff001B26),
                                       fontSize: getWidth(14),
                                       fontWeight: FontWeight.w400),
                                 ),
@@ -214,7 +218,7 @@ Future<dynamic> _customBottomSheet(BuildContext context) {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: AppColors.appbarColor,
-          leading:CustomCloseButton(),
+          leading: CustomCloseButton(),
           title: Text(
             "About me",
             style: GoogleFonts.inter(
@@ -258,7 +262,7 @@ Future<dynamic> _customBottomSheet(BuildContext context) {
                     ),
                   )
                 : SizedBox(),
-            
+
             Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -276,7 +280,12 @@ Future<dynamic> _customBottomSheet(BuildContext context) {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             image: DecorationImage(
-                                image: AssetImage(AppImagese.profileImage)),
+                              image: _selectedImage != null
+                                  ? FileImage(_selectedImage!)
+                                  : AssetImage(AppImagese.profileImage)
+                                      as ImageProvider<Object>,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                         Positioned(
@@ -376,11 +385,13 @@ Future<dynamic> _customBottomSheet(BuildContext context) {
                     child: ListView.builder(
                       padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
                       shrinkWrap: true,
-                      itemCount:CustomGlobalVariable.userType == 'Driver'
-                ?driverItems.length: userItems.length,
+                      itemCount: CustomGlobalVariable.userType == 'Driver'
+                          ? driverItems.length
+                          : userItems.length,
                       itemBuilder: (context, index) {
-                        final data =CustomGlobalVariable.userType == 'Driver'
-                ?driverItems[index]: userItems[index];
+                        final data = CustomGlobalVariable.userType == 'Driver'
+                            ? driverItems[index]
+                            : userItems[index];
                         return Container(
                           padding:
                               EdgeInsets.symmetric(vertical: getHeight(14.5)),
@@ -430,7 +441,7 @@ Future<dynamic> _customBottomSheet(BuildContext context) {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
                     child: InkWell(
-                      onTap: (){
+                      onTap: () {
                         _customBottomSheet(context);
                       },
                       child: CustomBlurButton(
