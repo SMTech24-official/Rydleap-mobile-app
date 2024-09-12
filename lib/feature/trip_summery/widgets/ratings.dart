@@ -119,8 +119,9 @@ class _RatingsScreenState extends State<RatingsScreen> {
                       // _customBottomSheet(context);
                       customBottomSheet(context, 
                       "Thank you!",
-                      "", 
+                       
                       AppImagese.like,
+                      "",
                       getWidth(35),
                       0
                       );

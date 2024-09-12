@@ -59,7 +59,7 @@ class DocumentsScreen extends StatelessWidget {
                 //documents
                 Container(
                   padding:
-                      EdgeInsets.only(left: getWidth(10), right: getWidth(10)),
+                      EdgeInsets.only(left: getWidth(10), ),
                   height: getHeight(51),
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -83,11 +83,22 @@ class DocumentsScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      InkWell(
-                        onTap: () {},
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
+                   
+                      ClipOval(
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            splashColor: Colors.white.withOpacity(0.2),
+                            onTap: () {},
+                            child: SizedBox(
+                              height: getWidth(30),
+                              width: getWidth(30),
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                size: 16,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -99,7 +110,7 @@ class DocumentsScreen extends StatelessWidget {
                 //profile picture
                 Container(
                   padding:
-                      EdgeInsets.only(left: getWidth(10), right: getWidth(10)),
+                      EdgeInsets.only(left: getWidth(10), ),
                   height: getHeight(51),
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -123,15 +134,26 @@ class DocumentsScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      InkWell(
-                        onTap: () {
-                          Get.to(DriverProfilePhoto());
-                        },
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
+                      ClipOval(
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            splashColor: Colors.white.withOpacity(0.2),
+                            onTap: () {
+                              Get.to(DriverProfilePhoto());
+                            },
+                            child: SizedBox(
+                              height: getWidth(30),
+                              width: getWidth(30),
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                size: 16,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
+                     
                     ],
                   ),
                 ),
@@ -150,7 +172,7 @@ class DocumentsScreen extends StatelessWidget {
                 ),
                 Container(
                   padding:
-                      EdgeInsets.only(left: getWidth(10), right: getWidth(10)),
+                      EdgeInsets.only(left: getWidth(10), ),
                   height: getHeight(73),
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -206,11 +228,21 @@ class DocumentsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      InkWell(
-                        onTap: () {},
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
+                     ClipOval(
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            splashColor: Colors.white.withOpacity(0.2),
+                            onTap: () {},
+                            child: SizedBox(
+                              height: getWidth(30),
+                              width: getWidth(30),
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                size: 16,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ],

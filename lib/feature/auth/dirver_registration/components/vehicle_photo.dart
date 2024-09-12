@@ -144,64 +144,71 @@ class _VehiclePhotoState extends State<VehiclePhoto> {
               height: getHeight(38),
             ),
             //image section
-            Container(
-              height: getHeight(180),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                    "assets/images/frame.png",
+             Container(
+                  height: getHeight(180),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                        "assets/images/frame.png",
+                      ),
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                  fit: BoxFit.fill,
-                ),
-              ),
-              child: Stack(
-                children: [
-                  _selectedImage != null
-                      ? Positioned.fill(
-                          child: Image.file(
-                            _selectedImage!,
-                            fit: BoxFit
-                                .cover, // This will make the image cover the entire container
-                          ),
-                        )
-                      : Align(
-                          alignment: Alignment.center,
-                          child: InkWell(
-                            onTap: () {
-                              _showImageSourceSelection(context);
-                            },
-                            child: Container(
-                              height: getHeight(37),
-                              width: getWidth(114),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(51),
-                                color: Color(0xff3AD896),
+                  child: Stack(
+                    children: [
+                      _selectedImage != null
+                          ? ClipRRect(
+                              borderRadius:
+                                  BorderRadius.circular(8), // Rounded corners
+                              child: Container(
+                                width: double.infinity, // Set full width
+                                height: double
+                                    .infinity, // Set full height to match the container
+                                child: Image.file(
+                                  _selectedImage!,
+                                  fit: BoxFit
+                                      .cover, // Ensure the image fills the container
+                                ),
                               ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Image.asset(AppIcons.upload),
-                                  SizedBox(
-                                      width: getWidth(
-                                          8)), // Add spacing between the icon and text
-                                  Text(
-                                    "Upload",
-                                    style: GoogleFonts.nunito(
-                                      fontSize: getWidth(12),
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                            )
+                          : Align(
+                              alignment: Alignment.center,
+                              child: InkWell(
+                                onTap: () {
+                                  _showImageSourceSelection(context);
+                                },
+                                child: Container(
+                                  height: getHeight(37),
+                                  width: getWidth(114),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(51),
+                                    color: Color(0xff3AD896),
                                   ),
-                                ],
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Image.asset(AppIcons.upload),
+                                      SizedBox(width: getWidth(8)),
+                                      Text(
+                                        "Upload",
+                                        style: GoogleFonts.nunito(
+                                          fontSize: getWidth(12),
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                ],
-              ),
-            ),
-            SizedBox(
+                    ],
+                  ),
+                ),
+               
+             SizedBox(
               height: getHeight(12),
             ),
             //text section

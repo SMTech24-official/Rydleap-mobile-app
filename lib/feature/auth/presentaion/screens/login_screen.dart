@@ -59,6 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: getHeight(35),),
             Text(
               "Log In",
               style: Theme.of(context).textTheme.titleMedium,
@@ -74,6 +75,8 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: _emailController,
               hintext: "Phone or email",
               suffixIcon: SizedBox(),
+              textInputType: TextInputType.emailAddress,
+              
             ),
             SizedBox(
               height: getHeight(18),

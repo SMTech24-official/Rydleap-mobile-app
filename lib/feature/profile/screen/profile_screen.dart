@@ -31,19 +31,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   final String _imageKey = "stored_image_path";
 
-  Future<void> _pickImage(ImageSource source) async {
-    try {
-      final XFile? image = await _picker.pickImage(source: source);
-      if (image != null) {
-        setState(() {
-          _selectedImage = File(image.path);
-        });
-        // _storeImagePath(image.path);
-      }
-    } catch (e) {
-      print('Failed to pick image: $e');
+Future<void> _pickImage(ImageSource source) async {
+  try {
+    final XFile? image = await _picker.pickImage(source: source);
+    if (image != null && mounted) { // Check if the widget is still mounted
+      setState(() {
+        _selectedImage = File(image.path);
+      });
     }
+  } catch (e) {
+    print('Failed to pick image: $e');
   }
+}
 
   Future<bool> _checkPermissions(ImageSource source) async {
     if (source == ImageSource.camera) {
@@ -422,13 +421,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ],
                                 ),
                               ),
-                              InkWell(
-                                onTap: data.onTap,
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 16,
-                                ),
+                              // IconButton(onPressed: data.onTap, icon: Icon(Icons.arrow_forward_ios,size: 16,))
+                             ClipOval(
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            splashColor: Colors.white.withOpacity(0.2),
+                            onTap:data.onTap,
+                            child: SizedBox(
+                              height: getWidth(24),
+                              width: getWidth(24),
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                size: 16,
                               ),
+                            ),
+                          ),
+                        ),
+                      ),
                             ],
                           ),
                         );

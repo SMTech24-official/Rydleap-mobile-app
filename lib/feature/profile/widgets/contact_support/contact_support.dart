@@ -44,7 +44,7 @@ class ContactSupportScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(bottom: getHeight(14.5)),
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: getWidth(15)),
+                   padding: EdgeInsets.only(left: getWidth(15)),
                   margin: EdgeInsets.symmetric(horizontal: getWidth(15)),
                   height: getHeight(51),
                   width: double.infinity,
@@ -61,15 +61,34 @@ class ContactSupportScreen extends StatelessWidget {
                             fontSize: getWidth(16),
                             fontWeight: FontWeight.w400),
                       ),
-                      InkWell(
-                        onTap: () {
+                       ClipOval(
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            splashColor: Colors.white.withOpacity(0.2),
+                             onTap: () {
                           Get.to(CallSupportScreen());
                         },
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          size: 12,
+                            child: SizedBox(
+                              height: getWidth(24),
+                              width: getWidth(24),
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                size: 16,
+                              ),
+                            ),
+                          ),
                         ),
-                      )
+                      ),
+                      // InkWell(
+                      //   onTap: () {
+                      //     Get.to(CallSupportScreen());
+                      //   },
+                      //   child: Icon(
+                      //     Icons.arrow_forward_ios,
+                      //     size: 12,
+                      //   ),
+                      // )
                     ],
                   ),
                 ),
@@ -77,7 +96,7 @@ class ContactSupportScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(bottom: getHeight(14.5)),
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: getWidth(15)),
+                  padding: EdgeInsets.only(left: getWidth(15)),
                   margin: EdgeInsets.symmetric(horizontal: getWidth(15)),
                   height: getHeight(51),
                   width: double.infinity,
@@ -94,15 +113,34 @@ class ContactSupportScreen extends StatelessWidget {
                             fontSize: getWidth(16),
                             fontWeight: FontWeight.w400),
                       ),
-                      InkWell(
-                        onTap: () {
+                       ClipOval(
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            splashColor: Colors.white.withOpacity(0.2),
+                            onTap: () {
                           Get.to(EmailSupportScreen());
                         },
-                        child: Icon(
-                          Icons.arrow_forward_ios,
-                          size: 12,
+                            child: SizedBox(
+                              height: getWidth(24),
+                              width: getWidth(24),
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                size: 16,
+                              ),
+                            ),
+                          ),
                         ),
-                      )
+                      ),
+                      // InkWell(
+                      //   onTap: () {
+                      //     Get.to(EmailSupportScreen());
+                      //   },
+                      //   child: Icon(
+                      //     Icons.arrow_forward_ios,
+                      //     size: 12,
+                      //   ),
+                      // )
                     ],
                   ),
                 ),

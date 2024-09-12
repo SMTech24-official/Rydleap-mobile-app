@@ -9,6 +9,7 @@ class CustomTextfield extends StatelessWidget {
   final VoidCallback? onTap;
   final ValueChanged<String>? onChanged;
   final bool obsecureText;
+  final TextInputType? textInputType;
 
   CustomTextfield({
     super.key,
@@ -18,6 +19,7 @@ class CustomTextfield extends StatelessWidget {
     this.onTap,
     this.onChanged,
     this.obsecureText = false,
+    this.textInputType
   });
 
   @override
@@ -48,6 +50,7 @@ class CustomTextfield extends StatelessWidget {
         autofocus: false,
         controller: controller,
         obscureText: obsecureText,
+        keyboardType: textInputType,
         onChanged: onChanged,
         style: TextStyle(
           color: Color(0xffC3BBBB),

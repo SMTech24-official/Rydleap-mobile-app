@@ -7,12 +7,13 @@ class CustomProfileTextfield extends StatelessWidget {
   final TextEditingController controller;
   final String suffixIcon;
   final TextInputType? keyboardType;
+  final VoidCallback onTap;
   const CustomProfileTextfield({
     super.key,
     required this.controller,
     required this.hinText,
     required this.suffixIcon,
-    this.keyboardType,
+    this.keyboardType, required this.onTap,
   });
 
   @override
@@ -28,17 +29,13 @@ class CustomProfileTextfield extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           hintText: hinText,
-          suffixIcon: ClipOval(
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                splashColor: Colors.transparent,
-                onTap: () {
-                  print("edit");
-                },
-                child: Image.asset(suffixIcon),
-              ),
-            ),
+          suffixIcon: InkWell(
+            splashColor: Colors.transparent,
+            onTap: onTap,
+            child: SizedBox(
+              height: getWidth(24),
+              width: getWidth(24),
+              child: Image.asset(suffixIcon)),
           ),
           hintStyle: GoogleFonts.nunito(
               fontSize: getWidth(15),
