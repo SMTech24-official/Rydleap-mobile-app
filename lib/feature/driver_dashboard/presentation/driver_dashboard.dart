@@ -42,12 +42,8 @@ class DriverDashboard extends StatelessWidget {
                 radius: 20.5,
                 backgroundColor: Colors.grey.shade300.withOpacity(.7),
                 child: CircleAvatar(
-                  radius: 17,
-                  child: Icon(
-                    Icons.notifications_none,
-                    size: 25,
-                    color: Colors.black,
-                  ),
+                  radius: 20.5,
+                  child: Image.asset(AppImagese.profileImage,height: 50,width: 50,),
                   backgroundColor: Colors.grey.shade300,
                 ),
               ),
