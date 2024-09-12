@@ -1,3 +1,4 @@
+
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,8 @@ import '../../../core/utility/app_colors.dart';
 
 class DriverDashboard extends StatelessWidget {
   RxBool light = true.obs;
+
+class DriverDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +55,69 @@ class DriverDashboard extends StatelessWidget {
           ],
         ),
       ),
+
+      body: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: Colors.white.withOpacity(0.2)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Earnings',
+                  style: GoogleFonts.nunito(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 25,
+                  ),
+                ),
+                Text(
+                  '15 may - 20 may',
+                  style: GoogleFonts.nunito(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 12,
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            // padding: EdgeInsets.symmetric(horizontal: 15,vertical: 5),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              // color: Colors.white.withOpacity(0.2)
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Daily:',
+                  style: GoogleFonts.nunito(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 22,
+                  ),
+                ),
+                Text(
+                  '\$1000',
+                  style: GoogleFonts.nunito(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 22,
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            // padding: EdgeInsets.symmetric(horizontal: 15,vertical: 5),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              // color: Colors.white.withOpacity(0.2)
+
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -359,6 +425,23 @@ class DriverDashboard extends StatelessWidget {
           Container(
             child: Column(
               children: [
+                Text(
+                  'Weekly:',
+                  style: GoogleFonts.nunito(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 22,
+                  ),
+                ),
+                Text(
+                  '\$5000',
+                  style: GoogleFonts.nunito(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 22,
+                  ),
+                )
+              ],
+            ),
+          ),
                 Transform.scale(
                   scale: .7,
                   // width: 32,
