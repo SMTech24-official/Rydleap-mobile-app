@@ -186,6 +186,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       controller: _nameController,
                       hinText: "Enter your name",
                       suffixIcon: AppIcons.edit,
+                      onTap: () {
+                  print("edit");
+                },
                     ),
                     SizedBox(
                       height: getHeight(12),
@@ -195,6 +198,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       controller: _phoneController,
                       hinText: "Enter your number",
                       suffixIcon: AppIcons.edit,
+                       onTap: () {
+                  print("edit");
+                },
                     ),
                     SizedBox(
                       height: getHeight(12),
@@ -204,6 +210,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       controller: _emailController,
                       hinText: "Enter your email",
                       suffixIcon: AppIcons.edit,
+                       onTap: () {
+                  print("edit");
+                },
                     ),
                     SizedBox(
                       height: getHeight(30),
