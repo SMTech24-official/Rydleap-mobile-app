@@ -84,7 +84,7 @@ class PickupAndDropInputTile extends StatelessWidget{
                           width: 70.w,
                           color: Colors.grey,
                         ),
-                        Icon(Icons.swap_vert),
+                        readOnly==false?Icon(Icons.swap_vert):SizedBox(height: 25,width: 25,),
                       ],
                     ),
                   ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:rydleap/core/app_sizes.dart';
 
-import 'package:rydleap/core/global_widgets/custom_gradient.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
 
 import 'package:rydleap/core/utility/app_colors.dart';

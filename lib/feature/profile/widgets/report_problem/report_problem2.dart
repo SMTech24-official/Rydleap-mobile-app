@@ -22,7 +22,7 @@ class ReportProblem2 extends StatefulWidget {
 }
 
 class _ReportProblem2State extends State<ReportProblem2> {
- File? _selectedImage;
+  File? _selectedImage;
 
   final ImagePicker _picker = ImagePicker();
 
@@ -111,6 +111,7 @@ class _ReportProblem2State extends State<ReportProblem2> {
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
     final TextEditingController _reprotController = TextEditingController();
@@ -118,9 +119,7 @@ class _ReportProblem2State extends State<ReportProblem2> {
       backgroundColor: AppColors.textBlack,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: AppColors.appbarColor,
-        leading: CustomCloseButton()
-      ),
+          backgroundColor: AppColors.appbarColor, leading: CustomCloseButton()),
       body: Stack(
         children: [
           Container(
@@ -150,13 +149,18 @@ class _ReportProblem2State extends State<ReportProblem2> {
                     controller: _reprotController,
                     maxLines: 7,
                     textAlign: TextAlign.start,
+                    style: GoogleFonts.nunito(
+                        fontSize: getWidth(14),
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.textBlack),
                     decoration: InputDecoration(
                       hintText: "Tell us more about your problem",
 
                       hintStyle: GoogleFonts.nunito(
-                          fontSize: getWidth(14),
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xffB6B3B3)),
+                        fontSize: getWidth(14),
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xffB6B3B3),
+                      ),
                       // contentPadding: EdgeInsets.only(
                       //     bottom: 10.5, left: 15, top: 10.5, right: 15),
                       enabledBorder:
@@ -179,79 +183,81 @@ class _ReportProblem2State extends State<ReportProblem2> {
                 SizedBox(
                   height: getHeight(12),
                 ),
-                 Container(
-              height: getHeight(180),
-              width: double.infinity,
-              decoration: BoxDecoration(
-              
-                image: DecorationImage(
-                  image: AssetImage(
-                    "assets/images/frame.png",
+                Container(
+                  height: getHeight(180),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                        "assets/images/frame.png",
+                      ),
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                  fit: BoxFit.fill,
-                ),
-              ),
-              child: Stack(
-                children: [
-                  _selectedImage != null
-                      ? Positioned.fill(
-                          child: Image.file(
-                            _selectedImage!,
-                            fit: BoxFit
-                                .cover, // This will make the image cover the entire container
-                          ),
-                        )
-                      : 
-                      Align(
-                          alignment: Alignment.center,
-                          child: InkWell(
-                            onTap: () {
-                              _showImageSourceSelection(context);
-                            },
-                            child: Container(
-                              height: getHeight(37),
-                              width: getWidth(114),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(51),
-                                color: Color(0xff3AD896),
+                  child: Stack(
+                    children: [
+                      _selectedImage != null
+                          ? ClipRRect(
+                              borderRadius:
+                                  BorderRadius.circular(8), // Rounded corners
+                              child: Container(
+                                width: double.infinity, // Set full width
+                                height: double
+                                    .infinity, // Set full height to match the container
+                                child: Image.file(
+                                  _selectedImage!,
+                                  fit: BoxFit
+                                      .cover, // Ensure the image fills the container
+                                ),
                               ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Image.asset(AppIcons.upload),
-                                  SizedBox(
-                                      width: getWidth(
-                                          8)), // Add spacing between the icon and text
-                                  Text(
-                                    "Upload",
-                                    style: GoogleFonts.nunito(
-                                      fontSize: getWidth(12),
-                                      fontWeight: FontWeight.w500,
-                                    ),
+                            )
+                          : Align(
+                              alignment: Alignment.center,
+                              child: InkWell(
+                                onTap: () {
+                                  _showImageSourceSelection(context);
+                                },
+                                child: Container(
+                                  height: getHeight(37),
+                                  width: getWidth(114),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(51),
+                                    color: Color(0xff3AD896),
                                   ),
-                                ],
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Image.asset(AppIcons.upload),
+                                      SizedBox(width: getWidth(8)),
+                                      Text(
+                                        "Upload",
+                                        style: GoogleFonts.nunito(
+                                          fontSize: getWidth(12),
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                ],
-              ),
-            ),
-          
-               
+                    ],
+                  ),
+                ),
                 Spacer(),
                 CustomNextButton(
                   text: "Submit My Report",
                   onTap: () {
                     // _customBottomSheet(context);
-                    customBottomSheet(context, "Thank you for you kind words. We will get back to you within 24 hours.", 
-                    AppImagese.note,
-                    "" ,
-                    getWidth(15),
-                    
-                    getWidth(0)
-                    );
+                    customBottomSheet(
+                        context,
+                        "Thank you for you kind words. We will get back to you within 24 hours.",
+                        AppImagese.note,
+                        "",
+                        getWidth(15),
+                        getWidth(0));
                   },
                   icon: AppIcons.reportWhite,
                 ),
@@ -265,5 +271,4 @@ class _ReportProblem2State extends State<ReportProblem2> {
       ),
     );
   }
-
- }
+}

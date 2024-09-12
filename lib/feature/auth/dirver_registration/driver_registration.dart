@@ -8,18 +8,27 @@ import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/dirver_registration/components/driver_licence.dart';
 import 'package:rydleap/feature/auth/dirver_registration/components/driver_textfield.dart';
+import 'package:rydleap/feature/profile/widgets/balance/components/custom_account_textfield.dart';
 
-class DriverRegistrationScreen extends StatelessWidget {
+class DriverRegistrationScreen extends StatefulWidget {
   const DriverRegistrationScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final TextEditingController _vehicleController = TextEditingController();
+  State<DriverRegistrationScreen> createState() => _DriverRegistrationScreenState();
+}
+
+class _DriverRegistrationScreenState extends State<DriverRegistrationScreen> {
+      final TextEditingController _vehicleController = TextEditingController();
     final TextEditingController _modelController = TextEditingController();
     final TextEditingController _yearController = TextEditingController();
     final TextEditingController _colorController = TextEditingController();
     final TextEditingController _licenceController = TextEditingController();
+  bool isModelValid = true;
+  @override
+  Widget build(BuildContext context) {
+
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.appbarColor,
       appBar: AppBar(
         centerTitle: true,
@@ -59,7 +68,17 @@ class DriverRegistrationScreen extends StatelessWidget {
              SizedBox(
               height: getHeight(38),
             ),
-            DriverTextfield(controller: _vehicleController),
+            // DriverTextfield(
+            //   controller: _vehicleController,
+            //   hintext: "Make",
+            //   ),
+            DriverTextfield(
+              controller: _vehicleController,
+              hintext: "Routing Number",
+              borderColor: isModelValid
+                  ? Color(0xff6D6A6A)
+                  : Colors.red, // Change border color based on validation
+            ),
             SizedBox(
               height: getHeight(5),
             ),
@@ -76,7 +95,7 @@ class DriverRegistrationScreen extends StatelessWidget {
             SizedBox(
               height: getHeight(8),
             ),
-            DriverTextfield(controller: _modelController),
+            DriverTextfield(controller: _modelController, hintext: "Model",),
             SizedBox(
               height: getHeight(5),
             ),
@@ -99,7 +118,7 @@ class DriverRegistrationScreen extends StatelessWidget {
                   child: SizedBox(
                    
                     
-                    child: DriverTextfield(controller: _yearController),
+                    child: DriverTextfield(controller: _yearController, hintext: "Year",),
                   ),
                 ),
                  SizedBox(
@@ -109,16 +128,25 @@ class DriverRegistrationScreen extends StatelessWidget {
               child: SizedBox(
                   
                     
-                    child: DriverTextfield(controller: _colorController),
+                    child: DriverTextfield(controller: _colorController, hintext: "Color",),
                   ),
             ),
               ],
             ),
             SizedBox(height: getHeight(24),),
-            DriverTextfield(controller: _licenceController),
+            DriverTextfield(controller: _licenceController, hintext: "Licence Plate Number",),
             Spacer(),
             CustomGradientButton(text: "Continue", onTap: (){
-              Get.to(DriverLicence());
+                setState(() {
+                  isModelValid = _vehicleController.text.isNotEmpty;
+                });
+
+                if (!isModelValid) {
+                  print("Vehicle is required");
+                } else {
+                
+                  Get.to(DriverLicence());
+                }
             }),
             SizedBox(height: getHeight(20),)
 

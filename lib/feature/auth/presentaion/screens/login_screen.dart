@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/app_text_button.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
-import 'package:rydleap/core/global_widgets/custom_gradient.dart';
+import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 
 import 'package:rydleap/feature/auth/presentaion/screens/otp_screen.dart';
+import 'package:rydleap/feature/home/presentation/screens/home.dart';
+import 'package:rydleap/nav_page.dart';
 
 import '../../../../core/global_widgets/custom_gradient_button.dart';
 
@@ -22,6 +25,20 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   bool isChecked = false;
+  bool isFormValid = false;
+   @override
+  void initState() {
+    super.initState();
+    _passwordController.addListener(_validateForm);
+    _emailController.addListener(_validateForm);
+  }
+  void _validateForm() {
+    setState(() {
+      isFormValid = _passwordController.text.isNotEmpty &&
+          _emailController.text.isNotEmpty; 
+
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: getHeight(35),),
             Text(
               "Log In",
               style: Theme.of(context).textTheme.titleMedium,
@@ -57,6 +75,8 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: _emailController,
               hintext: "Phone or email",
               suffixIcon: SizedBox(),
+              textInputType: TextInputType.emailAddress,
+              
             ),
             SizedBox(
               height: getHeight(18),
@@ -130,12 +150,13 @@ class _LoginScreenState extends State<LoginScreen> {
               height: getHeight(34),
             ),
             Spacer(),
-            CustomGradientButton(
+           isFormValid
+                  ? CustomGradientButton(
                 text: "Confirm",
                 onTap: () {
-                  // Navigator.push(
-                  //     context, MaterialPageRoute(builder: (_) => NavPage()));
-                }),
+                 Get.to(Home());
+              
+                }):CustomBlurButton(text: "Confirm"),
             SizedBox(
               height: getHeight(20),
             )

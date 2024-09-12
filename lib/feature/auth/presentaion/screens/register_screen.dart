@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/get_core.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_glass_button.dart';
-import 'package:rydleap/core/global_widgets/custom_gradient.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/global_widgets/phone_input.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/components/or_sign_in_with.dart';
-import 'package:rydleap/feature/auth/dirver_registration/components/driver_insurance.dart';
 import 'package:rydleap/feature/auth/dirver_registration/driver_registration.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/name_email_screen.dart';
 import 'package:rydleap/feature/driver_dashboard/presentation/driver_dashboard.dart';
@@ -29,13 +26,16 @@ class RegisterScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: Custombackground(
         bottomContainerHeight: screenHeight() * 0.5,
-        widget: Padding(
+        //car and text section
+        widget: 
+        Padding(
           padding: EdgeInsets.only(
             top: getHeight(82),
           ),
           child: Container(
             margin: EdgeInsets.only(left: getWidth(18)),
-            child: Column(
+            child: 
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset(AppImagese.car),
@@ -80,6 +80,7 @@ class RegisterScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            SizedBox(height: getHeight(35),),
             CustomPhoneInput(),
             CustomGradientButton(text: "Get OTP", onTap: () {
               Get.to(DriverRegistrationScreen());
@@ -106,8 +107,9 @@ class RegisterScreen extends StatelessWidget {
                 icon: AppIcons.googleIcon,
                 text: "Sign in with Google",
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => NameEmailScreen()));
+                  Get.to(NameEmailScreen());
+                 
+                
                 }),
             CustomGlassButton(
                 icon: AppIcons.appleIcon,

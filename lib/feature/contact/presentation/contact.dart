@@ -51,6 +51,9 @@ class Contact extends StatelessWidget {
 
       body: Column(
         children: [
+
+
+          
           Container(
             height: 37.5.h,
             width: 100.w,
@@ -75,6 +78,10 @@ class Contact extends StatelessWidget {
               },
             ),
           ),
+
+
+
+
           SizedBox(
             height: 16,
           ),

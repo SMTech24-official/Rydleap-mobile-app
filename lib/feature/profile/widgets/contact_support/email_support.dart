@@ -198,6 +198,10 @@ class _EmailSupportScreenState extends State<EmailSupportScreen> {
                     controller: _descriptionController,
                     maxLines: 7,
                     textAlign: TextAlign.start,
+                    style:GoogleFonts.nunito(
+                          fontSize: getWidth(14),
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.textBlack) ,
                     decoration: InputDecoration(
                       hintText: "Tell us more about your problem",
 
@@ -205,8 +209,7 @@ class _EmailSupportScreenState extends State<EmailSupportScreen> {
                           fontSize: getWidth(14),
                           fontWeight: FontWeight.w400,
                           color: Color(0xffB6B3B3)),
-                      // contentPadding: EdgeInsets.only(
-                      //     bottom: 10.5, left: 15, top: 10.5, right: 15),
+                      
                       enabledBorder:
                           OutlineInputBorder(borderSide: BorderSide.none),
                       focusedBorder:
@@ -227,17 +230,70 @@ class _EmailSupportScreenState extends State<EmailSupportScreen> {
                 SizedBox(
                   height: getHeight(12),
                 ),
-                InkWell(
-                  onTap: () {
-                    _showImageSourceSelection(context);
-                  },
-                  child: Container(
-                      width: double.infinity,
-                      child: Image.asset(
+                Container(
+                  height: getHeight(180),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
                         "assets/images/frame.png",
-                        fit: BoxFit.cover,
-                      )),
+                      ),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  child: Stack(
+                    children: [
+                      _selectedImage != null
+                          ? ClipRRect(
+                              borderRadius:
+                                  BorderRadius.circular(8), 
+                              child: Container(
+                                width: double.infinity, 
+                                height: double
+                                    .infinity, 
+                                child: Image.file(
+                                  _selectedImage!,
+                                  fit: BoxFit
+                                      .cover, 
+                                ),
+                              ),
+                            )
+                          : Align(
+                              alignment: Alignment.center,
+                              child: InkWell(
+                                onTap: () {
+                                  _showImageSourceSelection(context);
+                                },
+                                child: Container(
+                                  height: getHeight(37),
+                                  width: getWidth(114),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(51),
+                                    color: Color(0xff3AD896),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Image.asset(AppIcons.upload),
+                                      SizedBox(width: getWidth(8)),
+                                      Text(
+                                        "Upload",
+                                        style: GoogleFonts.nunito(
+                                          fontSize: getWidth(12),
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                    ],
+                  ),
                 ),
+                
                 Spacer(),
                 Material(
                   borderRadius: BorderRadius.circular(getWidth(46)),

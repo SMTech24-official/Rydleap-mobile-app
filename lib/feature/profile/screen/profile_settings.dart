@@ -143,8 +143,11 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               image: DecorationImage(
-                                  image: AssetImage(AppImagese.profileImage),
-                                  fit: BoxFit.cover),
+                                  image:  _selectedImage != null
+                                  ? FileImage(_selectedImage!)
+                                  : AssetImage(AppImagese.profileImage)
+                                      as ImageProvider<Object>,
+                              fit: BoxFit.cover,),
                             ),
                           ),
                           Positioned(
@@ -183,6 +186,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       controller: _nameController,
                       hinText: "Enter your name",
                       suffixIcon: AppIcons.edit,
+                      onTap: () {
+                  print("edit");
+                },
                     ),
                     SizedBox(
                       height: getHeight(12),
@@ -192,6 +198,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       controller: _phoneController,
                       hinText: "Enter your number",
                       suffixIcon: AppIcons.edit,
+                       onTap: () {
+                  print("edit");
+                },
                     ),
                     SizedBox(
                       height: getHeight(12),
@@ -201,6 +210,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       controller: _emailController,
                       hinText: "Enter your email",
                       suffixIcon: AppIcons.edit,
+                       onTap: () {
+                  print("edit");
+                },
                     ),
                     SizedBox(
                       height: getHeight(30),

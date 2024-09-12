@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_buttomsheet/custom_bottomsheet.dart';
-import 'package:rydleap/core/global_widgets/custom_gradient.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
-import 'package:rydleap/feature/auth/presentaion/screens/login_screen.dart';
 
 import '../../../../core/global_widgets/custom_gradient_button.dart';
 
@@ -94,6 +91,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: getHeight(35),),
             Text(
               "Change Password",
               style: Theme.of(context).textTheme.titleMedium,
@@ -252,8 +250,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       customBottomSheet(
                         context, 
                         "Your password has been changed successfully!",
-                        "",
+                      
                         AppImagese.successIcon,
+                          "",
                         getWidth(17),
                         0
                         );
@@ -278,9 +277,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
  
   @override
   void dispose() {
-    _currentPasswordController.dispose();
-    _newPasswordController.dispose();
-    _confirmPasswordController.dispose();
+    _currentPasswordController.clear();
+    _newPasswordController.clear();
+    _confirmPasswordController.clear();
     super.dispose();
   }
 }

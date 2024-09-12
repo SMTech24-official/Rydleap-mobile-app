@@ -80,7 +80,24 @@ class SettingsScreen extends StatelessWidget {
                             
                           ],
                         ),
-                        IconButton(onPressed: data.onTap, icon: Icon(Icons.arrow_forward_ios,size: 16,))
+                        ClipOval(
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            splashColor: Colors.white.withOpacity(0.2),
+                            onTap: data.onTap,
+                            child: SizedBox(
+                              height: getWidth(30),
+                              width: getWidth(30),
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                size: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                        // IconButton(onPressed: data.onTap, icon: Icon(Icons.arrow_forward_ios,size: 16,))
                       ],
                     ),
                   ),
