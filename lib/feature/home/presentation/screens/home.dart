@@ -11,6 +11,7 @@ import 'package:rydleap/core/global_widgets/pickup_and_drop_input_tile.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/core/utility/destination_tile.dart';
 
+import '../../../profile/screen/profile_screen.dart';
 import '../../../request_a_ride/presentation/request_a_ride.dart';
 
 class Home extends StatefulWidget {
@@ -171,9 +172,13 @@ class _HomeState extends State<Home> {
           ),
           Positioned(
               top: 31.5.h,
-              child: PickupAndDropInputTile(backGroundColor: Colors.white, width: 90.w, hintTextPickup: 'Pickup location', hintTextDestination: 'Enter Dropoff', readOnly: false,)
-
-
+              child: PickupAndDropInputTile(
+                backGroundColor: Colors.white,
+                width: 90.w,
+                hintTextPickup: 'Pickup location',
+                hintTextDestination: 'Enter Dropoff',
+                readOnly: false,
+              )
 
               // Container(
               //   margin: EdgeInsets.symmetric(horizontal: 20),
@@ -253,62 +258,52 @@ class _HomeState extends State<Home> {
               //   ),
               // ),
 
-
-          ),
-          
+              ),
           Positioned(
-
             top: 20,
-
             child: Align(
               alignment: Alignment.center,
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 16),
                 alignment: Alignment.center,
-                color: Colors.grey.shade600.withOpacity(0.6),//Color(0xffE6E6E6).withOpacity(opacity),
+                color: Colors.grey.shade600.withOpacity(0.6),
+                //Color(0xffE6E6E6).withOpacity(opacity),
                 height: 50,
-                width: screenWidth()-32,
+                width: screenWidth() - 32,
                 child: TextFormField(
-
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.location_on_outlined,color: Colors.white,),
-                    hintText: 'Location',
-                    hintStyle: TextStyle(
-                      color: Colors.white
-                    )
-                  ),
-
-                ),),
-            ),),
-
+                      prefixIcon: Icon(
+                        Icons.location_on_outlined,
+                        color: Colors.white,
+                      ),
+                      hintText: 'Location',
+                      hintStyle: TextStyle(color: Colors.white)),
+                ),
+              ),
+            ),
+          ),
           Positioned(
-              top:21,
+              top: 21,
               right: 18,
               child: Container(
-            height: 47,
-            width: 80,
-            color: Colors.white,
-            child: IconButton(onPressed: (){
-
-
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => RequestARide()));
-
-
-
-            }, icon: Icon(Icons.search,color: Colors.black,)),
-          ))
-
-
-
-
+                height: 47,
+                width: 80,
+                color: Colors.white,
+                child: IconButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => RequestARide()));
+                    },
+                    icon: Icon(
+                      Icons.search,
+                      color: Colors.black,
+                    )),
+              ))
         ],
       ),
 
-
-
       bottomNavigationBar: CurvedNavigationBar(
-        letIndexChange: (index){
+        letIndexChange: (index) {
           return false;
         },
         height: 60,
@@ -318,10 +313,28 @@ class _HomeState extends State<Home> {
         items: <Widget>[
           CircleAvatar(
             backgroundColor: Colors.black.withOpacity(0.3),
-              child: Icon(Icons.home_filled, size: 25,color: Colors.black,),
+            child: Icon(
+              Icons.home_filled,
+              size: 25,
+              color: Colors.black,
+            ),
           ),
-          Icon(Icons.add, size: 30,color: Colors.black,),
-          Icon(Icons.person_2_outlined, size: 30,color: Colors.black,),
+          Icon(
+            Icons.add,
+            size: 30,
+            color: Colors.black,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => ProfileScreen()));
+            },
+            child: Icon(
+              Icons.person_2_outlined,
+              size: 30,
+              color: Colors.black,
+            ),
+          ),
         ],
         onTap: (index) {
           //Handle button tap
@@ -347,8 +360,6 @@ class _HomeState extends State<Home> {
       //       iconUnselectedForegroundColor: Colors.grey
       //   ),
       // ),
-
-
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/feature/driver_ride_request/presentation/driver_ride_request.dart';
+import 'package:rydleap/feature/profile/screen/profile_screen.dart';
 
 import '../../../core/global_widgets/pickup_and_drop_input_tile.dart';
 import '../../../core/utility/app_colors.dart';
@@ -387,10 +388,18 @@ class DriverDashboard extends StatelessWidget {
               ],
             ),
           ),
-          Icon(
-            Icons.person_2_outlined,
-            size: 30,
-            color: Colors.black,
+          InkWell(
+            onTap: (){
+
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => ProfileScreen()));
+
+            },
+            child: Icon(
+              Icons.person_2_outlined,
+              size: 30,
+              color: Colors.black,
+            ),
           ),
         ],
         onTap: (index) {
