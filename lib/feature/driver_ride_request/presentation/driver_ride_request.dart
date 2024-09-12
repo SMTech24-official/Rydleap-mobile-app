@@ -2,6 +2,7 @@
 
 
 
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -192,6 +193,62 @@ class DriverRideRequest extends StatelessWidget{
         ],
       ),
 
+      bottomNavigationBar: CurvedNavigationBar(
+        letIndexChange: (index) {
+          return false;
+        },
+        height: 60,
+        index: 1,
+        backgroundColor: Colors.black,
+        color: Color(0xffDEFF11),
+        items: <Widget>[
+          Icon(
+            Icons.home_outlined,
+            size: 25,
+            color: Colors.black,
+          ),
+          Container(
+            child: Column(
+              children: [
+                Transform.scale(
+                  scale: .7,
+                  // width: 32,
+                  // height: 22,
+                  child:Switch(
+                    // This bool value toggles the switch.
+                    value: true,//light.value,
+                    thumbColor:
+                    const MaterialStatePropertyAll<Color>(Colors.black),
+                    trackColor: WidgetStatePropertyAll(Colors.white),
+                    activeColor: Colors.white,
+                    onChanged: (bool value) {
+                      // This is called when the user toggles the switch.
+                      // setState(() {
+                      //light.value != value;
+                      // });
+                    },
+                  ),
+                ),
+                Text(
+                  'Online',
+                  style: GoogleFonts.inter(
+                      fontSize: 9,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black),
+                )
+              ],
+            ),
+          ),
+          Icon(
+            Icons.person_2_outlined,
+            size: 30,
+            color: Colors.black,
+          ),
+        ],
+        onTap: (index) {
+          //Handle button tap
+        },
+      ),
 
 
     );
