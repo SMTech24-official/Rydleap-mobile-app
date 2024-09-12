@@ -326,8 +326,10 @@ class _HomeState extends State<Home> {
           ),
           InkWell(
             onTap: () {
+
               Navigator.push(
                   context, MaterialPageRoute(builder: (_) => ProfileScreen()));
+
             },
             child: Icon(
               Icons.person_2_outlined,
