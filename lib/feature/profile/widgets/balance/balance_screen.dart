@@ -25,9 +25,9 @@ class BalanceScreen extends StatelessWidget {
             style: GoogleFonts.inter(
                 fontSize: getWidth(20), fontWeight: FontWeight.w600),
           ),
-          actions: [
-            Image.asset(AppIcons.payment,color: Colors.white,)
-          ],
+          // actions: [
+          //   Image.asset(AppIcons.payment,color: Colors.white,)
+          // ],
         ),
         body: Stack(
           children: [
