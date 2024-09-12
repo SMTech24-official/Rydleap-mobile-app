@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/app_sizes.dart';
+import '../../driver_contact_rider/presentation/driver_contact_rider.dart';
 
 class DriverRideRequest extends StatelessWidget{
   @override
@@ -23,7 +24,7 @@ class DriverRideRequest extends StatelessWidget{
                   Navigator.pop(context);
                 },
                 icon: Icon(Icons.arrow_back_ios)),
-            Text('Request a ride'),
+            Text('Ride Request'),
             CircleAvatar(
               radius: 17,
               backgroundColor: Colors.white,
@@ -152,8 +153,8 @@ class DriverRideRequest extends StatelessWidget{
                       onTap: (){
 
 
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (_) => DriverRideRequest()));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => DriverContactRider()));
 
 
 

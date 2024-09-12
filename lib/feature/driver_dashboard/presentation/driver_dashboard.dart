@@ -142,7 +142,7 @@ class DriverDashboard extends StatelessWidget {
                 final snackbar = AnimatedSnackBar(
                   builder: ((context) {
                     return Container(
-                      width: screenWidth(),
+                      width: screenWidth()-10,
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -157,7 +157,7 @@ class DriverDashboard extends StatelessWidget {
                                 "Incoming Ride Request",
                               ),
                               Container(
-                                  width: screenWidth() / 2 - 100,
+                                  width: screenWidth() / 2 - 110,
                                   child: Text("Details")),
                             ],
                           ),
@@ -228,7 +228,7 @@ class DriverDashboard extends StatelessWidget {
                                       },
                                       icon: Icon(
                                         Icons.cancel,
-                                        size: 50,
+                                        size: getWidth(30),
                                         color: Colors.grey.shade300,
                                       ),
                                     ),
@@ -244,7 +244,7 @@ class DriverDashboard extends StatelessWidget {
                                       },
                                       icon: Icon(
                                         Icons.check_circle,
-                                        size: 50,
+                                        size: getWidth(33),
                                         color: Color(0xff3AD896),
                                       )),
                                 ],
@@ -338,6 +338,9 @@ class DriverDashboard extends StatelessWidget {
           ],
         ),
       ),
+
+
+
       bottomNavigationBar: CurvedNavigationBar(
         letIndexChange: (index) {
           return false;
@@ -394,6 +397,12 @@ class DriverDashboard extends StatelessWidget {
           //Handle button tap
         },
       ),
+
+
+
+
+
+
     );
   }
 }
