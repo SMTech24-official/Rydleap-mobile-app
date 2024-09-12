@@ -10,6 +10,7 @@ import 'package:rydleap/feature/payment_options/screen/add_card_screen.dart';
 import 'package:rydleap/feature/profile/widgets/promotion_offers/promotion_offers.dart';
 import '../../../core/global_widgets/custom_background.dart';
 import '../../../core/global_widgets/custom_blur_button.dart';
+import '../../earnings_details_breakdown/screen/earnings_details_breakdown_screen.dart';
 import '../dummy_data/payment_options_model.dart';
 
 class PaymentOptionsScreen extends StatefulWidget {
@@ -90,10 +91,15 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                         children: [
                           Row(
                             children: [
-                              Image.asset(
-                                AppImagese.cash,
-                                height: getHeight(20),
-                                width: getWidth(36),
+                              GestureDetector(
+                                onTap: (){
+                                Get.to(EarningsDetailsBreakdownScreen());
+                                },
+                                child: Image.asset(
+                                  AppImagese.cash,
+                                  height: getHeight(20),
+                                  width: getWidth(36),
+                                ),
                               ),
                               SizedBox(
                                 width: getWidth(2),
