@@ -26,13 +26,16 @@ class RegisterScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: Custombackground(
         bottomContainerHeight: screenHeight() * 0.5,
-        widget: Padding(
+        //car and text section
+        widget: 
+        Padding(
           padding: EdgeInsets.only(
             top: getHeight(82),
           ),
           child: Container(
             margin: EdgeInsets.only(left: getWidth(18)),
-            child: Column(
+            child: 
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset(AppImagese.car),
@@ -77,6 +80,7 @@ class RegisterScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            SizedBox(height: getHeight(35),),
             CustomPhoneInput(),
             CustomGradientButton(text: "Get OTP", onTap: () {
               Get.to(DriverRegistrationScreen());

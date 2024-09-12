@@ -50,7 +50,6 @@ class Custombackground extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: Container(
                 padding: EdgeInsets.only(
-                    // top: getHeight(35),
                     left: getWidth(18),
                     right: getWidth(18)),
                 height: bottomContainerHeight,

@@ -90,6 +90,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: getHeight(35),),
             Text(
               "Create your Password",
               style: Theme.of(context).textTheme.titleMedium,

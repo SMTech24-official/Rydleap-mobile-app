@@ -10,7 +10,7 @@ import 'package:rydleap/feature/safety_tips/dummy_data/safety_model.dart';
 class SafetyTipsScreen extends StatelessWidget {
   const SafetyTipsScreen({super.key});
 
-  @override
+ @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.appbarColor,
@@ -24,7 +24,7 @@ class SafetyTipsScreen extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        leading: CustomBackButton()
+        leading: CustomBackButton(),
       ),
       body: Stack(
         children: [
@@ -72,116 +72,141 @@ class SafetyTipsScreen extends StatelessWidget {
                 SizedBox(
                   height: getHeight(30),
                 ),
-                // The ListView.builder with flexible height inside the scroll view
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: safetyItems.length,
-                  itemBuilder: (context, index) {
-                    final data = safetyItems[index];
-                    return Padding(
-                      padding: EdgeInsets.only(bottom: getHeight(15)),
-                      child: ListTile(
-                        title: Text(
-                          data.title,
-                          style: GoogleFonts.inter(
-                              fontSize: getWidth(17),
-                              fontWeight: FontWeight.w500),
-                        ),
-                        
-                        subtitle: Text(
-                          data.subTitle,
-                          style: GoogleFonts.nunito(
-                              fontSize: getWidth(14),
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xffDED9D9)),
-                        ),
-                      ),
-                    );
-                  },
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.only(bottom: getHeight(50)),
+                    child: ListView.builder(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      itemCount: safetyItems.length,
+                      itemBuilder: (context, index) {
+                        final data = safetyItems[index];
+                        return Padding(
+                          padding: EdgeInsets.only(bottom: getHeight(15)),
+                          child: ListTile(
+                            title: Padding(
+                              padding:  EdgeInsets.only(bottom: getHeight(10)),
+                              child: Text(
+                                data.title,
+                                style: GoogleFonts.inter(
+                                  fontSize: getWidth(17),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                            subtitle: Text(
+                              data.subTitle,
+                              style: GoogleFonts.nunito(
+                                fontSize: getWidth(14),
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xffDED9D9),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
-          // Positioned container at the bottom
           Positioned(
             bottom: 0,
             left: 0,
             right: 0,
             child: Container(
-                height: getHeight(100),
-                width: double.infinity,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    //back buton
-                    Material(
-                      borderRadius: BorderRadius.circular(88),
-                      color: Colors.white,
-                      child: InkWell(
-                        splashColor: Colors.grey.withOpacity(0.5),
+              padding: EdgeInsets.only(
+                bottom: getHeight(20),
+                left: getWidth(37),
+                right: getWidth(37),
+              ),
+              // height: screenHeight() * 0.2,
+              width: double.infinity,
+              decoration: BoxDecoration(
+            
+               
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Material(
                         borderRadius: BorderRadius.circular(88),
-                        onTap: (){
-                          print("Back");
-                        },
-                        child: Container(
-                          height: getHeight(40),
-                          width: getWidth(100),
-                          decoration: BoxDecoration(
-                              
+                        color: Colors.white,
+                        child: InkWell(
+                          splashColor: Colors.grey.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(88),
+                          onTap: () {
+                            print("Decline");
+                          },
+                          child: Container(
+                            height: getHeight(40),
+                            width: getWidth(100),
+                            decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(88),
-                              border:
-                                  Border.all(color: Color(0xff3AD896), width: 0.4)),
-                          child: Center(
-                            child: Text(
-                              "Back",
-                              style: GoogleFonts.nunito(
-                                
+                              border: Border.all(
+                                color: Color(0xff3AD896),
+                                width: 0.4,
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Decline",
+                                style: GoogleFonts.nunito(
                                   fontSize: getWidth(13),
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xffB7BBBD)),
+                                  color: Color(0xffB7BBBD),
+                                ),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(width: getWidth(39),),
-                    //report button
-                    Material(
-                      borderRadius: BorderRadius.circular(88),
-                      color: Color(0xff3AD896),
-                      child: InkWell(
-                        splashColor: Colors.grey.withOpacity(0.5),
+                      SizedBox(width: getWidth(39)),
+                      Material(
                         borderRadius: BorderRadius.circular(88),
-                        onTap: (){
-                          print("Back");
-                        },
-                        child: Container(
-                          height: getHeight(40),
-                          width: getWidth(100),
-                          decoration: BoxDecoration(
-                              color: Colors.transparent,
+                        color: Color(0xff3AD896),
+                        child: InkWell(
+                          splashColor: Colors.grey.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(88),
+                          onTap: () {
+                            print("Accept");
+                          },
+                          child: Container(
+                            height: getHeight(40),
+                            width: getWidth(100),
+                            decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(88),
-                              border:
-                                  Border.all(color:Colors.white,  width: 0.4)),
-                          child: Center(
-                            child: Text(
-                              "Report",
-                              style: GoogleFonts.nunito(
-                                
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 0.4,
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Accept",
+                                style: GoogleFonts.nunito(
                                   fontSize: getWidth(13),
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xff001B26)),
+                                  color: Color(0xff001B26),
+                                ),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    
-                  ],
-                )),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
     );
   }
 }
+
