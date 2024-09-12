@@ -5,8 +5,10 @@ import '../../../core/app_icons.dart';
 import '../../../core/app_imagese.dart';
 import '../../../core/app_sizes.dart';
 import '../../../core/global_widgets/custom_background.dart';
+import '../../../core/global_widgets/custom_blur_button.dart';
 import '../../../core/global_widgets/custom_close_button.dart';
 import '../../../core/utility/app_colors.dart';
+import '../widgets/custom_text_field_for_add_card.dart';
 
 class AddCardScreen extends StatelessWidget {
   const AddCardScreen({super.key});
@@ -48,54 +50,113 @@ class AddCardScreen extends StatelessWidget {
         bottomContainerHeight: screenHeight() * 0.85,
         child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.only(top: getHeight(8)),
-              child: Center(
-                child: Container(
-                  width: getWidth(48),
-                  height: 5,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: Color(0xffAFAFAF)),
-                ),
+            Center(
+              child: Container(
+                width: getWidth(48),
+                height: 5,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: Color(0xffAFAFAF)),
               ),
             ),
             Padding(
               padding: EdgeInsets.only(
-                  left: getWidth(20), right: getWidth(20), top: getHeight(30)),
+                  left: getWidth(20),
+                  right: getWidth(20),
+                  top: getHeight(30)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    height: getHeight(40),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(7),
-                        border: Border.all(
-                            color: Colors.white.withOpacity(0.2), width: 0.6)),
-                    child: TextFormField(
-                      // controller: _promoController,
-                      decoration: InputDecoration(
-                        suffixIcon:Icon( Icons.camera_alt_outlined) ,
-                        prefixIcon:Icon( Icons.assessment),
-                        hintText: 'Card Number',
-                        hintStyle: GoogleFonts.nunito(
-                          fontSize: getWidth(16),
-                          fontWeight: FontWeight.w400,
-                          height: 21.82 / 16,
+                  CustomTextFieldForAddCard(
+                    hintText: 'Card Number',
+                    suffixIcon: AppIcons.cameraIcon,
+                  ),
+                  SizedBox(
+                    height: getHeight(4),
+                  ),
+                  errorShowCard(text: 'Please enter number only'),
+                  SizedBox(
+                    height: getWidth(5),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        height: getHeight(85),
+                        width: getWidth(144),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Exp. Date',
+                              style: GoogleFonts.nunito(
+                                fontSize: getWidth(16),
+                                fontWeight: FontWeight.w500,
+                                height: 21.87 / 16,
+                              ),
+                            ),
+                            CustomTextFieldForAddCard(hintText: 'MM/YY'),
+                            SizedBox(
+                              height: getHeight(3),
+                            ),
+                            errorShowCard(text: 'Error')
+                          ],
                         ),
-                        contentPadding: EdgeInsets.only(
-                            bottom: getHeight(10), left: getWidth(10)),
-                        enabledBorder:
-                            OutlineInputBorder(borderSide: BorderSide.none),
-                        focusedBorder:
-                            OutlineInputBorder(borderSide: BorderSide.none),
-
                       ),
-                      textAlign: TextAlign.left,
+                      Container(
+                        height: getHeight(85),
+                        width: getWidth(144),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'CVV',
+                              style: GoogleFonts.nunito(
+                                fontSize: getWidth(16),
+                                fontWeight: FontWeight.w500,
+                                height: 21.87 / 16,
+                              ),
+                            ),
+                            CustomTextFieldForAddCard(hintText: '123'),
+                            SizedBox(
+                              height: getHeight(3),
+                            ),
+                            errorShowCard(text: 'Error')
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: getHeight(21),
+                  ),
+                  CustomTextFieldForAddCard(
+                    hintText: 'United States',
+                    prefixIcon: AppIcons.usIcon,
+                    suffixIcon: AppIcons.arrowDown,
+                  ),
+                  SizedBox(
+                    height: getHeight(20),
+                  ),
+                  CustomTextFieldForAddCard(hintText: 'Nickname (Optional)'),
+                  SizedBox(
+                    height: getHeight(5),
+                  ),
+                  Text(
+                    'e.g  Peace Unity',
+                    style: GoogleFonts.nunito(
+                      color: Color(0xFFA49595),
+                      fontSize: getWidth(11),
+                      fontWeight: FontWeight.w400,
+                      height: 15 / 11,
                     ),
                   ),
+                  SizedBox(
+                    height: getHeight(302),
+                  ),
+                  CustomBlurButton(
+                    text: 'Save',
+                  )
                 ],
               ),
             )
@@ -197,6 +258,40 @@ class AddCardScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class errorShowCard extends StatelessWidget {
+  final String text;
+  const errorShowCard({
+    super.key,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: getHeight(15),
+      width: getWidth(150),
+      child: Row(
+        children: [
+          Image.asset(AppIcons.errorIcon,
+              height: getHeight(12), width: getWidth(12)),
+          SizedBox(
+            width: getWidth(1.5),
+          ),
+          Text(
+            text,
+            style: GoogleFonts.nunito(
+              color: Color(0xFFA49595),
+              fontSize: getWidth(11),
+              fontWeight: FontWeight.w400,
+              height: 15 / 11,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
