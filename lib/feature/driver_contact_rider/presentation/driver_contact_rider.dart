@@ -12,6 +12,7 @@ import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/map_widget.dart';
 
 import '../../../core/app_imagese.dart';
+import '../../heading_to_rider/presentation/heading_to_rider.dart';
 
 class DriverContactRider extends StatelessWidget{
   @override
@@ -136,23 +137,31 @@ class DriverContactRider extends StatelessWidget{
 
 
 
-                    Container(
-                      alignment: Alignment.center,
-                      width: 96,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Colors.white
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                         Image.asset('assets/icons/nav_icon.png',height: 20,width: 20,),
-                          Text('Navi',style: GoogleFonts.nunito(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black),)
-                        ],
+                    InkWell(
+                      onTap: (){
+
+
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => HeadingToRider()));
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 96,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.white
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                           Image.asset('assets/icons/nav_icon.png',height: 20,width: 20,),
+                            Text('Navi',style: GoogleFonts.nunito(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black),)
+                          ],
+                        ),
                       ),
                     ),
 
