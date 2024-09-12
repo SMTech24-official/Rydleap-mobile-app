@@ -44,8 +44,8 @@ class _CashoutScreenState extends State<CashoutScreen> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(40),
-                      bottomRight: Radius.circular(40),
+                      bottomLeft: Radius.circular(getWidth(20)),
+                      bottomRight: Radius.circular(getWidth(20)),
                     ),
                     color: AppColors.appbarColor,
                   ),
@@ -101,12 +101,25 @@ class _CashoutScreenState extends State<CashoutScreen> {
                                 ),
                               ],
                             ),
-                            InkWell(
-                                onTap: () {},
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 16,
-                                ))
+                            ClipOval(
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            splashColor: Colors.white.withOpacity(0.2),
+                             onTap: () {
+                          
+                        },
+                            child: SizedBox(
+                              height: getWidth(24),
+                              width: getWidth(24),
+                              child: Icon(
+                                Icons.arrow_forward_ios,
+                                size: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                           ],
                         ),
                       )
