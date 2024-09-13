@@ -55,7 +55,13 @@ class HeadingToRider extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(width: 1, color: Colors.white)),
+                border: Border.all(width: 1, color: Colors.white),
+              gradient: LinearGradient(
+                colors: [
+                  const Color(0xFF001B26),
+                  const Color(0xFF00638C),
+                ],),
+            ),
             child: Column(
               children: [
                 Row(
