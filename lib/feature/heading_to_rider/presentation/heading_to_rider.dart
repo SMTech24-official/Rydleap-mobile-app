@@ -7,6 +7,8 @@ import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/map_widget.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 
+import '../../driver_search/presentation/driver_search.dart';
+
 class HeadingToRider extends StatelessWidget {
   const HeadingToRider({super.key});
 
@@ -113,28 +115,37 @@ class HeadingToRider extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
-                      alignment: Alignment.center,
-                      width: 96,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: Colors.white),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.call,
-                            color: Colors.green,
-                          ),
-                          Text(
-                            'Call',
-                            style: GoogleFonts.nunito(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black),
-                          )
-                        ],
+                    InkWell(
+                      onTap:(){
+
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => DriverSearch()));
+
+
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 96,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: Colors.white),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.call,
+                              color: Colors.green,
+                            ),
+                            Text(
+                              'Call',
+                              style: GoogleFonts.nunito(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                     Container(
