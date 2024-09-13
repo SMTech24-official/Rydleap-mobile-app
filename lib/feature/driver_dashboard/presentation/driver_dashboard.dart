@@ -20,6 +20,7 @@ class DriverDashboard extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.navy_blue,
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,6 +56,10 @@ class DriverDashboard extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+
+            SizedBox(height: 31,),
+
+
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -147,7 +152,13 @@ class DriverDashboard extends StatelessWidget {
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.black),
+                          color: Colors.black,
+                        gradient: LinearGradient(
+                          colors: [
+                            const Color(0xFF001B26),
+                            const Color(0xFF00638C),
+                          ],),
+                      ),
                       height: 110,
                       child: Column(
                         children: [

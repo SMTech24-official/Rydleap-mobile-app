@@ -22,6 +22,7 @@ class DriverContactRider extends StatelessWidget{
 
 
       appBar: AppBar(
+        backgroundColor: Color(0xff001B26),
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

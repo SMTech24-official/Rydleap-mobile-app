@@ -81,6 +81,7 @@ class _ScheduleYourRideState extends State<ScheduleYourRide>
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff001B26),
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -189,6 +190,9 @@ class _ScheduleYourRideState extends State<ScheduleYourRide>
             ),
 
             TabBar(
+              indicatorColor: Colors.amberAccent,
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.white,
               controller: _tabController,
               tabs: [
                 Tab(text: 'Economy'),
