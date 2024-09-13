@@ -50,6 +50,7 @@ class _RequestARideState extends State<RequestARide>
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        backgroundColor: Color(0xff001B26),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -79,6 +80,7 @@ class _RequestARideState extends State<RequestARide>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            SizedBox(height: 20,),
             Column(
               children: [
                 PickupAndDropInputTile(
@@ -87,6 +89,9 @@ class _RequestARideState extends State<RequestARide>
                 ),
 
                 TabBar(
+                  indicatorColor: Colors.amberAccent,
+                  unselectedLabelColor: Colors.white,
+                  labelColor: Colors.white,
                   controller: _tabController,
                   tabs: [
                     Tab(text: 'Economy'),

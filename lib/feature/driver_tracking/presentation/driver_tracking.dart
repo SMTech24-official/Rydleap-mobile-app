@@ -24,6 +24,7 @@ class DriverTracking extends StatelessWidget{
     return Scaffold(
 
       appBar: AppBar(
+        backgroundColor: AppColors.navy_blue,
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

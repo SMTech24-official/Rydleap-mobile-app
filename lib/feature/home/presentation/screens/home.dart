@@ -44,6 +44,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff001B26),
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -282,6 +283,10 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
+
+
+
+
           Positioned(
               top: 21,
               right: 18,
@@ -326,8 +331,10 @@ class _HomeState extends State<Home> {
           ),
           InkWell(
             onTap: () {
+
               Navigator.push(
                   context, MaterialPageRoute(builder: (_) => ProfileScreen()));
+
             },
             child: Icon(
               Icons.person_2_outlined,
