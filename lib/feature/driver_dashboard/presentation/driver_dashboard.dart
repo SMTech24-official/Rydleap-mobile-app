@@ -148,7 +148,7 @@ class DriverDashboard extends StatelessWidget {
                 final snackbar = AnimatedSnackBar(
                   builder: ((context) {
                     return Container(
-                      width: screenWidth()-10,
+                      width: screenWidth(),
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -173,6 +173,9 @@ class DriverDashboard extends StatelessWidget {
                                   child: Text("Details")),
                             ],
                           ),
+
+
+
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -230,35 +233,32 @@ class DriverDashboard extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              Row(
-                                //mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Center(
-                                    child: IconButton(
-                                      onPressed: () {
 
-                                      },
-                                      icon: Icon(
-                                        Icons.cancel,
-                                        size: getWidth(30),
-                                        color: Colors.grey.shade300,
-                                      ),
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                                children: [
+                                  Icon(
+                                    Icons.cancel,
+                                    size: getWidth(46),
+                                    color: Colors.grey.shade300,
+                                  ),
+
+                                  InkWell(
+                                    onTap: (){
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (_) => DriverRideRequest()));
+                                      AnimatedSnackBar.removeAll();
+                                    },
+                                    child: Icon(
+                                      Icons.check_circle,
+                                      size: getWidth(46),
+                                      color: Color(0xff3AD896),
                                     ),
                                   ),
-                                  IconButton(
-                                      onPressed: () {
 
 
-                                        Navigator.push(context,
-                                            MaterialPageRoute(builder: (_) => DriverRideRequest()));
-                                        AnimatedSnackBar.removeAll();
-
-                                      },
-                                      icon: Icon(
-                                        Icons.check_circle,
-                                        size: getWidth(33),
-                                        color: Color(0xff3AD896),
-                                      )),
                                 ],
                               )
                             ],
