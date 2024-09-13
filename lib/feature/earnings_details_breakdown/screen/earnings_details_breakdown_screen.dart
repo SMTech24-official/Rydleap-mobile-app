@@ -4,6 +4,7 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
+import '../../../core/app_imagese.dart';
 import '../../../core/app_sizes.dart';
 import '../../../core/global_widgets/custom_close_button.dart';
 import '../../../core/utility/app_colors.dart';
@@ -412,7 +413,70 @@ class _EarningsDetailsBreakdownScreenState
                         )
                       ],
                     ),
-                  )
+                  ),
+                  ListView.builder(
+                    itemCount: 2,
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+
+                    itemBuilder: (context,index){
+                      return  Container(
+                        margin: EdgeInsets.symmetric(vertical: 7, horizontal: 20),
+                        padding: EdgeInsets.symmetric(vertical: 13, horizontal: 5),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.07)),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              AppImagese.profileImage,
+                              width: 43,
+                              height: 43,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Burkina Faso',
+                                  style: GoogleFonts.nunito(
+                                      fontSize: 13, fontWeight: FontWeight.w500),
+                                ),
+                                Container(
+                                  width: getWidth(270),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        '5:20 pm ',
+                                        style: GoogleFonts.nunito(
+                                            color: Color(0xFFA6A6A6),
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                      Text(
+                                        '\$20.00',
+                                        style: GoogleFonts.nunito(
+                                            color: Color(0xFF3AD896),
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                    // separatorBuilder: (BuildContext context, int index) {
+                    //   return SizedBox(
+                    //     height: getHeight(10),
+                    //   );
+                    // },
+
+                  ),
+
                 ],
               ))
         ],
