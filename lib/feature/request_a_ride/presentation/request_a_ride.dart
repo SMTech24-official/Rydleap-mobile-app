@@ -89,6 +89,9 @@ class _RequestARideState extends State<RequestARide>
                 ),
 
                 TabBar(
+                  indicatorColor: Colors.amberAccent,
+                  unselectedLabelColor: Colors.white,
+                  labelColor: Colors.white,
                   controller: _tabController,
                   tabs: [
                     Tab(text: 'Economy'),

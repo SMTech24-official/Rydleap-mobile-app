@@ -131,7 +131,14 @@ class Contact extends StatelessWidget {
                           EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey.shade300),
-                          borderRadius: BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.circular(10),
+                        gradient: LinearGradient(
+                          colors: [
+                            const Color(0xFF001B26),
+                            const Color(0xFF00638C),
+                          ],),
+
+                      ),
                       child: Column(
                         children: [
                           Container(
