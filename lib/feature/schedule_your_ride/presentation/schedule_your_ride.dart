@@ -173,7 +173,7 @@ class _ScheduleYourRideState extends State<ScheduleYourRide>
                   margin: EdgeInsets.symmetric(horizontal: 16,vertical: 10),
                   width: screenWidth(),
                   height: 50,
-                  child: Text('00:00',style: GoogleFonts.nunito(
+                  child: Text('20/02/2024',style: GoogleFonts.nunito(
 
                       fontSize: 15,
                       fontWeight: FontWeight.w400

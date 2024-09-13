@@ -99,9 +99,12 @@ class PickupAndDropInputTile extends StatelessWidget{
                     alignment: Alignment.topLeft,
                     padding: EdgeInsets.fromLTRB(10, 0, 20, 20),
                     child: TextFormField(
+
                       readOnly: readOnly,
                       style: TextStyle(color: Colors.grey, fontSize: 14),
                       decoration: InputDecoration(
+                        isCollapsed: true,
+                        isDense: true,
                         hintText: hintTextDestination,
                         hintStyle: TextStyle(fontSize: 14),
                         enabledBorder: InputBorder.none,
