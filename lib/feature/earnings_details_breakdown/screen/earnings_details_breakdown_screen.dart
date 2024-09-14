@@ -325,7 +325,7 @@ class _EarningsDetailsBreakdownScreenState
                 children: [
                   Container(
                     height: getHeight(35),
-                    width: getWidth(324),
+                    width: double.infinity,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -391,7 +391,8 @@ class _EarningsDetailsBreakdownScreenState
                   ),
                   Container(
                     height: getHeight(25),
-                    width: getWidth(317),
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -414,69 +415,77 @@ class _EarningsDetailsBreakdownScreenState
                       ],
                     ),
                   ),
-                  ListView.builder(
-                    itemCount: 2,
-                    shrinkWrap: true,
-                    physics: ScrollPhysics(),
-
-                    itemBuilder: (context,index){
-                      return  Container(
-                        margin: EdgeInsets.symmetric(vertical: 7, horizontal: 20),
-                        padding: EdgeInsets.symmetric(vertical: 13, horizontal: 5),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white.withOpacity(0.07)),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              AppImagese.profileImage,
-                              width: 43,
-                              height: 43,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Burkina Faso',
-                                  style: GoogleFonts.nunito(
-                                      fontSize: 13, fontWeight: FontWeight.w500),
-                                ),
-                                Container(
-                                  width: getWidth(270),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        '5:20 pm ',
-                                        style: GoogleFonts.nunito(
-                                            color: Color(0xFFA6A6A6),
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      Text(
-                                        '\$20.00',
-                                        style: GoogleFonts.nunito(
-                                            color: Color(0xFF3AD896),
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      );
-                    },
-                    // separatorBuilder: (BuildContext context, int index) {
-                    //   return SizedBox(
-                    //     height: getHeight(10),
-                    //   );
-                    // },
-
+                  SizedBox(
+                    height: getHeight(12),
                   ),
-
+                  SizedBox(
+                    height: getHeight(600),
+                    width: double.infinity,
+                    child: ListView.builder(
+                      padding: EdgeInsets.zero,
+                      itemCount: 30,
+                      shrinkWrap: true,
+                      physics: ScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return Container(
+                          margin: EdgeInsets.symmetric(vertical: getHeight(10)),
+                          padding:
+                              EdgeInsets.symmetric(vertical: 13, horizontal: 5),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white.withOpacity(0.07)),
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                AppImagese.profileImage,
+                                width: 43,
+                                height: 43,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Burkina Faso',
+                                    style: GoogleFonts.nunito(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Container(
+                                    width: getWidth(320),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          '5:20 pm ',
+                                          style: GoogleFonts.nunito(
+                                              color: Color(0xFFA6A6A6),
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                        Text(
+                                          '\$20.00',
+                                          style: GoogleFonts.nunito(
+                                              color: Color(0xFF3AD896),
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                      // separatorBuilder: (BuildContext context, int index) {
+                      //   return SizedBox(
+                      //     height: getHeight(10),
+                      //   );
+                      // },
+                    ),
+                  ),
                 ],
               ))
         ],
