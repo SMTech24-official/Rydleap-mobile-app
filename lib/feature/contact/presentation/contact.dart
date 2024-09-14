@@ -13,7 +13,7 @@ class Contact extends StatelessWidget {
 //jdfgjdfgjsfdg
   double poslat = 0.00;
   double poslong = 0.00;
-  LatLng currentpos = LatLng(23.7547124, 90.3630302);
+  LatLng currentpos = LatLng(31.119318, -99.245435);
 
   @override
   Widget build(BuildContext context) {

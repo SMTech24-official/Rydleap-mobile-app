@@ -9,7 +9,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapWidget extends StatelessWidget{
 
-  LatLng currentpos = LatLng(23.7547124, 90.3630302);
+  LatLng currentpos = LatLng(31.119318, -99.245435);
   final double height;
   final double width;
 
