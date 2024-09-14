@@ -31,6 +31,30 @@ class _EarningsDetailsBreakdownScreenState
     ChartData('Sa', 700),
     ChartData('Su', 1400),
   ];
+  PageController _pageController = PageController();
+  int _selectedIndex = 0;
+
+  // Sample data for each tab
+  final List<List<Map<String, dynamic>>> _data = [
+    [
+      {'name': 'Burkina Faso', 'time': '5:20 pm', 'amount': 20.00},
+      {'name': 'Mali', 'time': '6:15 pm', 'amount': 15.00},
+      {'name': 'Senegal', 'time': '4:45 pm', 'amount': 35.00},
+      {'name': 'Senegal', 'time': '4:45 pm', 'amount': 35.00},
+      {'name': 'Senegal', 'time': '4:45 pm', 'amount': 35.00},
+      {'name': 'Senegal', 'time': '4:45 pm', 'amount': 35.00},
+      {'name': 'Senegal', 'time': '4:45 pm', 'amount': 35.00},
+      {'name': 'Senegal', 'time': '4:45 pm', 'amount': 35.00},
+    ],
+    [
+      {'name': 'Income Item 1', 'time': '2:30 pm', 'amount': 50.00},
+      {'name': 'Income Item 2', 'time': '1:15 pm', 'amount': 60.00},
+    ],
+    [
+      {'name': 'Withdrawn Item 1', 'time': '9:10 am', 'amount': 10.00},
+      {'name': 'Withdrawn Item 2', 'time': '11:20 am', 'amount': 25.00},
+    ],
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -318,167 +342,137 @@ class _EarningsDetailsBreakdownScreenState
             ),
           ),
           Positioned(
-              top: getHeight(480),
-              left: getWidth(20),
-              right: getWidth(20),
-              child: Column(
-                children: [
-                  Container(
-                    height: getHeight(35),
-                    width: getWidth(324),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                          alignment: Alignment.center,
-                          height: getHeight(35),
-                          width: getWidth(84),
-                          decoration: BoxDecoration(
-                              color: Color(0xFF4E9376),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(getWidth(41)))),
-                          child: Text(
-                            'All',
-                            style: GoogleFonts.inter(
-                              fontWeight: FontWeight.w400,
-                              fontSize: getWidth(15),
-                              height: getHeight(20) / getHeight(15),
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          height: getHeight(35),
-                          width: getWidth(108),
-                          decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.11),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(getWidth(41)))),
-                          child: Text(
-                            'Income',
-                            style: GoogleFonts.inter(
-                              fontWeight: FontWeight.w400,
-                              fontSize: getWidth(15),
-                              height: getHeight(20) / getHeight(15),
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          height: getHeight(35),
-                          width: getWidth(108),
-                          decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.11),
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(getWidth(41)))),
-                          child: Text(
-                            'Withdrawn',
-                            style: GoogleFonts.inter(
-                              fontWeight: FontWeight.w400,
-                              fontSize: getWidth(15),
-                              height: getHeight(20) / getHeight(15),
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ],
-                    ),
+            top: getHeight(480),
+            left: getWidth(20),
+            right: getWidth(20),
+            child: Column(
+              children: [
+                Container(
+                  height: getHeight(35),
+                  width: double.infinity,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _buildToggleButton('All', 0),
+                      _buildToggleButton('Income', 1),
+                      _buildToggleButton('Withdrawn', 2),
+                    ],
                   ),
-                  SizedBox(
-                    height: getHeight(20),
-                  ),
-                  Container(
-                    height: getHeight(25),
-                    width: getWidth(317),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Today',
-                          style: GoogleFonts.nunito(
-                            fontWeight: FontWeight.w500,
-                            fontSize: getWidth(18),
-                            height: getHeight(25) / getHeight(18),
-                          ),
+                ),
+                SizedBox(height: getHeight(20)),
+                Container(
+                  height: getHeight(25),
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Today',
+                        style: GoogleFonts.nunito(
+                          fontWeight: FontWeight.w500,
+                          fontSize: getWidth(18),
+                          height: getHeight(25) / getHeight(18),
                         ),
-                        Text(
-                          '-\$ 35.00',
-                          style: GoogleFonts.nunito(
-                            fontWeight: FontWeight.w400,
-                            fontSize: getWidth(16),
-                            height: getHeight(22) / getHeight(18),
-                          ),
-                        )
-                      ],
-                    ),
+                      ),
+                      Text(
+                        '-\$ 35.00',
+                        style: GoogleFonts.nunito(
+                          fontWeight: FontWeight.w400,
+                          fontSize: getWidth(16),
+                          height: getHeight(22) / getHeight(18),
+                        ),
+                      )
+                    ],
                   ),
-                  ListView.builder(
-                    itemCount: 2,
-                    shrinkWrap: true,
-                    physics: ScrollPhysics(),
-
-                    itemBuilder: (context,index){
-                      return  Container(
-                        margin: EdgeInsets.symmetric(vertical: 7, horizontal: 20),
-                        padding: EdgeInsets.symmetric(vertical: 13, horizontal: 5),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white.withOpacity(0.07)),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              AppImagese.profileImage,
-                              width: 43,
-                              height: 43,
+                ),
+                SizedBox(height: getHeight(12)),
+                SizedBox(
+                  height: getHeight(600),
+                  width: double.infinity,
+                  child: PageView.builder(
+                    controller: _pageController,
+                    onPageChanged: (int index) {
+                      setState(() {
+                        _selectedIndex = index;
+                      });
+                    },
+                    itemCount: _data.length,
+                    itemBuilder: (context, pageIndex) {
+                      return ListView.builder(
+                        padding: EdgeInsets.zero,
+                        itemCount: _data[pageIndex].length,
+                        shrinkWrap: true,
+                        physics: ScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          return Container(
+                            margin:
+                                EdgeInsets.symmetric(vertical: getHeight(10)),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 13, horizontal: 5),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white.withOpacity(0.07),
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Row(
                               children: [
-                                Text(
-                                  'Burkina Faso',
-                                  style: GoogleFonts.nunito(
-                                      fontSize: 13, fontWeight: FontWeight.w500),
+                                Image.asset(
+                                  AppImagese.profileImage,
+                                  width: 43,
+                                  height: 43,
                                 ),
-                                Container(
-                                  width: getWidth(270),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        '5:20 pm ',
-                                        style: GoogleFonts.nunito(
-                                            color: Color(0xFFA6A6A6),
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w400),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      _data[pageIndex][index]['name'],
+                                      style: GoogleFonts.nunito(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w500,
                                       ),
-                                      Text(
-                                        '\$20.00',
-                                        style: GoogleFonts.nunito(
-                                            color: Color(0xFF3AD896),
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w400),
+                                    ),
+                                    Container(
+                                      width: getWidth(320),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            _data[pageIndex][index]['time'],
+                                            style: GoogleFonts.nunito(
+                                              color: Color(0xFFA6A6A6),
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                          Text(
+                                            '\$${_data[pageIndex][index]['amount'].toStringAsFixed(2)}',
+                                            style: GoogleFonts.nunito(
+                                              color: _selectedIndex == 2
+                                                  ? Color(
+                                                      0xFFFF0000) // Red for Withdrawn
+                                                  : Color(0xFF3AD896)
+                                              , // White for Income
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                ),
+                                    ),
+                                  ],
+                                )
                               ],
-                            )
-                          ],
-                        ),
+                            ),
+                          );
+                        },
                       );
                     },
-                    // separatorBuilder: (BuildContext context, int index) {
-                    //   return SizedBox(
-                    //     height: getHeight(10),
-                    //   );
-                    // },
-
                   ),
-
-                ],
-              ))
+                ),
+              ],
+            ),
+          )
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
@@ -536,6 +530,38 @@ class _EarningsDetailsBreakdownScreenState
         onTap: (index) {
           //Handle button tap
         },
+      ),
+    );
+  }
+
+  Widget _buildToggleButton(String text, int index) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedIndex = index;
+          _pageController.animateToPage(index,
+              duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+        });
+      },
+      child: Container(
+        alignment: Alignment.center,
+        height: getHeight(35),
+        width: getWidth(index == 0 ? 84 : 108),
+        decoration: BoxDecoration(
+          color: _selectedIndex == index
+              ? Color(0xFF4E9376)
+              : Colors.white.withOpacity(0.11),
+          borderRadius: BorderRadius.all(Radius.circular(getWidth(41))),
+        ),
+        child: Text(
+          text,
+          style: GoogleFonts.inter(
+            fontWeight: FontWeight.w400,
+            fontSize: getWidth(15),
+            height: getHeight(20) / getHeight(15),
+          ),
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }

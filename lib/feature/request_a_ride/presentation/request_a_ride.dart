@@ -5,9 +5,9 @@ import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/pickup_and_drop_input_tile.dart';
 import 'package:rydleap/feature/contact/presentation/contact.dart';
-
 import '../../../core/global_widgets/ride_type_tile_with_image.dart';
 import '../../schedule_your_ride/presentation/schedule_your_ride.dart';
+
 
 class RequestARide extends StatefulWidget {
   @override
@@ -80,14 +80,18 @@ class _RequestARideState extends State<RequestARide>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Column(
               children: [
                 PickupAndDropInputTile(
                   backGroundColor: Colors.black,
-                  width: 90.w, hintTextPickup: 'Pickup location', hintTextDestination: 'Enter Dropoff', readOnly: false,
+                  width: 90.w,
+                  hintTextPickup: 'Pickup location',
+                  hintTextDestination: 'Enter Dropoff',
+                  readOnly: false,
                 ),
-
                 TabBar(
                   indicatorColor: Colors.amberAccent,
                   unselectedLabelColor: Colors.white,
@@ -98,16 +102,15 @@ class _RequestARideState extends State<RequestARide>
                     Tab(text: 'Premium'),
                     Tab(text: 'Shared'),
                     InkWell(
-                      onTap: (){
-
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => ScheduleYourRide()));
-                      },
-                        child: Icon(Icons.calendar_today_outlined)
-                    )
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => ScheduleYourRide()));
+                        },
+                        child: Icon(Icons.calendar_today_outlined))
                   ],
                 ),
-
                 Container(
                   width: screenWidth(),
                   height: 260,
@@ -121,43 +124,38 @@ class _RequestARideState extends State<RequestARide>
                         subtitle: '\$10-15',
                         time: '5 mins away',
                         backgroundColor: Colors.black,
-                        textColor: Colors.white, image: 'assets/icons/economy_icon.png',
+                        textColor: Colors.white,
+                        image: 'assets/icons/economy_icon.png',
                       ),
                       RideTypeTileWithImage(
                         title: 'Premium',
                         subtitle: '\$15-20',
                         time: '3 mins away',
                         backgroundColor: Colors.white,
-                        textColor: Colors.black, image: 'assets/icons/premium_icon.png',
+                        textColor: Colors.black,
+                        image: 'assets/icons/premium_icon.png',
                       ),
                       RideTypeTileWithImage(
                         title: 'Shared',
                         subtitle: '\$05-10',
                         time: '10 mins away',
                         backgroundColor: Colors.green.shade500,
-                        textColor: Colors.amber, image: 'assets/icons/economy_icon.png',
+                        textColor: Colors.amber,
+                        image: 'assets/icons/economy_icon.png',
                       ),
                     ],
                   ),
                 ),
-
-
-
-
               ],
             ),
-
-
 
             Container(
               margin: EdgeInsets.symmetric(vertical: 20),
               child: CustomGradientButton(
                 text: 'Ride Request',
                 onTap: () {
-
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => Contact()));
-
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => Contact()));
                 },
                 width: getWidth(335),
                 icon: Icons.directions_car,
@@ -171,8 +169,6 @@ class _RequestARideState extends State<RequestARide>
             //   width: getWidth(335),
             //   colorList: [Color(0xff9B9B9B),Color(0xff9B9B9B),],
             // ),
-
-
 
             // Container(
             //   height: 50.h,
