@@ -32,121 +32,123 @@ class _RatingsScreenState extends State<RatingsScreen> {
       body: Custombackground(
         widget: SizedBox(),
         bottomContainerHeight: screenHeight() * 0.55,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: getHeight(8),
-            ),
-            Container(
-              width: getWidth(48),
-              height: 5,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                  color: Color(0xffAFAFAF)),
-            ),
-            SizedBox(
-              height: getHeight(17),
-            ),
-            Column(
-              children: [
-                Image.asset(AppImagese.appLogo),
-                Text(
-                  "USDT 08",
-                  style: GoogleFonts.nunito(
-                      fontWeight: FontWeight.w700, fontSize: getWidth(23)),
-                )
-              ],
-            ),
-            SizedBox(
-              height: getHeight(30),
-            ),
-            Container(
-              // height: getHeight(238),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  color: Color(0xff001B26),
-                  borderRadius: BorderRadius.circular(9),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.white.withOpacity(0.2),
-                        offset: Offset(0, 1),
-                        blurRadius: 10,
-                        spreadRadius: 1)
-                  ]),
-              child: Column(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: getHeight(8),
+              ),
+              Container(
+                width: getWidth(48),
+                height: 5,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: Color(0xffAFAFAF)),
+              ),
+              SizedBox(
+                height: getHeight(17),
+              ),
+              Column(
                 children: [
-                  SizedBox(
-                    height: getHeight(24),
-                  ),
-                  Image.asset(AppImagese.profileImage),
+                  Image.asset(AppImagese.appLogo),
                   Text(
-                    "Rate your Driver",
+                    "USDT 08",
                     style: GoogleFonts.nunito(
-                        fontWeight: FontWeight.w500, fontSize: getWidth(18)),
-                  ),
-                  Text(
-                    "Rate your Driver",
-                    style: GoogleFonts.nunito(
-                        color: Color(0xffD0CACA),
-                        fontWeight: FontWeight.w400,
-                        fontSize: getWidth(14)),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(5, (index) {
-                      return InkWell(
-                        onTap: () {
-                          setState(() {
-                            _currentRating = index + 1;
-                          });
-                        },
-                        child: Icon(
-                          Icons.star,
-                          color: index < _currentRating
-                              ? Color(0xffFFC727)
-                              : Color(0xffAFAAAA),
-                          size: getWidth(30),
-                        ),
-                      );
-                    }),
-                  ),
-                  SizedBox(
-                    height: getHeight(20),
-                  ),
-                  InkWell(
-                    onTap: (){
-                      // _customBottomSheet(context);
-                      customBottomSheet(context, 
-                      "Thank you!",
-                       
-                      AppImagese.like,
-                      "",
-                      getWidth(35),
-                      0
-                      );
-                    },
-                    child: Container(
-                      height: getHeight(40),
-                      width: getWidth(104),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(88),
-                          color: Color(0xff3AD896)),
-                      child: Center(
-                        child: Text(
-                          "Done",
-                          style: GoogleFonts.inter(
-                              fontSize: getWidth(14),
-                              fontWeight: FontWeight.w400),
+                        fontWeight: FontWeight.w700, fontSize: getWidth(23)),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: getHeight(30),
+              ),
+              Container(
+                // height: getHeight(238),
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Color(0xff001B26),
+                    borderRadius: BorderRadius.circular(9),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.white.withOpacity(0.2),
+                          offset: Offset(0, 1),
+                          blurRadius: 10,
+                          spreadRadius: 1)
+                    ]),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: getHeight(24),
+                    ),
+                    Image.asset(AppImagese.profileImage),
+                    Text(
+                      "Rate your Driver",
+                      style: GoogleFonts.nunito(
+                          fontWeight: FontWeight.w500, fontSize: getWidth(18)),
+                    ),
+                    Text(
+                      "Rate your Driver",
+                      style: GoogleFonts.nunito(
+                          color: Color(0xffD0CACA),
+                          fontWeight: FontWeight.w400,
+                          fontSize: getWidth(14)),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(5, (index) {
+                        return InkWell(
+                          onTap: () {
+                            setState(() {
+                              _currentRating = index + 1;
+                            });
+                          },
+                          child: Icon(
+                            Icons.star,
+                            color: index < _currentRating
+                                ? Color(0xffFFC727)
+                                : Color(0xffAFAAAA),
+                            size: getWidth(30),
+                          ),
+                        );
+                      }),
+                    ),
+                    SizedBox(
+                      height: getHeight(20),
+                    ),
+                    InkWell(
+                      onTap: (){
+                        // _customBottomSheet(context);
+                        customBottomSheet(context,
+                        "Thank you!",
+
+                        AppImagese.like,
+                        "",
+                        getWidth(35),
+                        0
+                        );
+                      },
+                      child: Container(
+                        height: getHeight(40),
+                        width: getWidth(104),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(88),
+                            color: Color(0xff3AD896)),
+                        child: Center(
+                          child: Text(
+                            "Done",
+                            style: GoogleFonts.inter(
+                                fontSize: getWidth(14),
+                                fontWeight: FontWeight.w400),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                   SizedBox(height: getHeight(20),)
-                ],
+                     SizedBox(height: getHeight(20),)
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

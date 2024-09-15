@@ -13,7 +13,7 @@ class Contact extends StatelessWidget {
 //jdfgjdfgjsfdg
   double poslat = 0.00;
   double poslong = 0.00;
-  LatLng currentpos = LatLng(23.7547124, 90.3630302);
+  LatLng currentpos = LatLng(31.119318, -99.245435);
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +131,14 @@ class Contact extends StatelessWidget {
                           EdgeInsets.symmetric(horizontal: 20, vertical: 16),
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey.shade300),
-                          borderRadius: BorderRadius.circular(10)),
+                          borderRadius: BorderRadius.circular(10),
+                        gradient: LinearGradient(
+                          colors: [
+                            const Color(0xFF001B26),
+                            const Color(0xFF00638C),
+                          ],),
+
+                      ),
                       child: Column(
                         children: [
                           Container(

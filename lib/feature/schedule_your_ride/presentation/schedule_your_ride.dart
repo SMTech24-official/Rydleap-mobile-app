@@ -81,6 +81,7 @@ class _ScheduleYourRideState extends State<ScheduleYourRide>
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff001B26),
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -172,7 +173,7 @@ class _ScheduleYourRideState extends State<ScheduleYourRide>
                   margin: EdgeInsets.symmetric(horizontal: 16,vertical: 10),
                   width: screenWidth(),
                   height: 50,
-                  child: Text('00:00',style: GoogleFonts.nunito(
+                  child: Text('20/02/2024',style: GoogleFonts.nunito(
 
                       fontSize: 15,
                       fontWeight: FontWeight.w400
@@ -189,6 +190,9 @@ class _ScheduleYourRideState extends State<ScheduleYourRide>
             ),
 
             TabBar(
+              indicatorColor: Colors.amberAccent,
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.white,
               controller: _tabController,
               tabs: [
                 Tab(text: 'Economy'),

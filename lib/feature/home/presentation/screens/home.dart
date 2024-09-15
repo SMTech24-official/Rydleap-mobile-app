@@ -18,13 +18,13 @@ class Home extends StatefulWidget {
   Home({super.key});
 
   static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
+    target: LatLng(31.119318, -99.245435),
     zoom: 14.4746,
   );
 
   static const CameraPosition _kLake = CameraPosition(
       bearing: 192.8334901395799,
-      target: LatLng(37.43296265331129, -122.08832357078792),
+      target: LatLng(31.119318, -99.245435),
       tilt: 59.440717697143555,
       zoom: 19.151926040649414);
 
@@ -38,12 +38,13 @@ class _HomeState extends State<Home> {
 
   double poslat = 0.00;
   double poslong = 0.00;
-  LatLng currentpos = LatLng(23.7547124, 90.3630302);
+  LatLng currentpos = LatLng(31.119318, -99.245435);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff001B26),
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -282,6 +283,10 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
+
+
+
+
           Positioned(
               top: 21,
               right: 18,
@@ -326,8 +331,10 @@ class _HomeState extends State<Home> {
           ),
           InkWell(
             onTap: () {
+
               Navigator.push(
                   context, MaterialPageRoute(builder: (_) => ProfileScreen()));
+
             },
             child: Icon(
               Icons.person_2_outlined,

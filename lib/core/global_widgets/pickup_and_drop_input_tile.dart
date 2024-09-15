@@ -44,8 +44,9 @@ class PickupAndDropInputTile extends StatelessWidget{
               children: [
                 CustomCircle(radious: 7, color: Colors.amber, backgroundColor: backGroundColor,),
 
+                SizedBox(height: 15,),
                 Icon(Icons.more_vert),
-
+                SizedBox(height: 17,),
                 // for(int i=0;i<4;i++)
                 //   CircleAvatar(radius: 2,backgroundColor: Colors.black,),
 
@@ -55,7 +56,7 @@ class PickupAndDropInputTile extends StatelessWidget{
             Container(
 
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
@@ -74,6 +75,10 @@ class PickupAndDropInputTile extends StatelessWidget{
                       ),
                     ),
                   ),
+
+
+
+
                   Container(
                     height: 40,
                     child: Row(
@@ -91,11 +96,15 @@ class PickupAndDropInputTile extends StatelessWidget{
                   Container(
                     height: 11.h / 2,
                     width: 70.w,
-                    padding: EdgeInsets.fromLTRB(10, 0, 20, 10),
+                    alignment: Alignment.topLeft,
+                    padding: EdgeInsets.fromLTRB(10, 0, 20, 20),
                     child: TextFormField(
+
                       readOnly: readOnly,
                       style: TextStyle(color: Colors.grey, fontSize: 14),
                       decoration: InputDecoration(
+                        isCollapsed: true,
+                        isDense: true,
                         hintText: hintTextDestination,
                         hintStyle: TextStyle(fontSize: 14),
                         enabledBorder: InputBorder.none,

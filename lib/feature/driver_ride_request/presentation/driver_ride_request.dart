@@ -3,9 +3,10 @@
 
 
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rydleap/core/utility/app_colors.dart';
 
 import '../../../core/app_sizes.dart';
 import '../../driver_contact_rider/presentation/driver_contact_rider.dart';
@@ -16,6 +17,7 @@ class DriverRideRequest extends StatelessWidget{
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.navy_blue,
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,6 +48,7 @@ class DriverRideRequest extends StatelessWidget{
       body: Column(
         children: [
 
+          SizedBox(height: 25,),
 
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
@@ -56,7 +59,13 @@ class DriverRideRequest extends StatelessWidget{
               border: Border.all(
                 width: 1,
                 color: Colors.white,
-              )
+              ),
+
+              gradient: LinearGradient(
+                colors: [
+                  const Color(0xFF001B26),
+                  const Color(0xFF00638C),
+                ],),
 
             ),
             child: Column(

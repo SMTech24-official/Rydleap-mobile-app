@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/notification_tile.dart';
 import 'package:rydleap/feature/driver_ride_request/presentation/driver_ride_request.dart';
 import 'package:rydleap/feature/profile/screen/profile_screen.dart';
 
@@ -20,6 +21,7 @@ class DriverDashboard extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: AppColors.navy_blue,
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,6 +57,10 @@ class DriverDashboard extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+
+            SizedBox(height: 31,),
+
+
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -143,11 +149,17 @@ class DriverDashboard extends StatelessWidget {
                 final snackbar = AnimatedSnackBar(
                   builder: ((context) {
                     return Container(
-                      width: screenWidth()-10,
+                      width: screenWidth(),
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.black),
+                          color: Colors.black,
+                        gradient: LinearGradient(
+                          colors: [
+                            const Color(0xFF001B26),
+                            const Color(0xFF00638C),
+                          ],),
+                      ),
                       height: 110,
                       child: Column(
                         children: [
@@ -162,6 +174,9 @@ class DriverDashboard extends StatelessWidget {
                                   child: Text("Details")),
                             ],
                           ),
+
+
+
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -178,7 +193,7 @@ class DriverDashboard extends StatelessWidget {
                                   ),
                                   Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Burkina Faso',
@@ -219,35 +234,32 @@ class DriverDashboard extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              Row(
-                                //mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Center(
-                                    child: IconButton(
-                                      onPressed: () {
 
-                                      },
-                                      icon: Icon(
-                                        Icons.cancel,
-                                        size: getWidth(30),
-                                        color: Colors.grey.shade300,
-                                      ),
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                                children: [
+                                  Icon(
+                                    Icons.cancel,
+                                    size: getWidth(46),
+                                    color: Colors.grey.shade300,
+                                  ),
+
+                                  InkWell(
+                                    onTap: (){
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (_) => DriverRideRequest()));
+                                      AnimatedSnackBar.removeAll();
+                                    },
+                                    child: Icon(
+                                      Icons.check_circle,
+                                      size: getWidth(46),
+                                      color: Color(0xff3AD896),
                                     ),
                                   ),
-                                  IconButton(
-                                      onPressed: () {
 
 
-                                        Navigator.push(context,
-                                            MaterialPageRoute(builder: (_) => DriverRideRequest()));
-                                        AnimatedSnackBar.removeAll();
-
-                                      },
-                                      icon: Icon(
-                                        Icons.check_circle,
-                                        size: getWidth(33),
-                                        color: Color(0xff3AD896),
-                                      )),
                                 ],
                               )
                             ],
@@ -304,37 +316,7 @@ class DriverDashboard extends StatelessWidget {
                 itemCount: 4,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return Container(
-                    margin: EdgeInsets.symmetric(vertical: 7, horizontal: 20),
-                    padding: EdgeInsets.symmetric(vertical: 13, horizontal: 5),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.white.withOpacity(0.3)),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          AppImagese.profileImage,
-                          width: 43,
-                          height: 43,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Congratulations!',
-                              style: GoogleFonts.nunito(
-                                  fontSize: 13, fontWeight: FontWeight.w500),
-                            ),
-                            Text(
-                              'You got 5 star from Burkina Faso 1min',
-                              style: GoogleFonts.nunito(
-                                  fontSize: 13, fontWeight: FontWeight.w500),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  );
+                  return NotificationTile();
                 })
           ],
         ),
@@ -364,6 +346,7 @@ class DriverDashboard extends StatelessWidget {
                   // width: 32,
                   // height: 22,
                   child: Obx(() => Switch(
+
                         // This bool value toggles the switch.
                         value: light.value,
                         thumbColor:
@@ -377,6 +360,21 @@ class DriverDashboard extends StatelessWidget {
                           // });
                         },
                       )),
+
+                    // This bool value toggles the switch.
+                    value: light.value,
+                    thumbColor:
+                    const MaterialStatePropertyAll<Color>(Colors.black),
+                    trackColor: WidgetStatePropertyAll(Colors.white),
+                    activeColor: Colors.white,
+                    onChanged: (bool value) {
+                      // This is called when the user toggles the switch.
+                      // setState(() {
+                      light.value != value;
+                      // });
+                    },
+                  )),
+
                 ),
                 Text(
                   'Online',

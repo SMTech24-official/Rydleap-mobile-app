@@ -17,13 +17,14 @@ import '../../../core/utility/app_colors.dart';
 class DriverTracking extends StatelessWidget{
   double poslat = 0.00;
   double poslong = 0.00;
-  LatLng currentpos = LatLng(23.7547124, 90.3630302);
+  LatLng currentpos = LatLng(31.119318, -99.245435);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
 
       appBar: AppBar(
+        backgroundColor: AppColors.navy_blue,
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

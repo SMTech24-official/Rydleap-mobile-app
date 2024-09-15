@@ -22,6 +22,7 @@ class DriverContactRider extends StatelessWidget{
 
 
       appBar: AppBar(
+        backgroundColor: Color(0xff001B26),
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,7 +60,12 @@ class DriverContactRider extends StatelessWidget{
             padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(width: 1,color: Colors.white)
+              border: Border.all(width: 1,color: Colors.white),
+                gradient: LinearGradient(
+                  colors: [
+                    const Color(0xFF001B26),
+                    const Color(0xFF00638C),
+                  ],),
             ),
             child: Column(
               children: [
@@ -117,7 +123,7 @@ class DriverContactRider extends StatelessWidget{
 
                     Container(
                       alignment: Alignment.center,
-                      width: 96,
+                      width: getWidth(96),
                       height: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
@@ -126,7 +132,8 @@ class DriverContactRider extends StatelessWidget{
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.call,color: Colors.green,),
+                          Icon(Icons.call,color: Colors.green,size: 15,),
+                          SizedBox(width: getWidth(8),),
                           Text('Call',style: GoogleFonts.nunito(
                               fontSize: 15,
                               fontWeight: FontWeight.w400,
@@ -146,7 +153,7 @@ class DriverContactRider extends StatelessWidget{
                       },
                       child: Container(
                         alignment: Alignment.center,
-                        width: 96,
+                        width: getWidth(96),
                         height: 40,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
@@ -170,7 +177,8 @@ class DriverContactRider extends StatelessWidget{
 
                     Container(
                       alignment: Alignment.center,
-                      width: 96,
+                      width: getWidth(105),
+                      padding: EdgeInsets.symmetric(horizontal: 4,vertical: 10),
                       height: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
@@ -179,7 +187,7 @@ class DriverContactRider extends StatelessWidget{
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.close,color: Colors.green,),
+                          Icon(Icons.close,color: Colors.green,size: 15,),
                           Text('Cancel',style: GoogleFonts.nunito(
                               fontSize: 15,
                               fontWeight: FontWeight.w400,
