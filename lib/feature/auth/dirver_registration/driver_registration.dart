@@ -8,7 +8,6 @@ import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/dirver_registration/components/driver_licence.dart';
 import 'package:rydleap/feature/auth/dirver_registration/components/driver_textfield.dart';
-import 'package:rydleap/feature/profile/widgets/balance/components/custom_account_textfield.dart';
 
 class DriverRegistrationScreen extends StatefulWidget {
   const DriverRegistrationScreen({super.key});

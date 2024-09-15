@@ -10,7 +10,6 @@ import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 
 import 'package:rydleap/feature/auth/presentaion/screens/otp_screen.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
-import 'package:rydleap/nav_page.dart';
 
 import '../../../../core/global_widgets/custom_gradient_button.dart';
 

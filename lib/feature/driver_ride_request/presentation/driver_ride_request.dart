@@ -227,7 +227,7 @@ class DriverRideRequest extends StatelessWidget{
                     // This bool value toggles the switch.
                     value: true,//light.value,
                     thumbColor:
-                    const MaterialStatePropertyAll<Color>(Colors.black),
+                    const WidgetStatePropertyAll<Color>(Colors.black),
                     trackColor: WidgetStatePropertyAll(Colors.white),
                     activeColor: Colors.white,
                     onChanged: (bool value) {
