@@ -346,21 +346,6 @@ class DriverDashboard extends StatelessWidget {
                   // width: 32,
                   // height: 22,
                   child: Obx(() => Switch(
-
-                        // This bool value toggles the switch.
-                        value: light.value,
-                        thumbColor:
-                            const WidgetStatePropertyAll<Color>(Colors.black),
-                        trackColor: WidgetStatePropertyAll(Colors.white),
-                        activeColor: Colors.white,
-                        onChanged: (bool value) {
-                          // This is called when the user toggles the switch.
-                          // setState(() {
-                          light.value != value;
-                          // });
-                        },
-                      )),
-
                     // This bool value toggles the switch.
                     value: light.value,
                     thumbColor:
@@ -374,7 +359,6 @@ class DriverDashboard extends StatelessWidget {
                       // });
                     },
                   )),
-
                 ),
                 Text(
                   'Online',
