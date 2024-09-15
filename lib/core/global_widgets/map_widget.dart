@@ -4,7 +4,6 @@
 
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapWidget extends StatelessWidget{
