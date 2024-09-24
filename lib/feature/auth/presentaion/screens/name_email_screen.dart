@@ -206,8 +206,8 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
 
   @override
   void dispose() {
-    _nameController.clear();
-    _emailController.clear();
+    _nameController.dispose();
+    _emailController.dispose();
     super.dispose();
   }
 }

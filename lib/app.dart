@@ -8,6 +8,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/language_string.dart';
 import 'package:rydleap/core/shared/screen/splashScreen.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 
@@ -20,6 +21,9 @@ class Rydleap extends StatelessWidget {
     return FlutterSizer(builder: (context, orientation, screenType) {
       return GetMaterialApp(
         debugShowCheckedModeBanner: false,
+        locale: Locale("en", "US"),
+        fallbackLocale: Locale("en", "US"),
+        translations: LocalString(),
         home: SplashScreen(),
         // theme: lightThemeData(),
         theme: _darkThemeData(),
