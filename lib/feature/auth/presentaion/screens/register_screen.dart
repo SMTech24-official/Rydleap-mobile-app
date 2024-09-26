@@ -11,6 +11,7 @@ import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/components/or_sign_in_with.dart';
 import 'package:rydleap/feature/auth/dirver_registration/driver_registration.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/name_email_screen.dart';
+import 'package:rydleap/feature/auth/presentaion/screens/otp_screen.dart';
 import 'package:rydleap/feature/driver_dashboard/presentation/driver_dashboard.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
 import 'package:rydleap/feature/profile/screen/profile_screen.dart';
@@ -83,7 +84,8 @@ class RegisterScreen extends StatelessWidget {
             SizedBox(height: getHeight(35),),
             CustomPhoneInput(),
             CustomGradientButton(text: "Get OTP", onTap: () {
-              Get.to(DriverRegistrationScreen());
+              // Get.to(DriverRegistrationScreen());
+              Get.to(OtpScreen());
             }),
             Container(
               width: getWidth(120),
