@@ -15,6 +15,7 @@ import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/home/home_controller.dart';
+import 'package:rydleap/feature/auth/login/controller/login_controller.dart';
 import 'package:rydleap/feature/profile/dummy_data/about_model.dart';
 import 'package:rydleap/feature/profile/screen/profile_settings.dart';
 
@@ -30,6 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   HomeController homeController=Get.find();
 
 
+  final LoginController _loginController = Get.find<LoginController>();
   File? _selectedImage;
 
   final ImagePicker _picker = ImagePicker();
@@ -228,6 +230,23 @@ Future<void> _pickImage(ImageSource source) async {
             style: GoogleFonts.inter(
                 fontSize: getWidth(20), fontWeight: FontWeight.w600),
           ),
+          actions: [
+            Obx(() {
+              if (_loginController.loading.value) {
+                // Show loading indicator
+                return Center(child: CircularProgressIndicator());
+              } else {
+                // Show the Confirm button if not loading
+                return  IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              _loginController.logout();
+            },
+          );
+              }
+            }),
+
+          ],
         ),
         body: Stack(
           children: [
@@ -320,16 +339,15 @@ Future<void> _pickImage(ImageSource source) async {
                     child: Column(
                       children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "${homeController.userDetail.value.data?.name} ",
+                              "Peace Unity",
                               style: GoogleFonts.nunito(
                                   fontSize: getWidth(18),
                                   fontWeight: FontWeight.w500),
                             ),
                             Text(
-                              "(4.7 ⭐)",
+                              "(4.7⭐)",
                               style: GoogleFonts.nunito(
                                   color: AppColors.textYellow,
                                   fontSize: getWidth(12),
@@ -338,14 +356,14 @@ Future<void> _pickImage(ImageSource source) async {
                           ],
                         ),
                         Text(
-                          "${homeController.userDetail.value.data?.phoneNumber}",
+                          "+123002765918",
                           style: GoogleFonts.nunito(
                               color: Color(0xffC3BBBB),
                               fontSize: getWidth(15),
                               fontWeight: FontWeight.w400),
                         ),
                         Text(
-                          "${homeController.userDetail.value.data?.email}",
+                          "@gmail.com",
                           style: GoogleFonts.nunito(
                               color: Color(0xffC3BBBB),
                               fontSize: getWidth(15),

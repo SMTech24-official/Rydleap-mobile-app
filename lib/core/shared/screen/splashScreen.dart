@@ -5,9 +5,12 @@ import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/share_pref/share_pref.dart';
 
 import 'package:rydleap/feature/auth/controller/auth_controller.dart';
+import 'package:rydleap/feature/auth/login/login_screen.dart';
 
 import 'package:rydleap/feature/auth/presentaion/screens/your_location.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
+import 'package:rydleap/feature/profile/screen/profile_screen.dart';
+import 'package:rydleap/feature/profile_page/presentation/profile_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -23,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-            builder: (context) => isLoggedIn ? Home() : YourLocation()));
+            builder: (context) => isLoggedIn ? ProfileScreen() : LoginScreen()));
   }
 
   @override

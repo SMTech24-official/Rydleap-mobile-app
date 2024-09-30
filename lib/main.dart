@@ -23,6 +23,7 @@ void main() async {
   ]).then((_) {
     Get.put(OtpController());
     Get.put(RegistrationController());
+    Get.put(LoginController());
     runApp(const Rydleap());
   });
 }
