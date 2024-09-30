@@ -53,6 +53,8 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
+
+//Remember me method
   Widget _buildRememberMeCheckbox() {
     return Obx(() {
       return Row(
@@ -141,9 +143,9 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: _passwordController,
               hintext: "Password",
               suffixIcon: SizedBox(
-                height: getHeight(24),
-                width: getWidth(24),
-                child: Image.asset(AppIcons.checkOutline),
+                // height: getHeight(24),
+                // width: getWidth(24),
+                // child: Image.asset(AppIcons.checkOutline),
               ),
             ),
             SizedBox(height: getHeight(18)),
@@ -154,8 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 AppTextButton(
                   text: "Forgotten password?",
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => OtpScreen()));
+                   print("Forgot password");
                   },
                   fontWeight: FontWeight.w400,
                   textSize: getWidth(5),
