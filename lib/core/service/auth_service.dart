@@ -2,10 +2,18 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:rydleap/core/api_url.dart';
+import 'package:rydleap/core/share_pref/share_pref.dart';
+import 'package:rydleap/feature/auth/domain/model/login_model.dart';
+import 'package:rydleap/feature/auth/login/model/login_model.dart';
 import 'package:rydleap/feature/auth/otp/model/otp_response.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/registration/model/registration_response.dart';
+import 'package:rydleap/feature/auth/presentaion/screens/registration/register_screen.dart';
 
 class AuthService {
+
+  bool isLoading=false;
+
+
   Future<OtpResponse?> sendOtp(String phoneNumber) async {
     // final url = Uri.parse('https://rydleaps.vercel.app/api/v1/otp/send-otp');
     final url = Uri.parse(ApiUrl.otpUrl);
@@ -165,5 +173,33 @@ class AuthService {
   }
 
 
-
+ Future<LoginModel?> login(String email, String password) async {
+  // print('into the login fun');
+    try {
+      // print('into try fun');
+      final response = await http.post(
+        Uri.parse("https://rydleaps.vercel.app/api/v1/auth/login"),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: json.encode({
+          'email': email,
+          'password': password,
+        }),
+      );
+// print(response.body);
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> jsonResponse = json.decode(response.body);
+      return LoginModel.fromJson(jsonResponse);
+      } else {
+        // Log the error response
+        print('Login failed: ${response.statusCode} - ${response.body}');
+        return null; // Return null for unsuccessful login
+      }
+    } catch (e) {
+      // Handle error and print to console
+      print('Login Exception: ${e.toString()}');
+      return null; // Return null for error handling
+    }
+  }
 }

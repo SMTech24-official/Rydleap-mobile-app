@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:rydleap/app.dart';
+import 'package:rydleap/feature/auth/login/controller/login_controller.dart';
 import 'package:rydleap/feature/auth/otp/controller/otp_controller.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/registration/controller/registration_controller.dart';
 import 'package:rydleap/firebase_options.dart';
@@ -19,6 +20,7 @@ void main() async {
   ]).then((_) {
     Get.put(OtpController());
     Get.put(RegistrationController());
+    Get.put(LoginController());
     runApp(const Rydleap());
   });
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
+import 'package:rydleap/feature/auth/domain/model/login_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharePref {
@@ -32,7 +33,14 @@ static const String _selectedIndexKey = "selectedIndex";
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     return sharedPreferences.getString(_accessTokenKey);
   }
-
+// static Future<void> saveLoginResponse(LoginModel response) async {
+//     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+//     if (response.token != null) {
+//       await sharedPreferences.setString(_accessTokenKey, response.token!);
+//       accessToken = response.token!;
+//     }
+   
+//   }
   // Save user data
   // static Future<void> saveUser(UserModel user) async {
   //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
