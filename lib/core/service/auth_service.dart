@@ -93,7 +93,7 @@ class AuthService {
   Future<RegistrationResponse?> registerUser(
       RegistrationRequest request) async {
     final url = Uri.parse(
-        ApiUrl.registrationUrl); // Replace with your registration endpoint
+        ApiUrl.userRegistrationUrl); // Replace with your registration endpoint
     try {
       final bodyData = json.encode(request.toJson());
 
@@ -126,4 +126,44 @@ class AuthService {
       rethrow;
     }
   }
+
+  Future<RegistrationResponse?> registerDriver(
+      RegistrationRequest request) async {
+    final url = Uri.parse(
+        ApiUrl.driverRegistrationUrl); // Replace with your registration endpoint
+    try {
+      final bodyData = json.encode(request.toJson());
+
+      print('Sending registration request with body: $bodyData');
+
+      final response = await http.post(
+        url,
+        body: bodyData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      );
+
+      print('Status code: ${response.statusCode}');
+      print('Headers: ${response.headers}');
+      print('Response body: ${response.body}');
+
+      if (response.statusCode == 200) {
+        final jsonResponse = json.decode(response.body);
+        print("Registration successful");
+
+        return RegistrationResponse.fromJson(jsonResponse);
+      } else {
+        print('Error response: ${response.body}');
+        throw Exception(
+            'Failed to register user, status code: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Exception caught: ${e.toString()}');
+      rethrow;
+    }
+  }
+
+
+
 }

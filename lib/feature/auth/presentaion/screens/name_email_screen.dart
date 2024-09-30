@@ -19,9 +19,9 @@ class NameEmailScreen extends StatefulWidget {
 }
 
 class _NameEmailScreenState extends State<NameEmailScreen> {
-  TextEditingController _nameController = TextEditingController(text: "check5");
+  TextEditingController _nameController = TextEditingController(text: "checkDriver");
   TextEditingController _emailController =
-      TextEditingController(text: "check5@gmail.com");
+      TextEditingController(text: "checkdriver@gmail.com");
   bool isChecked = false;
   bool isFormValid = false;
 

@@ -6,6 +6,7 @@ import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
+import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/login_screen.dart';
 import 'package:rydleap/feature/auth/user_input/user_input_details.dart';
 
@@ -238,8 +239,66 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
               },
             ),
             Spacer(),
+            CustomGlobalVariable.userType == 'Driver'
+                ?isPasswordMatch && isPasswordStrong
+                ? 
+                CustomGradientButton(
+                    text: "Driver Continue",
+                    onTap: () async {
+                      // _passwordController.clear();
+                      // _confirmPasswordController.clear();
+
+                      if (_passwordController.text ==
+                          _confirmPasswordController.text) {
+                        // Set the password in user details
+                        widget.userInputDetails.password =
+                            _passwordController.text;
+                        print("User Input Details:");
+                        print("Name: ${widget.userInputDetails.name}");
+                        print("Email: ${widget.userInputDetails.email}");
+                        print(
+                            "Phone Number: ${widget.userInputDetails.phoneNumber}");
+                        print("Password: ${widget.userInputDetails.password}");
+                        // Call the register user method
+                        await registrationController.registerDriver(
+                          widget.userInputDetails.name,
+                          widget.userInputDetails.email,
+                          widget.userInputDetails.phoneNumber,
+                          widget.userInputDetails.password,
+                        );
+                        Get.offAll(()=>LoginScreen());
+                        Get.snackbar(
+                          "Success",
+                          "succeessfully registerd",
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: Colors.green,
+                          colorText: Colors.white,
+                        );
+                      } else {
+                        // Show a message if passwords do not match
+                        Get.snackbar(
+                          "Error",
+                          "Passwords do not match",
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: Colors.red,
+                          colorText: Colors.white,
+                        );
+                      }
+
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (_) => LoginScreen()));
+                    })
+                : CustomBlurButton(
+                    text: "Continue",
+                    // isPasswordMatch && isPasswordStrong
+                    //     ? () {
+                    //         // Navigate to the next page
+                    //       }
+                    //     : null, // Disable the button if conditions are not met
+                  ):
             isPasswordMatch && isPasswordStrong
-                ? CustomGradientButton(
+                ? 
+                CustomGradientButton(
                     text: "Continue",
                     onTap: () async {
                       // _passwordController.clear();

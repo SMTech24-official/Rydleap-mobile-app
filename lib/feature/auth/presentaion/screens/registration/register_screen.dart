@@ -13,6 +13,7 @@ import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/components/or_sign_in_with.dart';
 import 'package:rydleap/feature/auth/dirver_registration/driver_registration.dart';
 import 'package:rydleap/feature/auth/otp/controller/otp_controller.dart';
+import 'package:rydleap/feature/auth/presentaion/screens/login_screen.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/name_email_screen.dart';
 import 'package:rydleap/feature/auth/otp/otp_screen.dart';
 import 'package:rydleap/feature/driver_dashboard/presentation/driver_dashboard.dart';
@@ -158,52 +159,52 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       });
             }),
 
-            // Container(
-            //   width: getWidth(120),
-            //   height: 37,
-            //   child: Column(
-            //     children: [
-            //       Text(
-            //         "Privacy Policy",
-            //         style: TextStyle(
-            //           color: Color(0xffF9F9F9),
-            //           fontSize: getWidth(14),
-            //           fontWeight: FontWeight.w500,
-            //         ),
-            //       ),
-            //       Divider(color: Color(0xffF9F9F9)),
-            //     ],
-            //   ),
-            // ),
-            // OrSignInWith(),
-            // CustomGlassButton(
-            //     icon: AppIcons.googleIcon,
-            //     text: "Sign in with Google",
-            //     onTap: () {
-            //       Get.to(NameEmailScreen());
-            //     }),
-            // // GoogleLogin(),
-            // CustomGlassButton(
-            //     icon: AppIcons.appleIcon,
-            //     text: "Sign in with Apple",
-            //     onTap: () {
-            //       Get.to(ProfileScreen());
-            //     }),
-            // CustomGlassButton(
-            //     icon: AppIcons.facebookIcon,
-            //     text: "Sign in with Facebook",
-            //     onTap: () {
-            //       if (CustomGlobalVariable.userType == 'User') {
-            //         Navigator.push(
-            //             context, MaterialPageRoute(builder: (_) => Home()));
-            //       } else {
-            //         Navigator.push(context,
-            //             MaterialPageRoute(builder: (_) => DriverDashboard()));
-            //       }
-            //     }),
-            // SizedBox(
-            //   height: getHeight(20),
-            // )
+            Container(
+              width: getWidth(120),
+              height: 37,
+              child: Column(
+                children: [
+                  Text(
+                    "Privacy Policy",
+                    style: TextStyle(
+                      color: Color(0xffF9F9F9),
+                      fontSize: getWidth(14),
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Divider(color: Color(0xffF9F9F9)),
+                ],
+              ),
+            ),
+            OrSignInWith(),
+            CustomGlassButton(
+                icon: AppIcons.googleIcon,
+                text: "Sign in with Google",
+                onTap: () {
+                  Get.to(LoginScreen());
+                }),
+            // GoogleLogin(),
+            CustomGlassButton(
+                icon: AppIcons.appleIcon,
+                text: "Sign in with Apple",
+                onTap: () {
+                  Get.to(ProfileScreen());
+                }),
+            CustomGlassButton(
+                icon: AppIcons.facebookIcon,
+                text: "Sign in with Facebook",
+                onTap: () {
+                  if (CustomGlobalVariable.userType == 'User') {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => Home()));
+                  } else {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => DriverDashboard()));
+                  }
+                }),
+            SizedBox(
+              height: getHeight(20),
+            )
           ],
         ),
       ),
