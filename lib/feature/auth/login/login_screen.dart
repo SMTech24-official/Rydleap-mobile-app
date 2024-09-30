@@ -29,26 +29,26 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isChecked = false;
   bool isFormValid = false;
 
+  
   @override
   void initState() {
     super.initState();
     _loadSavedCredentials();
-    _passwordController.addListener(_validateForm);
     _emailController.addListener(_validateForm);
+    _passwordController.addListener(_validateForm);
   }
 
   Future<void> _loadSavedCredentials() async {
-    await _loginController.loadSavedCredentials();
+    final prefs = await SharedPreferences.getInstance();
     if (_loginController.isChecked.value) {
-      _emailController.text = await SharedPreferences.getInstance().then((prefs) => prefs.getString('saved_email') ?? '');
-      _passwordController.text = await SharedPreferences.getInstance().then((prefs) => prefs.getString('saved_password') ?? '');
+      _emailController.text = prefs.getString('saved_email') ?? '';
+      _passwordController.text = prefs.getString('saved_password') ?? '';
     }
   }
 
   void _validateForm() {
     setState(() {
-      isFormValid = _emailController.text.isNotEmpty &&
-                    _passwordController.text.isNotEmpty;
+      isFormValid = _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
     });
   }
 
@@ -56,10 +56,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return Obx(() {
       return Row(
         children: [
-          InkWell(
-            onTap: () {
-              _loginController.toggle();
-            },
+          GestureDetector(
+            onTap: () => _loginController.toggle(),
             child: Container(
               height: getWidth(12),
               width: getWidth(12),
@@ -68,21 +66,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 border: Border.all(
                     color: _loginController.isChecked.value
                         ? Colors.white
-                        : Color(0xff9B9A9A)),
+                        : const Color(0xff9B9A9A)),
                 color: _loginController.isChecked.value
-                    ? Color(0xff0000FF)
+                    ? const Color(0xff0000FF)
                     : Colors.transparent,
               ),
               child: _loginController.isChecked.value
-                  ? Icon(
+                  ? const Icon(
                       Icons.check,
                       color: Colors.white,
-                      size: getWidth(10),
+                      size: 10,
                     )
-                  : SizedBox(),
+                  : const SizedBox(),
             ),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Text(
             "Remember me",
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
