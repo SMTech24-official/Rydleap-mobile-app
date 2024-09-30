@@ -13,8 +13,12 @@ import 'package:rydleap/core/global_widgets/map_widget.dart';
 
 import '../../../core/app_imagese.dart';
 import '../../heading_to_rider/presentation/heading_to_rider.dart';
+import '../../home/map_controller.dart';
 
 class DriverContactRider extends StatelessWidget{
+
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -51,6 +55,8 @@ class DriverContactRider extends StatelessWidget{
 
       body:  Column(
         children: [
+
+
           MapWidget(height: screenHeight()/2, width: screenWidth()),
 
 
