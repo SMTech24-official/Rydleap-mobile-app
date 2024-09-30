@@ -7,11 +7,11 @@ import 'package:rydleap/core/global_widgets/app_text_button.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
+import 'package:rydleap/core/share_pref/share_pref.dart';
 import 'package:rydleap/feature/auth/login/controller/login_controller.dart';
-
 import 'package:rydleap/feature/auth/otp/otp_screen.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/global_widgets/custom_gradient_button.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -24,16 +24,25 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final LoginController _loginController = Get.put(LoginController());
 
-  TextEditingController _emailController = TextEditingController(text: "checkdriver@gmail.com");
-  TextEditingController _passwordController = TextEditingController(text: "@Parvej123");
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
   bool isChecked = false;
   bool isFormValid = false;
 
   @override
   void initState() {
     super.initState();
+    _loadSavedCredentials();
     _passwordController.addListener(_validateForm);
     _emailController.addListener(_validateForm);
+  }
+
+  Future<void> _loadSavedCredentials() async {
+    await _loginController.loadSavedCredentials();
+    if (_loginController.isChecked.value) {
+      _emailController.text = await SharedPreferences.getInstance().then((prefs) => prefs.getString('saved_email') ?? '');
+      _passwordController.text = await SharedPreferences.getInstance().then((prefs) => prefs.getString('saved_password') ?? '');
+    }
   }
 
   void _validateForm() {
@@ -43,6 +52,48 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
+  Widget _buildRememberMeCheckbox() {
+    return Obx(() {
+      return Row(
+        children: [
+          InkWell(
+            onTap: () {
+              _loginController.toggle();
+            },
+            child: Container(
+              height: getWidth(12),
+              width: getWidth(12),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(1),
+                border: Border.all(
+                    color: _loginController.isChecked.value
+                        ? Colors.white
+                        : Color(0xff9B9A9A)),
+                color: _loginController.isChecked.value
+                    ? Color(0xff0000FF)
+                    : Colors.transparent,
+              ),
+              child: _loginController.isChecked.value
+                  ? Icon(
+                      Icons.check,
+                      color: Colors.white,
+                      size: getWidth(10),
+                    )
+                  : SizedBox(),
+            ),
+          ),
+          SizedBox(width: 10),
+          Text(
+            "Remember me",
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: Theme.of(context).textTheme.bodySmall?.color,
+                  fontSize: getWidth(13),
+                ),
+          ),
+        ],
+      );
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,49 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          isChecked = !isChecked;
-                        });
-                      },
-                      child: Container(
-                        height: getWidth(12),
-                        width: getWidth(12),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(1),
-                          border: Border.all(
-                              color: isChecked
-                                  ? Colors.white
-                                  : Color(0xff9B9A9A)),
-                          color: isChecked
-                              ? Color(0xff0000FF)
-                              : Colors.transparent,
-                        ),
-                        child: isChecked
-                            ? Icon(
-                                Icons.check,
-                                color: Colors.white,
-                                size: getWidth(10),
-                              )
-                            : SizedBox(),
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Text(
-                      "Remember me",
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Theme.of(context)
-                                .textTheme
-                                .bodySmall
-                                ?.color,
-                            fontSize: getWidth(13),
-                          ),
-                    ),
-                  ],
-                ),
+                _buildRememberMeCheckbox(), // Use the custom checkbox method
                 AppTextButton(
                   text: "Forgotten password?",
                   onTap: () {
@@ -149,28 +158,20 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             SizedBox(height: getHeight(34)),
             Spacer(),
-            // isFormValid
-            //     ? CustomGradientButton(
-            //         text: "Confirm",
-            //         onTap: () {
-            //           _loginController.login(
-            //             _emailController.text,
-            //             _passwordController.text,
-            //           );
-            //         },
-            //       )
-            //     : CustomBlurButton(text: "Confirm"),
             Obx(() {
               if (_loginController.loading.value) {
-                // Show loading indicator
                 return Center(child: CircularProgressIndicator());
               } else {
-                // Show the Confirm button if not loading
                 return isFormValid
                     ? CustomGradientButton(
                         text: "Confirm",
-                        onTap: () {
-                          _loginController.login(
+                        onTap: () async {
+                          await _loginController.login(
+                            _emailController.text,
+                            _passwordController.text,
+                          );
+                          await SharePref.saveRememberMe(
+                            isChecked,
                             _emailController.text,
                             _passwordController.text,
                           );

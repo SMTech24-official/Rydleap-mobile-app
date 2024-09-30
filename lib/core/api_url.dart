@@ -5,5 +5,5 @@ class ApiUrl {
   static const verifyOtpUrl = "$baseUrl/api/v1/otp/verify-otp";
   static const userRegistrationUrl = "$baseUrl/api/v1/users/create-customer";
   static const driverRegistrationUrl = "$baseUrl/api/v1/users/create-rider";
-  static const loginUrl = "$baseUrl/auth/login";
+  static const loginUrl = "$baseUrl/api/v1/auth/login";
 }

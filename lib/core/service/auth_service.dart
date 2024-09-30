@@ -178,7 +178,7 @@ class AuthService {
     try {
       // print('into try fun');
       final response = await http.post(
-        Uri.parse("https://rydleaps.vercel.app/api/v1/auth/login"),
+        Uri.parse(ApiUrl.loginUrl),
         headers: {
           'Content-Type': 'application/json',
         },
