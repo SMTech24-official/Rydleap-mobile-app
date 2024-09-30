@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 
 import 'package:rydleap/core/app_imagese.dart';
+import 'package:rydleap/core/share_pref/share_pref.dart';
 
 import 'package:rydleap/feature/auth/controller/auth_controller.dart';
 
@@ -18,7 +19,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   Future<void> _moveToNextScreen() async {
     await Future.delayed(const Duration(seconds: 4));
-    bool isLoggedIn = await AuthController.checkAuthState();
+    bool isLoggedIn = await SharePref.checkAuthState();
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(

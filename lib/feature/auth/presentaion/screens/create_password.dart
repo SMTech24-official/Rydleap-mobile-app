@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
@@ -6,19 +7,26 @@ import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/login_screen.dart';
+import 'package:rydleap/feature/auth/user_input/user_input_details.dart';
 
 import '../../../../core/global_widgets/custom_gradient_button.dart';
+import 'registration/controller/registration_controller.dart';
 
 class CreatePasswordScreen extends StatefulWidget {
-  const CreatePasswordScreen({super.key});
+  final UserInputDetails userInputDetails;
+  const CreatePasswordScreen({super.key, required this.userInputDetails});
 
   @override
   State<CreatePasswordScreen> createState() => _CreatePasswordScreenState();
 }
 
 class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
+  final RegistrationController registrationController =
+      Get.put(RegistrationController());
+  TextEditingController _passwordController =
+      TextEditingController(text: "@Parvej123");
+  TextEditingController _confirmPasswordController =
+      TextEditingController(text: "@Parvej123");
   bool checkPass = false;
 
   bool isConditionMet = false;
@@ -90,7 +98,9 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: getHeight(35),),
+            SizedBox(
+              height: getHeight(35),
+            ),
             Text(
               "Create your Password",
               style: Theme.of(context).textTheme.titleMedium,
@@ -231,11 +241,48 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
             isPasswordMatch && isPasswordStrong
                 ? CustomGradientButton(
                     text: "Continue",
-                    onTap: () {
-                      _passwordController.clear();
-                      _confirmPasswordController.clear();
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => LoginScreen()));
+                    onTap: () async {
+                      // _passwordController.clear();
+                      // _confirmPasswordController.clear();
+
+                      if (_passwordController.text ==
+                          _confirmPasswordController.text) {
+                        // Set the password in user details
+                        widget.userInputDetails.password =
+                            _passwordController.text;
+                        print("User Input Details:");
+                        print("Name: ${widget.userInputDetails.name}");
+                        print("Email: ${widget.userInputDetails.email}");
+                        print(
+                            "Phone Number: ${widget.userInputDetails.phoneNumber}");
+                        print("Password: ${widget.userInputDetails.password}");
+                        // Call the register user method
+                        await registrationController.registerUser(
+                          widget.userInputDetails.name,
+                          widget.userInputDetails.email,
+                          widget.userInputDetails.phoneNumber,
+                          widget.userInputDetails.password,
+                        );
+                        Get.snackbar(
+                          "Success",
+                          "succeessfully registerd",
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: Colors.green,
+                          colorText: Colors.white,
+                        );
+                      } else {
+                        // Show a message if passwords do not match
+                        // Get.snackbar(
+                        //   "Error",
+                        //   "Passwords do not match",
+                        //   snackPosition: SnackPosition.BOTTOM,
+                        //   backgroundColor: Colors.red,
+                        //   colorText: Colors.white,
+                        // );
+                      }
+
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (_) => LoginScreen()));
                     })
                 : CustomBlurButton(
                     text: "Continue",
