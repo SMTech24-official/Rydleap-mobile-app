@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
@@ -8,9 +9,11 @@ import 'package:rydleap/core/global_widgets/app_text_button.dart';
 import 'package:rydleap/core/global_widgets/custom_back_button.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
+import 'package:rydleap/feature/auth/otp/controller/otp_controller.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/change_password.dart';
+import 'package:rydleap/feature/auth/presentaion/screens/name_email_screen.dart';
 
-import '../../../../core/global_widgets/custom_gradient_button.dart';
+import '../../../core/global_widgets/custom_gradient_button.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key});
@@ -20,6 +23,7 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
+  final OtpController otpController = Get.put(OtpController());
   late Timer _timer;
   int _start = 119; // 1 minute 59 seconds
   String otpCode = ''; // Track OTP input
@@ -70,6 +74,7 @@ class _OtpScreenState extends State<OtpScreen> {
   }
 
   void onOtpCodeChanged(String code) {
+    otpController.otpCode.value = code;
     setState(() {
       otpCode = code;
       // Enable button when all 4 digits are entered
@@ -79,6 +84,19 @@ class _OtpScreenState extends State<OtpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Retrieve the arguments
+    final Map<String, dynamic>? arguments = Get.arguments;
+
+    // Check if arguments are not null
+    if (arguments == null || arguments['phoneNumber'] == null) {
+      return Center(
+        child: Text('No phone number provided'),
+      );
+    }
+
+    // Access the phone number
+    String phoneNumber = arguments['phoneNumber'];
+    print("Your set number is ${phoneNumber}");
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -121,13 +139,15 @@ class _OtpScreenState extends State<OtpScreen> {
                     borderWidth: 0.4,
                     borderRadius: BorderRadius.circular(2),
                     focusedBorderColor: Color(0xFFFFDD2D),
-                    numberOfFields: 4,
+                    numberOfFields: 6,
                     borderColor: Color(0xFFFFDD2D),
                     showFieldAsBox: true,
                     onCodeChanged: onOtpCodeChanged,
                     onSubmit: (String verificationCode) {
+                      otpController.otpCode.value = verificationCode;
                       setState(() {
-                        otpCode = verificationCode; // Ensure OTP is captured correctly
+                        otpCode =
+                            verificationCode; // Ensure OTP is captured correctly
                         _isButtonDisabled = verificationCode.length != 4;
                       });
                     }, // end onSubmit
@@ -142,7 +162,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   AppTextButton(
                     text: "Resend code",
                     onTap: () {
-                      resetTimer(); 
+                      resetTimer();
                     },
                   ),
                   SizedBox(
@@ -158,20 +178,63 @@ class _OtpScreenState extends State<OtpScreen> {
                   ),
                 ],
               ),
+
               Spacer(),
-              _isButtonDisabled
-                  ? CustomBlurButton(text: "Confirm")
-                  : CustomGradientButton(
-                      text: "Confirm",
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => ChangePasswordScreen(),
-                          ),
-                        );
-                      },
-                    ),
+              //  _isButtonDisabled
+              //     ? CustomBlurButton(text: "Confirm"):
+              Obx(() {
+                if (otpController.otpResponse.value.success) {
+                  return Text(
+                    "OTP sent: ${otpController.otpResponse.value.data?.body}",
+                    style: TextStyle(color: Colors.white),
+                  );
+                } else if (!otpController.otpResponse.value.success &&
+                    otpController.otpResponse.value.message.isNotEmpty) {
+                  return Text(
+                    "Error: ${otpController.otpResponse.value.message}",
+                    style: TextStyle(color: Colors.red),
+                  );
+                } else {
+                  return Container();
+                }
+              }),
+            
+              Obx(() {
+                return otpController.isLoading.value
+                    ? Center(child: CircularProgressIndicator())
+                    : CustomGradientButton(
+                        text: "Confirm",
+                        onTap: () async {
+                          if (otpController.otpCode.value.length == 6) {
+                            bool isValid = await otpController.verifyOtp(
+                                phoneNumber, otpController.otpCode.value);
+
+                            if (isValid) {
+                              _timer.cancel();
+                              // Navigate to NameEmailScreen if OTP is valid
+                              Get.to(NameEmailScreen(), arguments: {
+                                'phoneNumber': phoneNumber,
+                              });
+                            } else {
+                              // Show error if OTP is invalid
+                              print("Error Invalid OTP. Please try again.");
+                              Get.snackbar(
+                                  "Error", "Invalid OTP. Please try again.",
+                                  backgroundColor: Colors.red);
+                            }
+                          } else {
+                            Get.snackbar(
+                                "Error", "Please enter a valid 6-digit OTP.");
+                          }
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (_) => ChangePasswordScreen(),
+                          //   ),
+                          // );
+                        },
+                      );
+              }),
               SizedBox(
                 height: getHeight(20),
               )

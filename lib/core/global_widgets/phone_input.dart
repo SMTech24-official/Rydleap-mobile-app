@@ -3,7 +3,11 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:rydleap/core/app_sizes.dart';
 
 class CustomPhoneInput extends StatelessWidget {
-  const CustomPhoneInput({super.key});
+  const CustomPhoneInput({
+    super.key,
+    required this.controller
+    });
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +35,7 @@ class CustomPhoneInput extends StatelessWidget {
       ),
       padding: EdgeInsets.symmetric(horizontal: getWidth(16)),
       child: IntlPhoneField(
+        controller:controller ,
         textAlignVertical: TextAlignVertical.center,
         showCursor: true,
         decoration: InputDecoration(

@@ -4,6 +4,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/share_pref/share_pref.dart';
 import 'package:rydleap/feature/auth/controller/auth_controller.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/your_location.dart';
 
@@ -17,7 +18,8 @@ class LoadingAnimationScreen extends StatefulWidget {
 class _LoadingAnimationScreenState extends State<LoadingAnimationScreen> {
   Future<void> _moveToNextScreen() async {
     await Future.delayed(const Duration(seconds: 4));
-    bool isLoggedIn = await AuthController.checkAuthState();
+    // bool isLoggedIn = await AuthController.checkAuthState();
+    bool isLoggedIn = await SharePref.checkAuthState();
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => YourLocation()));
   }

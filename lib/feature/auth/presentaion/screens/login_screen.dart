@@ -8,7 +8,7 @@ import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 
-import 'package:rydleap/feature/auth/presentaion/screens/otp_screen.dart';
+import 'package:rydleap/feature/auth/otp/otp_screen.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
 
 import '../../../../core/global_widgets/custom_gradient_button.dart';

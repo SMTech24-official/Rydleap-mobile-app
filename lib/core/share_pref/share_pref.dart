@@ -59,16 +59,16 @@ static const String _selectedIndexKey = "selectedIndex";
   // }
 
   // Check if the user is authenticated
-  // static Future<bool> checkAuthState() async {
-  //   String? token = await getUserAccessToken();
-  //   if (token == null) {
-  //     return false;
-  //   } else {
-  //     accessToken = token;
-  //     userData = await getUserData();
-  //     return true;
-  //   }
-  // }
+  static Future<bool> checkAuthState() async {
+    String? token = await getUserAccessToken();
+    if (token == null) {
+      return false;
+    } else {
+      accessToken = token;
+      // userData = await getUserData();
+      return true;
+    }
+  }
 
   // Save selected language
   static Future<void> saveSelectedLanguage(Locale locale) async {
