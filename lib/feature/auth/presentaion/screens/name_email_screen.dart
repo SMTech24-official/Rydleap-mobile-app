@@ -8,6 +8,7 @@ import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/create_password.dart';
+import 'package:rydleap/feature/auth/user_input/user_input_details.dart';
 import '../../../../core/global_widgets/custom_gradient_button.dart';
 
 class NameEmailScreen extends StatefulWidget {
@@ -18,8 +19,9 @@ class NameEmailScreen extends StatefulWidget {
 }
 
 class _NameEmailScreenState extends State<NameEmailScreen> {
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
+  TextEditingController _nameController = TextEditingController(text: "checkDriver");
+  TextEditingController _emailController =
+      TextEditingController(text: "checkdriver@gmail.com");
   bool isChecked = false;
   bool isFormValid = false;
 
@@ -40,6 +42,15 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic>? arguments = Get.arguments;
+
+    // Check if arguments are not null
+    if (arguments == null || arguments['phoneNumber'] == null) {
+      return Center(
+        child: Text('No phone number provided'),
+      );
+    }
+    String phoneNumber = arguments['phoneNumber'];
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Custombackground(
@@ -58,7 +69,9 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: getHeight(35),),
+            SizedBox(
+              height: getHeight(35),
+            ),
             CustomTextfield(
               controller: _nameController,
               hintext: "Name",
@@ -162,7 +175,8 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
                   ),
                   Spacer(),
                   Padding(
-                    padding: EdgeInsets.only(right: getWidth(18), top: getHeight(10)),
+                    padding: EdgeInsets.only(
+                        right: getWidth(18), top: getHeight(10)),
                     child: Column(
                       children: [
                         Container(
@@ -185,16 +199,24 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
             ),
             Spacer(),
             // Confirm button
-           isFormValid
-                  ? CustomGradientButton(
-              text: "Confirm",
-              onTap:  () {
-                      Get.to(CreatePasswordScreen());
-                      
-                    }
-                  
-                    
-            ):CustomBlurButton(text: "Confirm"),
+            isFormValid
+                ? CustomGradientButton(
+                    text: "Confirm",
+                    onTap: () {
+                      final userInputDetails = UserInputDetails(
+                        phoneNumber: phoneNumber, // Set the phone number here
+                        name: _nameController.text.trim(),
+                        email: _emailController.text.trim(),
+                        password: '', // Password will be set on the next screen
+                        confirmPassword:
+                            '', // Confirm password will be set on the next screen
+                      );
+                      print("your phone number is ${phoneNumber}");
+                      Get.to(CreatePasswordScreen(
+                        userInputDetails: userInputDetails,
+                      ));
+                    })
+                : CustomBlurButton(text: "Confirm"),
             SizedBox(
               height: getHeight(20),
             ),
