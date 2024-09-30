@@ -7,7 +7,7 @@ import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
-import 'package:rydleap/feature/auth/presentaion/screens/login_screen.dart';
+import 'package:rydleap/feature/auth/login/login_screen.dart';
 import 'package:rydleap/feature/auth/user_input/user_input_details.dart';
 
 import '../../../../core/global_widgets/custom_gradient_button.dart';
