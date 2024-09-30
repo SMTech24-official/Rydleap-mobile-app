@@ -6,6 +6,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -13,11 +14,15 @@ import '../../../core/app_sizes.dart';
 import '../../../core/global_widgets/custom_gradient_button.dart';
 import '../../../core/global_widgets/pickup_and_drop_input_tile.dart';
 import '../../../core/utility/app_colors.dart';
+import '../../home/map_controller.dart';
 
 class DriverTracking extends StatelessWidget{
   double poslat = 0.00;
   double poslong = 0.00;
-  LatLng currentpos = LatLng(31.119318, -99.245435);
+  // LatLng currentpos = LatLng(31.119318, -99.245435);
+
+
+  MapController mapController = Get.find();
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -59,25 +64,27 @@ class DriverTracking extends StatelessWidget{
               height: 45.h,
               width: 100.w,
               margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-              child: GoogleMap(
+              child: Obx(()=>GoogleMap(
                 //initialCameraPosition: _kGoogle,
                 markers: {
                   Marker(
                     markerId: MarkerId("Source"),
-                    position: currentpos,
+                    position: mapController.currentpos.value,
                   ),
                 },
                 mapType: MapType.normal,
                 myLocationEnabled: true,
                 compassEnabled: true,
                 initialCameraPosition: CameraPosition(
-                  target: currentpos,
+                  target: mapController.currentpos.value,
                   zoom: 13,
                 ),
                 onMapCreated: (GoogleMapController controller) {
+
+                  mapController.getCurrentPos(controller);
                   //_controller.complete(controller);
                 },
-              ),
+              )),
             ),
             SizedBox(
               height: 16,

@@ -5,6 +5,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rydleap/core/app_sizes.dart';
@@ -14,36 +15,39 @@ import 'package:rydleap/core/utility/destination_tile.dart';
 
 import '../../../profile/screen/profile_screen.dart';
 import '../../../request_a_ride/presentation/request_a_ride.dart';
+import '../../map_controller.dart';
 
-class Home extends StatefulWidget {
-  Home({super.key});
+// class Home extends StatefulWidget {
+//   Home({super.key});
+//
+//   static const CameraPosition _kGooglePlex = CameraPosition(
+//     target: LatLng(31.119318, -99.245435),
+//     zoom: 14.4746,
+//   );
+//
+//   static const CameraPosition _kLake = CameraPosition(
+//       bearing: 192.8334901395799,
+//       target: LatLng(31.119318, -99.245435),
+//       tilt: 59.440717697143555,
+//       zoom: 19.151926040649414);
+//
+//   @override
+//   State<Home> createState() => _HomeState();
+// }
 
-  static const CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(31.119318, -99.245435),
-    zoom: 14.4746,
-  );
+class Home extends StatelessWidget {
+  // final Completer<GoogleMapController> _controller =
+  //     Completer<GoogleMapController>();
 
-  static const CameraPosition _kLake = CameraPosition(
-      bearing: 192.8334901395799,
-      target: LatLng(31.119318, -99.245435),
-      tilt: 59.440717697143555,
-      zoom: 19.151926040649414);
-
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  final Completer<GoogleMapController> _controller =
-      Completer<GoogleMapController>();
+  MapController mapController = Get.find();
 
   double poslat = 0.00;
   double poslong = 0.00;
-  LatLng currentpos = LatLng(31.119318, -99.245435);
+  // LatLng currentpos = LatLng(31.119318, -99.245435);
 
-  Stream<Position>? positionStream;
-
-  GoogleMapController? _mapController;
+  // Stream<Position>? positionStream;
+  //
+  // GoogleMapController? _mapController;
   // Position? currentPosition;
 
 
@@ -93,123 +97,123 @@ class _HomeState extends State<Home> {
   // Position position = await Geolocator.getCurrentPosition(locationSettings: locationSettings);
 
 
-  Future<void> getCurrentPos() async {
-    //
-    // Position position = await Geolocator.getCurrentPosition(locationSettings: locationSettings);
-    //
-    // setState(() {
-    //   currentpos=LatLng(position.latitude, position.longitude);
-    // });
-
-
-    // Geolocator.getPositionStream(locationSettings: locationSettings).listen(
-    //         (Position? position) {
-    //
-    //           setState(() {
-    //             currentpos=LatLng(position!.latitude, position.longitude);
-    //           });
-    //
-    //
-    //       //print(position == null ? 'Unknown' : '++++++++++++++++++++++${position.latitude.toString()}, ${position.longitude.toString()}+++++++++++++++++++++++++++++');
-    //     });
-
-
-
-
-
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    // Check if location services are enabled
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return Future.error('Location services are disabled.');
-    }
-
-    // Check location permissions
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied.');
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
-    }
-
-    // Get the position stream
-    positionStream = Geolocator.getPositionStream(
-      locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.high, // High accuracy
-        distanceFilter: 10, // Update if user moves 10 meters
-      ),
-    );
-
-    positionStream!.listen((Position position) {
-      setState(() {
-        // currentPosition = position;
-        currentpos=LatLng(position.latitude, position.longitude);
-
-        _mapController?.animateCamera(
-          CameraUpdate.newCameraPosition(
-            CameraPosition(
-              target: currentpos,
-              zoom: 14, // You can change the zoom level here
-            ),
-          ),
-        );
-
-
-
-
-      });
-    });
-
-
-  }
+  // Future<void> getCurrentPos() async {
+  //   //
+  //   // Position position = await Geolocator.getCurrentPosition(locationSettings: locationSettings);
+  //   //
+  //   // setState(() {
+  //   //   currentpos=LatLng(position.latitude, position.longitude);
+  //   // });
+  //
+  //
+  //   // Geolocator.getPositionStream(locationSettings: locationSettings).listen(
+  //   //         (Position? position) {
+  //   //
+  //   //           setState(() {
+  //   //             currentpos=LatLng(position!.latitude, position.longitude);
+  //   //           });
+  //   //
+  //   //
+  //   //       //print(position == null ? 'Unknown' : '++++++++++++++++++++++${position.latitude.toString()}, ${position.longitude.toString()}+++++++++++++++++++++++++++++');
+  //   //     });
+  //
+  //
+  //
+  //
+  //
+  //   bool serviceEnabled;
+  //   LocationPermission permission;
+  //
+  //   // Check if location services are enabled
+  //   serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  //   if (!serviceEnabled) {
+  //     return Future.error('Location services are disabled.');
+  //   }
+  //
+  //   // Check location permissions
+  //   permission = await Geolocator.checkPermission();
+  //   if (permission == LocationPermission.denied) {
+  //     permission = await Geolocator.requestPermission();
+  //     if (permission == LocationPermission.denied) {
+  //       return Future.error('Location permissions are denied.');
+  //     }
+  //   }
+  //
+  //   if (permission == LocationPermission.deniedForever) {
+  //     return Future.error(
+  //         'Location permissions are permanently denied, we cannot request permissions.');
+  //   }
+  //
+  //   // Get the position stream
+  //   positionStream = Geolocator.getPositionStream(
+  //     locationSettings: const LocationSettings(
+  //       accuracy: LocationAccuracy.high, // High accuracy
+  //       distanceFilter: 10, // Update if user moves 10 meters
+  //     ),
+  //   );
+  //
+  //   positionStream!.listen((Position position) {
+  //     setState(() {
+  //       // currentPosition = position;
+  //       currentpos=LatLng(position.latitude, position.longitude);
+  //
+  //       _mapController?.animateCamera(
+  //         CameraUpdate.newCameraPosition(
+  //           CameraPosition(
+  //             target: currentpos,
+  //             zoom: 14, // You can change the zoom level here
+  //           ),
+  //         ),
+  //       );
+  //
+  //
+  //
+  //
+  //     });
+  //   });
+  //
+  //
+  // }
 
 
 
   @override
-  void initState()  {
-    // TODO: implement initState
-    super.initState();
-
-
-
-    print('+++++++++++++++${determinePosition().asStream()}++++++++++++++++++++++++++++++++++');
-
-
-    // Geolocator.getPositionStream(locationSettings: locationSettings).listen(
-    //         (Position? position) {
-    //
-    //       setState(() {
-    //         currentpos=LatLng(position!.latitude, position.longitude);
-    //       });
-    //
-    //
-    //       //print(position == null ? 'Unknown' : '++++++++++++++++++++++${position.latitude.toString()}, ${position.longitude.toString()}+++++++++++++++++++++++++++++');
-    //     });
-
-    getCurrentPos();
-
-    //currentpos=LatLng(, -99.245435);
-
-//     Position position = await Geolocator.getCurrentPosition();
+//   void initState()  {
+//     // TODO: implement initState
+//     super.initState();
 //
-// // supply location settings to getPositionStream
-//     StreamSubscription<Position> positionStream = Geolocator.getPositionStream(locationSettings: locationSettings).listen(
-//             (Position? position) {
-//           print(position == null ? 'Unknown' : '${position.latitude.toString()}, ${position.longitude.toString()}');
-//         });
-
-
-
-
-  }
+//
+//
+//     //print('+++++++++++++++${determinePosition().asStream()}++++++++++++++++++++++++++++++++++');
+//
+//
+//     // Geolocator.getPositionStream(locationSettings: locationSettings).listen(
+//     //         (Position? position) {
+//     //
+//     //       setState(() {
+//     //         currentpos=LatLng(position!.latitude, position.longitude);
+//     //       });
+//     //
+//     //
+//     //       //print(position == null ? 'Unknown' : '++++++++++++++++++++++${position.latitude.toString()}, ${position.longitude.toString()}+++++++++++++++++++++++++++++');
+//     //     });
+//
+//     // getCurrentPos();
+//
+//     //currentpos=LatLng(, -99.245435);
+//
+// //     Position position = await Geolocator.getCurrentPosition();
+// //
+// // // supply location settings to getPositionStream
+// //     StreamSubscription<Position> positionStream = Geolocator.getPositionStream(locationSettings: locationSettings).listen(
+// //             (Position? position) {
+// //           print(position == null ? 'Unknown' : '${position.latitude.toString()}, ${position.longitude.toString()}');
+// //         });
+//
+//
+//
+//
+//   }
 
 
 
@@ -268,29 +272,38 @@ class _HomeState extends State<Home> {
       body: Stack(
         children: [
           Container(
-            height: 50.h,
+            height: 100.h,
             width: 100.w,
-            margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-            child: GoogleMap(
+          ),
+          Positioned(
+            child: Container(
+              height: 50.h,
+              width: 100.w,
+              margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+              child: Obx(()=>GoogleMap(
 
-              markers: {
-                Marker(
-                  markerId: MarkerId("Source"),
-                  position: currentpos,
+                markers: {
+                  Marker(
+                    markerId: MarkerId("Source"),
+                    position: mapController.currentpos.value,
+                  ),
+                },
+                mapType: MapType.normal,
+                myLocationEnabled: true,
+                compassEnabled: true,
+                initialCameraPosition: CameraPosition(
+                  target: mapController.currentpos.value,
+                  zoom: 13,
                 ),
-              },
-              mapType: MapType.normal,
-              myLocationEnabled: true,
-              compassEnabled: true,
-              initialCameraPosition: CameraPosition(
-                target: currentpos,
-                zoom: 13,
-              ),
-              onMapCreated: (GoogleMapController controller) {
+                onMapCreated: (GoogleMapController controller) {
 
-                _mapController = controller;
-                //_controller.complete(controller);
-              },
+
+                  mapController.getCurrentPos(controller);
+
+                  // _mapController = controller;
+                  //_controller.complete(controller);
+                },
+              )),
             ),
           ),
           Positioned(
