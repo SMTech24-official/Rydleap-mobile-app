@@ -14,6 +14,7 @@ import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:rydleap/feature/home/home_controller.dart';
 import 'package:rydleap/feature/profile/dummy_data/about_model.dart';
 import 'package:rydleap/feature/profile/screen/profile_settings.dart';
 
@@ -25,6 +26,10 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+
+  HomeController homeController=Get.find();
+
+
   File? _selectedImage;
 
   final ImagePicker _picker = ImagePicker();
@@ -315,15 +320,16 @@ Future<void> _pickImage(ImageSource source) async {
                     child: Column(
                       children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Peace Unity",
+                              "${homeController.userDetail.value.data?.name} ",
                               style: GoogleFonts.nunito(
                                   fontSize: getWidth(18),
                                   fontWeight: FontWeight.w500),
                             ),
                             Text(
-                              "(4.7⭐)",
+                              "(4.7 ⭐)",
                               style: GoogleFonts.nunito(
                                   color: AppColors.textYellow,
                                   fontSize: getWidth(12),
@@ -332,14 +338,14 @@ Future<void> _pickImage(ImageSource source) async {
                           ],
                         ),
                         Text(
-                          "+123002765918",
+                          "${homeController.userDetail.value.data?.phoneNumber}",
                           style: GoogleFonts.nunito(
                               color: Color(0xffC3BBBB),
                               fontSize: getWidth(15),
                               fontWeight: FontWeight.w400),
                         ),
                         Text(
-                          "@gmail.com",
+                          "${homeController.userDetail.value.data?.email}",
                           style: GoogleFonts.nunito(
                               color: Color(0xffC3BBBB),
                               fontSize: getWidth(15),
