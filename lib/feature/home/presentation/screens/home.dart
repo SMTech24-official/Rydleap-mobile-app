@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rydleap/core/app_sizes.dart';
@@ -39,6 +40,181 @@ class _HomeState extends State<Home> {
   double poslat = 0.00;
   double poslong = 0.00;
   LatLng currentpos = LatLng(31.119318, -99.245435);
+
+  Stream<Position>? positionStream;
+
+  GoogleMapController? _mapController;
+  // Position? currentPosition;
+
+
+  Future<Position> determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Test if location services are enabled.
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      // Location services are not enabled don't continue
+      // accessing the position and request users of the
+      // App to enable the location services.
+      return Future.error('Location services are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Permissions are denied, next time you could try
+        // requesting permissions again (this is also where
+        // Android's shouldShowRequestPermissionRationale
+        // returned true. According to Android guidelines
+        // your App should show an explanatory UI now.
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    // When we reach here, permissions are granted and we can
+    // continue accessing the position of the device.
+    return await Geolocator.getCurrentPosition();
+  }
+
+
+  final LocationSettings locationSettings = LocationSettings(
+    accuracy: LocationAccuracy.high,
+    distanceFilter: 100,
+  );
+
+  // Position position = await Geolocator.getCurrentPosition(locationSettings: locationSettings);
+
+
+  Future<void> getCurrentPos() async {
+    //
+    // Position position = await Geolocator.getCurrentPosition(locationSettings: locationSettings);
+    //
+    // setState(() {
+    //   currentpos=LatLng(position.latitude, position.longitude);
+    // });
+
+
+    // Geolocator.getPositionStream(locationSettings: locationSettings).listen(
+    //         (Position? position) {
+    //
+    //           setState(() {
+    //             currentpos=LatLng(position!.latitude, position.longitude);
+    //           });
+    //
+    //
+    //       //print(position == null ? 'Unknown' : '++++++++++++++++++++++${position.latitude.toString()}, ${position.longitude.toString()}+++++++++++++++++++++++++++++');
+    //     });
+
+
+
+
+
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    // Check if location services are enabled
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled.');
+    }
+
+    // Check location permissions
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permissions are denied.');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    // Get the position stream
+    positionStream = Geolocator.getPositionStream(
+      locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.high, // High accuracy
+        distanceFilter: 10, // Update if user moves 10 meters
+      ),
+    );
+
+    positionStream!.listen((Position position) {
+      setState(() {
+        // currentPosition = position;
+        currentpos=LatLng(position.latitude, position.longitude);
+
+        _mapController?.animateCamera(
+          CameraUpdate.newCameraPosition(
+            CameraPosition(
+              target: currentpos,
+              zoom: 14, // You can change the zoom level here
+            ),
+          ),
+        );
+
+
+
+
+      });
+    });
+
+
+  }
+
+
+
+  @override
+  void initState()  {
+    // TODO: implement initState
+    super.initState();
+
+
+
+    print('+++++++++++++++${determinePosition().asStream()}++++++++++++++++++++++++++++++++++');
+
+
+    // Geolocator.getPositionStream(locationSettings: locationSettings).listen(
+    //         (Position? position) {
+    //
+    //       setState(() {
+    //         currentpos=LatLng(position!.latitude, position.longitude);
+    //       });
+    //
+    //
+    //       //print(position == null ? 'Unknown' : '++++++++++++++++++++++${position.latitude.toString()}, ${position.longitude.toString()}+++++++++++++++++++++++++++++');
+    //     });
+
+    getCurrentPos();
+
+    //currentpos=LatLng(, -99.245435);
+
+//     Position position = await Geolocator.getCurrentPosition();
+//
+// // supply location settings to getPositionStream
+//     StreamSubscription<Position> positionStream = Geolocator.getPositionStream(locationSettings: locationSettings).listen(
+//             (Position? position) {
+//           print(position == null ? 'Unknown' : '${position.latitude.toString()}, ${position.longitude.toString()}');
+//         });
+
+
+
+
+  }
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -92,11 +268,11 @@ class _HomeState extends State<Home> {
       body: Stack(
         children: [
           Container(
-            height: 100.h,
+            height: 50.h,
             width: 100.w,
             margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
             child: GoogleMap(
-              //initialCameraPosition: _kGoogle,
+
               markers: {
                 Marker(
                   markerId: MarkerId("Source"),
@@ -111,6 +287,8 @@ class _HomeState extends State<Home> {
                 zoom: 13,
               ),
               onMapCreated: (GoogleMapController controller) {
+
+                _mapController = controller;
                 //_controller.complete(controller);
               },
             ),
