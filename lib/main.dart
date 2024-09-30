@@ -9,6 +9,8 @@ import 'package:rydleap/feature/auth/otp/controller/otp_controller.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/registration/controller/registration_controller.dart';
 import 'package:rydleap/firebase_options.dart';
 
+import 'feature/auth/login/controller/login_controller.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(

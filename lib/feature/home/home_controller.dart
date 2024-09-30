@@ -10,6 +10,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rydleap/core/share_pref/share_pref.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:rydleap/feature/auth/domain/model/user_model.dart';
 
 import 'model/user_model.dart';
@@ -18,7 +19,7 @@ import 'package:http/http.dart' as http;
 class HomeController extends GetxController{
 
 
-  SharePref sharePref=SharePref();
+
 
   Rx<UserModel> userDetail=UserModel().obs;
 
@@ -27,10 +28,11 @@ class HomeController extends GetxController{
   Future<void> fetchTransactionList() async {
 
 
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
 
     Map<String, String> headers = {
-      "Authorization": "${SharePref.getUserAccessToken()}",
+      "Authorization": "${sharedPreferences.getString('access-token')}",
 
 
       //"Bearer ${SharePref.getUserAccessToken()}",

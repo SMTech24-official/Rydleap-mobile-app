@@ -339,13 +339,15 @@ Future<void> _pickImage(ImageSource source) async {
                     child: Column(
                       children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              "Peace Unity",
+
+                            Obx(()=> Text(
+                              "${homeController.userDetail.value.data?.name}",
                               style: GoogleFonts.nunito(
                                   fontSize: getWidth(18),
                                   fontWeight: FontWeight.w500),
-                            ),
+                            ),),
                             Text(
                               "(4.7⭐)",
                               style: GoogleFonts.nunito(
@@ -355,15 +357,16 @@ Future<void> _pickImage(ImageSource source) async {
                             ),
                           ],
                         ),
-                        Text(
-                          "+123002765918",
+                        Obx(()=>Text(
+                          "${homeController.userDetail.value.data?.phoneNumber}",
                           style: GoogleFonts.nunito(
                               color: Color(0xffC3BBBB),
                               fontSize: getWidth(15),
                               fontWeight: FontWeight.w400),
-                        ),
+                        ),)
+                        ,
                         Text(
-                          "@gmail.com",
+                          "${homeController.userDetail.value.data?.email}",
                           style: GoogleFonts.nunito(
                               color: Color(0xffC3BBBB),
                               fontSize: getWidth(15),
