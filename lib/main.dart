@@ -10,6 +10,7 @@ import 'package:rydleap/feature/auth/otp/controller/otp_controller.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/registration/controller/registration_controller.dart';
 import 'package:rydleap/firebase_options.dart';
 
+import 'feature/auth/login/controller/forgot_controller.dart';
 import 'feature/auth/login/controller/login_controller.dart';
 
 void main() async {
@@ -21,6 +22,8 @@ void main() async {
   Get.put(MapController());
   Get.put(HomeController());
   Get.put(AuthController());
+  Get.put(ForgotController());
+  Get.put(OtpController());
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

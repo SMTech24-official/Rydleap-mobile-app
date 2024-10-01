@@ -137,7 +137,7 @@ class _OtpScreen2State extends State<OtpScreen2> {
                     borderWidth: 0.4,
                     borderRadius: BorderRadius.circular(2),
                     focusedBorderColor: Color(0xFFFFDD2D),
-                    numberOfFields: 6,
+                    numberOfFields: 4,
                     borderColor: Color(0xFFFFDD2D),
                     showFieldAsBox: true,
                     onCodeChanged: onOtpCodeChanged,
@@ -204,6 +204,10 @@ class _OtpScreen2State extends State<OtpScreen2> {
                     : CustomGradientButton(
                         text: "Confirm",
                         onTap: () async {
+
+                          otpController.varifiOTP();
+
+
                         }
                       );
               }),

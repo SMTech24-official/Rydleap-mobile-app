@@ -27,18 +27,21 @@ class ForgotController extends GetxController {
 
     Map<String, String> userData = Map();
 
-    userData['email'] = emailController.text;
+    userData['phoneNumber'] = emailController.text;
 
 
     debugPrint("userData" + userData.toString());
     //
-    final url = Uri.parse(ApiUrl.baseUrl +'/api/v1/auth/forgot-password');
+    final url = Uri.parse(ApiUrl.baseUrl +'/api/v1/otp/send-otp');
 
 
     var response = await http.post(url, body: userData);
 
     debugPrint("Response Code..................." + response.statusCode.toString());
     debugPrint("Response Success:..................." + jsonDecode(response.body)['success'].toString());
+
+
+    debugPrint('++++++++++++++++++++++++++++${jsonDecode(response.body)['data']['body']}+++++++++++++++++++++++++');
 
 
     if(response.statusCode==200){
@@ -75,6 +78,8 @@ class ForgotController extends GetxController {
     //   return false;
     // }
   }
+
+
 
 
 
