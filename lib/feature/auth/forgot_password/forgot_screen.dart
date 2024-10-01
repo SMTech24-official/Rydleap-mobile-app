@@ -62,7 +62,16 @@ class _ForgotScreenState extends State<ForgotScreen> {
                 ? CustomGradientButton(
                     text: "Confirm",
                     onTap: () {
-                      Get.to(()=>OtpScreen2());
+
+
+
+                      //Get.to(()=>OtpScreen2());
+                      _forgotController.sendMail();
+
+
+
+
+
                     },
                   )
                 : CustomBlurButton(text: "Confirm")),

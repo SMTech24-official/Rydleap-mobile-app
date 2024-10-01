@@ -1,9 +1,89 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/api_url.dart';
+import 'package:http/http.dart' as http;
+
+import '../../otp/otp2_screen.dart';
+
 class ForgotController extends GetxController {
+
+
+
+
+
+
+
+
   TextEditingController emailController = TextEditingController();
-  var isFormValid = false.obs;  // Observable variable for reactivity
+  var isFormValid = false.obs;
+
+
+
+  void sendMail() async {
+
+
+    Map<String, String> userData = Map();
+
+    userData['email'] = emailController.text;
+
+
+    debugPrint("userData" + userData.toString());
+    //
+    final url = Uri.parse(ApiUrl.baseUrl +'/api/v1/auth/forgot-password');
+
+
+    var response = await http.post(url, body: userData);
+
+    debugPrint("Response Code..................." + response.statusCode.toString());
+    debugPrint("Response Success:..................." + jsonDecode(response.body)['success'].toString());
+
+
+    if(response.statusCode==200){
+
+      if(jsonDecode(response.body)['success']==true){
+        Get.to(()=>OtpScreen2());
+      }
+
+      // Get.to(()=>OtpScreen2());
+
+    }
+
+    // if (response.statusCode == 200) {
+    //   var jsonResponse = jsonDecode(response.body);
+    //
+    //   debugPrint("Response body..................." + jsonResponse.toString());
+
+    //   try {
+    //     if (jsonResponse['success'] == true) {
+    //       return true;
+    //     } else {
+    //
+    //       showSnackBar('Caution', jsonResponse["errors"],Colors.white, SnackPosition.BOTTOM);
+    //
+    //       return false;
+    //     }
+    //   } catch (e) {
+    //     debugPrint(e.toString());
+    //   }
+    // }
+    // else {
+    //   var jsonResponse = jsonDecode(response.body);
+    //   showSnackBar('Caution', jsonResponse["errors"],Colors.white, SnackPosition.BOTTOM);
+    //   return false;
+    // }
+  }
+
+
+
+
+
+
+
+
+  // Observable variable for reactivity
 
   @override
   void onInit() {

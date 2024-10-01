@@ -25,14 +25,14 @@ class HomeController extends GetxController{
 
 
 
-  Future<void> fetchTransactionList() async {
+  Future<void> getUserDetail(String accessToken) async {
 
 
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
 
     Map<String, String> headers = {
-      "Authorization": "${sharedPreferences.getString('access-token')}",
+      "Authorization": "$accessToken",
 
 
       //"Bearer ${SharePref.getUserAccessToken()}",
@@ -66,7 +66,7 @@ class HomeController extends GetxController{
   @override
   void onInit() {
     super.onInit();
-    fetchTransactionList()  ;
+    //fetchTransactionList()  ;
 
 
 

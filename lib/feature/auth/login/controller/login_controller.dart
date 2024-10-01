@@ -5,12 +5,17 @@ import 'package:rydleap/core/share_pref/share_pref.dart';
 import 'package:rydleap/feature/auth/domain/model/login_model.dart';
 import 'package:rydleap/feature/auth/login/login_screen.dart';
 import 'package:rydleap/feature/auth/login/model/login_model.dart';
+import 'package:rydleap/feature/home/home_controller.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
 import 'package:rydleap/feature/profile/screen/profile_screen.dart';
 import 'package:rydleap/feature/profile_page/presentation/profile_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
+
+
+
+  HomeController homeController=Get.find();
   var loading = false.obs;
     var rememberMe = false.obs;  // To store the "Remember Me" checkbox state
   var loginModel = LoginModel().obs;
@@ -32,8 +37,15 @@ class LoginController extends GetxController {
 
       if (response != null && response.success == true) {
         loginModel.value = response;
-      
-        Get.to(ProfileScreen());
+
+
+        homeController.getUserDetail(response.data!.accessToken);
+        Get.to(Home());
+
+
+
+
+
   await SharePref.saveAccessToken(response.data!.accessToken); // Assuming your API returns the token in response.data.token
         await SharePref.saveLoginResponse(response);
         await SharePref.saveRememberMe(rememberMe.value, email, password);

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:rydleap/app.dart';
+import 'package:rydleap/feature/auth/controller/auth_controller.dart';
 import 'package:rydleap/feature/home/home_controller.dart';
 import 'package:rydleap/feature/home/map_controller.dart';
 import 'package:rydleap/feature/auth/otp/controller/otp_controller.dart';
@@ -19,6 +20,7 @@ void main() async {
   // Lock orientation to portrait mode
   Get.put(MapController());
   Get.put(HomeController());
+  Get.put(AuthController());
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
