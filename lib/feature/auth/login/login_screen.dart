@@ -8,6 +8,7 @@ import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 import 'package:rydleap/core/share_pref/share_pref.dart';
+import 'package:rydleap/feature/auth/forgot_password/forgot_screen.dart';
 import 'package:rydleap/feature/auth/login/controller/login_controller.dart';
 import 'package:rydleap/feature/auth/otp/otp_screen.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
@@ -53,6 +54,8 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
+
+//Remember me method
   Widget _buildRememberMeCheckbox() {
     return Obx(() {
       return Row(
@@ -141,9 +144,9 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: _passwordController,
               hintext: "Password",
               suffixIcon: SizedBox(
-                height: getHeight(24),
-                width: getWidth(24),
-                child: Image.asset(AppIcons.checkOutline),
+                // height: getHeight(24),
+                // width: getWidth(24),
+                // child: Image.asset(AppIcons.checkOutline),
               ),
             ),
             SizedBox(height: getHeight(18)),
@@ -154,8 +157,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 AppTextButton(
                   text: "Forgotten password?",
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => OtpScreen()));
+                   print("Forgot password");
+                   Get.to(()=>ForgotScreen());
                   },
                   fontWeight: FontWeight.w400,
                   textSize: getWidth(5),
