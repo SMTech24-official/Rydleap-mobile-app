@@ -8,6 +8,7 @@ import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 import 'package:rydleap/core/share_pref/share_pref.dart';
+import 'package:rydleap/feature/auth/forgot_password/forgot_screen.dart';
 import 'package:rydleap/feature/auth/login/controller/login_controller.dart';
 import 'package:rydleap/feature/auth/otp/otp_screen.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
@@ -26,10 +27,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  bool isChecked = false;
   bool isFormValid = false;
 
-  
   @override
   void initState() {
     super.initState();
@@ -40,9 +39,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _loadSavedCredentials() async {
     final prefs = await SharedPreferences.getInstance();
-    if (_loginController.isChecked.value) {
+    bool isRemembered = prefs.getBool('isRemembered') ?? false;
+
+    if (isRemembered) {
       _emailController.text = prefs.getString('saved_email') ?? '';
       _passwordController.text = prefs.getString('saved_password') ?? '';
+      _loginController.isChecked.value = true; // Update checkbox state
     }
   }
 
@@ -52,12 +54,20 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
+
+//Remember me method
   Widget _buildRememberMeCheckbox() {
     return Obx(() {
       return Row(
         children: [
           GestureDetector(
-            onTap: () => _loginController.toggle(),
+            onTap: () {
+              _loginController.toggle();
+              // Save checkbox state in shared preferences
+              SharedPreferences.getInstance().then((prefs) {
+                prefs.setBool('isRemembered', _loginController.isChecked.value);
+              });
+            },
             child: Container(
               height: getWidth(12),
               width: getWidth(12),
@@ -92,6 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,9 +144,9 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: _passwordController,
               hintext: "Password",
               suffixIcon: SizedBox(
-                height: getHeight(24),
-                width: getWidth(24),
-                child: Image.asset(AppIcons.checkOutline),
+                // height: getHeight(24),
+                // width: getWidth(24),
+                // child: Image.asset(AppIcons.checkOutline),
               ),
             ),
             SizedBox(height: getHeight(18)),
@@ -146,8 +157,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 AppTextButton(
                   text: "Forgotten password?",
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => OtpScreen()));
+                   print("Forgot password");
+                   Get.to(()=>ForgotScreen());
                   },
                   fontWeight: FontWeight.w400,
                   textSize: getWidth(5),
@@ -168,11 +179,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             _emailController.text,
                             _passwordController.text,
                           );
-                          await SharePref.saveRememberMe(
-                            isChecked,
-                            _emailController.text,
-                            _passwordController.text,
-                          );
+
+                          // Save credentials only if "Remember Me" is checked
+                          if (_loginController.isChecked.value) {
+                            final prefs = await SharedPreferences.getInstance();
+                            await prefs.setString('saved_email', _emailController.text);
+                            await prefs.setString('saved_password', _passwordController.text);
+                          }
                         },
                       )
                     : CustomBlurButton(text: "Confirm");
