@@ -8,6 +8,7 @@ import 'package:rydleap/feature/home/home_controller.dart';
 import 'package:rydleap/feature/home/map_controller.dart';
 import 'package:rydleap/feature/auth/otp/controller/otp_controller.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/registration/controller/registration_controller.dart';
+import 'package:rydleap/feature/profile/controller/profile_controller.dart';
 import 'package:rydleap/firebase_options.dart';
 
 import 'feature/auth/login/controller/login_controller.dart';
@@ -20,6 +21,7 @@ void main() async {
   // Lock orientation to portrait mode
   Get.put(MapController());
   Get.put(HomeController());
+  Get.put(ProfileController());
   Get.put(AuthController());
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

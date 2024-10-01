@@ -5,24 +5,22 @@ import 'package:rydleap/core/share_pref/share_pref.dart';
 import 'package:rydleap/feature/auth/domain/model/login_model.dart';
 import 'package:rydleap/feature/auth/login/login_screen.dart';
 import 'package:rydleap/feature/auth/login/model/login_model.dart';
-import 'package:rydleap/feature/home/home_controller.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
+import 'package:rydleap/feature/profile/controller/profile_controller.dart';
+import 'package:rydleap/feature/profile/screen/check_profile.dart';
+import 'package:rydleap/feature/profile/screen/check_profile_two.dart';
 import 'package:rydleap/feature/profile/screen/profile_screen.dart';
 import 'package:rydleap/feature/profile_page/presentation/profile_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
-
-
-
-  HomeController homeController=Get.find();
   var loading = false.obs;
     var rememberMe = false.obs;  // To store the "Remember Me" checkbox state
   var loginModel = LoginModel().obs;
-
+ final ProfileController profileController = Get.put(ProfileController());
   final AuthService _authService = AuthService();
 
-  Future<void> login(String email, String password) async {
+ Future<void> login(String email, String password) async {
     loading(true);
 
     final loginData = {
@@ -31,27 +29,26 @@ class LoginController extends GetxController {
     };
     print('Login Data (JSON Format): ${jsonEncode(loginData)}');
 
-
     try {
       final response = await _authService.login(email, password);
 
       if (response != null && response.success == true) {
         loginModel.value = response;
 
-
-        homeController.getUserDetail(response.data!.accessToken);
-        Get.to(Home());
-
-
-
-
-
-  await SharePref.saveAccessToken(response.data!.accessToken); // Assuming your API returns the token in response.data.token
+        // Save access token
+        await SharePref.saveAccessToken(response.data!.accessToken);
         await SharePref.saveLoginResponse(response);
         await SharePref.saveRememberMe(rememberMe.value, email, password);
-        print("Login Successful: ${jsonEncode(response.toJson())}");
-        print("Access Token: ${response.toJson()['data']}");
-        
+
+        // Print stored token
+        String? storedToken = await SharePref.getUserAccessToken();
+        print("Stored Token: $storedToken");
+
+        // Fetch user data after login and print it
+        await profileController.fetchUser(response.data!.accessToken);
+
+        // Navigate to User Profile Page after login
+        Get.to(ProfileScreen());
       } else {
         print("Login Failed: Response is null or unsuccessful");
       }
@@ -61,7 +58,6 @@ class LoginController extends GetxController {
       loading(false);
     }
   }
-
 Future<void> logout() async {
     await SharePref.clearAll(); // If you want to clear all data
     // Optionally, you can leave the email and password intact if that's your goal.
