@@ -8,6 +8,7 @@ import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 import 'package:rydleap/core/share_pref/share_pref.dart';
+import 'package:rydleap/feature/auth/forgot_password/forgot_screen.dart';
 import 'package:rydleap/feature/auth/login/controller/login_controller.dart';
 import 'package:rydleap/feature/auth/otp/otp_screen.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
@@ -157,6 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   text: "Forgotten password?",
                   onTap: () {
                    print("Forgot password");
+                   Get.to(()=>ForgotScreen());
                   },
                   fontWeight: FontWeight.w400,
                   textSize: getWidth(5),
