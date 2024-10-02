@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/custom_buttomsheet/bottomsheet_onebutton.dart';
 
 class OrSignInWith extends StatelessWidget {
   const OrSignInWith({
@@ -30,7 +32,7 @@ class OrSignInWith extends StatelessWidget {
           width: 5,
         ),
         Text(
-          "Or sign in with",
+          "or_sign_in_with".tr,
           style: TextStyle(
               color: Color(0xffF9F9F9),
               fontSize: getWidth(14),
