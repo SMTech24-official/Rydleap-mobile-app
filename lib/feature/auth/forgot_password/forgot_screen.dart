@@ -42,17 +42,17 @@ class _ForgotScreenState extends State<ForgotScreen> {
           children: [
             SizedBox(height: getHeight(35)),
             Text(
-              "Forgot Password?",
+             "forgot_password".tr,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             Text(
-              "Enter your email to reclaim your password to continue with Rydleap",
+               "email".tr,
               style: Theme.of(context).textTheme.titleSmall,
             ),
             SizedBox(height: getHeight(24)),
             CustomTextfield(
               controller: _forgotController.emailController,
-              hintext: "Email",
+              hintext: "h_email".tr,
               suffixIcon: SizedBox(),
               textInputType: TextInputType.emailAddress,
             ),
@@ -60,7 +60,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
             Spacer(),
             Obx(() => _forgotController.isFormValid.value
                 ? CustomGradientButton(
-                    text: "Confirm",
+                    text: "confirm".tr,
                     onTap: () {
 
 
@@ -74,7 +74,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
 
                     },
                   )
-                : CustomBlurButton(text: "Confirm")),
+                : CustomBlurButton(text: "confirm".tr)),
             SizedBox(height: getHeight(20)),
           ],
         ),

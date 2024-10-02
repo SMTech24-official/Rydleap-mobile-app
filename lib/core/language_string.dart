@@ -25,6 +25,12 @@ class LocalString extends Translations {
           "email_or_phone": "Enter your email or phone and password to continue with Rydleap",
           //login
 
+          //forgot_screen
+          "forgot_password": "Forgot Password?",
+          "email": "Enter your email to reclaim your password to continue with Rydleap",
+          "h_email":"Email",
+          //forgot_screen
+
 
           //profile
           "about_me": "About me ",
@@ -63,6 +69,12 @@ class LocalString extends Translations {
           "email_or_phone": "Ingresa tu correo electrónico o teléfono y contraseña para continuar con Rydleap",
           //login
 
+          //forgot_screen
+          "forgot_password": "¿Has olvidado tu contraseña?",
+          "email": "Ingresa tu correo electrónico para reclamar tu contraseña y continuar con Rydleap",
+          "h_email":"Correo electrónico",
+          //forgot_screen
+
 
           //profile
           "about_me": "About me Spanish",
@@ -100,6 +112,12 @@ class LocalString extends Translations {
           "confirm": "Confirmar",
           "email_or_phone": "Digite seu e-mail ou telefone e senha para continuar com Rydleap",
           //login
+
+          //forgot_screen
+          "forgot_password": "Esqueceu sua senha?",
+          "email": "Digite seu e-mail para recuperar sua senha e continuar com Rydleap",
+          "h_email":"E-mail",
+          //forgot_screen
 
 
           //profile
@@ -140,6 +158,11 @@ class LocalString extends Translations {
           "email_or_phone": "Entrez votre e-mail ou votre téléphone et votre mot de passe pour continuer avec Rydleap",
           //login
 
+          //forgot_screen
+          "forgot_password": "Mot de passe oublié ?",
+          "email": "Entrez votre e-mail pour récupérer votre mot de passe pour continuer avec Rydleap",
+          "h_email":"E-mail",
+          //forgot_screen
 
           //profile
           "about_me": "About me",
