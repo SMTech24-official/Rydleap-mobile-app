@@ -27,7 +27,7 @@ class Rydleap extends StatelessWidget {
         locale: initialLocale,
         fallbackLocale: Locale("en", "US"),
         translations: LocalString(),
-        home: RegisterScreen(),
+        home: SplashScreen(),
         // theme: lightThemeData(),
         theme: _darkThemeData(),
       );

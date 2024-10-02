@@ -24,7 +24,11 @@ class LocalString extends Translations {
           "payment_methods": "Payment Methods",
           "ride_history": "Ride History",
           "report_problem": "Report a Problem",
-          "contack_us": "Contact us",
+          "contact_us": "Contact us",
+          "balance": "Balance",
+          "cash_out": "Cash out",
+          "drive_history": "Drive History",
+          "notifiactions": "Notifications",
           //profile
         },
         'es_ES': { // Spanish
@@ -48,7 +52,11 @@ class LocalString extends Translations {
           "payment_methods": "Payment Methods Spanish",
           "ride_history": "Ride History",
           "report_problem": "Report a Problem",
-          "contack_us": "Contact us",
+          "contact_us": "Contact us",
+          "balance": "Balance",
+          "cash_out": "Cash out Spanish",
+          "drive_history": "Drive History",
+          "notifiactions": "Notifications",
           //profile
         },
         'pt_PT': { // Portuguese
@@ -72,7 +80,11 @@ class LocalString extends Translations {
           "payment_methods": "Payment Methods",
           "ride_history": "Ride History",
           "report_problem": "Report a Problem",
-          "contack_us": "Contact us",
+          "contact_us": "Contact us",
+          "balance": "Balance",
+          "cash_out": "Cash out",
+          "drive_history": "Drive History",
+          "notifiactions": "Notifications",
           
           //profile
         },
@@ -97,7 +109,11 @@ class LocalString extends Translations {
           "payment_methods": "Payment Methods",
           "ride_history": "Ride History",
           "report_problem": "Report a Problem",
-          "contack_us": "Contact us",
+          "contact_us": "Contact us",
+          "balance": "Balance",
+          "cash_out": "Cash out",
+          "drive_history": "Drive History",
+          "notifiactions": "Notifications",
           //profile
         },
       };
