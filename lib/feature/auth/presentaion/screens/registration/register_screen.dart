@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
@@ -93,7 +94,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextButton(onPressed: _signOut, child: Text("logout")),
+                // TextButton(onPressed: _signOut, child: Text("logout")),
                 Image.asset(AppImagese.car),
                 SizedBox(
                   height: getHeight(10),
@@ -139,6 +140,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
             SizedBox(
               height: getHeight(35),
             ),
+            Text(
+          "language".tr,
+          style: GoogleFonts.inter(
+            fontSize: getWidth(20),
+            fontWeight: FontWeight.w600,
+          ),
+        ),
             CustomPhoneInput(
               controller: phoneController,
             ),
@@ -146,7 +154,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               return otpController.isLoading.value
                   ? CircularProgressIndicator()
                   : CustomGradientButton(
-                      text: "Get OTP",
+                      text: "get_otp".tr,
                       onTap: () {
                         String phoneNumber = phoneController
                             .text; // Get the phone number from the controller
@@ -165,7 +173,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                 children: [
                   Text(
-                    "Privacy Policy",
+                    "privacy_policy".tr,
                     style: TextStyle(
                       color: Color(0xffF9F9F9),
                       fontSize: getWidth(14),
@@ -179,20 +187,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
             OrSignInWith(),
             CustomGlassButton(
                 icon: AppIcons.googleIcon,
-                text: "Sign in with Google",
+                text: "sign_google".tr,
                 onTap: () {
                   Get.to(LoginScreen());
                 }),
             // GoogleLogin(),
             CustomGlassButton(
                 icon: AppIcons.appleIcon,
-                text: "Sign in with Apple",
+                text: "sign_apple".tr,
                 onTap: () {
                   Get.to(ProfileScreen());
                 }),
             CustomGlassButton(
                 icon: AppIcons.facebookIcon,
-                text: "Sign in with Facebook",
+                text: "sign_facebook".tr,
                 onTap: () {
                   if (CustomGlobalVariable.userType == 'User') {
                     Navigator.push(

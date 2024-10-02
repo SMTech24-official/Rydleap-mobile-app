@@ -58,4 +58,10 @@ class User {
       'updatedAt': updatedAt?.toIso8601String(),
     };
   }
+
+  // Override the toString method to display user details
+  @override
+  String toString() {
+    return 'User{id: $id, name: $name, email: $email, profileImage: $profileImage, userName: $userName, drivingLicenseImage: $drivingLicenseImage, role: $role, status: $status, createdAt: $createdAt, updatedAt: $updatedAt}';
+  }
 }

@@ -126,6 +126,10 @@ static Future<String?> getSavedEmail() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     return sharedPreferences.getString('email');
   }
+  static Future<String?> getSavedName() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    return sharedPreferences.getString('name');
+  }
 
   static Future<String?> getSavedPassword() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();

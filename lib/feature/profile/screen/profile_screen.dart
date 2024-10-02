@@ -227,7 +227,7 @@ Future<void> _pickImage(ImageSource source) async {
           backgroundColor: AppColors.appbarColor,
           leading: CustomCloseButton(),
           title: Text(
-            "About me",
+            "about_me".tr,
             style: GoogleFonts.inter(
                 fontSize: getWidth(20), fontWeight: FontWeight.w600),
           ),
@@ -468,7 +468,7 @@ Future<void> _pickImage(ImageSource source) async {
                                       width: getWidth(24.5),
                                     ),
                                     Text(
-                                      data.title,
+                                      data.title.tr,
                                       style: GoogleFonts.nunito(
                                           fontSize: getWidth(16),
                                           fontWeight: FontWeight.w400),

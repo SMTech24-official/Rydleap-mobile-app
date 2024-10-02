@@ -7,7 +7,6 @@ import 'package:rydleap/feature/auth/login/login_screen.dart';
 import 'package:rydleap/feature/auth/login/model/login_model.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
 import 'package:rydleap/feature/profile/controller/profile_controller.dart';
-import 'package:rydleap/feature/profile/screen/check_profile.dart';
 import 'package:rydleap/feature/profile/screen/check_profile_two.dart';
 import 'package:rydleap/feature/profile/screen/profile_screen.dart';
 import 'package:rydleap/feature/profile_page/presentation/profile_page.dart';

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:rydleap/app.dart';
+import 'package:rydleap/core/share_pref/share_pref.dart';
 import 'package:rydleap/feature/auth/controller/auth_controller.dart';
 import 'package:rydleap/feature/home/home_controller.dart';
 import 'package:rydleap/feature/home/map_controller.dart';
@@ -15,6 +16,7 @@ import 'feature/auth/login/controller/login_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+   Locale savedLocale = await SharePref.getSelectedLanguage();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -30,6 +32,6 @@ void main() async {
     Get.put(OtpController());
     Get.put(RegistrationController());
     Get.put(LoginController());
-    runApp(const Rydleap());
+    runApp( Rydleap(initialLocale: savedLocale,));
   });
 }
