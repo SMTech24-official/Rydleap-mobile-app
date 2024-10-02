@@ -14,6 +14,16 @@ class LocalString extends Translations {
           "sign_apple": "Sign in with Apple",
           "sign_facebook": "Sign in with facebook",
           //registration
+            
+          //login 
+          "log_in": "Log In",
+          "remember_me": "Remember me",
+          "phone_or_email": "Phone or email",
+          "password": "Password",
+          "forgotten_password": "Forgotten password?",
+          "confirm": "Confirm",
+          "email_or_phone": "Enter your email or phone and password to continue with Rydleap",
+          //login
 
 
           //profile
@@ -43,6 +53,16 @@ class LocalString extends Translations {
           "sign_facebook": "Sign in with facebook",
           //registration
 
+          //login 
+          "log_in": "Acceso",
+          "remember_me": "Acuérdate de mí",
+          "phone_or_email": "Teléfono o correo electrónico",
+          "password": "contraseña",
+          "forgotten_password": "¿Olvidaste tu contraseña?",
+          "confirm": "Confirmar",
+          "email_or_phone": "Ingresa tu correo electrónico o teléfono y contraseña para continuar con Rydleap",
+          //login
+
 
           //profile
           "about_me": "About me Spanish",
@@ -70,6 +90,16 @@ class LocalString extends Translations {
           "sign_apple": "Sign in with Apple",
           "sign_facebook": "Sign in with facebook",
           //registration
+
+          //login 
+          "log_in": "Conecte-se",
+          "remember_me": "Lembre de mim",
+          "phone_or_email": "Telefone ou e-mail",
+          "password": "Senha",
+          "forgotten_password": "Esqueceu a senha?",
+          "confirm": "Confirmar",
+          "email_or_phone": "Digite seu e-mail ou telefone e senha para continuar com Rydleap",
+          //login
 
 
           //profile
@@ -99,6 +129,16 @@ class LocalString extends Translations {
           "sign_apple": "Sign in with Apple",
           "sign_facebook": "Sign in with facebook",
           //registration
+
+           //login 
+          "log_in": "Se connecter",
+          "remember_me": "ConnexionSe souvenir de moi",
+          "phone_or_email": "Téléphone ou email",
+          "password": "Mot de passe",
+          "forgotten_password": "Mot de passe oublié ?",
+          "confirm": "Confirmer",
+          "email_or_phone": "Entrez votre e-mail ou votre téléphone et votre mot de passe pour continuer avec Rydleap",
+          //login
 
 
           //profile
