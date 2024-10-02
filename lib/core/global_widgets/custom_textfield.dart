@@ -5,6 +5,7 @@ import 'package:rydleap/core/app_sizes.dart';
 class CustomTextfield extends StatelessWidget {
   final TextEditingController controller;
   final String hintext;
+
   final Widget suffixIcon;
   final VoidCallback? onTap;
   final ValueChanged<String>? onChanged;
