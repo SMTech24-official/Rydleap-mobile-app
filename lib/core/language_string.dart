@@ -31,6 +31,14 @@ class LocalString extends Translations {
           "h_email":"Email",
           //forgot_screen
 
+          //otp_2
+          "digit_title": "Enter 4-digit code otp2",
+          "code_title": "Your code was sent to +(1) xxxx-xxxx",
+          "resend_code": "Resend code",
+          "otp_sent" : "OTP sent",
+          "error"  : "Error",
+          //otp_2
+
 
           //profile
           "about_me": "About me ",
@@ -74,6 +82,14 @@ class LocalString extends Translations {
           "email": "Ingresa tu correo electrónico para reclamar tu contraseña y continuar con Rydleap",
           "h_email":"Correo electrónico",
           //forgot_screen
+
+          //otp_2
+          "digit_title": "Ingrese el código de 4 dígitos otp2",
+          "code_title": "Su código fue enviado a +(1) xxxx-xxxx",
+          "resend_code": "Reenviar código",
+          "otp_sent" : "OTP enviada",
+          "error"  : "Error",
+          //otp_2
 
 
           //profile
@@ -119,6 +135,14 @@ class LocalString extends Translations {
           "h_email":"E-mail",
           //forgot_screen
 
+          //otp_2
+          "digit_title": "Digite o código de 4 dígitos otp2",
+          "code_title": "Seu código foi enviado para +(1) xxxx-xxxx",
+          "resend_code": "Reenviar código",
+          "otp_sent" : "OTP enviado",
+          "error"  : "Erro",
+          //otp_2
+
 
           //profile
           "about_me": "About me",
@@ -163,6 +187,14 @@ class LocalString extends Translations {
           "email": "Entrez votre e-mail pour récupérer votre mot de passe pour continuer avec Rydleap",
           "h_email":"E-mail",
           //forgot_screen
+
+          //otp_2
+          "digit_title": "Entrez le code à 4 chiffres otp2",
+          "code_title": "Votre code a été envoyé au +(1) xxxx-xxxx",
+          "resend_code": "Renvoyer le code",
+          "otp_sent" : "OTP envoyé",
+          "error"  : "Erreur",
+          //otp_2
 
           //profile
           "about_me": "About me",

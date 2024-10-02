@@ -65,8 +65,8 @@ class _ForgotScreenState extends State<ForgotScreen> {
 
 
 
-                      //Get.to(()=>OtpScreen2());
-                      _forgotController.sendMail();
+                      Get.to(()=>OtpScreen2());
+                      // _forgotController.sendMail();
 
 
 

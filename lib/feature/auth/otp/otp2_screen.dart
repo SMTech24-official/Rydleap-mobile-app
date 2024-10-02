@@ -118,11 +118,11 @@ class _OtpScreen2State extends State<OtpScreen2> {
                 height: getHeight(35),
               ),
               Text(
-                "Enter 4-digit code otp2",
+                "digit_title".tr,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               Text(
-                "Your code was sent to +(1) xxxx-xxxx",
+                "code_title".tr,
                 style: Theme.of(context).textTheme.titleSmall,
               ),
               SizedBox(
@@ -159,7 +159,7 @@ class _OtpScreen2State extends State<OtpScreen2> {
               Row(
                 children: [
                   AppTextButton(
-                    text: "Resend code",
+                    text: "resend_code".tr,
                     onTap: () {
                       resetTimer();
                     },
@@ -184,13 +184,13 @@ class _OtpScreen2State extends State<OtpScreen2> {
               Obx(() {
                 if (otpController.otpResponse.value.success) {
                   return Text(
-                    "OTP sent: ${otpController.otpResponse.value.data?.body}",
+                    "${"otp_sent".tr}: ${otpController.otpResponse.value.data?.body}",
                     style: TextStyle(color: Colors.white),
                   );
                 } else if (!otpController.otpResponse.value.success &&
                     otpController.otpResponse.value.message.isNotEmpty) {
                   return Text(
-                    "Error: ${otpController.otpResponse.value.message}",
+                    "${"error".tr}: ${otpController.otpResponse.value.message}",
                     style: TextStyle(color: Colors.red),
                   );
                 } else {
@@ -202,8 +202,9 @@ class _OtpScreen2State extends State<OtpScreen2> {
                 return otpController.isLoading.value
                     ? Center(child: CircularProgressIndicator())
                     : CustomGradientButton(
-                        text: "Confirm",
+                        text: "confirm".tr,
                         onTap: () async {
+                          
                         }
                       );
               }),
