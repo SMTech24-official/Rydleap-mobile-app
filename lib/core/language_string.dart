@@ -24,7 +24,7 @@ class LocalString extends Translations {
           "payment_methods": "Payment Methods",
           "ride_history": "Ride History",
           "report_problem": "Report a Problem",
-          "contack_us": "Report a Problem",
+          "contack_us": "Contact us",
           //profile
         },
         'es_ES': { // Spanish
@@ -48,6 +48,7 @@ class LocalString extends Translations {
           "payment_methods": "Payment Methods Spanish",
           "ride_history": "Ride History",
           "report_problem": "Report a Problem",
+          "contack_us": "Contact us",
           //profile
         },
         'pt_PT': { // Portuguese
@@ -71,6 +72,7 @@ class LocalString extends Translations {
           "payment_methods": "Payment Methods",
           "ride_history": "Ride History",
           "report_problem": "Report a Problem",
+          "contack_us": "Contact us",
           
           //profile
         },
@@ -95,6 +97,7 @@ class LocalString extends Translations {
           "payment_methods": "Payment Methods",
           "ride_history": "Ride History",
           "report_problem": "Report a Problem",
+          "contack_us": "Contact us",
           //profile
         },
       };
