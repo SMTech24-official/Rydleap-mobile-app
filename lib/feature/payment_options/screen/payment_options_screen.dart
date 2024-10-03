@@ -40,7 +40,7 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
               icon: Icon(Icons.arrow_back_ios)),
         ),
         title: Text(
-          'Payment options',
+          'payment_options'.tr,
           style: GoogleFonts.inter(
               fontSize: getWidth(20), fontWeight: FontWeight.w600),
         ),
@@ -69,7 +69,7 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Cash after reaching",
+                    "cash_after_reaching".tr,
                     style: GoogleFonts.nunito(
                         fontSize: getWidth(18), fontWeight: FontWeight.w400),
                   ),
@@ -157,7 +157,7 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                               Get.to(AddCardScreen());
                             },
                             child: Text(
-                              'Add Payment method',
+                               'add_payment_method'.tr,
                               style: GoogleFonts.nunito(
                                   fontSize: getWidth(15),
                                   fontWeight: FontWeight.w400),
@@ -170,7 +170,7 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                                   child: Row(
                                     children: [
                                       Text(
-                                        'Edit',
+                                        'edit'.tr,
                                         style: GoogleFonts.nunito(
                                             color: Color(0xFFCABDBD),
                                             fontSize: getWidth(12),
@@ -293,7 +293,7 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'Promo Code',
+                                    'promo_Code'.tr,
                                     style: GoogleFonts.nunito(
                                         fontSize: getWidth(15),
                                         fontWeight: FontWeight.w400),
@@ -313,7 +313,7 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                       ? GestureDetector(
                           onTap: () {},
                           child: CustomBlurButton(
-                            text: "Continue",
+                            text:  "continue".tr,
                           ),
                         )
                       : SizedBox.shrink(),

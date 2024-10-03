@@ -20,7 +20,7 @@ class PromotionOffersScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: AppColors.appbarColor,
         title: Text(
-          "Promotion and Offers",
+          "promotion_and_offers".tr,
           style: GoogleFonts.inter(
             fontSize: getWidth(20),
             fontWeight: FontWeight.w600,
@@ -58,7 +58,7 @@ class PromotionOffersScreen extends StatelessWidget {
               ),
               Center(
                 child: Text(
-                  "Active Promotions ",
+                   "active_promotions".tr,
                   style: GoogleFonts.inter(
                       fontSize: getWidth(20), fontWeight: FontWeight.w500),
                 ),
@@ -67,7 +67,7 @@ class PromotionOffersScreen extends StatelessWidget {
                 height: getHeight(31),
               ),
               Text(
-                "Promo Title 1",
+                "promo_title_1".tr,
                 style: GoogleFonts.inter(
                     fontSize: getWidth(17), fontWeight: FontWeight.w500),
               ),
@@ -75,14 +75,14 @@ class PromotionOffersScreen extends StatelessWidget {
                 height: getHeight(12),
               ),
               Text(
-                "Save 20% on your next ride",
+                "save_20%_on_your_next_ride".tr,
                 style: GoogleFonts.inter(
                     fontSize: getWidth(14),
                     fontWeight: FontWeight.w400,
                     color: Color(0xffDCDCDC)),
               ),
               Text(
-                "Expiration: 12/12/2024 ",
+                "${"expiration".tr}: 12/12/2024 ",
                 style: GoogleFonts.inter(
                     fontSize: getWidth(12),
                     fontWeight: FontWeight.w400,
@@ -92,7 +92,7 @@ class PromotionOffersScreen extends StatelessWidget {
                 height: getHeight(30),
               ),
               Text(
-                "Promo Title 2",
+               "promo_title_2".tr,
                 style: GoogleFonts.inter(
                     fontSize: getWidth(17), fontWeight: FontWeight.w500),
               ),
@@ -100,14 +100,14 @@ class PromotionOffersScreen extends StatelessWidget {
                 height: getHeight(12),
               ),
               Text(
-                "\$5 off your next 3 rides",
+                "\$${"5_off_your_next_3_rides".tr}",
                 style: GoogleFonts.inter(
                     fontSize: getWidth(14),
                     fontWeight: FontWeight.w400,
                     color: Color(0xffDCDCDC)),
               ),
               Text(
-                "Expiration: 12/12/2024 ",
+                "${"expiration".tr}: 12/12/2024 ",
                 style: GoogleFonts.inter(
                     fontSize: getWidth(12),
                     fontWeight: FontWeight.w400,
@@ -118,7 +118,7 @@ class PromotionOffersScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Redeem a Promo Code",
+                    "redeem_a_promo_code".tr,
                     style: GoogleFonts.nunito(
                       fontSize: getWidth(18),
                       fontWeight: FontWeight.w400,
@@ -163,7 +163,7 @@ class PromotionOffersScreen extends StatelessWidget {
                           });
                     },
                     child: CustomBlurButton(
-                      text: "Redeem",
+                      text: "redeem".tr,
                     ),
                   ),
                 ],
