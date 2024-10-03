@@ -39,6 +39,27 @@ class LocalString extends Translations {
           "error"  : "Error",
           //otp_2
 
+           //payment_option_screen
+          'payment_options':'Payment options',
+          "cash_after_reaching": "Cash after reaching",
+          'add_payment_method': 'Add Payment method',
+          'edit':'Edit',
+          'promo_Code': 'Promo Code',
+          "continue":"Continue",
+           //payment_option_screen
+
+          //PromotionOffersScreen
+          "promotion_and_offers": "Promotion and Offers",
+          "active_promotions": "Active Promotions",
+          "promo_title_1":"Promo Title 1",
+          "save_20%_on_your_next_ride": "Save 20% on your next ride",
+          "expiration": "Expiration:",
+          "promo_title_2": "Promo Title 2",
+          "5_off_your_next_3_rides": "5 off your next 3 rides",
+          "redeem_a_promo_code":"Canjear un código promocional",
+           "redeem": "Redeem",
+          //PromotionOffersScreen
+
 
           //profile
           "about_me": "About me ",
@@ -90,6 +111,27 @@ class LocalString extends Translations {
           "otp_sent" : "OTP enviada",
           "error"  : "Error",
           //otp_2
+
+          //payment_option_screen
+          'payment_options':'Opciones de pago',
+          "cash_after_reaching": "Efectivo después de llegar",
+          'add_payment_method': 'Agregar método de pago',
+          'edit':'Editar',
+          'promo_Code': 'Código promocional',
+          "continue":"Continuar",
+          //payment_option_screen
+
+          //PromotionOffersScreen
+          "promotion_and_offers": "Promoción y Ofertas",
+          "active_promotions": "Promociones activas",
+          "promo_title_1":"Título promocional 1",
+          "save_20%_on_your_next_ride": "Ahorra un 20% en tu próximo viaje",
+          "expiration": "Caducidad",
+          "promo_title_2": "Título promocional 2",
+          "5_off_your_next_3_rides": "5 de descuento en tus próximos 3 viajes",
+          "redeem_a_promo_code":"Canjear un código promocional",
+          "redeem":"Canjear",
+          //PromotionOffersScreen
 
 
           //profile
@@ -143,6 +185,27 @@ class LocalString extends Translations {
           "error"  : "Erro",
           //otp_2
 
+           //payment_option_screen
+          'payment_options':'Opções de pagamento',
+          "cash_after_reaching": "Dinheiro depois de chegar",
+          'add_payment_method': 'Adicionar forma de pagamento',
+          'edit':'Editar',
+          'promo_Code': 'Código promocional',
+          "continue": "Continuar",
+          //payment_option_screen
+
+          //PromotionOffersScreen
+          "promotion_and_offers": "Promoção e ofertas",
+          "active_promotions": "Promoções Ativas",
+          "promo_title_1": "Título promocional 1",
+          "save_20%_on_your_next_ride": "Economize 20% em sua próxima viagem",
+          "expiration": "Expiração",
+          "promo_title_2": "Título promocional 2",
+          "5_off_your_next_3_rides":"5 de desconto nas suas próximas 3 viagens",
+          "redeem_a_promo_code": "Resgatar um código promocional",
+          "redeem":"Resgatar",
+          //PromotionOffersScreen
+
 
           //profile
           "about_me": "About me",
@@ -195,6 +258,27 @@ class LocalString extends Translations {
           "otp_sent" : "OTP envoyé",
           "error"  : "Erreur",
           //otp_2
+
+           //payment_option_screen
+          'payment_options':'Options de paiement',
+          "cash_after_reaching": "En espèces après avoir atteint",
+          'add_payment_method': 'Ajouter un mode de paiement',
+          'edit':'Modifier',
+          'promo_Code': 'Code promotionnel',
+          "continue":'Continuer',
+          //payment_option_screen
+
+          //PromotionOffersScreen
+          "promotion_and_offers": "Promotions et offres",
+          "active_promotions": "Promotions actives",
+          "promo_title_1":"Titre promotionnel 1",
+          "save_20%_on_your_next_ride": "Économisez 20 % sur votre prochain trajet",
+          "expiration": "Expiration",
+          "promo_title_2": "Titre promotionnel 2",
+          "5_off_your_next_3_rides":"5 de réduction sur vos 3 prochains trajets",
+          "redeem_a_promo_code":"Utiliser un code promotionnel",
+          "redeem":"Racheter",
+          //PromotionOffersScreen
 
           //profile
           "about_me": "About me",
