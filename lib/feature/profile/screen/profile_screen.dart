@@ -220,6 +220,9 @@ Future<void> _pickImage(ImageSource source) async {
 
   @override
   Widget build(BuildContext context) {
+
+
+  homeController.getPromo();
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,

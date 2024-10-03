@@ -6,12 +6,17 @@ import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_error_bottom_sheet.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:rydleap/feature/home/home_controller.dart';
 
 import '../../../../core/app_imagese.dart';
 
 class PromotionOffersScreen extends StatelessWidget {
+  HomeController homeController = Get.find();
+
   PromotionOffersScreen({super.key});
+
   final TextEditingController _promoController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +33,7 @@ class PromotionOffersScreen extends StatelessWidget {
         ),
         leading: IconButton(
           onPressed: () {
+            // homeController.getPromo();
             Navigator.pop(context);
           },
           icon: Icon(
@@ -63,55 +69,20 @@ class PromotionOffersScreen extends StatelessWidget {
                       fontSize: getWidth(20), fontWeight: FontWeight.w500),
                 ),
               ),
-              SizedBox(
-                height: getHeight(31),
-              ),
-              Text(
-                "Promo Title 1",
-                style: GoogleFonts.inter(
-                    fontSize: getWidth(17), fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                height: getHeight(12),
-              ),
-              Text(
-                "Save 20% on your next ride",
-                style: GoogleFonts.inter(
-                    fontSize: getWidth(14),
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xffDCDCDC)),
-              ),
-              Text(
-                "Expiration: 12/12/2024 ",
-                style: GoogleFonts.inter(
-                    fontSize: getWidth(12),
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xffDCDCDC)),
-              ),
-              SizedBox(
-                height: getHeight(30),
-              ),
-              Text(
-                "Promo Title 2",
-                style: GoogleFonts.inter(
-                    fontSize: getWidth(17), fontWeight: FontWeight.w500),
-              ),
-              SizedBox(
-                height: getHeight(12),
-              ),
-              Text(
-                "\$5 off your next 3 rides",
-                style: GoogleFonts.inter(
-                    fontSize: getWidth(14),
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xffDCDCDC)),
-              ),
-              Text(
-                "Expiration: 12/12/2024 ",
-                style: GoogleFonts.inter(
-                    fontSize: getWidth(12),
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xffDCDCDC)),
+              Obx(
+                () => ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: homeController.promotionModel.value.data?.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(
+                          '${homeController.promotionModel.value.data?[index].title}',
+                        ),
+                        subtitle: Text(
+                          '${homeController.promotionModel.value.data?[index].subTitle}',
+                        ),
+                      );
+                    }),
               ),
               Spacer(),
               Column(
@@ -152,7 +123,6 @@ class PromotionOffersScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-
                       _promoErrorBottomSheet(
                           context: context,
                           onCancelBottomTap: () {
@@ -181,10 +151,12 @@ class PromotionOffersScreen extends StatelessWidget {
   Future<dynamic> _promoCodeSuccessBottomSheet(BuildContext context) {
     return showModalBottomSheet(
       context: context,
-      isScrollControlled: true, // Make the bottom sheet take the full screen
-      backgroundColor: Colors.transparent, // Transparent background
-      barrierColor: Color(0xff001B26).withOpacity(
-          0.8), // Semi-transparent black background for the barrier
+      isScrollControlled: true,
+      // Make the bottom sheet take the full screen
+      backgroundColor: Colors.transparent,
+      // Transparent background
+      barrierColor: Color(0xff001B26).withOpacity(0.8),
+      // Semi-transparent black background for the barrier
       builder: (BuildContext context) {
         return Align(
           alignment: Alignment.center, // Center the container on the screen

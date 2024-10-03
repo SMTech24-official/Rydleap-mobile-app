@@ -10,6 +10,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rydleap/core/share_pref/share_pref.dart';
+import 'package:rydleap/feature/home/model/promotion_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:rydleap/feature/auth/domain/model/user_model.dart';
 
@@ -22,6 +23,7 @@ class HomeController extends GetxController{
 
 
   Rx<UserModel> userDetail=UserModel().obs;
+  Rx<PromotionModel> promotionModel=PromotionModel().obs;
 
 
 
@@ -63,10 +65,53 @@ class HomeController extends GetxController{
     }
   }
 
+
+
+  Future<void> getPromo() async {
+
+    print('into promo');
+      debugPrint("++++++++++++++++++Start++++++++++++++++++++++");
+
+
+    final url = Uri.parse('https://rydleaps.vercel.app/api/v1/promotions');
+    var response = await http.get(
+      url,
+    );
+
+    // log('log me', name: response.body);
+
+    debugPrint("+++++++++++status code....."+response.statusCode.toString());
+
+
+    debugPrint("+++++++++++++++++++++++++++Promo Data++++++++++++++++++++++"+response.body);
+
+
+    if (response.statusCode == 200) {
+
+      promotionModel.value= promotionModelFromJson(response.body);
+
+
+      debugPrint("+++++++++++++++++++++++++++ OK Data++++++++++++++++++++++"+response.body);
+      //return userModelFromJson(response.body);
+    } else if (response.statusCode == 400) {
+      throw const HttpException('getCustomerAddressData Error');
+    } else {
+      throw const HttpException('getCustomerAddressData Error');
+    }
+  }
+
+
+
+
+
   @override
   void onInit() {
     super.onInit();
     //fetchTransactionList()  ;
+
+    // getPromotion();
+
+    getPromo();
 
 
 
