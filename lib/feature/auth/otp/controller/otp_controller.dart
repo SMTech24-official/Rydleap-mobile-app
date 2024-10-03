@@ -1,8 +1,23 @@
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rydleap/core/service/auth_service.dart';
+import 'package:rydleap/feature/auth/login/controller/forgot_controller.dart';
+import 'package:rydleap/feature/auth/login/login_screen.dart';
 import 'package:rydleap/feature/auth/otp/model/otp_response.dart';
 
+import '../../../../core/api_url.dart';
+import 'package:http/http.dart' as http;
+
+import '../../presentaion/screens/create_password.dart';
+import '../../presentaion/screens/registration/create_new_password.dart';
+
 class OtpController extends GetxController {
+
+
+  ForgotController forgotController=Get.find();
+
   var isLoading = false.obs;
   var otpCode = ''.obs;
   var otpResponse = OtpResponse(
@@ -60,4 +75,90 @@ class OtpController extends GetxController {
   void setOtpCode(String code) {
     otpCode.value = code; // Set the OTP code
   }
+
+
+
+
+
+  void varifiOTP() async {
+
+
+    Map<String, String> userData = Map();
+
+    userData['phoneNumber'] = forgotController.emailController.text;
+    userData['otp'] = otpCode.value;
+
+
+    debugPrint("userData" + userData.toString());
+    //
+    final url = Uri.parse(ApiUrl.baseUrl +'/api/v1/otp/verify-otp');
+
+
+    var response = await http.post(url, body: userData);
+
+    debugPrint("Response Code..................." + response.statusCode.toString());
+    debugPrint("Response Success:..................." + jsonDecode(response.body)['success'].toString());
+
+
+    debugPrint('++++++++++++++++++++++++++++${jsonDecode(response.body)['data']['body']}+++++++++++++++++++++++++');
+
+
+    if(response.statusCode==200){
+
+      if(jsonDecode(response.body)['success']==true){
+        Get.to(()=>CreateNewPassword());
+      }
+
+      // Get.to(()=>OtpScreen2());
+
+    }
+
+
+  }
+
+
+
+  void setPassword(String newPassword) async {
+
+
+    Map<String, String> userData = Map();
+
+    userData['phoneNumber'] = forgotController.emailController.text;
+    userData['newPassword'] = newPassword;
+
+
+    debugPrint("userData" + userData.toString());
+    //
+    final url = Uri.parse(ApiUrl.baseUrl +'/api/v1/auth/reset-password-app');
+
+
+    var response = await http.patch(url, body: userData);
+
+    debugPrint("Response Code..................." + response.statusCode.toString());
+    debugPrint("Response Success:..................." + jsonDecode(response.body)['success'].toString());
+
+
+    // debugPrint('++++++++++++++++++++++++++++${jsonDecode(response.body)['data']['body']}+++++++++++++++++++++++++');
+
+    //
+    if(response.statusCode==200){
+
+      if(jsonDecode(response.body)['success']==true){
+        Get.off(()=>LoginScreen());
+      }
+
+      // Get.to(()=>OtpScreen2());
+
+    }
+
+
+  }
+
+
+
+
+
+
+
+
 }

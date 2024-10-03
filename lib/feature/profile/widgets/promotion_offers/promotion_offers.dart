@@ -6,12 +6,17 @@ import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_error_bottom_sheet.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:rydleap/feature/home/home_controller.dart';
 
 import '../../../../core/app_imagese.dart';
 
 class PromotionOffersScreen extends StatelessWidget {
+  HomeController homeController = Get.find();
+
   PromotionOffersScreen({super.key});
+
   final TextEditingController _promoController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +33,7 @@ class PromotionOffersScreen extends StatelessWidget {
         ),
         leading: IconButton(
           onPressed: () {
+            // homeController.getPromo();
             Navigator.pop(context);
           },
           icon: Icon(
@@ -73,6 +79,20 @@ class PromotionOffersScreen extends StatelessWidget {
               ),
               SizedBox(
                 height: getHeight(12),
+              Obx(
+                () => ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: homeController.promotionModel.value.data?.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(
+                          '${homeController.promotionModel.value.data?[index].title}',
+                        ),
+                        subtitle: Text(
+                          '${homeController.promotionModel.value.data?[index].subTitle}',
+                        ),
+                      );
+                    }),
               ),
               Text(
                 "save_20%_on_your_next_ride".tr,
@@ -181,10 +201,12 @@ class PromotionOffersScreen extends StatelessWidget {
   Future<dynamic> _promoCodeSuccessBottomSheet(BuildContext context) {
     return showModalBottomSheet(
       context: context,
-      isScrollControlled: true, // Make the bottom sheet take the full screen
-      backgroundColor: Colors.transparent, // Transparent background
-      barrierColor: Color(0xff001B26).withOpacity(
-          0.8), // Semi-transparent black background for the barrier
+      isScrollControlled: true,
+      // Make the bottom sheet take the full screen
+      backgroundColor: Colors.transparent,
+      // Transparent background
+      barrierColor: Color(0xff001B26).withOpacity(0.8),
+      // Semi-transparent black background for the barrier
       builder: (BuildContext context) {
         return Align(
           alignment: Alignment.center, // Center the container on the screen

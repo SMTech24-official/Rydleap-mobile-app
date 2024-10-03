@@ -5,6 +5,7 @@ import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CallSupportScreen extends StatefulWidget {
   const CallSupportScreen({super.key});
@@ -108,6 +109,9 @@ class _CallSupportScreenState extends State<CallSupportScreen> {
                                   MediaQuery.of(context).size.width -
                                       getWidth(150));
                             });
+
+                           // debugPrint('++++++++++Call Going++++++++++++++++++++++++++++++++++++++++');
+
                           },
                           onHorizontalDragEnd: (details) {
                             setState(() {
@@ -115,12 +119,22 @@ class _CallSupportScreenState extends State<CallSupportScreen> {
                               if (_slidePosition >
                                   MediaQuery.of(context).size.width -
                                       getWidth(150)) {
-                                // Slide to call completed, trigger action
-                                // Implement the call functionality here
+
+                               // debugPrint('++++++++++Call end1++++++++++++++++++++++++++++++++++++++++');
+
                               }
                               _slidePosition =
                                   0; // Reset to initial position after slide
                             });
+
+
+                            debugPrint('++++++++++Call end2++++++++++++++++++++++++++++++++++++++++');
+
+                            phoneCall('01726222954');
+
+
+
+
                           },
                           child: AnimatedContainer(
                             duration: Duration(milliseconds: 300),
@@ -144,6 +158,7 @@ class _CallSupportScreenState extends State<CallSupportScreen> {
                                       fontSize: getWidth(16),
                                       fontWeight: FontWeight.w400,
                                     ),
+
                                   ),
                                 ],
                               ),
@@ -163,5 +178,18 @@ class _CallSupportScreenState extends State<CallSupportScreen> {
         ],
       ),
     );
+
+
+
+
+  }
+
+
+  Future<void> phoneCall(String phoneNumber) async {
+
+
+    var url = Uri.parse("tel:${phoneNumber}");
+    await launchUrl(url);
+
   }
 }

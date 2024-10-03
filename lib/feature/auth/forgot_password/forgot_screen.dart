@@ -42,19 +42,20 @@ class _ForgotScreenState extends State<ForgotScreen> {
           children: [
             SizedBox(height: getHeight(35)),
             Text(
-             "forgot_password".tr,
+              "Forgot Password?",
               style: Theme.of(context).textTheme.titleMedium,
             ),
             Text(
-               "email".tr,
+              "Enter your phone number to reclaim your password to continue with Rydleap",
               style: Theme.of(context).textTheme.titleSmall,
             ),
             SizedBox(height: getHeight(24)),
             CustomTextfield(
               controller: _forgotController.emailController,
-              hintext: "h_email".tr,
+              hintext: "Phone Number",
               suffixIcon: SizedBox(),
-              textInputType: TextInputType.emailAddress,
+              textInputType: TextInputType.phone,
+
             ),
             SizedBox(height: getHeight(34)),
             Spacer(),
@@ -65,8 +66,8 @@ class _ForgotScreenState extends State<ForgotScreen> {
 
 
 
-                      Get.to(()=>OtpScreen2());
-                      // _forgotController.sendMail();
+                      //Get.to(()=>OtpScreen2());
+                      _forgotController.sendMail();
 
 
 
