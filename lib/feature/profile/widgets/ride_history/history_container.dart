@@ -5,7 +5,11 @@ import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 
 class CustomHistoryContainer extends StatefulWidget {
-  const CustomHistoryContainer({super.key});
+  const CustomHistoryContainer({super.key, required this.ridingDate, required this.pickupDest, required this.dropOff});
+
+  final String ridingDate;
+  final String pickupDest;
+  final String dropOff;
 
   @override
   State<CustomHistoryContainer> createState() => _CustomHistoryContainerState();

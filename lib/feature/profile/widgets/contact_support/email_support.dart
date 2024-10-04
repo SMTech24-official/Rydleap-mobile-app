@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -11,6 +12,7 @@ import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_buttomsheet/custom_bottomsheet.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:rydleap/feature/profile/controller/profile_controller.dart';
 
 class EmailSupportScreen extends StatefulWidget {
   const EmailSupportScreen({super.key});
@@ -20,6 +22,12 @@ class EmailSupportScreen extends StatefulWidget {
 }
 
 class _EmailSupportScreenState extends State<EmailSupportScreen> {
+
+  ProfileController profileController=Get.find();
+
+
+
+
   final TextEditingController _issueController = TextEditingController();
   final TextEditingController _subjectController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
@@ -310,6 +318,13 @@ class _EmailSupportScreenState extends State<EmailSupportScreen> {
 
                       
                       );
+
+
+                      //profileController.sendEmail('_issueController.text', '_subjectController.text', '_descriptionController.text');
+
+
+
+
                     },
                     borderRadius: BorderRadius.circular(getWidth(46)),
                     splashColor: Colors.grey.withOpacity(0.5),
