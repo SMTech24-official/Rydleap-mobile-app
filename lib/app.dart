@@ -11,9 +11,12 @@ import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/language_string.dart';
 import 'package:rydleap/core/shared/screen/splashScreen.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:rydleap/feature/auth/presentaion/screens/registration/register_screen.dart';
+import 'package:rydleap/feature/profile/widgets/language/language_screen.dart';
 
 class Rydleap extends StatelessWidget {
-  const Rydleap({super.key});
+  final Locale initialLocale;
+  const Rydleap({super.key,required this.initialLocale});
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class Rydleap extends StatelessWidget {
     return FlutterSizer(builder: (context, orientation, screenType) {
       return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        locale: Locale("en", "US"),
+        locale: initialLocale,
         fallbackLocale: Locale("en", "US"),
         translations: LocalString(),
         home: SplashScreen(),

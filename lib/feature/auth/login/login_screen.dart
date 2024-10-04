@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           const SizedBox(width: 10),
           Text(
-            "Remember me",
+            "remember_me".tr,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Theme.of(context).textTheme.bodySmall?.color,
                   fontSize: getWidth(13),
@@ -125,24 +125,24 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             SizedBox(height: getHeight(35)),
             Text(
-              "Log In",
+              "log_in".tr,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             Text(
-              "Enter your email or phone and password to continue with Rydleap",
+              "email_or_phone".tr,
               style: Theme.of(context).textTheme.titleSmall,
             ),
             SizedBox(height: getHeight(24)),
             CustomTextfield(
               controller: _emailController,
-              hintext: "Phone or email",
+              hintext: "phone_or_email".tr,
               suffixIcon: SizedBox(),
               textInputType: TextInputType.emailAddress,
             ),
             SizedBox(height: getHeight(18)),
             CustomTextfield(
               controller: _passwordController,
-              hintext: "Password",
+              hintext: "password".tr,
               suffixIcon: SizedBox(
                 // height: getHeight(24),
                 // width: getWidth(24),
@@ -155,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 _buildRememberMeCheckbox(), // Use the custom checkbox method
                 AppTextButton(
-                  text: "Forgotten password?",
+                  text: "forgotten_password".tr,
                   onTap: () {
                    print("Forgot password");
                    Get.to(()=>ForgotScreen());
@@ -173,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
               } else {
                 return isFormValid
                     ? CustomGradientButton(
-                        text: "Confirm",
+                        text: "confirm".tr,
                         onTap: () async {
                           await _loginController.login(
                             _emailController.text,
@@ -188,7 +188,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         },
                       )
-                    : CustomBlurButton(text: "Confirm");
+                    : CustomBlurButton(text: "confirm".tr);
               }
             }),
             SizedBox(height: getHeight(20)),

@@ -13,6 +13,7 @@ import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
+import 'package:rydleap/core/share_pref/share_pref.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/home/home_controller.dart';
 import 'package:rydleap/feature/auth/login/controller/login_controller.dart';
@@ -229,7 +230,7 @@ Future<void> _pickImage(ImageSource source) async {
           backgroundColor: AppColors.appbarColor,
           leading: CustomCloseButton(),
           title: Text(
-            "About me",
+            "about_me".tr,
             style: GoogleFonts.inter(
                 fontSize: getWidth(20), fontWeight: FontWeight.w600),
           ),
@@ -344,7 +345,7 @@ Future<void> _pickImage(ImageSource source) async {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-
+                            
                             Obx(()=> Text(
                               "${homeController.userDetail.value.data?.name}",
                               style: GoogleFonts.nunito(
@@ -360,14 +361,41 @@ Future<void> _pickImage(ImageSource source) async {
                             ),
                           ],
                         ),
-                        Obx(()=>Text(
-                          "${homeController.userDetail.value.data?.phoneNumber}",
-                          style: GoogleFonts.nunito(
-                              color: Color(0xffC3BBBB),
-                              fontSize: getWidth(15),
-                              fontWeight: FontWeight.w400),
-                        ),)
-                        ,
+                        // Obx(()=>Text(
+                        //   "${homeController.userDetail.value.data?.phoneNumber}",
+                        //   style: GoogleFonts.nunito(
+                        //       color: Color(0xffC3BBBB),
+                        //       fontSize: getWidth(15),
+                        //       fontWeight: FontWeight.w400),
+                        // ),),
+                        FutureBuilder<String?>(
+                    future: SharePref
+                        .getSavedEmail(), // The future that fetches the email
+                    builder: (BuildContext context,
+                        AsyncSnapshot<String?> snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Text(
+                          'Loading...', // Show loading state
+                          style: TextStyle(fontSize: 18),
+                        );
+                      } else if (snapshot.hasError) {
+                        return Text(
+                          'Error: ${snapshot.error}', // Show error message
+                          style: TextStyle(fontSize: 18),
+                        );
+                      } else if (snapshot.hasData && snapshot.data != null) {
+                        return Text(
+                          'Email: ${snapshot.data}', // Show the retrieved email
+                          style: TextStyle(fontSize: 18),
+                        );
+                      } else {
+                        return Text(
+                          'Email: Not provided', // Fallback if no email is found
+                          style: TextStyle(fontSize: 18),
+                        );
+                      }
+                    },
+                  ),
                         Text(
                           "${homeController.userDetail.value.data?.email}",
                           style: GoogleFonts.nunito(
@@ -443,7 +471,7 @@ Future<void> _pickImage(ImageSource source) async {
                                       width: getWidth(24.5),
                                     ),
                                     Text(
-                                      data.title,
+                                      data.title.tr,
                                       style: GoogleFonts.nunito(
                                           fontSize: getWidth(16),
                                           fontWeight: FontWeight.w400),

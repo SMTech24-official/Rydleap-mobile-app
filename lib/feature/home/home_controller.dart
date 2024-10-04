@@ -32,8 +32,6 @@ class HomeController extends GetxController{
   Future<void> getUserDetail(String accessToken) async {
 
 
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-
 
     Map<String, String> headers = {
       "Authorization": "$accessToken",

@@ -1,91 +1,67 @@
-class ProfileModel {
-  bool? success;
-  String? message;
-  UserProfile? data;
+class User {
+  final String? id;
+  final String? name;
+  final String? email;
+  final String? profileImage;
+  final String? userName;
+  final String? drivingLicenseImage;
+  final String? role;
+  final String? status;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
-  ProfileModel({this.success, this.message, this.data});
-
-  // Deserialize JSON to ProfileModel
-  factory ProfileModel.fromJson(Map<String, dynamic> json) {
-    return ProfileModel(
-      success: json['success'],
-      message: json['message'],
-      data: json['data'] != null ? UserProfile.fromJson(json['data']) : null,
-    );
-  }
-
-  // Serialize ProfileModel to JSON
-  Map<String, dynamic> toJson() {
-    return {
-      'success': success,
-      'message': message,
-      'data': data?.toJson(),
-    };
-  }
-}
-
-class UserProfile {
-  String? id;
-  String? email;
-  String? role;
-  String? status;
-  String? phoneNumber;
-  String? name;
-  String? userName;
-  String? profileImage;
-  String? drivingLicenseImage;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-
-  UserProfile({
+  User({
     this.id,
+    this.name,
     this.email,
+    this.profileImage,
+    this.userName,
+    this.drivingLicenseImage,
     this.role,
     this.status,
-    this.phoneNumber,
-    this.name,
-    this.userName,
-    this.profileImage,
-    this.drivingLicenseImage,
     this.createdAt,
     this.updatedAt,
   });
 
-  // Deserialize JSON to UserProfile
-  factory UserProfile.fromJson(Map<String, dynamic> json) {
-    return UserProfile(
-      id: json['id'],
-      email: json['email'],
-      role: json['role'],
-      status: json['status'],
-      phoneNumber: json['phoneNumber'],
-      name: json['name'],
-      userName: json['userName'],
-      profileImage: json['profileImage'],
-      drivingLicenseImage: json['drivingLicenseImage'],
+  // Factory constructor for creating a User from JSON
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      id: json['id'] as String?,
+      name: json['name'] as String?,
+      email: json['email'] as String?,
+      profileImage: json['profileImage'] as String?,
+      userName: json['userName'] as String?,
+      drivingLicenseImage: json['drivingLicenseImage'] as String?,
+      role: json['role'] as String?,
+      status: json['status'] as String?,
       createdAt: json['createdAt'] != null
-          ? DateTime.parse(json['createdAt'])
+          ? DateTime.parse(json['createdAt'] as String)
           : null,
       updatedAt: json['updatedAt'] != null
-          ? DateTime.parse(json['updatedAt'])
+          ? DateTime.parse(json['updatedAt'] as String)
           : null,
     );
   }
 
-  // Serialize UserProfile to JSON
+  // Method to convert User to JSON
   Map<String, dynamic> toJson() {
     return {
       'id': id,
+      'name': name,
       'email': email,
+      'profileImage': profileImage,
+      'userName': userName,
+      'drivingLicenseImage': drivingLicenseImage,
       'role': role,
       'status': status,
-      'phoneNumber': phoneNumber,
-      'name': name,
-      'userName': userName,
-      'profileImage': profileImage,
-      'drivingLicenseImage': drivingLicenseImage,
       'createdAt': createdAt?.toIso8601String(),
       'updatedAt': updatedAt?.toIso8601String(),
     };
+  }
+
+  // Override the toString method to display user details
+  @override
+  String toString() {
+    return 'User{id: $id, name: $name, email: $email, profileImage: $profileImage, userName: $userName, drivingLicenseImage: $drivingLicenseImage, role: $role, status: $status, createdAt: $createdAt, updatedAt: $updatedAt}';
   }
 }

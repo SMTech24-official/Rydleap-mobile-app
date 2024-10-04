@@ -25,7 +25,7 @@ class PromotionOffersScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: AppColors.appbarColor,
         title: Text(
-          "Promotion and Offers",
+          "promotion_and_offers".tr,
           style: GoogleFonts.inter(
             fontSize: getWidth(20),
             fontWeight: FontWeight.w600,
@@ -64,13 +64,21 @@ class PromotionOffersScreen extends StatelessWidget {
               ),
               Center(
                 child: Text(
-                  "Active Promotions ",
+                   "active_promotions".tr,
                   style: GoogleFonts.inter(
                       fontSize: getWidth(20), fontWeight: FontWeight.w500),
                 ),
               ),
-              Obx(
-                () => ListView.builder(
+              SizedBox(
+                height: getHeight(31),
+              ),
+              Text(
+                "promo_title_1".tr,
+                style: GoogleFonts.inter(
+                    fontSize: getWidth(17), fontWeight: FontWeight.w500),
+              ),
+              SizedBox(height: getHeight(12)),
+              Obx(() => ListView.builder(
                     shrinkWrap: true,
                     itemCount: homeController.promotionModel.value.data?.length,
                     itemBuilder: (context, index) {
@@ -84,12 +92,51 @@ class PromotionOffersScreen extends StatelessWidget {
                       );
                     }),
               ),
+              Text(
+                "save_20%_on_your_next_ride".tr,
+                style: GoogleFonts.inter(
+                    fontSize: getWidth(14),
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xffDCDCDC)),
+              ),
+              Text(
+                "${"expiration".tr}: 12/12/2024 ",
+                style: GoogleFonts.inter(
+                    fontSize: getWidth(12),
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xffDCDCDC)),
+              ),
+              SizedBox(
+                height: getHeight(30),
+              ),
+              Text(
+               "promo_title_2".tr,
+                style: GoogleFonts.inter(
+                    fontSize: getWidth(17), fontWeight: FontWeight.w500),
+              ),
+              SizedBox(
+                height: getHeight(12),
+              ),
+              Text(
+                "\$${"5_off_your_next_3_rides".tr}",
+                style: GoogleFonts.inter(
+                    fontSize: getWidth(14),
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xffDCDCDC)),
+              ),
+              Text(
+                "${"expiration".tr}: 12/12/2024 ",
+                style: GoogleFonts.inter(
+                    fontSize: getWidth(12),
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xffDCDCDC)),
+              ),
               Spacer(),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Redeem a Promo Code",
+                    "redeem_a_promo_code".tr,
                     style: GoogleFonts.nunito(
                       fontSize: getWidth(18),
                       fontWeight: FontWeight.w400,
@@ -123,6 +170,7 @@ class PromotionOffersScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
+
                       _promoErrorBottomSheet(
                           context: context,
                           onCancelBottomTap: () {
@@ -133,7 +181,7 @@ class PromotionOffersScreen extends StatelessWidget {
                           });
                     },
                     child: CustomBlurButton(
-                      text: "Redeem",
+                      text: "redeem".tr,
                     ),
                   ),
                 ],

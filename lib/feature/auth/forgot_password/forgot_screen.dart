@@ -61,7 +61,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
             Spacer(),
             Obx(() => _forgotController.isFormValid.value
                 ? CustomGradientButton(
-                    text: "Confirm",
+                    text: "confirm".tr,
                     onTap: () {
 
 
@@ -75,7 +75,7 @@ class _ForgotScreenState extends State<ForgotScreen> {
 
                     },
                   )
-                : CustomBlurButton(text: "Confirm")),
+                : CustomBlurButton(text: "confirm".tr)),
             SizedBox(height: getHeight(20)),
           ],
         ),
