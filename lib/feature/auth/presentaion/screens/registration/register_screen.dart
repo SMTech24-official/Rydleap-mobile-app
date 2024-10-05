@@ -150,6 +150,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
             CustomPhoneInput(
               controller: phoneController,
             ),
+            CustomGlobalVariable.userType == 'Driver'
+                          ? CustomGradientButton(
+                            text:"Get Otp driver",
+                      // text: "get_otp".tr,
+                      onTap: () {
+                        String phoneNumber = phoneController
+                            .text; // Get the phone number from the controller
+                        otpController.sendOtp(phoneNumber);
+                        Get.to(OtpScreen(), arguments: {
+                          'phoneNumber': phoneNumber, // Pass the phone number here
+                        });
+                        // Get.to(DriverRegistrationScreen());
+                        // Get.to(OtpScreen());
+                      }):
             Obx(() {
               return otpController.isLoading.value
                   ? CircularProgressIndicator()
