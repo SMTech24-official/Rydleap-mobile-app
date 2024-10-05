@@ -68,7 +68,7 @@ class YourLocation extends StatelessWidget {
                   onTap: () {
                     CustomGlobalVariable.userType = 'User';
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => RegisterScreen()));
+                        MaterialPageRoute(builder: (_) => RegisterScreen(role: "User",)));
                   },
                   text: "User",
                 ),
@@ -80,7 +80,7 @@ class YourLocation extends StatelessWidget {
                     onTap: () {
                       CustomGlobalVariable.userType = 'Driver';
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => RegisterScreen()));
+                          MaterialPageRoute(builder: (_) => RegisterScreen(role: "Driver",)));
                     })
               ],
             ),

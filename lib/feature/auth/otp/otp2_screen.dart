@@ -205,7 +205,7 @@ class _OtpScreen2State extends State<OtpScreen2> {
                         text: "confirm".tr,
                         onTap: () async {
 
-                          otpController.varifiOTP();
+                          // otpController.varifiOTP();
 
 
                         }

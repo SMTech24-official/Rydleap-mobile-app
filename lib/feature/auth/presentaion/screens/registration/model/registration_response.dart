@@ -13,59 +13,94 @@ class RegistrationResponse {
     return RegistrationResponse(
       success: json['success'] ?? false, // Default to false if null
       message: json['message'] ?? '', // Default to empty string if null
-      data: RegistrationData.fromJson(json['data']), // Assume data is not null based on the structure you provided
+      data: json['data'] != null
+          ? RegistrationData.fromJson(json['data'])
+          : RegistrationData.empty(), // Handle null data
     );
   }
 }
 
 class RegistrationData {
+  
   final String id;
-  final String name;
+  final String fullName;
   final String email;
-  final String? userName; // Nullable field
+  final String phoneNumber;
+  final String password; // Storing passwords in plaintext is not recommended
+  final String role;
+  final String status;
+  final bool isDeleted;
   final DateTime createdAt;
   final DateTime updatedAt;
 
   RegistrationData({
     required this.id,
-    required this.name,
+    required this.fullName,
     required this.email,
-    this.userName, // Nullable
+    required this.phoneNumber,
+    required this.password,
+    required this.role,
+    required this.status,
+    required this.isDeleted,
     required this.createdAt,
     required this.updatedAt,
   });
 
+  // Factory method for creating an instance from JSON
   factory RegistrationData.fromJson(Map<String, dynamic> json) {
     return RegistrationData(
-      id: json['id'] ?? '', // Default to empty string if null
-      name: json['name'] ?? '', // Default to empty string if null
-      email: json['email'] ?? '', // Default to empty string if null
-      userName: json['userName'], // Nullable
-      createdAt: DateTime.parse(json['createdAt'] ?? DateTime.now().toIso8601String()), // Default to now if null
-      updatedAt: DateTime.parse(json['updatedAt'] ?? DateTime.now().toIso8601String()), // Default to now if null
+      id: json['id'] ?? '',
+      fullName: json['fullName'] ?? '',
+      email: json['email'] ?? '',
+      phoneNumber: json['phoneNumber'] ?? '',
+      password: json['password'] ?? '', // Consider not storing plaintext passwords
+      role: json['role'] ?? '',
+      status: json['status'] ?? '',
+      isDeleted: json['isDeleted'] ?? false,
+      createdAt: DateTime.parse(json['createdAt'] ?? DateTime.now().toIso8601String()),
+      updatedAt: DateTime.parse(json['updatedAt'] ?? DateTime.now().toIso8601String()),
+    );
+  }
+
+  // A named constructor for creating an empty instance
+  factory RegistrationData.empty() {
+    return RegistrationData(
+      id: '',
+      fullName: '',
+      email: '',
+      phoneNumber: '',
+      password: '',
+      role: '',
+      status: '',
+      isDeleted: false,
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
     );
   }
 }
+
 class RegistrationRequest {
-  final String name;
+  final String fullName;
   final String email;
   final String phoneNumber;
   final String password;
+  final String role;
 
   RegistrationRequest({
-    required this.name,
+    required this.fullName,
     required this.email,
     required this.phoneNumber,
     required this.password,
+    required this.role,
   });
 
   Map<String, dynamic> toJson() {
     return {
-      'name': name,
+      'fullName':fullName,
       'email': email,
       'phoneNumber': phoneNumber,
       'password': password,
+      'role': role,
     };
   }
 }
-

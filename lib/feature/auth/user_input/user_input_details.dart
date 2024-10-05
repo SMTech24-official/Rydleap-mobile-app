@@ -1,25 +1,29 @@
 class UserInputDetails {
-  String name;
+  String fullName;
   String email;
   String password;
   String confirmPassword;
-  String phoneNumber; // Add phone number field
+  String phoneNumber;
+  String role; // Add phone number field
 
   UserInputDetails({
-    required this.name,
+    required this.fullName,
     required this.email,
     required this.password,
     required this.confirmPassword,
-    required this.phoneNumber, // Update constructor
+    required this.phoneNumber,
+    required this.role
+     // Update constructor
   });
 
   Map<String, dynamic> toJson() {
     return {
-      'name': name,
+      'name': fullName,
       'email': email,
       'password': password,
       'confirmPassword': confirmPassword,
-      'phoneNumber': phoneNumber, // Include phone number in JSON
+      'phoneNumber': phoneNumber, 
+      'role': phoneNumber, 
     };
   }
 }

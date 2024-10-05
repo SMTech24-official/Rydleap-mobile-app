@@ -11,6 +11,7 @@ import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/feature/auth/otp/controller/otp_controller.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/change_password.dart';
+import 'package:rydleap/feature/auth/presentaion/screens/create_password.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/name_email_screen.dart';
 
 import '../../../core/global_widgets/custom_gradient_button.dart';
@@ -93,10 +94,17 @@ class _OtpScreenState extends State<OtpScreen> {
         child: Text('No phone number provided'),
       );
     }
+    if (arguments == null || arguments['role'] == null) {
+      return Center(
+        child: Text('No role provided'),
+      );
+    }
 
     // Access the phone number
     String phoneNumber = arguments['phoneNumber'];
+    String role = arguments['role'];
     print("Your set number is ${phoneNumber}");
+    print("Your set role is ${role}");
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -207,6 +215,7 @@ class _OtpScreenState extends State<OtpScreen> {
                         onTap: () async {
                           if (otpController.otpCode.value.length == 6) {
                             bool isValid = await otpController.verifyOtp(
+                              
                                 phoneNumber, otpController.otpCode.value);
 
                             if (isValid) {
@@ -214,7 +223,9 @@ class _OtpScreenState extends State<OtpScreen> {
                               // Navigate to NameEmailScreen if OTP is valid
                               Get.to(NameEmailScreen(), arguments: {
                                 'phoneNumber': phoneNumber,
+                                'role': role,
                               });
+                             
                             } else {
                               // Show error if OTP is invalid
                               print("Error Invalid OTP. Please try again.");

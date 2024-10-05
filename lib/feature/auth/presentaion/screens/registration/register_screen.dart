@@ -8,6 +8,7 @@ import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_glass_button.dart';
+import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/global_widgets/phone_input.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
@@ -22,10 +23,12 @@ import 'package:rydleap/feature/home/presentation/screens/home.dart';
 import 'package:rydleap/feature/profile/screen/profile_screen.dart';
 import 'package:rydleap/feature/social_login/google_login.dart';
 
-import '../../../../../core/global_widgets/custom_gradient_button.dart';
-
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+  final String role; // Add this line to accept the role
+
+  const RegisterScreen(
+      {super.key,
+      required this.role}); // Update the constructor to require the role
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -34,7 +37,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final OtpController otpController = Get.put(OtpController());
   final TextEditingController phoneController =
-      TextEditingController(text: "+8801606542072");
+      TextEditingController(text: "+8801843892344");
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
@@ -79,12 +82,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    // Print the role when the user arrives at the register screen
+    print("Role: ${widget.role}");
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Custombackground(
         bottomContainerHeight: screenHeight() * 0.5,
-        //car and text section
         widget: Padding(
           padding: EdgeInsets.only(
             top: getHeight(82),
@@ -94,7 +104,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // TextButton(onPressed: _signOut, child: Text("logout")),
                 Image.asset(AppImagese.car),
                 SizedBox(
                   height: getHeight(10),
@@ -105,9 +114,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: CustomGlobalVariable.userType == 'Driver'
-                              ? "Ai- based travel bookings for drivers by "
-                              : "Ai- based travel bookings by ",
+                          text: widget.role == 'Driver'
+                              ? "Ai-based travel bookings for drivers by "
+                              : "Ai-based travel bookings by ",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: Theme.of(context)
@@ -141,46 +150,44 @@ class _RegisterScreenState extends State<RegisterScreen> {
               height: getHeight(35),
             ),
             Text(
-          "language".tr,
-          style: GoogleFonts.inter(
-            fontSize: getWidth(20),
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+              "language".tr,
+              style: GoogleFonts.inter(
+                fontSize: getWidth(20),
+                fontWeight: FontWeight.w600,
+              ),
+            ),
             CustomPhoneInput(
               controller: phoneController,
             ),
-            CustomGlobalVariable.userType == 'Driver'
-                          ? CustomGradientButton(
-                            text:"Get Otp driver",
-                      // text: "get_otp".tr,
-                      onTap: () {
-                        String phoneNumber = phoneController
-                            .text; // Get the phone number from the controller
-                        otpController.sendOtp(phoneNumber);
-                        Get.to(OtpScreen(), arguments: {
-                          'phoneNumber': phoneNumber, // Pass the phone number here
-                        });
-                        // Get.to(DriverRegistrationScreen());
-                        // Get.to(OtpScreen());
-                      }):
-            Obx(() {
-              return otpController.isLoading.value
-                  ? CircularProgressIndicator()
-                  : CustomGradientButton(
-                      text: "get_otp".tr,
-                      onTap: () {
-                        String phoneNumber = phoneController
-                            .text; // Get the phone number from the controller
-                        otpController.sendOtp(phoneNumber);
-                        Get.to(OtpScreen(), arguments: {
-                          'phoneNumber': phoneNumber, // Pass the phone number here
-                        });
-                        // Get.to(DriverRegistrationScreen());
-                        // Get.to(OtpScreen());
+            widget.role == 'Driver'
+                ? CustomGradientButton(
+                    text: "Get Otp driver",
+                    onTap: () {
+                      String phoneNumber = phoneController
+                          .text; // Get the phone number from the controller
+                      otpController.sendOtp(phoneNumber,widget.role);
+                      Get.to(OtpScreen(), arguments: {
+                        'phoneNumber':
+                            phoneNumber, // Set phone number from user input
+                        'role': widget.role,
                       });
-            }),
-
+                    })
+                : Obx(() {
+                    return otpController.isLoading.value
+                        ? CircularProgressIndicator()
+                        : CustomGradientButton(
+                            text: "get_otp".tr,
+                            onTap: () {
+                              String phoneNumber = phoneController
+                                  .text; // Get the phone number from the controller
+                              otpController.sendOtp(phoneNumber,widget.role);
+                              Get.to(OtpScreen(), arguments: {
+                                'phoneNumber':
+                                    phoneNumber, // Set phone number from user input
+                                'role': widget.role,
+                              });
+                            });
+                  }),
             Container(
               width: getWidth(120),
               height: 37,
@@ -200,30 +207,30 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             OrSignInWith(),
             CustomGlassButton(
-                icon: AppIcons.googleIcon,
-                text: "sign_google".tr,
-                onTap: () {
-                  Get.to(LoginScreen());
-                }),
-            // GoogleLogin(),
+              icon: AppIcons.googleIcon,
+              text: "sign_google".tr,
+              onTap: _signInWithGoogle,
+            ),
             CustomGlassButton(
-                icon: AppIcons.appleIcon,
-                text: "sign_apple".tr,
-                onTap: () {
-                  Get.to(ProfileScreen());
-                }),
+              icon: AppIcons.appleIcon,
+              text: "sign_apple".tr,
+              onTap: () {
+                Get.to(ProfileScreen());
+              },
+            ),
             CustomGlassButton(
-                icon: AppIcons.facebookIcon,
-                text: "sign_facebook".tr,
-                onTap: () {
-                  if (CustomGlobalVariable.userType == 'User') {
-                    Navigator.push(
-                        context, MaterialPageRoute(builder: (_) => Home()));
-                  } else {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => DriverDashboard()));
-                  }
-                }),
+              icon: AppIcons.facebookIcon,
+              text: "sign_facebook".tr,
+              onTap: () {
+                if (widget.role == 'User') {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => Home()));
+                } else {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => DriverDashboard()));
+                }
+              },
+            ),
             SizedBox(
               height: getHeight(20),
             )

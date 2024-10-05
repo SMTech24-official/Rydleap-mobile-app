@@ -46,7 +46,7 @@ class HomeController extends GetxController{
 
     // log('log me', name: response.body);
 
-     debugPrint("+++++++++++status code....."+response.statusCode.toString());
+    //  debugPrint("+++++++++++status code....."+response.statusCode.toString());
 
 
     if (response.statusCode == 201) {
@@ -54,7 +54,7 @@ class HomeController extends GetxController{
       userDetail.value= userModelFromJson(response.body);
 
 
-      debugPrint("+++++++++++++++++++++++++++User Data++++++++++++++++++++++"+response.body);
+      // debugPrint("+++++++++++++++++++++++++++User Data++++++++++++++++++++++"+response.body);
       //return userModelFromJson(response.body);
     } else if (response.statusCode == 400) {
       throw const HttpException('getCustomerAddressData Error');
@@ -68,7 +68,7 @@ class HomeController extends GetxController{
   Future<void> getPromo() async {
 
     print('into promo');
-      debugPrint("++++++++++++++++++Start++++++++++++++++++++++");
+      // debugPrint("++++++++++++++++++Start++++++++++++++++++++++");
 
 
     final url = Uri.parse('https://rydleaps.vercel.app/api/v1/promotions');
@@ -78,10 +78,10 @@ class HomeController extends GetxController{
 
     // log('log me', name: response.body);
 
-    debugPrint("+++++++++++status code....."+response.statusCode.toString());
+    // debugPrint("+++++++++++status code....."+response.statusCode.toString());
 
 
-    debugPrint("+++++++++++++++++++++++++++Promo Data++++++++++++++++++++++"+response.body);
+    // debugPrint("+++++++++++++++++++++++++++Promo Data++++++++++++++++++++++"+response.body);
 
 
     if (response.statusCode == 200) {
@@ -89,7 +89,7 @@ class HomeController extends GetxController{
       promotionModel.value= promotionModelFromJson(response.body);
 
 
-      debugPrint("+++++++++++++++++++++++++++ OK Data++++++++++++++++++++++"+response.body);
+      // debugPrint("+++++++++++++++++++++++++++ OK Data++++++++++++++++++++++"+response.body);
       //return userModelFromJson(response.body);
     } else if (response.statusCode == 400) {
       throw const HttpException('getCustomerAddressData Error');
