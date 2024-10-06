@@ -2,6 +2,8 @@
 
 
 
+import 'dart:math';
+
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -20,6 +22,56 @@ class MapController extends GetxController{
 
 
   }
+
+
+
+
+
+  double randLat(double lat){
+
+    Random rnd = new Random();
+// Define min and max value
+    int min = 1, max = 10;
+    int mult=-1;
+//Getting range
+    int num = min + rnd.nextInt(max - min);
+    if(num%2==0){
+
+      mult=1;
+
+    }else{
+      mult=-1;
+    }
+
+    return (((num/10000)*mult)+lat);
+
+  }
+
+
+  double randLong(double long){
+
+    Random rnd = new Random();
+// Define min and max value
+    int min = 1, max = 10;
+    int mult=-1;
+//Getting range
+    int num = min + rnd.nextInt(max - min);
+    if(num%2==0){
+
+      mult=1;
+
+    }else{
+      mult=-1;
+    }
+
+    return (((num/10000)*mult)+long);
+
+  }
+
+
+
+
+
 
   Future<void> getCurrentPos(GoogleMapController mapController) async {
 
