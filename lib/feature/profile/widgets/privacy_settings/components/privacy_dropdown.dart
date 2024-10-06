@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/custom_buttomsheet/bottomsheet_onebutton.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
 
 class CustomPrivacyDropdown extends StatefulWidget {
@@ -31,7 +33,7 @@ class _CustomPrivacyDropdownState extends State<CustomPrivacyDropdown> {
               Padding(
                 padding: EdgeInsets.only(left: getWidth(10)),
                 child: Text(
-                  "Ride history",
+                  "ride_history".tr,
                   style: GoogleFonts.nunito(
                       fontSize: getWidth(16), fontWeight: FontWeight.w400),
                 ),

@@ -16,12 +16,19 @@ import 'package:rydleap/feature/auth/components/or_sign_in_with.dart';
 import 'package:rydleap/feature/auth/dirver_registration/driver_registration.dart';
 import 'package:rydleap/feature/auth/otp/controller/otp_controller.dart';
 import 'package:rydleap/feature/auth/login/login_screen.dart';
+import 'package:rydleap/feature/auth/otp/otp2_screen.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/name_email_screen.dart';
 import 'package:rydleap/feature/auth/otp/otp_screen.dart';
 import 'package:rydleap/feature/driver_dashboard/presentation/driver_dashboard.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
+import 'package:rydleap/feature/payment_options/screen/payment_options_screen.dart';
 import 'package:rydleap/feature/profile/screen/profile_screen.dart';
+import 'package:rydleap/feature/profile/widgets/contact_support/email_support.dart';
+import 'package:rydleap/feature/profile/widgets/language/language_screen.dart';
+import 'package:rydleap/feature/profile/widgets/privacy_settings/privacy_settings_screen.dart';
+import 'package:rydleap/feature/profile/widgets/promotion_offers/promotion_offers.dart';
 import 'package:rydleap/feature/social_login/google_login.dart';
+import 'package:rydleap/feature/trip_summery/trip_summery_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   final String role; // Add this line to accept the role
@@ -149,13 +156,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             SizedBox(
               height: getHeight(35),
             ),
-            Text(
-              "language".tr,
-              style: GoogleFonts.inter(
-                fontSize: getWidth(20),
-                fontWeight: FontWeight.w600,
-              ),
-            ),
+           
             CustomPhoneInput(
               controller: phoneController,
             ),
@@ -210,6 +211,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               icon: AppIcons.googleIcon,
               text: "sign_google".tr,
               onTap: _signInWithGoogle,
+              // onTap: (){
+              //   // print("object");
+              //  Navigator.push(
+              //         context, MaterialPageRoute(builder: (_) => PrivacySettingsScreen()));
+              // },
             ),
             CustomGlassButton(
               icon: AppIcons.appleIcon,

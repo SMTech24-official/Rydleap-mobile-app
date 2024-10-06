@@ -15,6 +15,9 @@ class LocalString extends Translations {
           "public": "Public",
           "activity_status": "Activity Status",
           "save": "Save",
+          "partners": "Partners",
+          "ride_history": "Ride history",
+         
           // language
           "selective_language": "Selective Language",
           "english": "English",
@@ -67,6 +70,7 @@ class LocalString extends Translations {
           'edit': 'Edit',
           'promo_Code': 'Promo Code',
           "continue": "Continue",
+          "cash": "Cash",
           //PromotionOffersScreen
           "promotion_and_offers": "Promotion and Offers",
           "active_promotions": "Active Promotions",
@@ -354,6 +358,9 @@ class LocalString extends Translations {
           "public": "Public",
           "activity_status": "Activity Status",
           "save": "Save",
+          "partners": "Fogonadura",
+          "ride_history": "Historia del viaje",
+          
           // language
           "selective_language": "Selective Language",
           "english": "English",
@@ -406,6 +413,7 @@ class LocalString extends Translations {
           'edit': 'Edit',
           'promo_Code': 'Promo Code',
           "continue": "Continue",
+          "cash": "Dinero",
           //PromotionOffersScreen
           "promotion_and_offers": "Promotion and Offers",
           "active_promotions": "Active Promotions",
@@ -688,6 +696,9 @@ class LocalString extends Translations {
           "public": "Público",
           "activity_status": "Status da atividade",
           "save": "Salvar",
+          "partners": "Parceiros",
+          "ride_history": "História do passeio",
+          
           // language
           "selective_language": "Linguagem Seletiva",
           "english": "Inglês",
@@ -741,6 +752,7 @@ class LocalString extends Translations {
           'edit': 'Editar',
           'promo_Code': 'Código promocional',
           "continue": "Continuar",
+          "cash": "Dinheiro",
           //PromotionOffersScreen
           "promotion_and_offers": "Promoção e ofertas",
           "active_promotions": "Promoções Ativas",
@@ -1024,6 +1036,8 @@ class LocalString extends Translations {
           "public": "Public",
           "activity_status": "Statut d'activité",
           "save": "Sauvegarder",
+          "partners": "Partenaires",
+          "ride_history": "Historique du trajet",
           // language
           "selective_language": "Langue sélective",
           "english": "Anglais",
@@ -1077,6 +1091,7 @@ class LocalString extends Translations {
           'edit': 'Modifier',
           'promo_Code': 'Code promotionnel',
           "continue": 'Continuer',
+          "cash": "Espèces",
           //PromotionOffersScreen
           "promotion_and_offers": "Promotions et offres",
           "active_promotions": "Promotions actives",

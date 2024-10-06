@@ -11,7 +11,6 @@ import 'package:rydleap/feature/auth/presentaion/screens/your_location.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
 import 'package:rydleap/feature/profile/screen/check_profile_two.dart';
 import 'package:rydleap/feature/profile/screen/profile_screen.dart';
-import 'package:rydleap/feature/profile_page/presentation/profile_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

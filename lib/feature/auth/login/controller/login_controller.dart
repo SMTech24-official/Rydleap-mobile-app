@@ -9,7 +9,6 @@ import 'package:rydleap/feature/home/presentation/screens/home.dart';
 import 'package:rydleap/feature/profile/controller/profile_controller.dart';
 import 'package:rydleap/feature/profile/screen/check_profile_two.dart';
 import 'package:rydleap/feature/profile/screen/profile_screen.dart';
-import 'package:rydleap/feature/profile_page/presentation/profile_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
