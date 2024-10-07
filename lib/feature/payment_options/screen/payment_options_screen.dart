@@ -109,7 +109,7 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Cash',
+                                    'cash'.tr,
                                     style: GoogleFonts.nunito(
                                         fontSize: getWidth(16),
                                         fontWeight: FontWeight.w400),

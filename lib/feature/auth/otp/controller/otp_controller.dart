@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rydleap/core/service/auth_service.dart';
@@ -14,30 +13,29 @@ import '../../presentaion/screens/create_password.dart';
 import '../../presentaion/screens/registration/create_new_password.dart';
 
 class OtpController extends GetxController {
-
-
-  ForgotController forgotController=Get.find();
+  ForgotController forgotController = Get.find();
 
   var isLoading = false.obs;
   var otpCode = ''.obs;
   var otpResponse = OtpResponse(
-          success: false,
-          message: '',
-          data: OtpData(
-              body: '',
-              from: '',
-              to: '',
-              status: '',
-              sid: '',
-              dateCreated: DateTime.now()))
-      .obs;
+    success: false,
+    message: '',
+    data: OtpData(
+      body: '',
+      from: '',
+      to: '',
+      status: '',
+      sid: '',
+      dateCreated: DateTime.now(),
+    ),
+  ).obs;
 
   AuthService authService = AuthService();
 
-  void sendOtp(String phoneNumber) async {
+  void sendOtp(String phoneNumber, String role) async {
     try {
       isLoading(true);
-      OtpResponse? response = await authService.sendOtp(phoneNumber);
+      OtpResponse? response = await authService.sendOtp(phoneNumber, role);
       if (response != null) {
         otpResponse.value = response;
         print('Success: ${response.message}');
@@ -51,14 +49,14 @@ class OtpController extends GetxController {
     }
   }
 
-  Future<bool> verifyOtp(String phoneNumber, String otpCode) async {
+  Future<bool> verifyOtp(String phoneNumber, String otpCode, ) async {
     try {
-      print(
-          "Verifying OTP: $otpCode for Phone Number: $phoneNumber"); // Debug line
+      print("Verifying OTP: $otpCode for Phone Number: $phoneNumber and "); // Debug line
       isLoading(true);
-      OtpResponse? response = await authService.verifyOtp(phoneNumber, otpCode);
+      OtpResponse? response = await authService.verifyOtp(phoneNumber, otpCode, );
       if (response != null && response.success) {
-        otpResponse.value = response; // Save the successful response
+        otpResponse.value = response; 
+        
         print('OTP Verification Success: ${response.message}');
         return true; // Return true on success
       } else {
@@ -76,89 +74,53 @@ class OtpController extends GetxController {
     otpCode.value = code; // Set the OTP code
   }
 
+  // Updated varifiOTP to include role
+//   void varifiOTP(String role) async {
+//     Map<String, String> userData = {
+//       'phoneNumber': forgotController.emailController.text,
+//       'otp': otpCode.value,
+//       'role': role, // Added role to the userData map
+//     };
 
+//     debugPrint("userData: $userData");
 
+//     final url = Uri.parse(ApiUrl.otpUrl);
 
+//     var response = await http.post(url, body: userData);
+// print("url--------${url}");
+//     // debugPrint("Response Code: ${response.statusCode}");
+//     // debugPrint("Response Success: ${jsonDecode(response.body)['success']}");
 
-  void varifiOTP() async {
+//     if (response.statusCode == 200) {
+//       if (jsonDecode(response.body)['success'] == true) {
+        
+//          print("verifieddddddddddddddddddddddddddddddddddddddddddd");
+//         // Get.to(() => CreateNewPassword());
+//       }
+//     }
+//   }
 
+  // Updated setPassword to include role
+  void setPassword(String newPassword, String role) async {
+    Map<String, String> userData = {
+      'phoneNumber': forgotController.emailController.text,
+      'newPassword': newPassword,
+      'role': role, // Added role to the userData map
+    };
 
-    Map<String, String> userData = Map();
+    debugPrint("userData: $userData");
 
-    userData['phoneNumber'] = forgotController.emailController.text;
-    userData['otp'] = otpCode.value;
-
-
-    debugPrint("userData" + userData.toString());
-    //
-    final url = Uri.parse(ApiUrl.baseUrl +'/api/v1/otp/verify-otp');
-
-
-    var response = await http.post(url, body: userData);
-
-    debugPrint("Response Code..................." + response.statusCode.toString());
-    debugPrint("Response Success:..................." + jsonDecode(response.body)['success'].toString());
-
-
-    debugPrint('++++++++++++++++++++++++++++${jsonDecode(response.body)['data']['body']}+++++++++++++++++++++++++');
-
-
-    if(response.statusCode==200){
-
-      if(jsonDecode(response.body)['success']==true){
-        Get.to(()=>CreateNewPassword());
-      }
-
-      // Get.to(()=>OtpScreen2());
-
-    }
-
-
-  }
-
-
-
-  void setPassword(String newPassword) async {
-
-
-    Map<String, String> userData = Map();
-
-    userData['phoneNumber'] = forgotController.emailController.text;
-    userData['newPassword'] = newPassword;
-
-
-    debugPrint("userData" + userData.toString());
-    //
-    final url = Uri.parse(ApiUrl.baseUrl +'/api/v1/auth/reset-password-app');
-
+    final url = Uri.parse(ApiUrl.verifyOtpUrl);
 
     var response = await http.patch(url, body: userData);
 
-    debugPrint("Response Code..................." + response.statusCode.toString());
-    debugPrint("Response Success:..................." + jsonDecode(response.body)['success'].toString());
+    debugPrint("Response Code: ${response.statusCode}");
+    debugPrint("Response Success: ${jsonDecode(response.body)['success']}");
 
-
-    // debugPrint('++++++++++++++++++++++++++++${jsonDecode(response.body)['data']['body']}+++++++++++++++++++++++++');
-
-    //
-    if(response.statusCode==200){
-
-      if(jsonDecode(response.body)['success']==true){
-        Get.off(()=>LoginScreen());
+    if (response.statusCode == 200) {
+      if (jsonDecode(response.body)['success'] == true) {
+        Get.off(() => LoginScreen());
       }
-
-      // Get.to(()=>OtpScreen2());
-
     }
-
-
   }
-
-
-
-
-
-
-
-
 }

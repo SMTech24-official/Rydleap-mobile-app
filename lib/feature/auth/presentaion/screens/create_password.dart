@@ -25,9 +25,9 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
   final RegistrationController registrationController =
       Get.put(RegistrationController());
   TextEditingController _passwordController =
-      TextEditingController(text: "@Parvej123");
+      TextEditingController(text: "@Password1");
   TextEditingController _confirmPasswordController =
-      TextEditingController(text: "@Parvej123");
+      TextEditingController(text: "@Password1");
   bool checkPass = false;
 
   bool isConditionMet = false;
@@ -240,117 +240,124 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
             ),
             Spacer(),
             CustomGlobalVariable.userType == 'Driver'
-                ?isPasswordMatch && isPasswordStrong
-                ? 
-                CustomGradientButton(
-                    text: "Driver Continue",
-                    onTap: () async {
-                      // _passwordController.clear();
-                      // _confirmPasswordController.clear();
+                ? isPasswordMatch && isPasswordStrong
+                    ? CustomGradientButton(
+                        text: "Driver Continue",
+                        onTap: () async {
+                          // _passwordController.clear();
+                          // _confirmPasswordController.clear();
 
-                      if (_passwordController.text ==
-                          _confirmPasswordController.text) {
-                        // Set the password in user details
-                        widget.userInputDetails.password =
-                            _passwordController.text;
-                        print("User Input Details:");
-                        print("Name: ${widget.userInputDetails.name}");
-                        print("Email: ${widget.userInputDetails.email}");
-                        print(
-                            "Phone Number: ${widget.userInputDetails.phoneNumber}");
-                        print("Password: ${widget.userInputDetails.password}");
-                        // Call the register user method
-                        await registrationController.registerDriver(
-                          widget.userInputDetails.name,
-                          widget.userInputDetails.email,
-                          widget.userInputDetails.phoneNumber,
-                          widget.userInputDetails.password,
-                        );
-                        Get.offAll(()=>LoginScreen());
-                        Get.snackbar(
-                          "Success",
-                          "succeessfully registerd",
-                          snackPosition: SnackPosition.BOTTOM,
-                          backgroundColor: Colors.green,
-                          colorText: Colors.white,
-                        );
-                      } else {
-                        // Show a message if passwords do not match
-                        Get.snackbar(
-                          "Error",
-                          "Passwords do not match",
-                          snackPosition: SnackPosition.BOTTOM,
-                          backgroundColor: Colors.red,
-                          colorText: Colors.white,
-                        );
-                      }
+                          if (_passwordController.text ==
+                              _confirmPasswordController.text) {
+                            // Set the password in user details
+                            widget.userInputDetails.password =
+                                _passwordController.text;
+                            print("User Input Details:");
+                            print("Name: ${widget.userInputDetails.fullName}");
+                            print("Email: ${widget.userInputDetails.email}");
+                            print(
+                                "Phone Number: ${widget.userInputDetails.phoneNumber}");
+                            print(
+                                "Password: ${widget.userInputDetails.password}");
+                            print("Password: ${widget.userInputDetails.role}");
+                            // Call the register user method
+                            await registrationController.registerDriver(
+                                widget.userInputDetails.fullName,
+                                widget.userInputDetails.email,
+                                widget.userInputDetails.phoneNumber,
+                                widget.userInputDetails.password,
+                                widget.userInputDetails.role);
+                            Get.offAll(() => LoginScreen());
+                            // Get.snackbar(
+                            //   "Success",
+                            //   "succeessfully registerd",
+                            //   snackPosition: SnackPosition.BOTTOM,
+                            //   backgroundColor: Colors.green,
+                            //   colorText: Colors.white,
+                            // );
+                          } else {
+                            // Show a message if passwords do not match
+                            Get.snackbar(
+                              "Error",
+                              "Passwords do not match",
+                              snackPosition: SnackPosition.BOTTOM,
+                              backgroundColor: Colors.red,
+                              colorText: Colors.white,
+                            );
+                          }
 
-                      // Navigator.push(context,
-                      //     MaterialPageRoute(builder: (_) => LoginScreen()));
-                    })
-                : CustomBlurButton(
-                    text: "Continue",
-                    // isPasswordMatch && isPasswordStrong
-                    //     ? () {
-                    //         // Navigate to the next page
-                    //       }
-                    //     : null, // Disable the button if conditions are not met
-                  ):
-            isPasswordMatch && isPasswordStrong
-                ? 
-                CustomGradientButton(
-                    text: "Continue",
-                    onTap: () async {
-                      // _passwordController.clear();
-                      // _confirmPasswordController.clear();
+                          // Navigator.push(context,
+                          //     MaterialPageRoute(builder: (_) => LoginScreen()));
+                        })
+                    : CustomBlurButton(
+                        text: "Continue",
+                        // isPasswordMatch && isPasswordStrong
+                        //     ? () {
+                        //         // Navigate to the next page
+                        //       }
+                        //     : null, // Disable the button if conditions are not met
+                      )
+                : isPasswordMatch && isPasswordStrong
+                    ? CustomGradientButton(
+                        text: "Continue",
+                        onTap: () async {
+                          // Check if passwords match and are strong
+                          if (isPasswordMatch && isPasswordStrong) {
+                            // Set the password in user details
+                            widget.userInputDetails.password =
+                                _passwordController.text;
 
-                      if (_passwordController.text ==
-                          _confirmPasswordController.text) {
-                        // Set the password in user details
-                        widget.userInputDetails.password =
-                            _passwordController.text;
-                        print("User Input Details:");
-                        print("Name: ${widget.userInputDetails.name}");
-                        print("Email: ${widget.userInputDetails.email}");
-                        print(
-                            "Phone Number: ${widget.userInputDetails.phoneNumber}");
-                        print("Password: ${widget.userInputDetails.password}");
-                        // Call the register user method
-                        await registrationController.registerUser(
-                          widget.userInputDetails.name,
-                          widget.userInputDetails.email,
-                          widget.userInputDetails.phoneNumber,
-                          widget.userInputDetails.password,
-                        );
-                        Get.snackbar(
-                          "Success",
-                          "succeessfully registerd",
-                          snackPosition: SnackPosition.BOTTOM,
-                          backgroundColor: Colors.green,
-                          colorText: Colors.white,
-                        );
-                      } else {
-                        // Show a message if passwords do not match
-                        // Get.snackbar(
-                        //   "Error",
-                        //   "Passwords do not match",
-                        //   snackPosition: SnackPosition.BOTTOM,
-                        //   backgroundColor: Colors.red,
-                        //   colorText: Colors.white,
-                        // );
-                      }
+                            print("User Input Details:");
+                            print("////////////////");
+                            print("Email: ${widget.userInputDetails.email}");
+                            print(
+                                "Phone Number: ${widget.userInputDetails.phoneNumber}");
+                            print(
+                                "Password: ${widget.userInputDetails.password}");
+                            print("Role: ${widget.userInputDetails.role}");
 
-                      // Navigator.push(context,
-                      //     MaterialPageRoute(builder: (_) => LoginScreen()));
-                    })
-                : CustomBlurButton(
-                    text: "Continue",
-                    // isPasswordMatch && isPasswordStrong
-                    //     ? () {
-                    //         // Navigate to the next page
-                    //       }
-                    //     : null, // Disable the button if conditions are not met
-                  ),
+                            // Call the register user method
+                            await registrationController.registerUser(
+                              widget.userInputDetails.fullName,
+                              widget.userInputDetails.email,
+                              widget.userInputDetails.phoneNumber,
+                              widget.userInputDetails.password,
+                              widget.userInputDetails.role,
+                            );
+
+                            // Show success message
+                            // Get.snackbar(
+                            //   "Success",
+                            //   "Successfully registered",
+                            //   snackPosition: SnackPosition.BOTTOM,
+                            //   backgroundColor: Colors.green,
+                            //   colorText: Colors.white,
+                            // );
+
+                            // // Navigate to the login screen
+                            // Get.offAll(() => LoginScreen());
+                          } else {
+                            // Show an error message if passwords do not match or are not strong
+                            // Get.snackbar(
+                            //   "Error",
+                            //   isPasswordMatch
+                            //       ? "Password is not strong enough."
+                            //       : "Passwords do not match.",
+                            //   snackPosition: SnackPosition.BOTTOM,
+                            //   backgroundColor: Colors.red,
+                            //   colorText: Colors.white,
+                            // );
+                          }
+                        },
+                      )
+                    : CustomBlurButton(
+                        text: "Continue",
+                        // isPasswordMatch && isPasswordStrong
+                        //     ? () {
+                        //         // Navigate to the next page
+                        //       }
+                        //     : null, // Disable the button if conditions are not met
+                      ),
             SizedBox(
               height: getHeight(20),
             ),

@@ -15,8 +15,8 @@ import '../../../../../core/global_widgets/global_variable.dart';
 import '../../../otp/controller/otp_controller.dart';
 
 class CreateNewPassword extends StatefulWidget {
-
-  //const CreateNewPassword({super.key,});
+final String role;
+  const CreateNewPassword({super.key,required this.role});
 
   @override
   State<CreateNewPassword> createState() => _CreateNewPasswordState();
@@ -295,7 +295,7 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
                   // _passwordController.clear();
                   // _confirmPasswordController.clear();
                   
-                  otpController.setPassword(_confirmPasswordController.text);
+                  otpController.setPassword(_confirmPasswordController.text,widget.role);
                   
 
                  

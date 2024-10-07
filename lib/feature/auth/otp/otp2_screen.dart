@@ -118,11 +118,11 @@ class _OtpScreen2State extends State<OtpScreen2> {
                 height: getHeight(35),
               ),
               Text(
-                "Enter 4-digit code otp2",
+                "digit_title".tr,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               Text(
-                "Your code was sent to +(1) xxxx-xxxx",
+                "code_title".tr,
                 style: Theme.of(context).textTheme.titleSmall,
               ),
               SizedBox(
@@ -205,7 +205,7 @@ class _OtpScreen2State extends State<OtpScreen2> {
                         text: "confirm".tr,
                         onTap: () async {
 
-                          otpController.varifiOTP();
+                          // otpController.varifiOTP();
 
 
                         }

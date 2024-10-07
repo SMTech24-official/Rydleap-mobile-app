@@ -14,13 +14,14 @@ class AuthService {
   bool isLoading=false;
 
 
-  Future<OtpResponse?> sendOtp(String phoneNumber) async {
+  Future<OtpResponse?> sendOtp(String phoneNumber,String role) async {
     // final url = Uri.parse('https://rydleaps.vercel.app/api/v1/otp/send-otp');
     final url = Uri.parse(ApiUrl.otpUrl);
     try {
       // Adjust the key name if necessary
       final bodyData = json.encode({
-        'phoneNumber': phoneNumber, // Change key if required
+        'phoneNumber': phoneNumber, 
+        'role': role, 
       });
 
       print('Sending request with body: $bodyData');
@@ -56,12 +57,13 @@ class AuthService {
     }
   }
 
-  Future<OtpResponse?> verifyOtp(String phoneNumber, String otpCode) async {
+  Future<OtpResponse?> verifyOtp(String phoneNumber, String otpCode, ) async {
     final url = Uri.parse(ApiUrl.verifyOtpUrl);
     try {
       // Construct the request body
       final bodyData = json.encode({
         'phoneNumber': phoneNumber, // Adjust key if necessary
+        // Adjust key if necessary
         'otp': otpCode, // Adjust key if necessary
       });
 
@@ -77,6 +79,7 @@ class AuthService {
       );
 
       // Log full response details
+      print("Api url-----${url}");
       print('Status code: ${response.statusCode}');
       print('Headers: ${response.headers}');
       print('Response body: ${response.body}');
@@ -98,42 +101,49 @@ class AuthService {
     }
   }
 
-  Future<RegistrationResponse?> registerUser(
-      RegistrationRequest request) async {
-    final url = Uri.parse(
-        ApiUrl.userRegistrationUrl); // Replace with your registration endpoint
-    try {
-      final bodyData = json.encode(request.toJson());
+Future<RegistrationResponse?> registerUser(RegistrationRequest request) async {
+  final url = Uri.parse(ApiUrl.userRegistrationUrl); // Replace with your registration endpoint
+  try {
+    // Prepare the body data
+    final bodyData = json.encode(request.toJson());
+    
+    // print('Sending registration request with body: $bodyData');
+    print("API URL: $url");
 
-      print('Sending registration request with body: $bodyData');
+    // Send POST request
+    final response = await http.post(
+      url,
+      body: bodyData,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    );
 
-      final response = await http.post(
-        url,
-        body: bodyData,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      );
+    // Log response details
+    // print('Status code: ${response.statusCode}');
+    // print('Headers: ${response.headers}');
+    // print('Response body: ${response.body}');
 
-      print('Status code: ${response.statusCode}');
-      print('Headers: ${response.headers}');
-      print('Response body: ${response.body}');
-
-      if (response.statusCode == 200) {
-        final jsonResponse = json.decode(response.body);
-        print("Registration successful");
-
-        return RegistrationResponse.fromJson(jsonResponse);
-      } else {
-        print('Error response: ${response.body}');
-        throw Exception(
-            'Failed to register user, status code: ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Exception caught: ${e.toString()}');
-      rethrow;
+    // Check the response status code
+    if (response.statusCode == 200) {
+      // Parse the response body if the registration is successful
+      final jsonResponse = json.decode(response.body);
+      print("Registration successful");
+      return RegistrationResponse.fromJson(jsonResponse);
+    } else {
+      // Handle non-200 status codes
+      print('Error response: ${response.body}');
+      final errorResponse = json.decode(response.body);
+      // throw Exception(
+      //   'Failed to register user: ${errorResponse['message'] ?? 'Unknown error'}, status code: ${response.statusCode}'
+      // );
     }
+  } catch (e) {
+    // Log the exception and rethrow it
+    // print('Exception caught: ${e.toString()}');
+    rethrow;
   }
+}
 
   Future<RegistrationResponse?> registerDriver(
       RegistrationRequest request) async {

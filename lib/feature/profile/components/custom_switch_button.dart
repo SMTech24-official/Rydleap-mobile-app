@@ -17,6 +17,7 @@ class CustomSwitchButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  
     return Container(
       padding: EdgeInsets.only(left: 15),
       height: getHeight(44),
@@ -28,8 +29,10 @@ class CustomSwitchButton extends StatelessWidget {
         children: [
           Text(
             text,
+            
             style: GoogleFonts.nunito(
-                fontSize: getWidth(16), fontWeight: FontWeight.w400),
+                fontSize:screenWidth()>400?getWidth(14): getWidth(16), 
+                fontWeight: FontWeight.w400),
           ),
           Transform.scale(
             scale: 0.7,

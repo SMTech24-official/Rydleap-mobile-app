@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
@@ -31,7 +32,7 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
         centerTitle: true,
         backgroundColor: AppColors.appbarColor,
         title: Text(
-          "Privacy",
+          "privacy".tr,
           style: GoogleFonts.inter(
             fontSize: getWidth(20),
             fontWeight: FontWeight.w600,
@@ -68,7 +69,7 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
                   height: getHeight(25),
                 ),
                 CustomSwitchButton(
-                  text: "Location",
+                  text: "location".tr,
                   value: location,
                   onChanged: (value) {
                     setState(() {
@@ -83,7 +84,7 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
                   height: getHeight(12),
                 ),
                 CustomSwitchButton(
-                  text: "Data Sharing with Partners",
+                  text: "data_sharing_with_partners".tr,
                   value: dataSharing,
                   onChanged: (value) {
                     setState(() {
@@ -98,7 +99,7 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
                   height: getHeight(12),
                 ),
                 CustomSwitchButton(
-                  text: "Ad Personalization",
+                  text: "ad_personalization".tr,
                   value: adPersonalization,
                   onChanged: (value) {
                     setState(() {
@@ -114,7 +115,7 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
                 ),
                 CustomGlobalVariable.userType == 'Driver'
                     ? CustomSwitchButton(
-                        text: "Partners",
+                        text: "partners".tr,
                         value: partners,
                         onChanged: (value) {
                           setState(() {
@@ -130,25 +131,26 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
                   height: getHeight(54),
                 ),
                 CustomPrivacyDropdown(),
+               
                 SizedBox(
                   height: getHeight(12),
                 ),
                 CustomSwitchButton(
-                  text: "Activity Status",
+                  text: "activity_status".tr,
                   value: activeStatus,
                   onChanged: (value) {
                     setState(() {
                       activeStatus = value;
                     });
                   },
-                  color: adPersonalization
+                  color: activeStatus
                       ? Colors.white.withOpacity(0.1)
                       : Colors.white.withOpacity(0.02),
                 ),
                 // SizedBox(height: getHeight(90),),
                 Spacer(),
                 CustomGradientButton(
-                    text: "Save",
+                    text: "save".tr,
                     onTap: () {
                       // _customBottomSheet(context);
                       bottomSheetOneButton(
