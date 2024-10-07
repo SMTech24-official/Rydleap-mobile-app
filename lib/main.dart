@@ -14,6 +14,7 @@ import 'package:rydleap/firebase_options.dart';
 
 import 'feature/auth/login/controller/forgot_controller.dart';
 import 'feature/auth/login/controller/login_controller.dart';
+import 'feature/profile/widgets/contact_support/contact_support_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +29,7 @@ void main() async {
   Get.put(AuthController());
   Get.put(ForgotController());
   Get.put(OtpController());
+  Get.put(ContactSupportController());
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

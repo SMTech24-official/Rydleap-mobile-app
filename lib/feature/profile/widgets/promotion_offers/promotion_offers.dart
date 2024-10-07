@@ -77,10 +77,11 @@ class PromotionOffersScreen extends StatelessWidget {
                 style: GoogleFonts.inter(
                     fontSize: getWidth(17), fontWeight: FontWeight.w500),
               ),
-              SizedBox(
-                height: getHeight(12)),
-              Obx(
-                () => ListView.builder(
+
+
+              SizedBox(height: getHeight(12)),
+              Obx(() => ListView.builder(
+
                     shrinkWrap: true,
                     itemCount: homeController.promotionModel.value.data?.length,
                     itemBuilder: (context, index) {

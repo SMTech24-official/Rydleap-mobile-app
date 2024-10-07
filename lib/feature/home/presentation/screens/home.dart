@@ -39,6 +39,20 @@ class Home extends StatelessWidget {
   // final Completer<GoogleMapController> _controller =
   //     Completer<GoogleMapController>();
 
+  Rx<BitmapDescriptor> customIcon=BitmapDescriptor.defaultMarker.obs;
+
+
+
+  void _setCustomMarkerIcon() async {
+    customIcon.value = await BitmapDescriptor.asset(
+      ImageConfiguration(size: Size(40, 40)), // Adjust size as needed
+      'assets/images/car_map.png', // Path to the image in assets
+    );
+   // setState(() {}); // Trigger a rebuild once the icon is loaded
+  }
+
+
+
   MapController mapController = Get.find();
 
   double poslat = 0.00;
@@ -177,7 +191,7 @@ class Home extends StatelessWidget {
 
 
 
-  @override
+ // @override
 //   void initState()  {
 //     // TODO: implement initState
 //     super.initState();
@@ -220,8 +234,13 @@ class Home extends StatelessWidget {
 
 
 
+
+
   @override
   Widget build(BuildContext context) {
+
+    _setCustomMarkerIcon();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff001B26),
@@ -287,6 +306,36 @@ class Home extends StatelessWidget {
                     markerId: MarkerId("Source"),
                     position: mapController.currentpos.value,
                   ),
+
+                  Marker(
+                    markerId: MarkerId("Source1"),
+                    position: LatLng(mapController.randLat(mapController.currentpos.value.latitude), mapController.randLong(mapController.currentpos.value.longitude)),
+                    icon: customIcon.value, //?? BitmapDescriptor.defaultMarker,//BitmapDescriptor.asset(ImageConfiguration(size: Size(24, 24)), 'assets/custom_marker.png',),
+                    // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+                  ),
+
+                  Marker(
+                    markerId: MarkerId("Source2"),
+                    position: LatLng(mapController.randLat(mapController.currentpos.value.latitude), mapController.randLong(mapController.currentpos.value.longitude)),
+                    icon: customIcon.value, //?? BitmapDescriptor.defaultMarker,//BitmapDescriptor.asset(ImageConfiguration(size: Size(24, 24)), 'assets/custom_marker.png',),
+                    // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+                  ),
+                  Marker(
+                    markerId: MarkerId("Source3"),
+                    position: LatLng(mapController.randLat(mapController.currentpos.value.latitude), mapController.randLong(mapController.currentpos.value.longitude)),
+                    icon: customIcon.value, //?? BitmapDescriptor.defaultMarker,//BitmapDescriptor.asset(ImageConfiguration(size: Size(24, 24)), 'assets/custom_marker.png',),
+                    // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+                  ),
+
+
+                  Marker(
+                    markerId: MarkerId("Source4"),
+                    position: LatLng(mapController.randLat(mapController.currentpos.value.latitude), mapController.randLong(mapController.currentpos.value.longitude)),
+                    icon: customIcon.value, //?? BitmapDescriptor.defaultMarker,//BitmapDescriptor.asset(ImageConfiguration(size: Size(24, 24)), 'assets/custom_marker.png',),
+                    // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+                  ),
+
+
                 },
                 mapType: MapType.normal,
                 myLocationEnabled: true,
