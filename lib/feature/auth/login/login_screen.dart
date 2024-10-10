@@ -155,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 _buildRememberMeCheckbox(), // Use the custom checkbox method
                 AppTextButton(
-                  text: "forgotten_password".tr,
+                  text: "forgot_password".tr,
                   onTap: () {
                    print("Forgot password");
                    Get.to(()=>ForgotScreen());

@@ -212,12 +212,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
             CustomGlassButton(
               icon: AppIcons.googleIcon,
               text: "sign_google".tr,
-              onTap: _signInWithGoogle,
-              // onTap: (){
-              //   // print("object");
-              //  Navigator.push(
-              //         context, MaterialPageRoute(builder: (_) => PrivacySettingsScreen()));
-              // },
+              // onTap: _signInWithGoogle,
+              onTap: (){
+                // print("object");
+               Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => LoginScreen()));
+              },
             ),
             CustomGlassButton(
               icon: AppIcons.appleIcon,

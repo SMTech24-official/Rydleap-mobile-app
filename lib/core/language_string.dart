@@ -385,18 +385,18 @@ class LocalString extends Translations {
           "or_sign_in_with": "O inicia sesión con",
           "sign_google": "Iniciar sesión con Google",
           "sign_apple": "Iniciar sesión con Apple",
-          "sign_facebook": "Sign in with facebook",
+          "sign_facebook": "Iniciar sesión con facebook",
           //login
-          "log_in": "Log In",
-          "remember_me": "Remember me",
-          "phone_or_email": "Phone or email",
-          "password": "Password",
+          "log_in": "Acceso",
+          "remember_me": "Acuérdate de mí",
+          "phone_or_email": "Teléfono o correo electrónico",
+          "password": "Contraseña",
           "forgotten_password": "Forgotten password?",
-          "confirm": "Confirm",
+          "confirm": "Confirmar",
           "email_or_phone":
               "Enter your email or phone and password to continue with Rydleap",
           //forgot_screen
-          "forgot_password": "Forgot Password?",
+          "forgot_password": "Has olvidado tu contraseña?",
           "email":
               "Enter your email to reclaim your password to continue with Rydleap",
           "h_email": "Email",
@@ -724,7 +724,7 @@ class LocalString extends Translations {
           "or_sign_in_with": "Ou faça login com",
           "sign_google": "Faça login com o Google",
           "sign_apple": "Faça login com a Apple",
-          "sign_facebook": "Sign in with facebook",
+          "sign_facebook": "Faça login com o Facebook",
           //login
           "log_in": "Conecte-se",
           "remember_me": "Lembre de mim",
@@ -1063,7 +1063,7 @@ class LocalString extends Translations {
           "or_sign_in_with": "Ou connectez-vous avec",
           "sign_google": "Connectez-vous avec Google",
           "sign_apple": "Connectez-vous avec Apple",
-          "sign_facebook": "Sign in with facebook",
+          "sign_facebook": "Connectez-vous avec Facebook",
           //login
           "log_in": "Se connecter",
           "remember_me": "ConnexionSe souvenir de moi",
