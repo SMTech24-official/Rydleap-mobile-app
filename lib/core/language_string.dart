@@ -58,7 +58,7 @@ class LocalString extends Translations {
               "Enter your email to reclaim your password to continue with Rydleap",
           "h_email": "Email",
           //otp_2
-          "digit_title": "Enter 4-digit code otp2",
+          "digit_title": "Enter 4-digit code otp",
           "code_title": "Your code was sent to +(1) xxxx-xxxx",
           "resend_code": "Resend code",
           "otp_sent": "OTP sent",
@@ -401,18 +401,18 @@ class LocalString extends Translations {
               "Enter your email to reclaim your password to continue with Rydleap",
           "h_email": "Email",
           //otp_2
-          "digit_title": "Enter 4-digit code otp2",
-          "code_title": "Your code was sent to +(1) xxxx-xxxx",
-          "resend_code": "Resend code",
-          "otp_sent": "OTP sent",
+          "digit_title": "Ingrese el código de 4 dígitos otp",
+          "code_title": "Su código fue enviado a +(1) xxxx-xxxx",
+          "resend_code": "Reenviar código",
+          "otp_sent": "OTP enviado",
           "error": "Error",
           //payment_option_screen
           'payment_options': 'Payment options',
           "cash_after_reaching": "Cash after reaching",
           'add_payment_method': 'Add Payment method',
           'edit': 'Edit',
-          'promo_Code': 'Promo Code',
-          "continue": "Continue",
+          'promo_Code': 'Código promocional',
+          "continue": "Continuar",
           "cash": "Dinero",
           //PromotionOffersScreen
           "promotion_and_offers": "Promotion and Offers",
@@ -740,7 +740,7 @@ class LocalString extends Translations {
               "Digite seu e-mail para recuperar sua senha e continuar com Rydleap",
           "h_email": "E-mail",
           //otp_2
-          "digit_title": "Digite o código de 4 dígitos otp2",
+          "digit_title": "Digite o código de 4 dígitos otp",
           "code_title": "Seu código foi enviado para +(1) xxxx-xxxx",
           "resend_code": "Reenviar código",
           "otp_sent": "OTP enviado",
@@ -1079,7 +1079,7 @@ class LocalString extends Translations {
               "Entrez votre e-mail pour récupérer votre mot de passe pour continuer avec Rydleap",
           "h_email": "E-mail",
           //otp_2
-          "digit_title": "Entrez le code à 4 chiffres otp2",
+          "digit_title": "Entrez le code à 4 chiffres otp",
           "code_title": "Votre code a été envoyé au +(1) xxxx-xxxx",
           "resend_code": "Renvoyer le code",
           "otp_sent": "OTP envoyé",
