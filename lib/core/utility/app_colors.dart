@@ -64,4 +64,5 @@ class AppColors {
   static const Color appbarColor = Color(0xff001B26);
   static const Color whiteGrayColor = Color(0xffF0EFEF);
   static const Color redColor = Color(0xffC61515);
+  static const Color diveiderColor = Color(0xffF9F9F9);
 }

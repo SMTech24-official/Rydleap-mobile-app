@@ -88,7 +88,7 @@ class LocalString extends Translations {
           "promotion_offers": "Promotion and offers",
           "change_password": "Change Password",
           "payment_methods": "Payment Methods",
-          "ride_history": "Ride History",
+       
           "report_problem": "Report a Problem",
           "contact_us": "Contact us",
           "balance": "Balance",
@@ -380,11 +380,11 @@ class LocalString extends Translations {
           "upload": "Upload",
           "send": "Send",
           //registration
-          "get_otp": "Get OTP",
-          "privacy_policy": "Privacy Policy",
-          "or_sign_in_with": "Or sign in with",
-          "sign_google": "Sign in with Google",
-          "sign_apple": "Sign in with Apple",
+          "get_otp": "Obtener OTP",
+          "privacy_policy": "política de privacidad",
+          "or_sign_in_with": "O inicia sesión con",
+          "sign_google": "Iniciar sesión con Google",
+          "sign_apple": "Iniciar sesión con Apple",
           "sign_facebook": "Sign in with facebook",
           //login
           "log_in": "Log In",
@@ -430,7 +430,7 @@ class LocalString extends Translations {
           "promotion_offers": "Promotion and offers",
           "change_password": "Change Password",
           "payment_methods": "Payment Methods",
-          "ride_history": "Ride History",
+          
           "report_problem": "Report a Problem",
           "contact_us": "Contact us",
           "balance": "Balance",
@@ -719,11 +719,11 @@ class LocalString extends Translations {
           "upload": "carregar",
           "send": "enviar",
           //registration
-          "get_otp": "Get OTP",
-          "privacy_policy": "Privacy Policy",
-          "or_sign_in_with": "Or sign in with",
-          "sign_google": "Sign in with Google",
-          "sign_apple": "Sign in with Apple",
+          "get_otp": "Obter OTP",
+          "privacy_policy": "política de Privacidade",
+          "or_sign_in_with": "Ou faça login com",
+          "sign_google": "Faça login com o Google",
+          "sign_apple": "Faça login com a Apple",
           "sign_facebook": "Sign in with facebook",
           //login
           "log_in": "Conecte-se",
@@ -770,7 +770,7 @@ class LocalString extends Translations {
           "promotion_offers": "Promotion and offers",
           "change_password": "Change Password",
           "payment_methods": "Payment Methods",
-          "ride_history": "Ride History",
+          
           "report_problem": "Report a Problem",
           "contact_us": "Contact us",
           "balance": "Balance",
@@ -1058,11 +1058,11 @@ class LocalString extends Translations {
           "upload": "télécharger",
           "send": "envoyer",
           //registration
-          "get_otp": "Get OTP",
-          "privacy_policy": "Privacy Policy",
-          "or_sign_in_with": "Or sign in with",
-          "sign_google": "Sign in with Google",
-          "sign_apple": "Sign in with Apple",
+          "get_otp": "Obtenir OTP",
+          "privacy_policy": "politique de confidentialité",
+          "or_sign_in_with": "Ou connectez-vous avec",
+          "sign_google": "Connectez-vous avec Google",
+          "sign_apple": "Connectez-vous avec Apple",
           "sign_facebook": "Sign in with facebook",
           //login
           "log_in": "Se connecter",
@@ -1110,7 +1110,7 @@ class LocalString extends Translations {
           "promotion_offers": "Promotion and offers",
           "change_password": "Change Password ",
           "payment_methods": "Payment Methods",
-          "ride_history": "Ride History",
+          
           "report_problem": "Report a Problem",
           "contact_us": "Contact us",
           "balance": "Balance",

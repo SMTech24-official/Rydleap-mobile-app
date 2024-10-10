@@ -190,20 +190,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             });
                   }),
             Container(
-              width: getWidth(120),
-              height: 37,
-              child: Column(
-                children: [
-                  Text(
-                    "privacy_policy".tr,
-                    style: TextStyle(
-                      color: Color(0xffF9F9F9),
-                      fontSize: getWidth(14),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  Divider(color: Color(0xffF9F9F9)),
-                ],
+              // width: getWidth(120),
+              // height: 37,
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: AppColors.diveiderColor
+                  )
+                )
+              ),
+              child: Text(
+                "privacy_policy".tr,
+                style: TextStyle(
+                  color: Color(0xffF9F9F9),
+                  fontSize: getWidth(14),
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
             OrSignInWith(),
