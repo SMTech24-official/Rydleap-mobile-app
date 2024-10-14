@@ -21,7 +21,6 @@ class RegistrationResponse {
 }
 
 class RegistrationData {
-  
   final String id;
   final String fullName;
   final String email;
@@ -53,12 +52,15 @@ class RegistrationData {
       fullName: json['fullName'] ?? '',
       email: json['email'] ?? '',
       phoneNumber: json['phoneNumber'] ?? '',
-      password: json['password'] ?? '', // Consider not storing plaintext passwords
+      password:
+          json['password'] ?? '', // Consider not storing plaintext passwords
       role: json['role'] ?? '',
       status: json['status'] ?? '',
       isDeleted: json['isDeleted'] ?? false,
-      createdAt: DateTime.parse(json['createdAt'] ?? DateTime.now().toIso8601String()),
-      updatedAt: DateTime.parse(json['updatedAt'] ?? DateTime.now().toIso8601String()),
+      createdAt:
+          DateTime.parse(json['createdAt'] ?? DateTime.now().toIso8601String()),
+      updatedAt:
+          DateTime.parse(json['updatedAt'] ?? DateTime.now().toIso8601String()),
     );
   }
 
@@ -96,7 +98,7 @@ class RegistrationRequest {
 
   Map<String, dynamic> toJson() {
     return {
-      'fullName':fullName,
+      'fullName': fullName,
       'email': email,
       'phoneNumber': phoneNumber,
       'password': password,

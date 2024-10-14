@@ -1,40 +1,29 @@
-
-
-
-
-
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
-import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/map_widget.dart';
 
 import '../../../core/app_imagese.dart';
 import '../../heading_to_rider/presentation/heading_to_rider.dart';
-import '../../home/map_controller.dart';
 
-class DriverContactRider extends StatelessWidget{
-
-
-
+class DriverContactRider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-
-
       appBar: AppBar(
         backgroundColor: Color(0xff001B26),
         automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-           IconButton(onPressed: (){
-             Navigator.pop(context);
-           }, icon: Icon(Icons.arrow_back_ios)),
-           Text('Contact Rider'),
+            IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back_ios)),
+            Text('Contact Rider'),
             CircleAvatar(
               backgroundColor: Colors.grey.shade300.withOpacity(.3),
               radius: 23,
@@ -43,7 +32,11 @@ class DriverContactRider extends StatelessWidget{
                 backgroundColor: Colors.grey.shade300.withOpacity(.7),
                 child: CircleAvatar(
                   radius: 20.5,
-                  child: Image.asset(AppImagese.profileImage,height: 50,width: 50,),
+                  child: Image.asset(
+                    AppImagese.profileImage,
+                    height: 50,
+                    width: 50,
+                  ),
                   backgroundColor: Colors.grey.shade300,
                 ),
               ),
@@ -51,37 +44,29 @@ class DriverContactRider extends StatelessWidget{
           ],
         ),
       ),
-
-
-      body:  Column(
+      body: Column(
         children: [
-
-
-          MapWidget(height: screenHeight()/2, width: screenWidth()),
-
-
-
+          MapWidget(height: screenHeight() / 2, width: screenWidth()),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 20,vertical: 11),
-            padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 11),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(width: 1,color: Colors.white),
-                gradient: LinearGradient(
-                  colors: [
-                    const Color(0xFF001B26),
-                    const Color(0xFF00638C),
-                  ],),
+              border: Border.all(width: 1, color: Colors.white),
+              gradient: LinearGradient(
+                colors: [
+                  const Color(0xFF001B26),
+                  const Color(0xFF00638C),
+                ],
+              ),
             ),
             child: Column(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-
                     Row(
                       children: [
-
                         Container(
                           height: getHeight(80),
                           width: getWidth(80),
@@ -90,139 +75,137 @@ class DriverContactRider extends StatelessWidget{
                                   image: AssetImage(
                                       'assets/images/dummy_customer_image.png'))),
                         ),
-
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Burkina Faso',style: GoogleFonts.nunito(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.white),),
-                            Text('3 km / 12 mins',style: GoogleFonts.nunito(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white),),
+                            Text(
+                              'Burkina Faso',
+                              style: GoogleFonts.nunito(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                            Text(
+                              '3 km / 12 mins',
+                              style: GoogleFonts.nunito(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.white),
+                            ),
                           ],
                         )
-
-
                       ],
                     ),
-
-
-
-                    Text('(4.8 ⭐)',style: GoogleFonts.nunito(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.amberAccent),),
-
-
+                    Text(
+                      '(4.8 ⭐)',
+                      style: GoogleFonts.nunito(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.amberAccent),
+                    ),
                   ],
                 ),
-
-
-                SizedBox(height: 34,),
-
+                SizedBox(
+                  height: 34,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-
                     Container(
                       alignment: Alignment.center,
                       width: getWidth(96),
                       height: 40,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Colors.white
-                      ),
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.white),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.call,color: Colors.green,size: 15,),
-                          SizedBox(width: getWidth(8),),
-                          Text('Call',style: GoogleFonts.nunito(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black),)
+                          Icon(
+                            Icons.call,
+                            color: Colors.green,
+                            size: 15,
+                          ),
+                          SizedBox(
+                            width: getWidth(8),
+                          ),
+                          Text(
+                            'Call',
+                            style: GoogleFonts.nunito(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black),
+                          )
                         ],
                       ),
                     ),
-
-
-
                     InkWell(
-                      onTap: (){
-
-
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => HeadingToRider()));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => HeadingToRider()));
                       },
                       child: Container(
                         alignment: Alignment.center,
                         width: getWidth(96),
                         height: 40,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: Colors.white
-                        ),
+                            borderRadius: BorderRadius.circular(30),
+                            color: Colors.white),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                           Image.asset('assets/icons/nav_icon.png',height: 20,width: 20,),
-                            Text('Navi',style: GoogleFonts.nunito(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.black),)
+                            Image.asset(
+                              'assets/icons/nav_icon.png',
+                              height: 20,
+                              width: 20,
+                            ),
+                            Text(
+                              'Navi',
+                              style: GoogleFonts.nunito(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black),
+                            )
                           ],
                         ),
                       ),
                     ),
-
-
-
-
                     Container(
                       alignment: Alignment.center,
                       width: getWidth(105),
-                      padding: EdgeInsets.symmetric(horizontal: 4,vertical: 10),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 4, vertical: 10),
                       height: 40,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Colors.white
-                      ),
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.white),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.close,color: Colors.green,size: 15,),
-                          Text('Cancel',style: GoogleFonts.nunito(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400,
-                              color: Colors.black),)
+                          Icon(
+                            Icons.close,
+                            color: Colors.green,
+                            size: 15,
+                          ),
+                          Text(
+                            'Cancel',
+                            style: GoogleFonts.nunito(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.black),
+                          )
                         ],
                       ),
                     ),
-
-
-
-
-
-
                   ],
                 )
-
-
-
-
-
               ],
             ),
           )
-
-
         ],
       ),
-
-
       bottomNavigationBar: CurvedNavigationBar(
         letIndexChange: (index) {
           return false;
@@ -246,9 +229,9 @@ class DriverContactRider extends StatelessWidget{
                   // height: 22,
                   child: Switch(
                     // This bool value toggles the switch.
-                    value: true,//light.value,
+                    value: true, //light.value,
                     thumbColor:
-                    const WidgetStatePropertyAll<Color>(Colors.black),
+                        const WidgetStatePropertyAll<Color>(Colors.black),
                     trackColor: WidgetStatePropertyAll(Colors.white),
                     activeColor: Colors.white,
                     onChanged: (bool value) {
@@ -279,10 +262,6 @@ class DriverContactRider extends StatelessWidget{
           //Handle button tap
         },
       ),
-
-
-
     );
   }
-  
 }

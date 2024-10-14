@@ -7,7 +7,7 @@ import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
-import 'package:rydleap/feature/auth/presentaion/screens/create_password.dart';
+import 'package:rydleap/feature/auth/create_password/create_password.dart';
 import 'package:rydleap/feature/auth/user_input/user_input_details.dart';
 import '../../../../core/global_widgets/custom_gradient_button.dart';
 
@@ -20,8 +20,7 @@ class NameEmailScreen extends StatefulWidget {
 
 class _NameEmailScreenState extends State<NameEmailScreen> {
   TextEditingController _nameController = TextEditingController();
-  TextEditingController _emailController =
-      TextEditingController();
+  TextEditingController _emailController = TextEditingController();
   bool isChecked = false;
   bool isFormValid = false;
 
@@ -44,12 +43,12 @@ class _NameEmailScreenState extends State<NameEmailScreen> {
   Widget build(BuildContext context) {
     final Map<String, dynamic>? arguments = Get.arguments;
 
-   if (arguments == null || arguments['phoneNumber'] == null) {
+    if (arguments == null || arguments['phoneNumber'] == null) {
       return Center(
         child: Text('No phone number provided'),
       );
     }
-    if (arguments == null || arguments['role'] == null) {
+    if (arguments['role'] == null) {
       return Center(
         child: Text('No role provided'),
       );

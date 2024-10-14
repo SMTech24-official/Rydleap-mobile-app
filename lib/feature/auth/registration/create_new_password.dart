@@ -1,35 +1,30 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../core/app_icons.dart';
-import '../../../../../core/app_imagese.dart';
-import '../../../../../core/app_sizes.dart';
-import '../../../../../core/global_widgets/custom_background.dart';
-import '../../../../../core/global_widgets/custom_blur_button.dart';
-import '../../../../../core/global_widgets/custom_gradient_button.dart';
-import '../../../../../core/global_widgets/custom_textfield.dart';
-import '../../../../../core/global_widgets/global_variable.dart';
-import '../../../otp/controller/otp_controller.dart';
+import '../../../core/app_icons.dart';
+import '../../../core/app_imagese.dart';
+import '../../../core/app_sizes.dart';
+import '../../../core/global_widgets/custom_background.dart';
+import '../../../core/global_widgets/custom_blur_button.dart';
+import '../../../core/global_widgets/custom_gradient_button.dart';
+import '../../../core/global_widgets/custom_textfield.dart';
+import '../../../core/global_widgets/global_variable.dart';
 
 class CreateNewPassword extends StatefulWidget {
-final String role;
-  const CreateNewPassword({super.key,required this.role});
+  final String role;
+  const CreateNewPassword({super.key, required this.role});
 
   @override
   State<CreateNewPassword> createState() => _CreateNewPasswordState();
 }
 
 class _CreateNewPasswordState extends State<CreateNewPassword> {
-
-  OtpController otpController=Get.find();
+  // OtpController otpController=Get.find();
 
   TextEditingController _passwordController =
-  TextEditingController(text: "Enter New Password");
+      TextEditingController(text: "Enter New Password");
   TextEditingController _confirmPasswordController =
-  TextEditingController(text: "Confirm New Password");
+      TextEditingController(text: "Confirm New Password");
   bool checkPass = false;
 
   bool isConditionMet = false;
@@ -215,15 +210,15 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
                         ),
                         child: isConditionMet
                             ? Icon(
-                          Icons.check,
-                          color: Colors.white,
-                          size: getWidth(10),
-                        )
+                                Icons.check,
+                                color: Colors.white,
+                                size: getWidth(10),
+                              )
                             : Icon(
-                          Icons.close,
-                          color: Colors.white,
-                          size: getWidth(10),
-                        ),
+                                Icons.close,
+                                color: Colors.white,
+                                size: getWidth(10),
+                              ),
                       ),
                       SizedBox(
                         width: 10,
@@ -231,9 +226,9 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
                       Text(
                         condition,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color:
-                          Theme.of(context).textTheme.bodySmall?.color,
-                        ),
+                              color:
+                                  Theme.of(context).textTheme.bodySmall?.color,
+                            ),
                       ),
                     ],
                   ),
@@ -242,78 +237,68 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
             ),
             Spacer(),
             CustomGlobalVariable.userType == 'Driver'
-                ?isPasswordMatch && isPasswordStrong
-                ?
-            CustomGradientButton(
-                text: "Driver Continue",
-                onTap: () async {
-                  // _passwordController.clear();
-                  // _confirmPasswordController.clear();
+                ? isPasswordMatch && isPasswordStrong
+                    ? CustomGradientButton(
+                        text: "Driver Continue",
+                        onTap: () async {
+                          // _passwordController.clear();
+                          // _confirmPasswordController.clear();
 
-                  if (_passwordController.text ==
-                      _confirmPasswordController.text) {
-                    // Set the password in user details
+                          if (_passwordController.text ==
+                              _confirmPasswordController.text) {
+                            // Set the password in user details
 
+                            // Call the register user method
 
-                    // Call the register user method
+                            Get.snackbar(
+                              "Success",
+                              "succeessfully registerd",
+                              snackPosition: SnackPosition.BOTTOM,
+                              backgroundColor: Colors.green,
+                              colorText: Colors.white,
+                            );
+                          } else {
+                            // Show a message if passwords do not match
+                            Get.snackbar(
+                              "Error",
+                              "Passwords do not match",
+                              snackPosition: SnackPosition.BOTTOM,
+                              backgroundColor: Colors.red,
+                              colorText: Colors.white,
+                            );
+                          }
 
+                          // Navigator.push(context,
+                          //     MaterialPageRoute(builder: (_) => LoginScreen()));
+                        })
+                    : CustomBlurButton(
+                        text: "Continue",
+                        // isPasswordMatch && isPasswordStrong
+                        //     ? () {
+                        //         // Navigate to the next page
+                        //       }
+                        //     : null, // Disable the button if conditions are not met
+                      )
+                : isPasswordMatch && isPasswordStrong
+                    ? CustomGradientButton(
+                        text: "Continue",
+                        onTap: () async {
+                          // _passwordController.clear();
+                          // _confirmPasswordController.clear();
 
-                    Get.snackbar(
-                      "Success",
-                      "succeessfully registerd",
-                      snackPosition: SnackPosition.BOTTOM,
-                      backgroundColor: Colors.green,
-                      colorText: Colors.white,
-                    );
-                  } else {
-                    // Show a message if passwords do not match
-                    Get.snackbar(
-                      "Error",
-                      "Passwords do not match",
-                      snackPosition: SnackPosition.BOTTOM,
-                      backgroundColor: Colors.red,
-                      colorText: Colors.white,
-                    );
-                  }
+                          // otpController.setPassword(_confirmPasswordController.text,widget.role);
 
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (_) => LoginScreen()));
-                })
-                : CustomBlurButton(
-              text: "Continue",
-              // isPasswordMatch && isPasswordStrong
-              //     ? () {
-              //         // Navigate to the next page
-              //       }
-              //     : null, // Disable the button if conditions are not met
-            ):
-            isPasswordMatch && isPasswordStrong
-                ?
-            CustomGradientButton(
-                text: "Continue",
-                onTap: () async {
-                  // _passwordController.clear();
-                  // _confirmPasswordController.clear();
-                  
-                  otpController.setPassword(_confirmPasswordController.text,widget.role);
-                  
-
-                 
-
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (_) => LoginScreen()));
-                }
-                
-                
-                )
-                : CustomBlurButton(
-              text: "Continue",
-              // isPasswordMatch && isPasswordStrong
-              //     ? () {
-              //         // Navigate to the next page
-              //       }
-              //     : null, // Disable the button if conditions are not met
-            ),
+                          // Navigator.push(context,
+                          //     MaterialPageRoute(builder: (_) => LoginScreen()));
+                        })
+                    : CustomBlurButton(
+                        text: "Continue",
+                        // isPasswordMatch && isPasswordStrong
+                        //     ? () {
+                        //         // Navigate to the next page
+                        //       }
+                        //     : null, // Disable the button if conditions are not met
+                      ),
             SizedBox(
               height: getHeight(20),
             ),

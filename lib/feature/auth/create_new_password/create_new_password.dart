@@ -1,33 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rydleap/core/app_icons.dart';
-import 'package:rydleap/core/app_imagese.dart';
-import 'package:rydleap/core/app_sizes.dart';
-import 'package:rydleap/core/global_widgets/custom_background.dart';
-import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
-import 'package:rydleap/core/global_widgets/custom_textfield.dart';
-import 'package:rydleap/core/global_widgets/global_variable.dart';
-import 'package:rydleap/feature/auth/login/login_screen.dart';
-import 'package:rydleap/feature/auth/user_input/user_input_details.dart';
 
-import '../../../../core/global_widgets/custom_gradient_button.dart';
-import 'registration/controller/registration_controller.dart';
+import '../../../core/app_icons.dart';
+import '../../../core/app_imagese.dart';
+import '../../../core/app_sizes.dart';
+import '../../../core/global_widgets/custom_background.dart';
+import '../../../core/global_widgets/custom_blur_button.dart';
+import '../../../core/global_widgets/custom_gradient_button.dart';
+import '../../../core/global_widgets/custom_textfield.dart';
+import '../../../core/global_widgets/global_variable.dart';
 
-class CreatePasswordScreen extends StatefulWidget {
-  final UserInputDetails userInputDetails;
-  const CreatePasswordScreen({super.key, required this.userInputDetails});
+class CreateNewPassword extends StatefulWidget {
+  final String role;
+  const CreateNewPassword({super.key, required this.role});
 
   @override
-  State<CreatePasswordScreen> createState() => _CreatePasswordScreenState();
+  State<CreateNewPassword> createState() => _CreateNewPasswordState();
 }
 
-class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
-  final RegistrationController registrationController =
-      Get.put(RegistrationController());
+class _CreateNewPasswordState extends State<CreateNewPassword> {
+  // OtpController otpController = Get.find();
+
   TextEditingController _passwordController =
-      TextEditingController(text: "@Password1");
+      TextEditingController(text: "Enter New Password");
   TextEditingController _confirmPasswordController =
-      TextEditingController(text: "@Password1");
+      TextEditingController(text: "Confirm New Password");
   bool checkPass = false;
 
   bool isConditionMet = false;
@@ -250,31 +247,16 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                           if (_passwordController.text ==
                               _confirmPasswordController.text) {
                             // Set the password in user details
-                            widget.userInputDetails.password =
-                                _passwordController.text;
-                            print("User Input Details:");
-                            print("Name: ${widget.userInputDetails.fullName}");
-                            print("Email: ${widget.userInputDetails.email}");
-                            print(
-                                "Phone Number: ${widget.userInputDetails.phoneNumber}");
-                            print(
-                                "Password: ${widget.userInputDetails.password}");
-                            print("Password: ${widget.userInputDetails.role}");
+
                             // Call the register user method
-                            await registrationController.registerDriver(
-                                widget.userInputDetails.fullName,
-                                widget.userInputDetails.email,
-                                widget.userInputDetails.phoneNumber,
-                                widget.userInputDetails.password,
-                                widget.userInputDetails.role);
-                            Get.offAll(() => LoginScreen());
-                            // Get.snackbar(
-                            //   "Success",
-                            //   "succeessfully registerd",
-                            //   snackPosition: SnackPosition.BOTTOM,
-                            //   backgroundColor: Colors.green,
-                            //   colorText: Colors.white,
-                            // );
+
+                            Get.snackbar(
+                              "Success",
+                              "succeessfully registerd",
+                              snackPosition: SnackPosition.BOTTOM,
+                              backgroundColor: Colors.green,
+                              colorText: Colors.white,
+                            );
                           } else {
                             // Show a message if passwords do not match
                             Get.snackbar(
@@ -301,55 +283,15 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                     ? CustomGradientButton(
                         text: "Continue",
                         onTap: () async {
-                          // Check if passwords match and are strong
-                          if (isPasswordMatch && isPasswordStrong) {
-                            // Set the password in user details
-                            widget.userInputDetails.password =
-                                _passwordController.text;
+                          // _passwordController.clear();
+                          // _confirmPasswordController.clear();
 
-                            print("User Input Details:");
-                            print("////////////////");
-                            print("Email: ${widget.userInputDetails.email}");
-                            print(
-                                "Phone Number: ${widget.userInputDetails.phoneNumber}");
-                            print(
-                                "Password: ${widget.userInputDetails.password}");
-                            print("Role: ${widget.userInputDetails.role}");
+                          // otpController.setPassword(
+                          //     _confirmPasswordController.text, widget.role);
 
-                            // Call the register user method
-                            await registrationController.registerUser(
-                              widget.userInputDetails.fullName,
-                              widget.userInputDetails.email,
-                              widget.userInputDetails.phoneNumber,
-                              widget.userInputDetails.password,
-                              widget.userInputDetails.role,
-                            );
-
-                            // Show success message
-                            // Get.snackbar(
-                            //   "Success",
-                            //   "Successfully registered",
-                            //   snackPosition: SnackPosition.BOTTOM,
-                            //   backgroundColor: Colors.green,
-                            //   colorText: Colors.white,
-                            // );
-
-                            // // Navigate to the login screen
-                            // Get.offAll(() => LoginScreen());
-                          } else {
-                            // Show an error message if passwords do not match or are not strong
-                            // Get.snackbar(
-                            //   "Error",
-                            //   isPasswordMatch
-                            //       ? "Password is not strong enough."
-                            //       : "Passwords do not match.",
-                            //   snackPosition: SnackPosition.BOTTOM,
-                            //   backgroundColor: Colors.red,
-                            //   colorText: Colors.white,
-                            // );
-                          }
-                        },
-                      )
+                          // Navigator.push(context,
+                          //     MaterialPageRoute(builder: (_) => LoginScreen()));
+                        })
                     : CustomBlurButton(
                         text: "Continue",
                         // isPasswordMatch && isPasswordStrong

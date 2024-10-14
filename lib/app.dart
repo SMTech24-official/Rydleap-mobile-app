@@ -3,20 +3,15 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 
 import 'package:get/get_navigation/get_navigation.dart';
 
-
-
-
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/language_string.dart';
 import 'package:rydleap/core/shared/screen/splashScreen.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
-import 'package:rydleap/feature/auth/presentaion/screens/registration/register_screen.dart';
-import 'package:rydleap/feature/profile/widgets/language/language_screen.dart';
 
 class Rydleap extends StatelessWidget {
   final Locale initialLocale;
-  const Rydleap({super.key,required this.initialLocale});
+  const Rydleap({super.key, required this.initialLocale});
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   @override
   Widget build(BuildContext context) {

@@ -46,7 +46,11 @@ class DriverDashboard extends StatelessWidget {
                 backgroundColor: Colors.grey.shade300.withOpacity(.7),
                 child: CircleAvatar(
                   radius: 20.5,
-                  child: Image.asset(AppImagese.profileImage,height: 50,width: 50,),
+                  child: Image.asset(
+                    AppImagese.profileImage,
+                    height: 50,
+                    width: 50,
+                  ),
                   backgroundColor: Colors.grey.shade300,
                 ),
               ),
@@ -57,10 +61,9 @@ class DriverDashboard extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-
-            SizedBox(height: 31,),
-
-
+            SizedBox(
+              height: 31,
+            ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -152,13 +155,14 @@ class DriverDashboard extends StatelessWidget {
                       width: screenWidth(),
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.black,
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.black,
                         gradient: LinearGradient(
                           colors: [
                             const Color(0xFF001B26),
                             const Color(0xFF00638C),
-                          ],),
+                          ],
+                        ),
                       ),
                       height: 110,
                       child: Column(
@@ -174,9 +178,6 @@ class DriverDashboard extends StatelessWidget {
                                   child: Text("Details")),
                             ],
                           ),
-
-
-
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -193,7 +194,7 @@ class DriverDashboard extends StatelessWidget {
                                   ),
                                   Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Burkina Faso',
@@ -234,22 +235,22 @@ class DriverDashboard extends StatelessWidget {
                                   )
                                 ],
                               ),
-
-
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Icon(
                                     Icons.cancel,
                                     size: getWidth(46),
                                     color: Colors.grey.shade300,
                                   ),
-
                                   InkWell(
-                                    onTap: (){
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (_) => DriverRideRequest()));
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) =>
+                                                  DriverRideRequest()));
                                       AnimatedSnackBar.removeAll();
                                     },
                                     child: Icon(
@@ -258,8 +259,6 @@ class DriverDashboard extends StatelessWidget {
                                       color: Color(0xff3AD896),
                                     ),
                                   ),
-
-
                                 ],
                               )
                             ],
@@ -321,9 +320,6 @@ class DriverDashboard extends StatelessWidget {
           ],
         ),
       ),
-
-
-
       bottomNavigationBar: CurvedNavigationBar(
         letIndexChange: (index) {
           return false;
@@ -346,19 +342,19 @@ class DriverDashboard extends StatelessWidget {
                   // width: 32,
                   // height: 22,
                   child: Obx(() => Switch(
-                    // This bool value toggles the switch.
-                    value: light.value,
-                    thumbColor:
-                    const MaterialStatePropertyAll<Color>(Colors.black),
-                    trackColor: WidgetStatePropertyAll(Colors.white),
-                    activeColor: Colors.white,
-                    onChanged: (bool value) {
-                      // This is called when the user toggles the switch.
-                      // setState(() {
-                      light.value != value;
-                      // });
-                    },
-                  )),
+                        // This bool value toggles the switch.
+                        value: light.value,
+                        thumbColor:
+                            const WidgetStatePropertyAll<Color>(Colors.black),
+                        trackColor: WidgetStatePropertyAll(Colors.white),
+                        activeColor: Colors.white,
+                        onChanged: (bool value) {
+                          // This is called when the user toggles the switch.
+                          // setState(() {
+                          light.value != value;
+                          // });
+                        },
+                      )),
                 ),
                 Text(
                   'Online',
@@ -371,11 +367,9 @@ class DriverDashboard extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: (){
-
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => ProfileScreen()));
-
+            onTap: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (_) => ProfileScreen()));
             },
             child: Icon(
               Icons.person_2_outlined,
@@ -388,12 +382,6 @@ class DriverDashboard extends StatelessWidget {
           //Handle button tap
         },
       ),
-
-
-
-
-
-
     );
   }
 }

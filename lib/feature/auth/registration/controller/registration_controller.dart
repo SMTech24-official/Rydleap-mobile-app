@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rydleap/core/service/auth_service.dart';
-import 'package:rydleap/feature/auth/presentaion/screens/registration/model/registration_response.dart';
+import 'package:rydleap/feature/auth/registration/model/registration_response.dart';
 
 class RegistrationController extends GetxController {
   final AuthService authService = AuthService();
@@ -11,7 +11,8 @@ class RegistrationController extends GetxController {
   Rxn<RegistrationResponse> registrationResponse = Rxn<RegistrationResponse>();
 
   // Method for registering a user
-  Future<void> registerUser(String fullName, String email, String phoneNumber, String password, String role) async {
+  Future<void> registerUser(String fullName, String email, String phoneNumber,
+      String password, String role) async {
     isLoading(true);
     try {
       final request = RegistrationRequest(
@@ -27,7 +28,8 @@ class RegistrationController extends GetxController {
 
       // Check if the response is not null and parse it
       if (response != null) {
-        registrationResponse.value = response; // Assigning the RegistrationResponse directly
+        registrationResponse.value =
+            response; // Assigning the RegistrationResponse directly
 
         if (registrationResponse.value!.success) {
           Get.snackbar(
@@ -61,7 +63,8 @@ class RegistrationController extends GetxController {
   }
 
   // Method for registering a driver
-  Future<void> registerDriver(String fullName, String email, String phoneNumber, String password, String role) async {
+  Future<void> registerDriver(String fullName, String email, String phoneNumber,
+      String password, String role) async {
     isLoading(true);
     try {
       final request = RegistrationRequest(
@@ -77,7 +80,8 @@ class RegistrationController extends GetxController {
 
       // Check if the response is not null and parse it
       if (response != null) {
-        registrationResponse.value = response; // Assigning the RegistrationResponse directly
+        registrationResponse.value =
+            response; // Assigning the RegistrationResponse directly
 
         if (registrationResponse.value!.success) {
           Get.snackbar(

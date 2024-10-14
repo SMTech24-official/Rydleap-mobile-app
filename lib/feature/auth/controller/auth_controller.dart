@@ -1,59 +1,36 @@
-
-
-
-
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rydleap/core/api_url.dart';
 import 'package:http/http.dart' as http;
 
-
-class AuthController extends GetxController{
-
-
-
-
+class AuthController extends GetxController {
   Map<String, String> headers = {
     "Authorization": "Bearer ",
   };
 
-  Future<dynamic> ChangePassword(
-
-      String userId,
-      String receiver_user_id,
-      String transaction_type,
-      String transaction_amount
-
-      ) async {
+  Future<dynamic> ChangePassword(String userId, String receiver_user_id,
+      String transaction_type, String transaction_amount) async {
     var userData = {};
     userData['receiver_user_id'] = receiver_user_id;
     userData['transaction_type'] = transaction_type;
     userData['transaction_amount'] = transaction_amount;
 
-
     // final url = Uri.parse(BASE_URL + 'send-money');
 
-    final url = Uri.parse('https://rydleaps.vercel.app/api/v1/auth/change-password');
+    final url =
+        Uri.parse('https://rydleaps.vercel.app/api/v1/auth/change-password');
 
     debugPrint("user token" + userData.toString());
-
 
     // final url = Uri.parse('http://172.31.120.58:80/api/user-login');
 
     debugPrint("ressssssssssssssssssssssssssss" + url.toString());
 
-
-
-    var response = await http.post(url, body: userData,
-        headers: headers);
-
+    var response = await http.post(url, body: userData, headers: headers);
 
     debugPrint("ressssssssssssssssssssssssssss" + response.body.toString());
 
-    debugPrint("ressssssssssssssssssssssssssss" + response.statusCode.toString());
-
+    debugPrint(
+        "ressssssssssssssssssssssssssss" + response.statusCode.toString());
 
     // if (response.statusCode == 200) {
     //   var jsonResponse = json.decode(response.body);
@@ -75,10 +52,4 @@ class AuthController extends GetxController{
     //   return false;
     // }
   }
-
-
-
-
-
-
 }

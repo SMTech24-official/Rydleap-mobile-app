@@ -7,8 +7,6 @@ import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 import 'package:rydleap/feature/auth/login/controller/forgot_controller.dart';
-import 'package:rydleap/feature/auth/otp/otp2_screen.dart';
-import 'package:rydleap/feature/auth/otp/otp_screen.dart';
 
 class ForgotScreen extends StatefulWidget {
   const ForgotScreen({super.key});
@@ -55,7 +53,6 @@ class _ForgotScreenState extends State<ForgotScreen> {
               hintext: "phone_number".tr,
               suffixIcon: SizedBox(),
               textInputType: TextInputType.phone,
-
             ),
             SizedBox(height: getHeight(34)),
             Spacer(),
@@ -63,16 +60,8 @@ class _ForgotScreenState extends State<ForgotScreen> {
                 ? CustomGradientButton(
                     text: "confirm".tr,
                     onTap: () {
-
-
-
-                      Get.to(()=>OtpScreen2());
+                      // Get.to(()=>OtpScreen2());
                       // _forgotController.sendMail();
-
-
-
-
-
                     },
                   )
                 : CustomBlurButton(text: "confirm".tr)),
@@ -82,6 +71,4 @@ class _ForgotScreenState extends State<ForgotScreen> {
       ),
     );
   }
-
-
 }
