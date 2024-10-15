@@ -23,7 +23,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final LoginController _loginController = Get.put(LoginController());
   final FLoginController fLoginController = Get.put(FLoginController());
 
-  TextEditingController _emailController = TextEditingController();
+  TextEditingController _emailController =
+      TextEditingController(text: "+8801521205808");
   TextEditingController _passwordController =
       TextEditingController(text: "@Password1");
   bool isFormValid = false;

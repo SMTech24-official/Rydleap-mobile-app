@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
-
 import 'package:rydleap/core/app_imagese.dart';
-import 'package:rydleap/core/share_pref/share_pref.dart';
-
-import 'package:rydleap/feature/auth/presentaion/screens/your_location.dart';
-import 'package:rydleap/feature/profile/screen/profile_screen.dart';
+import 'package:rydleap/feature/auth/login/login_screen.dart';
+import 'package:rydleap/feature/profile/screen/f_profile_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // Import shared_preferences
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,20 +13,27 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  Future<void> _moveToNextScreen() async {
-    await Future.delayed(const Duration(seconds: 4));
-    bool isLoggedIn = await SharePref.checkAuthState();
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                isLoggedIn ? ProfileScreen() : YourLocation()));
-  }
-
   @override
   void initState() {
-    _moveToNextScreen();
     super.initState();
+    _moveToNextScreen();
+  }
+
+  Future<void> _moveToNextScreen() async {
+    await Future.delayed(const Duration(seconds: 4)); // Delay for 4 seconds
+
+    // Access shared preferences to check if the user is logged in
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isLoggedIn =
+        prefs.getBool('isLoggedIn') ?? false; // Check the login state
+
+    // Navigate to the appropriate screen
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => isLoggedIn ? FProfileScreen() : LoginScreen(),
+      ),
+    );
   }
 
   @override

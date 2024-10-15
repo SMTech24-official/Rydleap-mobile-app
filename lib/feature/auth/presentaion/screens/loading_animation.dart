@@ -18,7 +18,7 @@ class _LoadingAnimationScreenState extends State<LoadingAnimationScreen> {
   Future<void> _moveToNextScreen() async {
     await Future.delayed(const Duration(seconds: 4));
     // bool isLoggedIn = await AuthController.checkAuthState();
-    bool isLoggedIn = await SharePref.checkAuthState();
+    // bool isLoggedIn = await SharePref.checkAuthState();
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => YourLocation()));
   }

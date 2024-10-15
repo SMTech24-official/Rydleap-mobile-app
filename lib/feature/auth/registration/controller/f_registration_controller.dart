@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:rydleap/core/global_widgets/custom_snackbar.dart';
 import 'package:rydleap/feature/auth/otp/f_otp_screen.dart';
+import 'package:rydleap/feature/auth/presentaion/screens/name_email_screen.dart';
 
 class FRegistrationController extends GetxController {
   final TextEditingController phoneController =
@@ -35,7 +37,7 @@ class FRegistrationController extends GetxController {
         UserCredential userCredential =
             await _auth.signInWithCredential(credential);
         if (userCredential.user != null) {
-          Get.toNamed('/name_email_screen');
+          Get.to(NameEmailScreen());
         }
       }
     } catch (e) {
@@ -61,8 +63,9 @@ class FRegistrationController extends GetxController {
         codeSent: (String verificationId, int? resendToken) {
           this.verificationId.value = verificationId;
           otpSent(true);
-          Get.snackbar('Success', 'OTP sent to ${phoneController.text}');
-          startTimer(); // Start countdown when OTP is sent
+          successToast(message: 'OTP sent to ${phoneController.text}');
+
+          startTimer();
         },
         codeAutoRetrievalTimeout: (String verificationId) {
           this.verificationId.value = verificationId;
@@ -89,9 +92,12 @@ class FRegistrationController extends GetxController {
           await _auth.signInWithCredential(credential);
 
       if (userCredential.user != null) {
+        successToast(
+            message:
+                'OTP verification successful. User signed in: ${userCredential.user?.phoneNumber}');
         print(
             'OTP verification successful. User signed in: ${userCredential.user?.phoneNumber}');
-        return true; // OTP verified successfully
+        return true;
       } else {
         print('OTP verification failed: userCredential is null');
         return false;

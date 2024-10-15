@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rydleap/feature/profile/screen/profile_screen.dart';
+import 'package:rydleap/core/global_widgets/custom_snackbar.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // Import shared_preferences
+import 'package:rydleap/feature/profile/screen/f_profile_screen.dart';
 
 class FLoginController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -18,40 +20,41 @@ class FLoginController extends GetxController {
           email: identifier,
           password: password,
         );
+
+        // Save login state to SharedPreferences
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setBool('isLoggedIn', true); // User is logged in
+
         // Handle successful login for email
-        Get.snackbar("Success", "Logged in successfully with email",
-            backgroundColor: Colors.green, colorText: Colors.white);
-        Get.to(ProfileScreen());
-        // Do something with userCredential if needed
+        successToast(
+          message: "Logged in successfully with email",
+        );
+        Get.to(FProfileScreen());
       } else if (_isPhoneNumber(identifier)) {
         // Phone Number Login
-        // You may want to implement verification code flow for phone login
         await _auth.verifyPhoneNumber(
           phoneNumber: identifier,
           verificationCompleted: (PhoneAuthCredential credential) async {
-            // Auto-retrieval or instant verification
             await _auth.signInWithCredential(credential);
-            Get.snackbar("Success", "Logged in successfully with phone",
-                backgroundColor: Colors.green, colorText: Colors.white);
+            // Save login state to SharedPreferences
+            final SharedPreferences prefs =
+                await SharedPreferences.getInstance();
+            await prefs.setBool('isLoggedIn', true); // User is logged in
+            successToast(message: "Logged in successfully");
           },
           verificationFailed: (FirebaseAuthException e) {
-            Get.snackbar("Error", e.message ?? "Verification failed",
-                backgroundColor: Colors.red, colorText: Colors.white);
+            errorToast(message: "Verification failed");
           },
           codeSent: (String verificationId, int? resendToken) {
-            // You can handle the code sent logic here
             Get.snackbar("Code Sent", "Verification code sent to $identifier",
                 backgroundColor: Colors.orange, colorText: Colors.white);
-            // Store verificationId for later use
-            // Implement UI to get verification code and sign in
           },
           codeAutoRetrievalTimeout: (String verificationId) {
             // Auto-retrieval timeout
           },
         );
       } else {
-        Get.snackbar("Error", "Please enter a valid email or phone number",
-            backgroundColor: Colors.red, colorText: Colors.white);
+        errorToast(message: "Please enter a valid email or phone number");
       }
     } catch (e) {
       Get.snackbar("Error", e.toString(),
@@ -62,13 +65,11 @@ class FLoginController extends GetxController {
   }
 
   bool _isEmail(String identifier) {
-    // Basic email validation
     final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
     return emailRegex.hasMatch(identifier);
   }
 
   bool _isPhoneNumber(String identifier) {
-    // Basic phone number validation (You may want to use a better validation based on your requirements)
     final phoneRegex =
         RegExp(r'^\+?[0-9]{10,15}$'); // Adjust the regex as per your needs
     return phoneRegex.hasMatch(identifier);

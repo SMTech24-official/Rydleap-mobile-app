@@ -11,6 +11,7 @@ import 'package:rydleap/feature/auth/registration/controller/email_registration_
 import 'package:rydleap/feature/auth/registration/controller/f_registration_controller.dart';
 import 'package:rydleap/feature/home/home_controller.dart';
 import 'package:rydleap/feature/home/map_controller.dart';
+import 'package:rydleap/feature/profile/controller/firebase/f_profile_controller.dart';
 import 'package:rydleap/feature/profile/controller/profile_controller.dart';
 import 'package:rydleap/firebase_options.dart';
 import 'feature/auth/login/controller/forgot_controller.dart';
@@ -35,6 +36,7 @@ void main() async {
   Get.put(EmailRegistrationController());
   Get.put(FLoginController());
   Get.put(ContactSupportController());
+  Get.put(FProfileController());
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

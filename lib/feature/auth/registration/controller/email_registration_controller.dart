@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:rydleap/core/global_widgets/custom_snackbar.dart';
 import 'package:rydleap/core/service/notification_service.dart';
 import 'package:rydleap/feature/auth/login/login_screen.dart';
 import 'package:rydleap/feature/auth/user_input/user_input_details.dart';
@@ -49,30 +50,34 @@ class EmailRegistrationController extends GetxController {
         userInput.email.isEmpty ||
         userInput.password.isEmpty ||
         userInput.confirmPassword.isEmpty) {
-      Get.snackbar("Error", "Please fill all required fields",
-          backgroundColor: Colors.red, colorText: Colors.white);
+      errorToast(message: "Please fill all required fields");
+
       return;
     }
 
     // Example email format validation
     final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
     if (!emailRegex.hasMatch(userInput.email)) {
-      Get.snackbar("Error", "Please enter a valid email",
-          backgroundColor: Colors.red, colorText: Colors.white);
+      errorToast(message: "Please enter a valid email");
+
       return;
     }
 
     // Example password strength check (minimum 6 characters)
     if (userInput.password.length < 6) {
-      Get.snackbar("Error", "Password must be at least 6 characters",
-          backgroundColor: Colors.red, colorText: Colors.white);
+      errorToast(
+        message: "Password must be at least 6 characters",
+      );
+
       return;
     }
 
     // Check if password and confirm password match
     if (userInput.password != userInput.confirmPassword) {
-      Get.snackbar("Error", "Passwords do not match",
-          backgroundColor: Colors.red, colorText: Colors.white);
+      errorToast(
+        message: "Passwords do not match",
+      );
+
       return;
     }
 
@@ -114,9 +119,7 @@ class EmailRegistrationController extends GetxController {
             .doc(userCredential.user?.uid)
             .update({"fcm_token": fcmToken});
       }
-
-      Get.snackbar("Success", "Registration completed successfully",
-          backgroundColor: Colors.green, colorText: Colors.white);
+      successToast(message: "Registration completed successfully");
       Get.to(LoginScreen());
 
       // Clear input fields
