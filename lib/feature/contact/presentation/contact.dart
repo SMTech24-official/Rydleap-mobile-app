@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
+import 'package:rydleap/feature/contact/controller/contact_controller.dart';
 import 'package:rydleap/feature/driver_tracking/presentation/driver_tracking.dart';
 import 'package:rydleap/feature/home/map_controller.dart';
 
@@ -18,6 +19,7 @@ class Contact extends StatelessWidget {
   LatLng currentpos = LatLng(31.119318, -99.245435);
 
   MapController mapController = Get.find();
+  ContactController contactController=Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -207,10 +209,12 @@ class Contact extends StatelessWidget {
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text('Burkina Faso',style: GoogleFonts.inter(
+
+
+                                      Obx(()=>Text('${contactController.contactModel.value.data?.fullName}',style: GoogleFonts.inter(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500,
-                                          color: Colors.white),),
+                                          color: Colors.white),),),
 
                                       Row(
                                         children: [

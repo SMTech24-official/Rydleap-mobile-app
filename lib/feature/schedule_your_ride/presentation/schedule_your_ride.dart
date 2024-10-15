@@ -5,9 +5,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
+import 'package:get/get.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_imagese.dart';
+import 'package:rydleap/feature/home/home_controller.dart';
 // import 'package:rydleap/feature/contact/presentation/contact.dart';
 
 import '../../../core/app_sizes.dart';
@@ -18,6 +20,9 @@ import '../../../core/global_widgets/ride_type_tile.dart';
 class ScheduleYourRide extends StatefulWidget {
   @override
   State<ScheduleYourRide> createState() => _ScheduleYourRideState();
+
+  HomeController homeController=Get.find();
+
 }
 
 class _ScheduleYourRideState extends State<ScheduleYourRide>
@@ -195,43 +200,38 @@ class _ScheduleYourRideState extends State<ScheduleYourRide>
               unselectedLabelColor: Colors.white,
               controller: _tabController,
               tabs: [
-                Tab(text: 'Economy'),
-                Tab(text: 'Premium'),
-                Tab(text: 'Shared'),
+                for(int i=0;i<widget.homeController.packageModel.value.data!.length;i++)
+                  Tab(text: '${widget.homeController.packageModel.value.data?[i].name}'),
+                // Tab(text: 'Economy'),
+                // Tab(text: 'Premium'),
+                // Tab(text: 'Shared'),
               ],
             ),
 
             Container(
               width: screenWidth(),
               height: 129,
-              child: ListView(
+              child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 controller: _scrollController,
                 shrinkWrap: true,
-                children: [
-                  RideTypeTile(
-                    title: 'Economy',
-                    subtitle: '\$10-15',
-                    time: '5 mins away',
+                itemCount: widget.homeController.packageModel.value.data?.length,
+
+                itemBuilder: (BuildContext context, int index) {
+
+                  return  RideTypeTile(
+                    title: '${widget.homeController.packageModel.value.data?[index].name}',
+                    subtitle: '\$ ${widget.homeController.packageModel.value.data?[index].price}',
+                    time: '${widget.homeController.packageModel.value.data?[index].minutes} mins away',
                     backgroundColor: Colors.black,
                     textColor: Colors.white,
-                  ),
-                  RideTypeTile(
-                    title: 'Premium',
-                    subtitle: '\$15-20',
-                    time: '3 mins away',
-                    backgroundColor: Colors.white,
-                    textColor: Colors.black,
-                  ),
-                  RideTypeTile(
-                    title: 'Shared',
-                    subtitle: '\$05-10',
-                    time: '10 mins away',
-                    backgroundColor: Colors.green.shade500,
-                    textColor: Colors.amber,
-                  ),
+                  );
+                },
 
-                ],
+
+
+
+
               ),
             ),
 
