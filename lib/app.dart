@@ -8,6 +8,8 @@ import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/language_string.dart';
 import 'package:rydleap/core/shared/screen/splashScreen.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
+import 'package:rydleap/feature/auth/create_password/check.dart';
+import 'package:rydleap/feature/auth/login/login_screen.dart';
 
 class Rydleap extends StatelessWidget {
   final Locale initialLocale;
@@ -22,7 +24,8 @@ class Rydleap extends StatelessWidget {
         locale: initialLocale,
         fallbackLocale: Locale("en", "US"),
         translations: LocalString(),
-        home: SplashScreen(),
+        // home: SplashScreen(),
+        home: LoginScreen(),
         // theme: lightThemeData(),
         theme: _darkThemeData(),
       );

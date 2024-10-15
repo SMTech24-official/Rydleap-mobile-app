@@ -7,6 +7,7 @@ import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 import 'package:rydleap/feature/auth/forgot_password/forgot_screen.dart';
+import 'package:rydleap/feature/auth/login/controller/firebase/f_login_controller.dart';
 import 'package:rydleap/feature/auth/login/controller/login_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/global_widgets/custom_gradient_button.dart';
@@ -20,9 +21,11 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final LoginController _loginController = Get.put(LoginController());
+  final FLoginController fLoginController = Get.put(FLoginController());
 
   TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _passwordController =
+      TextEditingController(text: "@Password1");
   bool isFormValid = false;
 
   @override
@@ -170,25 +173,40 @@ class _LoginScreenState extends State<LoginScreen> {
                 return isFormValid
                     ? CustomGradientButton(
                         text: "confirm".tr,
-                        onTap: () async {
-                          await _loginController.login(
-                            _emailController.text,
-                            _passwordController.text,
-                          );
-
-                          // Save credentials only if "Remember Me" is checked
-                          if (_loginController.isChecked.value) {
-                            final prefs = await SharedPreferences.getInstance();
-                            await prefs.setString(
-                                'saved_email', _emailController.text);
-                            await prefs.setString(
-                                'saved_password', _passwordController.text);
-                          }
+                        onTap: () {
+                          fLoginController.login(
+                              _emailController.text, _passwordController.text);
                         },
                       )
                     : CustomBlurButton(text: "confirm".tr);
               }
             }),
+            // Obx(() {
+            //   if (_loginController.loading.value) {
+            //     return Center(child: CircularProgressIndicator());
+            //   } else {
+            //     return isFormValid
+            //         ? CustomGradientButton(
+            //             text: "confirm".tr,
+            //             onTap: () async {
+            //               await _loginController.login(
+            //                 _emailController.text,
+            //                 _passwordController.text,
+            //               );
+
+            //               // Save credentials only if "Remember Me" is checked
+            //               if (_loginController.isChecked.value) {
+            //                 final prefs = await SharedPreferences.getInstance();
+            //                 await prefs.setString(
+            //                     'saved_email', _emailController.text);
+            //                 await prefs.setString(
+            //                     'saved_password', _passwordController.text);
+            //               }
+            //             },
+            //           )
+            //         : CustomBlurButton(text: "confirm".tr);
+            //   }
+            // }),
             SizedBox(height: getHeight(20)),
           ],
         ),
