@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/pickup_and_drop_input_tile.dart';
+import 'package:rydleap/feature/contact/controller/contact_controller.dart';
 import 'package:rydleap/feature/contact/presentation/contact.dart';
 import 'package:rydleap/feature/home/home_controller.dart';
 import '../../../core/global_widgets/ride_type_tile_with_image.dart';
@@ -21,6 +22,8 @@ class _RequestARideState extends State<RequestARide>
     with SingleTickerProviderStateMixin {
   TabController? _tabController;
   ScrollController _scrollController = ScrollController();
+
+  ContactController contactController=Get.find();
 
 
 
@@ -170,6 +173,10 @@ class _RequestARideState extends State<RequestARide>
               child: CustomGradientButton(
                 text: 'Ride Request',
                 onTap: () {
+
+
+
+                  contactController.getDriver('67075b4606381f338df574ac');
                   Navigator.push(
                       context, MaterialPageRoute(builder: (_) => Contact()));
                 },
