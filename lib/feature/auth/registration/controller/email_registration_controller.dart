@@ -13,7 +13,6 @@ import 'package:rydleap/feature/auth/user_input/user_input_details.dart';
 class EmailRegistrationController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final NotificationService _notificationService = NotificationService();
 
   final ImagePicker _picker = ImagePicker();
   Rx<File?> selectedImage = Rx<File?>(null);
