@@ -10,6 +10,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rydleap/core/share_pref/share_pref.dart';
+import 'package:rydleap/feature/home/model/package_model.dart';
 import 'package:rydleap/feature/home/model/promotion_model.dart';
 import 'package:rydleap/feature/home/model/riding_history_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,6 +27,7 @@ class HomeController extends GetxController{
   Rx<UserModel> userDetail=UserModel().obs;
   Rx<RidingHistoryModel> ridingHistoryModel=RidingHistoryModel().obs;
   Rx<PromotionModel> promotionModel=PromotionModel().obs;
+  Rx<PackageModel> packageModel=PackageModel(data: []).obs;
 
 
 
@@ -117,12 +119,13 @@ class HomeController extends GetxController{
     debugPrint("+++++++++++status code....."+response.statusCode.toString());
 
 
-    debugPrint("+++++++++++++++++++++++++++Promo Data++++++++++++++++++++++"+response.body);
+    debugPrint("+++++++++++++++++++++++++++Package Data++++++++++++++++++++++"+response.body);
 
 
     if (response.statusCode == 200) {
 
-      promotionModel.value= promotionModelFromJson(response.body);
+      packageModel.value= packageModelFromJson(response.body);
+
 
 
       debugPrint("+++++++++++++++++++++++++++ OK Data++++++++++++++++++++++"+response.body);
@@ -225,6 +228,7 @@ class HomeController extends GetxController{
 
     getPromo();
     getRidingHistory();
+    getPackage();
 
 
 
