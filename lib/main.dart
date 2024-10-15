@@ -20,6 +20,7 @@ import 'feature/profile/widgets/contact_support/contact_support_controller.dart'
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Locale savedLocale = await SharePref.getSelectedLanguage();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
