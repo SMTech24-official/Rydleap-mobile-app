@@ -101,6 +101,38 @@ class HomeController extends GetxController{
   }
 
 
+  Future<void> getPackage() async {
+
+    print('into Packages');
+    debugPrint("++++++++++++++++++Start++++++++++++++++++++++");
+
+
+    final url = Uri.parse('https://rydleap-backend-eight.vercel.app/api/v1/package');
+    var response = await http.get(
+      url,
+    );
+
+    // log('log me', name: response.body);
+
+    debugPrint("+++++++++++status code....."+response.statusCode.toString());
+
+
+    debugPrint("+++++++++++++++++++++++++++Promo Data++++++++++++++++++++++"+response.body);
+
+
+    if (response.statusCode == 200) {
+
+      promotionModel.value= promotionModelFromJson(response.body);
+
+
+      debugPrint("+++++++++++++++++++++++++++ OK Data++++++++++++++++++++++"+response.body);
+      //return userModelFromJson(response.body);
+    } else if (response.statusCode == 400) {
+      throw const HttpException('getCustomerAddressData Error');
+    } else {
+      throw const HttpException('getCustomerAddressData Error');
+    }
+  }
 
 
 
