@@ -42,7 +42,8 @@ class _LanguageScreenState extends State<LanguageScreen> {
     });
   }
 
-  Future<void> _changeLanguage(Locale locale, String languageName, String flag) async {
+  Future<void> _changeLanguage(
+      Locale locale, String languageName, String flag) async {
     await SharePref.saveSelectedLanguage(locale); // Save selected language
     await SharePref.saveSelectedIndex(selectedIndex); // Save selected index
     print("Language saved: ${locale.languageCode}"); // Debug print
@@ -56,7 +57,6 @@ class _LanguageScreenState extends State<LanguageScreen> {
   Future<void> _loadSavedLanguage() async {
     Locale savedLocale = await SharePref.getSelectedLanguage();
 
-    // Update the selected language and flag based on the saved locale
     if (savedLocale.languageCode == 'bn') {
       _selectedLanguage = "Bengali";
       _selectedFlag = "🇧🇩";
@@ -152,23 +152,28 @@ class _LanguageScreenState extends State<LanguageScreen> {
                         Locale locale;
                         switch (data.title) {
                           case "Bengali":
-                            locale = Locale('bn', 'BN'); // Match with LocalString
+                            locale =
+                                Locale('bn', 'BN'); // Match with LocalString
                             _changeLanguage(locale, "Bengali", "🇧🇩");
                             break;
                           case "Spanish":
-                            locale = Locale('es', 'ES'); // Match with LocalString
+                            locale =
+                                Locale('es', 'ES'); // Match with LocalString
                             _changeLanguage(locale, "Spanish", "🇪🇸");
                             break;
                           case "Portuguese":
-                            locale = Locale('pt', 'PT'); // Match with LocalString
+                            locale =
+                                Locale('pt', 'PT'); // Match with LocalString
                             _changeLanguage(locale, "Portuguese", "🇧🇷");
                             break;
                           case "French":
-                            locale = Locale('fr', 'FR'); // Match with LocalString
+                            locale =
+                                Locale('fr', 'FR'); // Match with LocalString
                             _changeLanguage(locale, "French", "🇫🇷");
                             break;
                           default: // Default to English
-                            locale = Locale('en', 'US'); // Match with LocalString
+                            locale =
+                                Locale('en', 'US'); // Match with LocalString
                             _changeLanguage(locale, "English", "🇺🇸");
                         }
 
@@ -177,8 +182,10 @@ class _LanguageScreenState extends State<LanguageScreen> {
                       child: Padding(
                         padding: EdgeInsets.only(bottom: getHeight(14.5)),
                         child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: getWidth(15)),
-                          margin: EdgeInsets.symmetric(horizontal: getWidth(15)),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: getWidth(15)),
+                          margin:
+                              EdgeInsets.symmetric(horizontal: getWidth(15)),
                           height: getHeight(51),
                           width: double.infinity,
                           decoration: BoxDecoration(

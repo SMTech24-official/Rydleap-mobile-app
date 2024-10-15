@@ -28,9 +28,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-
-  HomeController homeController=Get.find();
-
+  HomeController homeController = Get.find();
 
   final LoginController _loginController = Get.find<LoginController>();
   File? _selectedImage;
@@ -39,18 +37,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   final String _imageKey = "stored_image_path";
 
-Future<void> _pickImage(ImageSource source) async {
-  try {
-    final XFile? image = await _picker.pickImage(source: source);
-    if (image != null && mounted) { // Check if the widget is still mounted
-      setState(() {
-        _selectedImage = File(image.path);
-      });
+  Future<void> _pickImage(ImageSource source) async {
+    try {
+      final XFile? image = await _picker.pickImage(source: source);
+      if (image != null && mounted) {
+        // Check if the widget is still mounted
+        setState(() {
+          _selectedImage = File(image.path);
+        });
+      }
+    } catch (e) {
+      print('Failed to pick image: $e');
     }
-  } catch (e) {
-    print('Failed to pick image: $e');
   }
-}
 
   Future<bool> _checkPermissions(ImageSource source) async {
     if (source == ImageSource.camera) {
@@ -221,9 +220,7 @@ Future<void> _pickImage(ImageSource source) async {
 
   @override
   Widget build(BuildContext context) {
-
-
-  homeController.getPromo();
+    homeController.getPromo();
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -241,15 +238,14 @@ Future<void> _pickImage(ImageSource source) async {
                 return Center(child: CircularProgressIndicator());
               } else {
                 // Show the Confirm button if not loading
-                return  IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: () {
-              _loginController.logout();
-            },
-          );
+                return IconButton(
+                  icon: Icon(Icons.logout),
+                  onPressed: () {
+                    _loginController.logout();
+                  },
+                );
               }
             }),
-
           ],
         ),
         body: Stack(
@@ -345,13 +341,14 @@ Future<void> _pickImage(ImageSource source) async {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            
-                            Obx(()=> Text(
-                              "${homeController.userDetail.value.data?.name}",
-                              style: GoogleFonts.nunito(
-                                  fontSize: getWidth(18),
-                                  fontWeight: FontWeight.w500),
-                            ),),
+                            Obx(
+                              () => Text(
+                                "${homeController.userDetail.value.data?.name}",
+                                style: GoogleFonts.nunito(
+                                    fontSize: getWidth(18),
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ),
                             Text(
                               "(4.7⭐)",
                               style: GoogleFonts.nunito(
@@ -368,34 +365,34 @@ Future<void> _pickImage(ImageSource source) async {
                         //       fontSize: getWidth(15),
                         //       fontWeight: FontWeight.w400),
                         // ),),
-                        FutureBuilder<String?>(
-                    future: SharePref
-                        .getSavedEmail(), // The future that fetches the email
-                    builder: (BuildContext context,
-                        AsyncSnapshot<String?> snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Text(
-                          'Loading...', // Show loading state
-                          style: TextStyle(fontSize: 18),
-                        );
-                      } else if (snapshot.hasError) {
-                        return Text(
-                          'Error: ${snapshot.error}', // Show error message
-                          style: TextStyle(fontSize: 18),
-                        );
-                      } else if (snapshot.hasData && snapshot.data != null) {
-                        return Text(
-                          'Email: ${snapshot.data}', // Show the retrieved email
-                          style: TextStyle(fontSize: 18),
-                        );
-                      } else {
-                        return Text(
-                          'Email: Not provided', // Fallback if no email is found
-                          style: TextStyle(fontSize: 18),
-                        );
-                      }
-                    },
-                  ),
+                        //       FutureBuilder<String?>(
+                        //   future: SharePref
+                        //       .getSavedEmail(), // The future that fetches the email
+                        //   builder: (BuildContext context,
+                        //       AsyncSnapshot<String?> snapshot) {
+                        //     if (snapshot.connectionState == ConnectionState.waiting) {
+                        //       return Text(
+                        //         'Loading...', // Show loading state
+                        //         style: TextStyle(fontSize: 18),
+                        //       );
+                        //     } else if (snapshot.hasError) {
+                        //       return Text(
+                        //         'Error: ${snapshot.error}', // Show error message
+                        //         style: TextStyle(fontSize: 18),
+                        //       );
+                        //     } else if (snapshot.hasData && snapshot.data != null) {
+                        //       return Text(
+                        //         'Email: ${snapshot.data}', // Show the retrieved email
+                        //         style: TextStyle(fontSize: 18),
+                        //       );
+                        //     } else {
+                        //       return Text(
+                        //         'Email: Not provided', // Fallback if no email is found
+                        //         style: TextStyle(fontSize: 18),
+                        //       );
+                        //     }
+                        //   },
+                        // ),
                         Text(
                           "${homeController.userDetail.value.data?.email}",
                           style: GoogleFonts.nunito(
@@ -480,23 +477,23 @@ Future<void> _pickImage(ImageSource source) async {
                                 ),
                               ),
                               // IconButton(onPressed: data.onTap, icon: Icon(Icons.arrow_forward_ios,size: 16,))
-                             ClipOval(
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            splashColor: Colors.white.withOpacity(0.2),
-                            onTap:data.onTap,
-                            child: SizedBox(
-                              height: getWidth(24),
-                              width: getWidth(24),
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                size: 16,
+                              ClipOval(
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    splashColor: Colors.white.withOpacity(0.2),
+                                    onTap: data.onTap,
+                                    child: SizedBox(
+                                      height: getWidth(24),
+                                      width: getWidth(24),
+                                      child: Icon(
+                                        Icons.arrow_forward_ios,
+                                        size: 16,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                        ),
-                      ),
                             ],
                           ),
                         );

@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/app_text_button.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
-import 'package:rydleap/core/share_pref/share_pref.dart';
 import 'package:rydleap/feature/auth/forgot_password/forgot_screen.dart';
+import 'package:rydleap/feature/auth/login/controller/firebase/f_login_controller.dart';
 import 'package:rydleap/feature/auth/login/controller/login_controller.dart';
-import 'package:rydleap/feature/auth/otp/otp_screen.dart';
-import 'package:rydleap/feature/home/presentation/screens/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/global_widgets/custom_gradient_button.dart';
 
@@ -24,9 +21,12 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final LoginController _loginController = Get.put(LoginController());
+  final FLoginController fLoginController = Get.put(FLoginController());
 
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _emailController =
+      TextEditingController(text: "+8801521205808");
+  TextEditingController _passwordController =
+      TextEditingController(text: "@Password1");
   bool isFormValid = false;
 
   @override
@@ -50,10 +50,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _validateForm() {
     setState(() {
-      isFormValid = _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
+      isFormValid = _emailController.text.isNotEmpty &&
+          _passwordController.text.isNotEmpty;
     });
   }
-
 
 //Remember me method
   Widget _buildRememberMeCheckbox() {
@@ -144,10 +144,10 @@ class _LoginScreenState extends State<LoginScreen> {
               controller: _passwordController,
               hintext: "password".tr,
               suffixIcon: SizedBox(
-                // height: getHeight(24),
-                // width: getWidth(24),
-                // child: Image.asset(AppIcons.checkOutline),
-              ),
+                  // height: getHeight(24),
+                  // width: getWidth(24),
+                  // child: Image.asset(AppIcons.checkOutline),
+                  ),
             ),
             SizedBox(height: getHeight(18)),
             Row(
@@ -157,8 +157,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 AppTextButton(
                   text: "forgot_password".tr,
                   onTap: () {
-                   print("Forgot password");
-                   Get.to(()=>ForgotScreen());
+                    print("Forgot password");
+                    Get.to(() => ForgotScreen());
                   },
                   fontWeight: FontWeight.w400,
                   textSize: getWidth(5),
@@ -174,23 +174,40 @@ class _LoginScreenState extends State<LoginScreen> {
                 return isFormValid
                     ? CustomGradientButton(
                         text: "confirm".tr,
-                        onTap: () async {
-                          await _loginController.login(
-                            _emailController.text,
-                            _passwordController.text,
-                          );
-
-                          // Save credentials only if "Remember Me" is checked
-                          if (_loginController.isChecked.value) {
-                            final prefs = await SharedPreferences.getInstance();
-                            await prefs.setString('saved_email', _emailController.text);
-                            await prefs.setString('saved_password', _passwordController.text);
-                          }
+                        onTap: () {
+                          fLoginController.login(
+                              _emailController.text, _passwordController.text);
                         },
                       )
                     : CustomBlurButton(text: "confirm".tr);
               }
             }),
+            // Obx(() {
+            //   if (_loginController.loading.value) {
+            //     return Center(child: CircularProgressIndicator());
+            //   } else {
+            //     return isFormValid
+            //         ? CustomGradientButton(
+            //             text: "confirm".tr,
+            //             onTap: () async {
+            //               await _loginController.login(
+            //                 _emailController.text,
+            //                 _passwordController.text,
+            //               );
+
+            //               // Save credentials only if "Remember Me" is checked
+            //               if (_loginController.isChecked.value) {
+            //                 final prefs = await SharedPreferences.getInstance();
+            //                 await prefs.setString(
+            //                     'saved_email', _emailController.text);
+            //                 await prefs.setString(
+            //                     'saved_password', _passwordController.text);
+            //               }
+            //             },
+            //           )
+            //         : CustomBlurButton(text: "confirm".tr);
+            //   }
+            // }),
             SizedBox(height: getHeight(20)),
           ],
         ),

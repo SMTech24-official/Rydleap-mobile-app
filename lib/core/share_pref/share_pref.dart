@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:ui';
-import 'package:rydleap/feature/auth/domain/model/login_model.dart';
 import 'package:rydleap/feature/auth/login/model/login_model.dart';
 import 'package:rydleap/feature/profile/model/profile_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,7 +27,6 @@ class SharePref {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getInt(_selectedIndexKey) ?? 0; // Default to 0 if not found
   }
-  
 
   // Save access token
   static Future<void> saveAccessToken(String token) async {
@@ -81,10 +79,10 @@ class SharePref {
         jsonEncode(loginModel.toJson()); // Convert to JSON string
     await sharedPreferences.setString(_userDataKey, userDataJson);
   }
-   static Future<void> saveUser(User user) async {
+
+  static Future<void> saveUser(User user) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-     String userDataJson =
-        jsonEncode(user.toJson()); // Convert to JSON string
+    String userDataJson = jsonEncode(user.toJson()); // Convert to JSON string
     await sharedPreferences.setString("user-data", userDataJson);
   }
 
@@ -122,10 +120,11 @@ class SharePref {
   //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   //   return sharedPreferences.getString(_emailKey);
   // }
-static Future<String?> getSavedEmail() async {
+  static Future<String?> getSavedEmail() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     return sharedPreferences.getString('email');
   }
+
   static Future<String?> getSavedName() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     return sharedPreferences.getString('name');
