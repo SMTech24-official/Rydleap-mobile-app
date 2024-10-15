@@ -15,6 +15,8 @@ class HomeController extends GetxController {
   Rx<UserModel> userDetail = UserModel().obs;
   Rx<RidingHistoryModel> ridingHistoryModel = RidingHistoryModel().obs;
   Rx<PromotionModel> promotionModel = PromotionModel().obs;
+  Rx<PackageModel> packageModel = PackageModel().obs;
+
 
 
 

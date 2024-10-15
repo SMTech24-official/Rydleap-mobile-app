@@ -9,6 +9,7 @@ import 'package:rydleap/feature/auth/login/controller/firebase/f_login_controlle
 import 'package:rydleap/feature/auth/otp/controller/firebase/f_otp_controller.dart';
 import 'package:rydleap/feature/auth/registration/controller/email_registration_controller.dart';
 import 'package:rydleap/feature/auth/registration/controller/f_registration_controller.dart';
+import 'package:rydleap/feature/contact/controller/contact_controller.dart';
 import 'package:rydleap/feature/home/home_controller.dart';
 import 'package:rydleap/feature/home/map_controller.dart';
 import 'package:rydleap/feature/profile/controller/firebase/f_profile_controller.dart';
@@ -32,7 +33,7 @@ void main() async {
   Get.put(ProfileController());
   Get.put(AuthController());
   Get.put(ForgotController());
-  Get.put(OtpController());
+  // Get.put(OtpController());
   Get.put(ContactController());
   // Get.put(OtpController());
   Get.put(FOtpController());
