@@ -102,23 +102,41 @@ class _FRegistrationScreenState extends State<FRegistrationScreen> {
             ),
 
 ////////////////////////////////////////// firebase/////////////////////////////////////////
-            Obx(() {
-              return fRegistrationController.isLoading.value
-                  ? CircularProgressIndicator()
-                  : CustomGradientButton(
-                      text: "Get Otp driver",
-                      onTap: () {
-                        String phoneNumber = fRegistrationController
-                            .phoneController
-                            .text; // Get the phone number from the controller
-                        fRegistrationController.sendOTP();
-                        Get.to(FOtpScreen(), arguments: {
-                          'phoneNumber':
-                              phoneNumber, // Set phone number from user input
-                          'role': widget.role,
-                        });
-                      });
-            }),
+            widget.role == 'Driver'
+                ? Obx(() {
+                    return fRegistrationController.isLoading.value
+                        ? CircularProgressIndicator()
+                        : CustomGradientButton(
+                            text: "Get Otp driver",
+                            onTap: () {
+                              String phoneNumber = fRegistrationController
+                                  .phoneController
+                                  .text; // Get the phone number from the controller
+                              fRegistrationController.sendOTP();
+                              Get.to(FOtpScreen(), arguments: {
+                                'phoneNumber':
+                                    phoneNumber, // Set phone number from user input
+                                'role': widget.role,
+                              });
+                            });
+                  })
+                : Obx(() {
+                    return fRegistrationController.isLoading.value
+                        ? CircularProgressIndicator()
+                        : CustomGradientButton(
+                            text: "Get Otp user",
+                            onTap: () {
+                              String phoneNumber = fRegistrationController
+                                  .phoneController
+                                  .text; // Get the phone number from the controller
+                              fRegistrationController.sendOTP();
+                              Get.to(FOtpScreen(), arguments: {
+                                'phoneNumber':
+                                    phoneNumber, // Set phone number from user input
+                                'role': widget.role,
+                              });
+                            });
+                  }),
 ////////////////////////////////////////// firebase/////////////////////////////////////////
 
             // widget.role == 'Driver'

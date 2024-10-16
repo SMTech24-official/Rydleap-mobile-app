@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
-import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/feature/profile/dummy_data/about_model.dart';
 
 class CustomProfileItemsSection extends StatelessWidget {
   const CustomProfileItemsSection({
     super.key,
+    required this.userData,
   });
+
+  final Map<String, dynamic> userData;
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +18,11 @@ class CustomProfileItemsSection extends StatelessWidget {
       child: ListView.builder(
         padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
         shrinkWrap: true,
-        itemCount: CustomGlobalVariable.userType == 'Driver'
+        itemCount: userData['role'] == 'Driver'
             ? driverItems.length
             : userItems.length,
         itemBuilder: (context, index) {
-          final data = CustomGlobalVariable.userType == 'Driver'
+          final data = userData['role'] == 'Driver'
               ? driverItems[index]
               : userItems[index];
           return Container(
