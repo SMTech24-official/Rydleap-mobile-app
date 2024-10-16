@@ -21,7 +21,6 @@ class AboutModel {
   AboutModel({required this.title, required this.icon, required this.onTap});
 }
 
-
 //userItems
 List<AboutModel> userItems = [
   AboutModel(
@@ -46,7 +45,7 @@ List<AboutModel> userItems = [
       title: "payment_methods",
       icon: AppIcons.payment,
       onTap: () {
-       Get.to(PaymentOptionsScreen());
+        Get.to(PaymentOptionsScreen());
       }),
   AboutModel(
       title: "ride_history",
@@ -67,13 +66,12 @@ List<AboutModel> userItems = [
         Get.to(ReportProblemScreen());
       }),
   AboutModel(
-      title: "contack_us",
+      title: "contact_us",
       icon: AppIcons.contact,
       onTap: () {
         Get.to(ContactSupportScreen());
       }),
 ];
-
 
 //driverItems
 List<AboutModel> driverItems = [
@@ -81,15 +79,15 @@ List<AboutModel> driverItems = [
       title: "settings",
       icon: AppIcons.settings,
       onTap: () {
-         Get.to(SettingsScreen());
+        Get.to(SettingsScreen());
       }),
- AboutModel(
+  AboutModel(
       title: "balance",
       icon: AppIcons.payment,
       onTap: () {
         Get.to(BalanceScreen());
       }),
-      AboutModel(
+  AboutModel(
       title: "cash_out",
       icon: AppIcons.payment,
       onTap: () {
@@ -99,13 +97,13 @@ List<AboutModel> driverItems = [
       title: "change_password",
       icon: AppIcons.key,
       onTap: () {
-       Get.to(ChangePasswordScreen());
+        Get.to(ChangePasswordScreen());
       }),
   AboutModel(
       title: "notifiactions",
       icon: AppIcons.notification,
       onTap: () {
-       Get.to(NotificationScreen());
+        Get.to(NotificationScreen());
       }),
   AboutModel(
       title: "drive_history",
@@ -117,7 +115,7 @@ List<AboutModel> driverItems = [
       title: "language",
       icon: AppIcons.language,
       onTap: () {
-       Get.to(LanguageScreen());
+        Get.to(LanguageScreen());
       }),
   AboutModel(
       title: "report_problem",

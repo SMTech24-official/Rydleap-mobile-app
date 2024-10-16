@@ -50,18 +50,23 @@ Future<dynamic> profileBottomSheet(BuildContext context) {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          height: getHeight(40),
-                          width: getWidth(104),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(88),
-                              color: Color(0xff3AD896)),
-                          child: Center(
-                            child: Text(
-                              "Wait",
-                              style: GoogleFonts.inter(
-                                  fontSize: getWidth(14),
-                                  fontWeight: FontWeight.w400),
+                        InkWell(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Container(
+                            height: getHeight(40),
+                            width: getWidth(104),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(88),
+                                color: Color(0xff3AD896)),
+                            child: Center(
+                              child: Text(
+                                "Wait",
+                                style: GoogleFonts.inter(
+                                    fontSize: getWidth(14),
+                                    fontWeight: FontWeight.w400),
+                              ),
                             ),
                           ),
                         ),

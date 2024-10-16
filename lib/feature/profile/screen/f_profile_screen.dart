@@ -3,6 +3,8 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart';
+import 'package:rydleap/core/app_icons.dart';
+import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
@@ -12,6 +14,8 @@ import 'package:rydleap/feature/profile/components/custom_profile_items_section.
 import 'package:rydleap/feature/profile/components/custom_profile_section.dart';
 import 'package:rydleap/feature/profile/components/profile_bottom_sheet.dart';
 import 'package:rydleap/feature/profile/controller/firebase/f_profile_controller.dart';
+import 'package:rydleap/feature/profile/dummy_data/about_model.dart';
+import 'package:rydleap/feature/profile/screen/profile_settings.dart';
 
 class FProfileScreen extends StatefulWidget {
   const FProfileScreen({super.key});
@@ -25,6 +29,7 @@ class _FProfileScreenState extends State<FProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final fProfileController = Get.put(FProfileController());
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -47,33 +52,6 @@ class _FProfileScreenState extends State<FProfileScreen> {
               height: 60.h,
               fit: BoxFit.cover,
             ),
-            //online container
-            CustomGlobalVariable.userType == 'Driver'
-                ? Positioned(
-                    top: getHeight(17),
-                    right: getWidth(30),
-                    child: Container(
-                      padding: EdgeInsets.only(
-                        left: 10,
-                        right: 10,
-                      ),
-                      height: getHeight(18),
-                      // width: getWidth(40),
-                      decoration: BoxDecoration(
-                          color: Color(0xff03989E),
-                          borderRadius: BorderRadius.circular(100)),
-                      child: Center(
-                        child: Text(
-                          "Online",
-                          style: GoogleFonts.nunito(
-                              fontSize: getWidth(10),
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ),
-                  )
-                : SizedBox(),
-
             Container(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -81,28 +59,92 @@ class _FProfileScreenState extends State<FProfileScreen> {
                   SizedBox(
                     height: getHeight(40),
                   ),
-                  CustomProfileSection(profileController: fProfileController),
+                  Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        FutureBuilder<Map<String, dynamic>?>(
+                          future: fProfileController.fetchUserData(),
+                          // future: widget.fProfileController.fetchUserData(),
+                          builder: (context, snapshot) {
+                            // Loading state
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            }
+
+                            // Error state
+                            if (snapshot.hasError) {
+                              return const Center(
+                                  child: Text("Error fetching data"));
+                            }
+
+                            // No data state
+                            if (!snapshot.hasData || snapshot.data == null) {
+                              return const Center(
+                                  child: Text("No user data found"));
+                            }
+
+                            // Data fetched successfully
+                            final userData = snapshot.data!;
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                userData['role'] == 'Driver'
+                                    ? Align(
+                                        alignment: Alignment.centerRight,
+                                        child: Container(
+                                          margin: EdgeInsets.only(
+                                            right: getWidth(30),
+                                          ),
+                                          height: getHeight(18),
+                                          width: getWidth(51),
+                                          decoration: BoxDecoration(
+                                              color: Color(0xff03989E),
+                                              borderRadius:
+                                                  BorderRadius.circular(100)),
+                                          child: Center(
+                                            child: Text(
+                                              "Online",
+                                              style: GoogleFonts.nunito(
+                                                  fontSize: getWidth(10),
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    : SizedBox(),
+                                CustomProfileSection(userData: userData),
+                                CustomProfileItemsSection(userData: userData),
+                                SizedBox(
+                                  height: getHeight(30),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: getWidth(20)),
+                                  child: InkWell(
+                                    onTap: () {
+                                      profileBottomSheet(context);
+                                    },
+                                    child: CustomBlurButton(
+                                      text: "Log Out",
+                                      textColor: userData['role'] == 'Driver'
+                                          ? Color(0xffFE0F00)
+                                          : AppColors.textGrey,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
                   SizedBox(
                     height: getHeight(27),
                   ),
-                  CustomProfileItemsSection(),
-                  SizedBox(
-                    height: getHeight(30),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
-                    child: InkWell(
-                      onTap: () {
-                        profileBottomSheet(context);
-                      },
-                      child: CustomBlurButton(
-                        text: "Log Out",
-                        textColor: CustomGlobalVariable.userType == 'Driver'
-                            ? Color(0xffFE0F00)
-                            : AppColors.textGrey,
-                      ),
-                    ),
-                  )
                 ],
               ),
             )
