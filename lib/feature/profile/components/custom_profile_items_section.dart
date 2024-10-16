@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 import 'package:rydleap/feature/profile/dummy_data/about_model.dart';
 
 class CustomProfileItemsSection extends StatelessWidget {
@@ -44,12 +45,10 @@ class CustomProfileItemsSection extends StatelessWidget {
                       SizedBox(
                         width: getWidth(24.5),
                       ),
-                      Text(
-                        data.title.tr,
-                        style: GoogleFonts.nunito(
-                            fontSize: getWidth(16),
-                            fontWeight: FontWeight.w400),
-                      ),
+                      CustomTextNunito(
+                          text: data.title.tr,
+                          fontSize: getWidth(16),
+                          fontWeight: FontWeight.w400),
                     ],
                   ),
                 ),
