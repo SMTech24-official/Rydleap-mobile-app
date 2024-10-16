@@ -4,10 +4,7 @@ import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
-import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
-import 'package:rydleap/core/global_widgets/global_variable.dart';
-import 'package:rydleap/feature/auth/login/login_screen.dart';
 import 'package:rydleap/feature/auth/registration/controller/email_registration_controller.dart';
 import 'package:rydleap/feature/auth/user_input/user_input_details.dart';
 
@@ -241,6 +238,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
               },
             ),
 
+            Spacer(),
             Obx(() {
               if (controller.isLoading.value) {
                 return const Center(child: CircularProgressIndicator());
@@ -265,8 +263,6 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                 );
               }
             }),
-
-            Spacer(),
             // CustomGlobalVariable.userType == 'Driver'
             //     ? isPasswordMatch && isPasswordStrong
             //         ? CustomGradientButton(

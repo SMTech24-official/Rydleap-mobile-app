@@ -89,8 +89,12 @@ class YourLocation extends StatelessWidget {
                     text: "Driver",
                     onTap: () {
                       CustomGlobalVariable.userType = 'Driver';
-                      // Navigator.push(context,
-                      //     MaterialPageRoute(builder: (_) => RegisterScreen(role: "Driver",)));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => FRegistrationScreen(
+                                    role: "Driver",
+                                  )));
                     })
               ],
             ),

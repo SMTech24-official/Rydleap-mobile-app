@@ -6,9 +6,12 @@ import 'package:rydleap/core/global_widgets/app_text_button.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
+import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/forgot_password/forgot_screen.dart';
 import 'package:rydleap/feature/auth/login/controller/firebase/f_login_controller.dart';
 import 'package:rydleap/feature/auth/login/controller/login_controller.dart';
+import 'package:rydleap/feature/auth/presentaion/screens/your_location.dart';
+import 'package:rydleap/feature/auth/registration/screen/f_registration_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/global_widgets/custom_gradient_button.dart';
 
@@ -23,10 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final LoginController _loginController = Get.put(LoginController());
   final FLoginController fLoginController = Get.put(FLoginController());
 
-  TextEditingController _emailController =
-      TextEditingController(text: "+8801521205808");
-  TextEditingController _passwordController =
-      TextEditingController(text: "@Password1");
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
   bool isFormValid = false;
 
   @override
@@ -55,7 +56,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-//Remember me method
+  // Remember me checkbox
   Widget _buildRememberMeCheckbox() {
     return Obx(() {
       return Row(
@@ -63,7 +64,6 @@ class _LoginScreenState extends State<LoginScreen> {
           GestureDetector(
             onTap: () {
               _loginController.toggle();
-              // Save checkbox state in shared preferences
               SharedPreferences.getInstance().then((prefs) {
                 prefs.setBool('isRemembered', _loginController.isChecked.value);
               });
@@ -74,29 +74,26 @@ class _LoginScreenState extends State<LoginScreen> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(1),
                 border: Border.all(
-                    color: _loginController.isChecked.value
-                        ? Colors.white
-                        : const Color(0xff9B9A9A)),
+                  color: _loginController.isChecked.value
+                      ? Colors.blue
+                      : const Color(0xff9B9A9A),
+                ),
                 color: _loginController.isChecked.value
                     ? const Color(0xff0000FF)
                     : Colors.transparent,
               ),
               child: _loginController.isChecked.value
-                  ? const Icon(
-                      Icons.check,
-                      color: Colors.white,
-                      size: 10,
-                    )
+                  ? const Icon(Icons.check, color: Colors.white, size: 10)
                   : const SizedBox(),
             ),
           ),
           const SizedBox(width: 10),
           Text(
             "remember_me".tr,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: Theme.of(context).textTheme.bodySmall?.color,
-                  fontSize: getWidth(13),
-                ),
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall
+                ?.copyWith(fontSize: getWidth(13)),
           ),
         ],
       );
@@ -124,14 +121,9 @@ class _LoginScreenState extends State<LoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: getHeight(35)),
-            Text(
-              "log_in".tr,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            Text(
-              "email_or_phone".tr,
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
+            Text("log_in".tr, style: Theme.of(context).textTheme.titleMedium),
+            Text("email_or_phone".tr,
+                style: Theme.of(context).textTheme.titleSmall),
             SizedBox(height: getHeight(24)),
             CustomTextfield(
               controller: _emailController,
@@ -143,11 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
             CustomTextfield(
               controller: _passwordController,
               hintext: "password".tr,
-              suffixIcon: SizedBox(
-                  // height: getHeight(24),
-                  // width: getWidth(24),
-                  // child: Image.asset(AppIcons.checkOutline),
-                  ),
+              suffixIcon: SizedBox(),
             ),
             SizedBox(height: getHeight(18)),
             Row(
@@ -157,57 +145,64 @@ class _LoginScreenState extends State<LoginScreen> {
                 AppTextButton(
                   text: "forgot_password".tr,
                   onTap: () {
-                    print("Forgot password");
                     Get.to(() => ForgotScreen());
                   },
                   fontWeight: FontWeight.w400,
-                  textSize: getWidth(5),
-                )
+                ),
               ],
             ),
-            SizedBox(height: getHeight(34)),
+            SizedBox(height: getHeight(18)),
+            Row(
+              children: [
+                Text("Don't have an account?".tr,
+                    style: Theme.of(context).textTheme.titleSmall),
+                SizedBox(
+                  width: getWidth(5),
+                ),
+                AppTextButton(
+                  text: "Sign Up".tr,
+                  onTap: () {
+                    Get.to(() => YourLocation());
+                  },
+                  fontWeight: FontWeight.w400,
+                  // textSize: getWidth(5),
+                  textColor: AppColors.textYellow,
+                ),
+              ],
+            ),
             Spacer(),
             Obx(() {
-              if (_loginController.loading.value) {
+              if (fLoginController.isLoading.value) {
+                // Show loading indicator if the login is in progress
                 return Center(child: CircularProgressIndicator());
               } else {
                 return isFormValid
                     ? CustomGradientButton(
                         text: "confirm".tr,
-                        onTap: () {
-                          fLoginController.login(
+                        onTap: () async {
+                          // Show the loading indicator before starting the login
+                          fLoginController.isLoading.value = true;
+
+                          // Perform login
+                          await fLoginController.login(
                               _emailController.text, _passwordController.text);
+
+                          // Save credentials if "Remember Me" is checked
+                          if (_loginController.isChecked.value) {
+                            final prefs = await SharedPreferences.getInstance();
+                            await prefs.setString(
+                                'saved_email', _emailController.text);
+                            await prefs.setString(
+                                'saved_password', _passwordController.text);
+                          }
+
+                          // Hide the loading indicator once login is complete
+                          fLoginController.isLoading.value = false;
                         },
                       )
                     : CustomBlurButton(text: "confirm".tr);
               }
             }),
-            // Obx(() {
-            //   if (_loginController.loading.value) {
-            //     return Center(child: CircularProgressIndicator());
-            //   } else {
-            //     return isFormValid
-            //         ? CustomGradientButton(
-            //             text: "confirm".tr,
-            //             onTap: () async {
-            //               await _loginController.login(
-            //                 _emailController.text,
-            //                 _passwordController.text,
-            //               );
-
-            //               // Save credentials only if "Remember Me" is checked
-            //               if (_loginController.isChecked.value) {
-            //                 final prefs = await SharedPreferences.getInstance();
-            //                 await prefs.setString(
-            //                     'saved_email', _emailController.text);
-            //                 await prefs.setString(
-            //                     'saved_password', _passwordController.text);
-            //               }
-            //             },
-            //           )
-            //         : CustomBlurButton(text: "confirm".tr);
-            //   }
-            // }),
             SizedBox(height: getHeight(20)),
           ],
         ),

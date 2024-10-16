@@ -11,6 +11,7 @@ class AppTextButton extends StatefulWidget {
     this.textSize,
     this.fontWeight,
   });
+
   final String text;
   final Color? textColor;
   final double? textSize;
@@ -22,14 +23,15 @@ class AppTextButton extends StatefulWidget {
 }
 
 class _AppTextButtonState extends State<AppTextButton> {
-  Color color = Colors.black87;
-  double size = getWidth(14);
+  late Color color;
+  late double size;
 
   @override
   void initState() {
-    color = widget.textColor ?? Colors.white;
-    size = widget.textSize ?? getWidth(14);
     super.initState();
+    // Initialize the color and size
+    color = widget.textColor ?? Colors.white;
+    size = widget.textSize ?? 14.0; // Default to 14 if no size is provided
   }
 
   @override
@@ -45,7 +47,7 @@ class _AppTextButtonState extends State<AppTextButton> {
         style: GoogleFonts.nunito(
           color: color,
           fontWeight: widget.fontWeight ?? FontWeight.w400,
-          fontSize: getWidth(14),
+          fontSize: size, // Use the initialized size
         ),
       ),
     );
@@ -53,16 +55,17 @@ class _AppTextButtonState extends State<AppTextButton> {
 
   void _onTapDown(TapDownDetails details) {
     setState(() {
+      // Change the color on tap down
       color = color.withOpacity(0.6);
-      // size = size + 2;
     });
   }
 
   void _onTapUp(TapUpDetails details) {
     Future.delayed(const Duration(milliseconds: 150)).then((value) {
       setState(() {
+        // Reset the color and size back to the initial value
         color = widget.textColor ?? Colors.white;
-        // size = widget.textSize ?? 14;
+        size = widget.textSize ?? 14.0; // Reset size to initial or 14
       });
     });
   }
