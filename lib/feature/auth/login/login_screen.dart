@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/app_text_button.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
@@ -11,7 +13,6 @@ import 'package:rydleap/feature/auth/forgot_password/forgot_screen.dart';
 import 'package:rydleap/feature/auth/login/controller/firebase/f_login_controller.dart';
 import 'package:rydleap/feature/auth/login/controller/login_controller.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/your_location.dart';
-import 'package:rydleap/feature/auth/registration/screen/f_registration_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/global_widgets/custom_gradient_button.dart';
 
@@ -88,13 +89,11 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           const SizedBox(width: 10),
-          Text(
-            "remember_me".tr,
-            style: Theme.of(context)
-                .textTheme
-                .bodySmall
-                ?.copyWith(fontSize: getWidth(13)),
-          ),
+          CustomTextNunito(
+            text: "remember_me".tr,
+            fontSize: getWidth(13),
+            fontWeight: FontWeight.w400,
+          )
         ],
       );
     });
@@ -121,9 +120,16 @@ class _LoginScreenState extends State<LoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: getHeight(35)),
-            Text("log_in".tr, style: Theme.of(context).textTheme.titleMedium),
-            Text("email_or_phone".tr,
-                style: Theme.of(context).textTheme.titleSmall),
+            CustomTextNunito(
+              text: "log_in".tr,
+              fontSize: getWidth(20),
+            ),
+            CustomTextNunito(
+              text: "email_or_phone".tr,
+              fontSize: getWidth(15),
+              color: Color(0xffECECEC),
+              fontWeight: FontWeight.w400,
+            ),
             SizedBox(height: getHeight(24)),
             CustomTextfield(
               controller: _emailController,
@@ -148,14 +154,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     Get.to(() => ForgotScreen());
                   },
                   fontWeight: FontWeight.w400,
+                  textColor: AppColors.textWhite,
                 ),
               ],
             ),
             SizedBox(height: getHeight(18)),
             Row(
               children: [
-                Text("Don't have an account?".tr,
-                    style: Theme.of(context).textTheme.titleSmall),
+                CustomTextNunito(
+                  text: "Don't have an account?".tr,
+                  fontSize: getWidth(16),
+                ),
                 SizedBox(
                   width: getWidth(5),
                 ),
@@ -164,8 +173,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   onTap: () {
                     Get.to(() => YourLocation());
                   },
-                  fontWeight: FontWeight.w400,
-                  // textSize: getWidth(5),
                   textColor: AppColors.textYellow,
                 ),
               ],

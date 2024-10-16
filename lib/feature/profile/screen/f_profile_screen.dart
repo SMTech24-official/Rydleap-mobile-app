@@ -3,6 +3,8 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_inter.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
@@ -11,30 +13,21 @@ import 'package:rydleap/feature/profile/components/custom_profile_section.dart';
 import 'package:rydleap/feature/profile/components/profile_bottom_sheet.dart';
 import 'package:rydleap/feature/profile/controller/firebase/f_profile_controller.dart';
 
-class FProfileScreen extends StatefulWidget {
-  const FProfileScreen({super.key});
-
-  @override
-  State<FProfileScreen> createState() => _FProfileScreenState();
-}
-
-class _FProfileScreenState extends State<FProfileScreen> {
-  final fProfileController = Get.put(FProfileController());
+class FProfileScreen extends StatelessWidget {
+  FProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final fProfileController = Get.put(FProfileController());
     return Scaffold(
         appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: AppColors.appbarColor,
-          leading: CustomCloseButton(),
-          title: Text(
-            "about_me".tr,
-            style: GoogleFonts.inter(
-                fontSize: getWidth(20), fontWeight: FontWeight.w600),
-          ),
-        ),
+            centerTitle: true,
+            backgroundColor: AppColors.appbarColor,
+            leading: CustomCloseButton(),
+            title: CustomTextInter(
+                text: "about_me".tr,
+                fontSize: getWidth(20),
+                fontWeight: FontWeight.w600)),
         body: Stack(
           children: [
             Container(
@@ -70,14 +63,20 @@ class _FProfileScreenState extends State<FProfileScreen> {
 
                             // Error state
                             if (snapshot.hasError) {
-                              return const Center(
-                                  child: Text("Error fetching data"));
+                              return Center(
+                                  child: CustomTextNunito(
+                                      text: "Error fetching data",
+                                      fontSize: getWidth(18),
+                                      fontWeight: FontWeight.w500));
                             }
 
                             // No data state
                             if (!snapshot.hasData || snapshot.data == null) {
-                              return const Center(
-                                  child: Text("No user data found"));
+                              return Center(
+                                  child: CustomTextNunito(
+                                      text: "No user data found",
+                                      fontSize: getWidth(18),
+                                      fontWeight: FontWeight.w500));
                             }
 
                             // Data fetched successfully
@@ -99,12 +98,10 @@ class _FProfileScreenState extends State<FProfileScreen> {
                                               borderRadius:
                                                   BorderRadius.circular(100)),
                                           child: Center(
-                                            child: Text(
-                                              "Online",
-                                              style: GoogleFonts.nunito(
-                                                  fontSize: getWidth(10),
-                                                  fontWeight: FontWeight.w400),
-                                            ),
+                                            child: CustomTextNunito(
+                                                text: "Online",
+                                                fontSize: getWidth(10),
+                                                fontWeight: FontWeight.w500),
                                           ),
                                         ),
                                       )
@@ -137,7 +134,7 @@ class _FProfileScreenState extends State<FProfileScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: getHeight(27),
+                    height: getHeight(20),
                   ),
                 ],
               ),

@@ -8,6 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/profile/controller/firebase/f_profile_controller.dart';
 import 'package:rydleap/feature/profile/dummy_data/about_model.dart';
@@ -142,37 +143,33 @@ class _CustomProfileSectionState extends State<CustomProfileSection> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "Peace Unity",
-              style: GoogleFonts.nunito(
-                  fontSize: getWidth(18), fontWeight: FontWeight.w500),
+            CustomTextNunito(
+                text: "Peace Unity",
+                fontSize: getWidth(18),
+                fontWeight: FontWeight.w500),
+            SizedBox(
+              width: getWidth(5),
             ),
-            Text(
-              "(4.7⭐)",
-              style: GoogleFonts.nunito(
-                  color: AppColors.textYellow,
-                  fontSize: getWidth(12),
-                  fontWeight: FontWeight.w500),
-            ),
+            CustomTextNunito(
+                text: "(4.7⭐)",
+                fontSize: getWidth(12),
+                color: AppColors.textYellow,
+                fontWeight: FontWeight.w500),
           ],
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              " ${widget.userData['email'] ?? 'N/A'}",
-              style: GoogleFonts.nunito(
-                  color: Color(0xffC3BBBB),
-                  fontSize: getWidth(15),
-                  fontWeight: FontWeight.w400),
-            ),
-            Text(
-              "${widget.userData['phone'] ?? 'N/A'}",
-              style: GoogleFonts.nunito(
-                  color: Color(0xffC3BBBB),
-                  fontSize: getWidth(15),
-                  fontWeight: FontWeight.w400),
-            ),
+            CustomTextNunito(
+                text: " ${widget.userData['email'] ?? 'N/A'}",
+                color: AppColors.hintext,
+                fontSize: getWidth(15),
+                fontWeight: FontWeight.w400),
+            CustomTextNunito(
+                text: "${widget.userData['phone'] ?? 'N/A'}",
+                color: AppColors.hintext,
+                fontSize: getWidth(15),
+                fontWeight: FontWeight.w400),
           ],
         ),
         InkWell(
@@ -188,13 +185,11 @@ class _CustomProfileSectionState extends State<CustomProfileSection> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  "Edit",
-                  style: GoogleFonts.nunito(
-                      color: Color(0xffB6B3B3),
-                      fontSize: getWidth(10),
-                      fontWeight: FontWeight.w400),
-                ),
+                CustomTextNunito(
+                    text: "Edit",
+                    color: Color(0xffB6B3B3),
+                    fontSize: getWidth(10),
+                    fontWeight: FontWeight.w400),
                 Icon(
                   Icons.arrow_drop_down,
                   size: getWidth(12),

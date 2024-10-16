@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_inter.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
+import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/profile/controller/firebase/f_profile_controller.dart';
 
 final _profileController = Get.put(FProfileController());
@@ -35,14 +38,10 @@ Future<dynamic> profileBottomSheet(BuildContext context) {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'Are you sure you want to Log Out?',
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.nunito(
-                        color: Color(0xff001B26),
-                        fontSize: getWidth(18),
-                        fontWeight: FontWeight.w500,
-                      ),
+                    CustomTextInter(
+                      text: 'Are you sure you want to Log Out?',
+                      fontSize: getWidth(18),
+                      color: AppColors.appbarColor,
                     ),
                     SizedBox(
                       height: getHeight(42),
@@ -61,11 +60,10 @@ Future<dynamic> profileBottomSheet(BuildContext context) {
                                 borderRadius: BorderRadius.circular(88),
                                 color: Color(0xff3AD896)),
                             child: Center(
-                              child: Text(
-                                "Wait",
-                                style: GoogleFonts.inter(
-                                    fontSize: getWidth(14),
-                                    fontWeight: FontWeight.w400),
+                              child: CustomTextInter(
+                                text: 'Wait',
+                                fontSize: getWidth(14),
+                                fontWeight: FontWeight.w400,
                               ),
                             ),
                           ),
@@ -90,12 +88,11 @@ Future<dynamic> profileBottomSheet(BuildContext context) {
                                     borderRadius: BorderRadius.circular(88),
                                     color: Color(0xffF0F0F0)),
                                 child: Center(
-                                  child: Text(
-                                    "Logout",
-                                    style: GoogleFonts.inter(
-                                        fontSize: getWidth(14),
-                                        color: Color(0xff001B26),
-                                        fontWeight: FontWeight.w400),
+                                  child: CustomTextInter(
+                                    text: 'Logout',
+                                    fontSize: getWidth(14),
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColors.appbarColor,
                                   ),
                                 ),
                               ),

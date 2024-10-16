@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 
 class CustomBlurButton extends StatelessWidget {
@@ -39,13 +40,11 @@ class CustomBlurButton extends StatelessWidget {
             ],
           ),
           child: Center(
-            child: Text(
-              text,
-              style: GoogleFonts.nunito(
-                color: textColor,
-                fontSize: getWidth(17.5),
-                fontWeight: FontWeight.w400,
-              ),
+            child: CustomTextNunito(
+              text: text,
+              color: textColor,
+              fontSize: getWidth(17.5),
+              fontWeight: FontWeight.w400,
             ),
           ),
         ),
