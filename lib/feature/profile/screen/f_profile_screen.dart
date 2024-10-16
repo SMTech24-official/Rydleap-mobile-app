@@ -2,20 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart';
-import 'package:rydleap/core/app_icons.dart';
-import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
-import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/profile/components/custom_profile_items_section.dart';
 import 'package:rydleap/feature/profile/components/custom_profile_section.dart';
 import 'package:rydleap/feature/profile/components/profile_bottom_sheet.dart';
 import 'package:rydleap/feature/profile/controller/firebase/f_profile_controller.dart';
-import 'package:rydleap/feature/profile/dummy_data/about_model.dart';
-import 'package:rydleap/feature/profile/screen/profile_settings.dart';
 
 class FProfileScreen extends StatefulWidget {
   const FProfileScreen({super.key});
