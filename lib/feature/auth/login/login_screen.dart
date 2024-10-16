@@ -6,9 +6,12 @@ import 'package:rydleap/core/global_widgets/app_text_button.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
+import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/auth/forgot_password/forgot_screen.dart';
 import 'package:rydleap/feature/auth/login/controller/firebase/f_login_controller.dart';
 import 'package:rydleap/feature/auth/login/controller/login_controller.dart';
+import 'package:rydleap/feature/auth/presentaion/screens/your_location.dart';
+import 'package:rydleap/feature/auth/registration/screen/f_registration_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/global_widgets/custom_gradient_button.dart';
 
@@ -145,20 +148,41 @@ class _LoginScreenState extends State<LoginScreen> {
                     Get.to(() => ForgotScreen());
                   },
                   fontWeight: FontWeight.w400,
-                  textSize: getWidth(5),
                 ),
               ],
             ),
-            SizedBox(height: getHeight(34)),
+            SizedBox(height: getHeight(18)),
+            Row(
+              children: [
+                Text("Don't have an account?".tr,
+                    style: Theme.of(context).textTheme.titleSmall),
+                SizedBox(
+                  width: getWidth(5),
+                ),
+                AppTextButton(
+                  text: "Sign Up".tr,
+                  onTap: () {
+                    Get.to(() => YourLocation());
+                  },
+                  fontWeight: FontWeight.w400,
+                  // textSize: getWidth(5),
+                  textColor: AppColors.textYellow,
+                ),
+              ],
+            ),
             Spacer(),
             Obx(() {
-              if (_loginController.loading.value) {
+              if (fLoginController.isLoading.value) {
+                // Show loading indicator if the login is in progress
                 return Center(child: CircularProgressIndicator());
               } else {
                 return isFormValid
                     ? CustomGradientButton(
                         text: "confirm".tr,
                         onTap: () async {
+                          // Show the loading indicator before starting the login
+                          fLoginController.isLoading.value = true;
+
                           // Perform login
                           await fLoginController.login(
                               _emailController.text, _passwordController.text);
@@ -171,6 +195,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             await prefs.setString(
                                 'saved_password', _passwordController.text);
                           }
+
+                          // Hide the loading indicator once login is complete
+                          fLoginController.isLoading.value = false;
                         },
                       )
                     : CustomBlurButton(text: "confirm".tr);
