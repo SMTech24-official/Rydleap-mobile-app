@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 
 Future<dynamic> bottomSheetOneButton(
-    BuildContext context, 
-    String title, 
-    String imagePath,
-
-
-
+  BuildContext context,
+  String title,
+  String imagePath,
 ) {
   return showModalBottomSheet(
     context: context,
@@ -55,28 +53,26 @@ Future<dynamic> bottomSheetOneButton(
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    
-                    SizedBox(height: getHeight(12),),
-                      InkWell(
-                        onTap: (){
-                          Get.back();
-                        },
-                        child: Container(
-                          height: getHeight(40),
-                          width: getWidth(104),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(88),
-                              color: Color(0xff3AD896)),
-                          child: Center(
-                            child: Text(
-                              "Done",
-                              style: GoogleFonts.inter(
-                                  fontSize: getWidth(14),
-                                  fontWeight: FontWeight.w400),
-                            ),
-                          ),
-                        ),
+                    SizedBox(
+                      height: getHeight(12),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        height: getHeight(40),
+                        width: getWidth(104),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(88),
+                            color: Color(0xff3AD896)),
+                        child: Center(
+                            child: CustomTextNunito(
+                                text: "Done",
+                                fontSize: getWidth(14),
+                                fontWeight: FontWeight.w400)),
                       ),
+                    ),
                   ],
                 ),
               ),

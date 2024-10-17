@@ -8,6 +8,7 @@ import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/notification_tile.dart';
 import 'package:rydleap/feature/driver_ride_request/presentation/driver_ride_request.dart';
+import 'package:rydleap/feature/profile/screen/f_profile_screen.dart';
 import 'package:rydleap/feature/profile/screen/profile_screen.dart';
 
 import '../../../core/global_widgets/pickup_and_drop_input_tile.dart';
@@ -369,7 +370,7 @@ class DriverDashboard extends StatelessWidget {
           InkWell(
             onTap: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => ProfileScreen()));
+                  context, MaterialPageRoute(builder: (_) => FProfileScreen()));
             },
             child: Icon(
               Icons.person_2_outlined,

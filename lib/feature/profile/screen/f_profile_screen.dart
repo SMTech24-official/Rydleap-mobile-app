@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/app_texts/custom_text_inter.dart';
 import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
+import 'package:rydleap/core/global_widgets/custom_app_bar.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
@@ -20,14 +21,7 @@ class FProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final fProfileController = Get.put(FProfileController());
     return Scaffold(
-        appBar: AppBar(
-            centerTitle: true,
-            backgroundColor: AppColors.appbarColor,
-            leading: CustomCloseButton(),
-            title: CustomTextInter(
-                text: "about_me".tr,
-                fontSize: getWidth(20),
-                fontWeight: FontWeight.w600)),
+        appBar: CustomAppBar(title: "about_me".tr),
         body: Stack(
           children: [
             Container(
@@ -57,7 +51,8 @@ class FProfileScreen extends StatelessWidget {
                             // Loading state
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return const Center(
+                              return Align(
+                                  alignment: Alignment.bottomCenter,
                                   child: CircularProgressIndicator());
                             }
 

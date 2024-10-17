@@ -3,6 +3,9 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_inter.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
+import 'package:rydleap/core/global_widgets/custom_app_bar.dart';
 import 'package:rydleap/core/global_widgets/custom_back_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/safety_tips/dummy_data/safety_model.dart';
@@ -10,21 +13,12 @@ import 'package:rydleap/feature/safety_tips/dummy_data/safety_model.dart';
 class SafetyTipsScreen extends StatelessWidget {
   const SafetyTipsScreen({super.key});
 
- @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.appbarColor,
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: AppColors.appbarColor,
-        title: Text(
-          "Safety Tips",
-          style: GoogleFonts.inter(
-            fontSize: getWidth(20),
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        leading: CustomBackButton(),
+      appBar: CustomAppBar(
+        title: "Safety Tips",
       ),
       body: Stack(
         children: [
@@ -50,24 +44,21 @@ class SafetyTipsScreen extends StatelessWidget {
                       child: Image.asset(AppImagese.safety),
                     ),
                     SizedBox(width: getWidth(40)),
-                    Text(
-                      "Introduction",
-                      style: GoogleFonts.inter(
-                        fontSize: getWidth(24),
-                        fontWeight: FontWeight.w600,
-                      ),
+                    CustomTextNunito(
+                      text: "Introduction",
+                      fontSize: getWidth(24),
+                      fontWeight: FontWeight.w600,
                     ),
                   ],
                 ),
                 SizedBox(
                   height: getHeight(18),
                 ),
-                Text(
-                  "Your safety is our top priority. Follow these tips to ensure a safe and secure ride experience. ",
-                  style: GoogleFonts.nunito(
-                    fontSize: getWidth(16),
-                    fontWeight: FontWeight.w400,
-                  ),
+                CustomTextNunito(
+                  text:
+                      "Your safety is our top priority. Follow these tips to ensure a safe and secure ride experience. ",
+                  fontSize: getWidth(16),
+                  fontWeight: FontWeight.w400,
                 ),
                 SizedBox(
                   height: getHeight(30),
@@ -84,25 +75,20 @@ class SafetyTipsScreen extends StatelessWidget {
                         return Padding(
                           padding: EdgeInsets.only(bottom: getHeight(15)),
                           child: ListTile(
-                            title: Padding(
-                              padding:  EdgeInsets.only(bottom: getHeight(10)),
-                              child: Text(
-                                data.title,
-                                style: GoogleFonts.inter(
+                              title: Padding(
+                                padding: EdgeInsets.only(bottom: getHeight(10)),
+                                child: CustomTextInter(
+                                  text: data.title,
                                   fontSize: getWidth(17),
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                            ),
-                            subtitle: Text(
-                              data.subTitle,
-                              style: GoogleFonts.nunito(
+                              subtitle: CustomTextNunito(
+                                text: data.subTitle,
                                 fontSize: getWidth(14),
                                 fontWeight: FontWeight.w400,
                                 color: Color(0xffDED9D9),
-                              ),
-                            ),
-                          ),
+                              )),
                         );
                       },
                     ),
@@ -123,10 +109,7 @@ class SafetyTipsScreen extends StatelessWidget {
               ),
               // height: screenHeight() * 0.2,
               width: double.infinity,
-              decoration: BoxDecoration(
-            
-               
-              ),
+              decoration: BoxDecoration(),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -153,14 +136,11 @@ class SafetyTipsScreen extends StatelessWidget {
                               ),
                             ),
                             child: Center(
-                              child: Text(
-                                "Decline",
-                                style: GoogleFonts.nunito(
+                              child: CustomTextNunito(
+                                  text: "Decline",
                                   fontSize: getWidth(13),
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xffB7BBBD),
-                                ),
-                              ),
+                                  color: Color(0xffB7BBBD)),
                             ),
                           ),
                         ),
@@ -186,13 +166,11 @@ class SafetyTipsScreen extends StatelessWidget {
                               ),
                             ),
                             child: Center(
-                              child: Text(
-                                "Accept",
-                                style: GoogleFonts.nunito(
-                                  fontSize: getWidth(13),
-                                  fontWeight: FontWeight.w400,
-                                  color: Color(0xff001B26),
-                                ),
+                              child: CustomTextNunito(
+                                text: "Accept",
+                                fontSize: getWidth(13),
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xff001B26),
                               ),
                             ),
                           ),
@@ -209,4 +187,3 @@ class SafetyTipsScreen extends StatelessWidget {
     );
   }
 }
-
