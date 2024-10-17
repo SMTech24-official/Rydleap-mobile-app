@@ -12,6 +12,7 @@ import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/pickup_and_drop_input_tile.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/core/utility/destination_tile.dart';
+import 'package:rydleap/feature/profile/screen/f_profile_screen.dart';
 
 import '../../../profile/screen/profile_screen.dart';
 import '../../../request_a_ride/presentation/request_a_ride.dart';
@@ -39,19 +40,15 @@ class Home extends StatelessWidget {
   // final Completer<GoogleMapController> _controller =
   //     Completer<GoogleMapController>();
 
-  Rx<BitmapDescriptor> customIcon=BitmapDescriptor.defaultMarker.obs;
-
-
+  Rx<BitmapDescriptor> customIcon = BitmapDescriptor.defaultMarker.obs;
 
   void _setCustomMarkerIcon() async {
     customIcon.value = await BitmapDescriptor.asset(
       ImageConfiguration(size: Size(40, 40)), // Adjust size as needed
       'assets/images/car_map.png', // Path to the image in assets
     );
-   // setState(() {}); // Trigger a rebuild once the icon is loaded
+    // setState(() {}); // Trigger a rebuild once the icon is loaded
   }
-
-
 
   MapController mapController = Get.find();
 
@@ -63,7 +60,6 @@ class Home extends StatelessWidget {
   //
   // GoogleMapController? _mapController;
   // Position? currentPosition;
-
 
   Future<Position> determinePosition() async {
     bool serviceEnabled;
@@ -102,14 +98,12 @@ class Home extends StatelessWidget {
     return await Geolocator.getCurrentPosition();
   }
 
-
   final LocationSettings locationSettings = LocationSettings(
     accuracy: LocationAccuracy.high,
     distanceFilter: 100,
   );
 
   // Position position = await Geolocator.getCurrentPosition(locationSettings: locationSettings);
-
 
   // Future<void> getCurrentPos() async {
   //   //
@@ -189,9 +183,7 @@ class Home extends StatelessWidget {
   //
   // }
 
-
-
- // @override
+  // @override
 //   void initState()  {
 //     // TODO: implement initState
 //     super.initState();
@@ -229,16 +221,8 @@ class Home extends StatelessWidget {
 //
 //   }
 
-
-
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
-
     _setCustomMarkerIcon();
 
     return Scaffold(
@@ -299,60 +283,71 @@ class Home extends StatelessWidget {
               height: 50.h,
               width: 100.w,
               margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
-              child: Obx(()=>GoogleMap(
+              child: Obx(() => GoogleMap(
+                    markers: {
+                      Marker(
+                        markerId: MarkerId("Source"),
+                        position: mapController.currentpos.value,
+                      ),
+                      Marker(
+                        markerId: MarkerId("Source1"),
+                        position: LatLng(
+                            mapController.randLat(
+                                mapController.currentpos.value.latitude),
+                            mapController.randLong(
+                                mapController.currentpos.value.longitude)),
+                        icon: customIcon
+                            .value, //?? BitmapDescriptor.defaultMarker,//BitmapDescriptor.asset(ImageConfiguration(size: Size(24, 24)), 'assets/custom_marker.png',),
+                        // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+                      ),
+                      Marker(
+                        markerId: MarkerId("Source2"),
+                        position: LatLng(
+                            mapController.randLat(
+                                mapController.currentpos.value.latitude),
+                            mapController.randLong(
+                                mapController.currentpos.value.longitude)),
+                        icon: customIcon
+                            .value, //?? BitmapDescriptor.defaultMarker,//BitmapDescriptor.asset(ImageConfiguration(size: Size(24, 24)), 'assets/custom_marker.png',),
+                        // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+                      ),
+                      Marker(
+                        markerId: MarkerId("Source3"),
+                        position: LatLng(
+                            mapController.randLat(
+                                mapController.currentpos.value.latitude),
+                            mapController.randLong(
+                                mapController.currentpos.value.longitude)),
+                        icon: customIcon
+                            .value, //?? BitmapDescriptor.defaultMarker,//BitmapDescriptor.asset(ImageConfiguration(size: Size(24, 24)), 'assets/custom_marker.png',),
+                        // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+                      ),
+                      Marker(
+                        markerId: MarkerId("Source4"),
+                        position: LatLng(
+                            mapController.randLat(
+                                mapController.currentpos.value.latitude),
+                            mapController.randLong(
+                                mapController.currentpos.value.longitude)),
+                        icon: customIcon
+                            .value, //?? BitmapDescriptor.defaultMarker,//BitmapDescriptor.asset(ImageConfiguration(size: Size(24, 24)), 'assets/custom_marker.png',),
+                        // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+                      ),
+                    },
+                    mapType: MapType.normal,
+                    myLocationEnabled: true,
+                    compassEnabled: true,
+                    initialCameraPosition: CameraPosition(
+                      target: mapController.currentpos.value,
+                      zoom: 13,
+                    ),
+                    onMapCreated: (GoogleMapController controller) {
+                      mapController.getCurrentPos(controller);
 
-                markers: {
-                  Marker(
-                    markerId: MarkerId("Source"),
-                    position: mapController.currentpos.value,
-                  ),
-
-                  Marker(
-                    markerId: MarkerId("Source1"),
-                    position: LatLng(mapController.randLat(mapController.currentpos.value.latitude), mapController.randLong(mapController.currentpos.value.longitude)),
-                    icon: customIcon.value, //?? BitmapDescriptor.defaultMarker,//BitmapDescriptor.asset(ImageConfiguration(size: Size(24, 24)), 'assets/custom_marker.png',),
-                    // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-                  ),
-
-                  Marker(
-                    markerId: MarkerId("Source2"),
-                    position: LatLng(mapController.randLat(mapController.currentpos.value.latitude), mapController.randLong(mapController.currentpos.value.longitude)),
-                    icon: customIcon.value, //?? BitmapDescriptor.defaultMarker,//BitmapDescriptor.asset(ImageConfiguration(size: Size(24, 24)), 'assets/custom_marker.png',),
-                    // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-                  ),
-                  Marker(
-                    markerId: MarkerId("Source3"),
-                    position: LatLng(mapController.randLat(mapController.currentpos.value.latitude), mapController.randLong(mapController.currentpos.value.longitude)),
-                    icon: customIcon.value, //?? BitmapDescriptor.defaultMarker,//BitmapDescriptor.asset(ImageConfiguration(size: Size(24, 24)), 'assets/custom_marker.png',),
-                    // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-                  ),
-
-
-                  Marker(
-                    markerId: MarkerId("Source4"),
-                    position: LatLng(mapController.randLat(mapController.currentpos.value.latitude), mapController.randLong(mapController.currentpos.value.longitude)),
-                    icon: customIcon.value, //?? BitmapDescriptor.defaultMarker,//BitmapDescriptor.asset(ImageConfiguration(size: Size(24, 24)), 'assets/custom_marker.png',),
-                    // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-                  ),
-
-
-                },
-                mapType: MapType.normal,
-                myLocationEnabled: true,
-                compassEnabled: true,
-                initialCameraPosition: CameraPosition(
-                  target: mapController.currentpos.value,
-                  zoom: 13,
-                ),
-                onMapCreated: (GoogleMapController controller) {
-
-
-                  mapController.getCurrentPos(controller);
-
-                  // _mapController = controller;
-                  //_controller.complete(controller);
-                },
-              )),
+                      // _mapController = controller;
+                      //_controller.complete(controller);
+                    },
+                  )),
             ),
           ),
           Positioned(
@@ -523,10 +518,6 @@ class Home extends StatelessWidget {
               ),
             ),
           ),
-
-
-
-
           Positioned(
               top: 21,
               right: 18,
@@ -571,10 +562,8 @@ class Home extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-
               Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => ProfileScreen()));
-
+                  context, MaterialPageRoute(builder: (_) => FProfileScreen()));
             },
             child: Icon(
               Icons.person_2_outlined,

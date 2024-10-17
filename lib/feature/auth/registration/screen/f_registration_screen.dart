@@ -14,6 +14,7 @@ import 'package:rydleap/feature/auth/otp/f_otp_screen.dart';
 import 'package:rydleap/feature/auth/registration/controller/f_registration_controller.dart';
 import 'package:rydleap/feature/driver_dashboard/presentation/driver_dashboard.dart';
 import 'package:rydleap/feature/home/presentation/screens/home.dart';
+import 'package:rydleap/feature/profile/screen/f_profile_screen.dart';
 import 'package:rydleap/feature/profile/screen/profile_screen.dart';
 
 class FRegistrationScreen extends StatefulWidget {
@@ -198,7 +199,7 @@ class _FRegistrationScreenState extends State<FRegistrationScreen> {
               icon: AppIcons.appleIcon,
               text: "sign_apple".tr,
               onTap: () {
-                Get.to(ProfileScreen());
+                Get.to(FProfileScreen());
               },
             ),
             CustomGlassButton(

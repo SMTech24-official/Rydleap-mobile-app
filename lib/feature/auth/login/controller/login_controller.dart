@@ -5,7 +5,7 @@ import 'package:rydleap/core/share_pref/share_pref.dart';
 import 'package:rydleap/feature/auth/login/login_screen.dart';
 import 'package:rydleap/feature/auth/login/model/login_model.dart';
 import 'package:rydleap/feature/profile/controller/profile_controller.dart';
-import 'package:rydleap/feature/profile/screen/profile_screen.dart';
+import 'package:rydleap/feature/profile/screen/f_profile_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
@@ -43,7 +43,7 @@ class LoginController extends GetxController {
         await profileController.fetchUser(response.data!.accessToken);
 
         // Navigate to User Profile Page after login
-        Get.to(ProfileScreen());
+        Get.to(FProfileScreen());
       } else {
         print("Login Failed: Response is null or unsuccessful");
       }
@@ -55,10 +55,8 @@ class LoginController extends GetxController {
   }
 
   Future<void> logout() async {
-    await SharePref.clearAll(); // If you want to clear all data
-    // Optionally, you can leave the email and password intact if that's your goal.
-    Get.offAll(
-        () => LoginScreen()); // Navigate back to login screen after logout
+    await SharePref.clearAll();
+    Get.offAll(() => LoginScreen());
   }
 
   var isChecked = false.obs;
