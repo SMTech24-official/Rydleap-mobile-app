@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:rydleap/core/global_widgets/custom_snackbar.dart';
-import 'package:rydleap/core/service/notification_service.dart';
 import 'package:rydleap/feature/auth/login/login_screen.dart';
 import 'package:rydleap/feature/auth/user_input/user_input_details.dart';
 

@@ -27,49 +27,49 @@ List<AboutModel> userItems = [
       title: "settings",
       icon: AppIcons.settings,
       onTap: () {
-        Get.to(SettingsScreen());
+        Get.to(() => SettingsScreen());
       }),
   AboutModel(
       title: "promotion_offers",
       icon: AppIcons.promotion,
       onTap: () {
-        Get.to(PromotionOffersScreen());
+        Get.to(() => PromotionOffersScreen());
       }),
   AboutModel(
       title: "change_password",
       icon: AppIcons.key,
       onTap: () {
-        Get.to(ChangePasswordScreen());
+        Get.to(() => ChangePasswordScreen());
       }),
   AboutModel(
       title: "payment_methods",
       icon: AppIcons.payment,
       onTap: () {
-        Get.to(PaymentOptionsScreen());
+        Get.to(() => PaymentOptionsScreen());
       }),
   AboutModel(
       title: "ride_history",
       icon: AppIcons.history,
       onTap: () {
-        Get.to(RideHistoryScreen());
+        Get.to(() => RideHistoryScreen());
       }),
   AboutModel(
       title: "language",
       icon: AppIcons.language,
       onTap: () {
-        Get.to(LanguageScreen());
+        Get.to(() => LanguageScreen());
       }),
   AboutModel(
       title: "report_problem",
       icon: AppIcons.report,
       onTap: () {
-        Get.to(ReportProblemScreen());
+        Get.to(() => ReportProblemScreen());
       }),
   AboutModel(
       title: "contact_us",
       icon: AppIcons.contact,
       onTap: () {
-        Get.to(ContactSupportScreen());
+        Get.to(() => ContactSupportScreen());
       }),
 ];
 
@@ -79,54 +79,54 @@ List<AboutModel> driverItems = [
       title: "settings",
       icon: AppIcons.settings,
       onTap: () {
-        Get.to(SettingsScreen());
+        Get.to(() => SettingsScreen());
       }),
   AboutModel(
       title: "balance",
       icon: AppIcons.payment,
       onTap: () {
-        Get.to(BalanceScreen());
+        Get.to(() => BalanceScreen());
       }),
   AboutModel(
       title: "cash_out",
       icon: AppIcons.payment,
       onTap: () {
-        Get.to(CashoutScreen());
+        Get.to(() => CashoutScreen());
       }),
   AboutModel(
       title: "change_password",
       icon: AppIcons.key,
       onTap: () {
-        Get.to(ChangePasswordScreen());
+        Get.to(() => ChangePasswordScreen());
       }),
   AboutModel(
       title: "notifiactions",
       icon: AppIcons.notification,
       onTap: () {
-        Get.to(NotificationScreen());
+        Get.to(() => NotificationScreen());
       }),
   AboutModel(
       title: "drive_history",
       icon: AppIcons.history,
       onTap: () {
-        Get.to(RideHistoryScreen());
+        Get.to(() => RideHistoryScreen());
       }),
   AboutModel(
       title: "language",
       icon: AppIcons.language,
       onTap: () {
-        Get.to(LanguageScreen());
+        Get.to(() => LanguageScreen());
       }),
   AboutModel(
       title: "report_problem",
       icon: AppIcons.report,
       onTap: () {
-        Get.to(ReportProblemScreen());
+        Get.to(() => ReportProblemScreen());
       }),
   AboutModel(
       title: "Contact us",
       icon: AppIcons.contact,
       onTap: () {
-        Get.to(ContactSupportScreen());
+        Get.to(() => ContactSupportScreen());
       }),
 ];
