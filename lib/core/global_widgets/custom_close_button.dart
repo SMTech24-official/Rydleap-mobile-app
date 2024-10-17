@@ -11,13 +11,12 @@ class CustomCloseButton extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: (){
-             Navigator.pop(context);
+          onTap: () {
+            Navigator.pop(context);
           },
           child: Icon(
-              Icons.close,
-              size: 24,
-            
+            Icons.close,
+            size: 24,
           ),
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 
 class CustomPickupDropoff extends StatelessWidget {
   final String title, subTitle1, subTitle2;
@@ -16,24 +17,19 @@ class CustomPickupDropoff extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: GoogleFonts.nunito(
-              fontSize: getWidth(18), fontWeight: FontWeight.w500),
-        ),
+        CustomTextNunito(
+            text: title, fontSize: getWidth(18), fontWeight: FontWeight.w500),
         SizedBox(
           height: getHeight(5),
         ),
-        Text(
-          subTitle1,
-          style: GoogleFonts.nunito(
-              fontSize: getWidth(14), fontWeight: FontWeight.w400),
-        ),
-        Text(
-          subTitle2,
-          style: GoogleFonts.nunito(
-              fontSize: getWidth(14), fontWeight: FontWeight.w400),
-        )
+        CustomTextNunito(
+            text: subTitle1,
+            fontSize: getWidth(14),
+            fontWeight: FontWeight.w400),
+        CustomTextNunito(
+            text: subTitle2,
+            fontSize: getWidth(14),
+            fontWeight: FontWeight.w400)
       ],
     );
   }

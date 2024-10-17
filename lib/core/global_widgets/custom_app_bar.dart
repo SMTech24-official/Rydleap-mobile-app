@@ -7,7 +7,8 @@ import '../utility/app_colors.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  const CustomAppBar({super.key, required this.title});
+  final Widget? icon;
+  const CustomAppBar({super.key, required this.title, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         fontSize: getWidth(20),
         fontWeight: FontWeight.w600,
       ),
-      leading: const CustomCloseButton(),
+      leading: icon ?? CustomCloseButton(),
     );
   }
 

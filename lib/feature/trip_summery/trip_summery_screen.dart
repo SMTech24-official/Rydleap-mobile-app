@@ -4,6 +4,10 @@ import 'package:get/get.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_inter.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
+import 'package:rydleap/core/global_widgets/custom_app_bar.dart';
+import 'package:rydleap/core/global_widgets/custom_back_button.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
@@ -20,31 +24,7 @@ class TripSummeryScreen extends StatelessWidget {
     final TextEditingController _phoneController = TextEditingController();
     return Scaffold(
       backgroundColor: AppColors.textBlack,
-      appBar: AppBar(
-        backgroundColor: AppColors.appbarColor,
-        centerTitle: true,
-        title: Text(
-          "Trip Summary",
-          style: GoogleFonts.inter(
-              fontSize: getWidth(20), fontWeight: FontWeight.w600),
-        ),
-        leading: Padding(
-          padding: EdgeInsets.only(left: getWidth(20)),
-          child: SizedBox(
-            height: getHeight(26),
-            width: getWidth(26),
-            child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                Icons.arrow_back_ios,
-                size: 16,
-              ),
-            ),
-          ),
-        ),
-      ),
+      appBar: CustomAppBar(title: "Trip Summary", icon: CustomBackButton()),
       body: Stack(
         children: [
           Container(
@@ -92,11 +72,10 @@ class TripSummeryScreen extends StatelessWidget {
                 SizedBox(
                   height: getHeight(102),
                 ),
-                Text(
-                  "Fare breakdown",
-                  style: GoogleFonts.inter(
-                      fontSize: getWidth(24), fontWeight: FontWeight.w500),
-                ),
+                CustomTextInter(
+                    text: "Fare breakdown",
+                    fontSize: getWidth(24),
+                    fontWeight: FontWeight.w500),
                 SizedBox(
                   height: getHeight(16),
                 ),
@@ -118,9 +97,11 @@ class TripSummeryScreen extends StatelessWidget {
                     title3: "",
                     subTitle3: ""),
                 Spacer(),
-                CustomGradientButton(text: "Rate our Driver", onTap: () {
-                  Get.to(RatingsScreen());
-                }),
+                CustomGradientButton(
+                    text: "Rate our Driver",
+                    onTap: () {
+                      Get.to(RatingsScreen());
+                    }),
                 SizedBox(
                   height: getHeight(12),
                 ),
