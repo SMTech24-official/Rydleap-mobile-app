@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/custom_app_bar.dart';
 import 'package:rydleap/core/share_pref/share_pref.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/profile/widgets/language/dummy_data/language_model.dart';
@@ -88,23 +89,27 @@ class _LanguageScreenState extends State<LanguageScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.textBlack,
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: AppColors.appbarColor,
-        title: Text(
-          "language".tr,
-          style: GoogleFonts.inter(
-            fontSize: getWidth(20),
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.close, size: 20),
-        ),
+      appBar: CustomAppBar(
+        title: "language".tr,
       ),
+
+      // AppBar(
+      //   centerTitle: true,
+      //   backgroundColor: AppColors.appbarColor,
+      //   title: Text(
+      //     "language".tr,
+      //     style: GoogleFonts.inter(
+      //       fontSize: getWidth(20),
+      //       fontWeight: FontWeight.w600,
+      //     ),
+      //   ),
+      //   leading: IconButton(
+      //     onPressed: () {
+      //       Navigator.pop(context);
+      //     },
+      //     icon: Icon(Icons.close, size: 20),
+      //   ),
+      // ),
       body: Stack(
         children: [
           Container(
