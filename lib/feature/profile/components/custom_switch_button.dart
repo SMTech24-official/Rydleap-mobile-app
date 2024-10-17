@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 
 class CustomSwitchButton extends StatelessWidget {
   final String text;
@@ -17,7 +18,6 @@ class CustomSwitchButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
     return Container(
       padding: EdgeInsets.only(left: 15),
       height: getHeight(44),
@@ -27,13 +27,10 @@ class CustomSwitchButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(
-            text,
-            
-            style: GoogleFonts.nunito(
-                fontSize:screenWidth()>400?getWidth(14): getWidth(16), 
-                fontWeight: FontWeight.w400),
-          ),
+          CustomTextNunito(
+              text: text,
+              fontSize: screenWidth() > 400 ? getWidth(14) : getWidth(16),
+              fontWeight: FontWeight.w400),
           Transform.scale(
             scale: 0.7,
             child: Switch(

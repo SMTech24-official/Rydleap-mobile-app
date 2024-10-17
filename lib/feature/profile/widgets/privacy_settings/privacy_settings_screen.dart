@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/custom_app_bar.dart';
 import 'package:rydleap/core/global_widgets/custom_buttomsheet/bottomsheet_onebutton.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
@@ -28,25 +29,8 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.textBlack,
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: AppColors.appbarColor,
-        title: Text(
-          "privacy".tr,
-          style: GoogleFonts.inter(
-            fontSize: getWidth(20),
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.close,
-            size: 20,
-          ),
-        ),
+      appBar: CustomAppBar(
+        title: "privacy".tr,
       ),
       body: Stack(
         children: [
@@ -131,7 +115,7 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
                   height: getHeight(54),
                 ),
                 CustomPrivacyDropdown(),
-               
+
                 SizedBox(
                   height: getHeight(12),
                 ),
@@ -154,10 +138,9 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
                     onTap: () {
                       // _customBottomSheet(context);
                       bottomSheetOneButton(
-                        context, 
-                      "Saved!", 
-                      AppImagese.successIcon, 
-                     
+                        context,
+                        "Saved!",
+                        AppImagese.successIcon,
                       );
                     }),
                 SizedBox(
@@ -170,5 +153,4 @@ class _PrivacySettingsScreenState extends State<PrivacySettingsScreen> {
       ),
     );
   }
-
- }
+}

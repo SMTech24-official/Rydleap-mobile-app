@@ -51,7 +51,8 @@ class FProfileScreen extends StatelessWidget {
                             // Loading state
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return const Center(
+                              return Align(
+                                  alignment: Alignment.bottomCenter,
                                   child: CircularProgressIndicator());
                             }
 
