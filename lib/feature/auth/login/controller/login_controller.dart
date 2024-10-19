@@ -31,13 +31,13 @@ class LoginController extends GetxController {
         loginModel.value = response;
 
         // Save access token
-        await SharePref.saveAccessToken(response.data!.accessToken);
-        await SharePref.saveLoginResponse(response);
+        // await SharePref.saveAccessToken(response.data!.accessToken);
+        // await SharePref.saveLoginResponse(response);
         await SharePref.saveRememberMe(rememberMe.value, email, password);
 
         // Print stored token
-        String? storedToken = await SharePref.getUserAccessToken();
-        print("Stored Token: $storedToken");
+        // String? storedToken = await SharePref.getUserAccessToken();
+        // print("Stored Token: $storedToken");
 
         // Fetch user data after login and print it
         await profileController.fetchUser(response.data!.accessToken);

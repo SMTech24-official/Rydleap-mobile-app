@@ -52,25 +52,22 @@ class BalanceScreen extends StatelessWidget {
                             text: "Balance",
                             fontSize: getWidth(16),
                             fontWeight: FontWeight.w400),
-                        Text(
-                          "\$ 2000.34",
-                          style: GoogleFonts.inter(
-                              fontSize: getWidth(35),
-                              fontWeight: FontWeight.w500),
-                        ),
+                        CustomTextNunito(
+                            text: "\$ 2000.34",
+                            fontSize: getWidth(35),
+                            fontWeight: FontWeight.w500),
                       ],
                     ),
                   ),
                   SizedBox(
                     height: getHeight(15),
                   ),
-                  Text(
-                    "Add the bank account where you want to recieve payouts",
-                    style: GoogleFonts.nunito(
-                        color: Color(0xffE6E6E6),
-                        fontSize: getWidth(16),
-                        fontWeight: FontWeight.w400),
-                  ),
+                  CustomTextNunito(
+                      text:
+                          "Add the bank account where you want to recieve payouts",
+                      color: Color(0xffE6E6E6),
+                      fontSize: getWidth(16),
+                      fontWeight: FontWeight.w400),
                   Spacer(),
                   CustomGradientButton(
                       text: "Add Account",

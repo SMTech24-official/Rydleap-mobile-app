@@ -3,6 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
+import 'package:rydleap/core/global_widgets/custom_app_bar.dart';
 import 'package:rydleap/core/global_widgets/custom_buttomsheet/bottomsheet_onebutton.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
@@ -72,15 +74,8 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.appbarColor,
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: AppColors.appbarColor,
-        leading: CustomCloseButton(),
-        title: Text(
-          "Add a Bank Account",
-          style: GoogleFonts.inter(
-              fontSize: getWidth(20), fontWeight: FontWeight.w600),
-        ),
+      appBar: CustomAppBar(
+        title: "Add a Bank Account",
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
@@ -109,13 +104,11 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                         SizedBox(
                           width: getWidth(8),
                         ),
-                        Text(
-                          "Routing Number needs to be in 8 digits",
-                          style: GoogleFonts.nunito(
-                              fontSize: getWidth(8),
-                              fontWeight: FontWeight.w400,
-                              color: Color(0xffC7BDBD)),
-                        )
+                        CustomTextNunito(
+                            text: "Routing Number needs to be in 8 digits",
+                            fontSize: getWidth(8),
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xffC7BDBD))
                       ],
                     ),
                   ),
@@ -157,16 +150,13 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                 child: Padding(
                   padding:
                       EdgeInsets.only(left: getWidth(15), top: getHeight(10)),
-                  child: Text(
-                    _selectedDate == null
-                        ? 'Date of Birth'
-                        : _selectedDate!.toLocal().toString().split(' ')[0],
-                    style: GoogleFonts.nunito(
+                  child: CustomTextNunito(
+                      text: _selectedDate == null
+                          ? 'Date of Birth'
+                          : _selectedDate!.toLocal().toString().split(' ')[0],
                       fontSize: getWidth(15),
                       fontWeight: FontWeight.w400,
-                      color: const Color(0xffDCDCDC),
-                    ),
-                  ),
+                      color: const Color(0xffDCDCDC)),
                 ),
               ),
             ),
@@ -186,9 +176,10 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
               text: "Submit",
               onTap: () {
                 // _customBottomSheet(context);
-                bottomSheetOneButton(context, 
-                " Your Bank Account has been successfully linked.", 
-                AppImagese.successIcon);
+                bottomSheetOneButton(
+                    context,
+                    " Your Bank Account has been successfully linked.",
+                    AppImagese.successIcon);
                 setState(() {
                   isRoutingNumberValid =
                       _routingNumberController.text.length >= 8;
@@ -216,5 +207,4 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
     _zipCodeController.dispose();
     super.dispose();
   }
-
 }

@@ -23,7 +23,7 @@ class EmailRegistrationController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _getFCMToken(); // Change method name to get FCM token
+    // _getFCMToken();
   }
 
   @override
@@ -31,16 +31,16 @@ class EmailRegistrationController extends GetxController {
     super.onClose();
   }
 
-  Future<void> _getFCMToken() async {
-    try {
-      // Fetch FCM token
-      fcmToken = await FirebaseMessaging.instance
-          .getToken(); // Directly get the FCM token
-      print("FCM Token: $fcmToken");
-    } catch (e) {
-      print("Failed to get FCM token: $e");
-    }
-  }
+  // Future<void> _getFCMToken() async {
+  //   try {
+  //     // Fetch FCM token
+  //     fcmToken = await FirebaseMessaging.instance
+  //         .getToken(); // Directly get the FCM token
+  //     print("FCM Token: $fcmToken");
+  //   } catch (e) {
+  //     print("Failed to get FCM token: $e");
+  //   }
+  // }
 
   Future<void> onSignUp(UserInputDetails userInput) async {
     // Check if all required fields are filled
