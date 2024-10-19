@@ -2,17 +2,79 @@
 
 
 
+import 'dart:convert';
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:http/http.dart' as http;
 
 class MapController extends GetxController{
 
 
+  RxSet<Polyline> polylines = <Polyline>{}.obs;
   Stream<Position>? positionStream;
   Rx<LatLng> currentpos = LatLng(31.119318, -99.245435).obs;
+
+  RxList<LatLng> polylineCoordinates = <LatLng>[].obs;
+
+
+
+
+  // Future<void> getPolylineFromGoogleDirections(LatLng start, LatLng end) async {
+  //   final String url =
+  //       'https://maps.googleapis.com/maps/api/directions/json?origin=${start.latitude},${start.longitude}&destination=${end.latitude},${end.longitude}&key=$apiKey';
+  //
+  //   final response = await http.get(Uri.parse(url));
+  //
+  //   if (response.statusCode == 200) {
+  //     final data = json.decode(response.body);
+  //     if (data['status'] == 'OK') {
+  //       final polylineEncoded = data['routes'][0]['overview_polyline']['points'];
+  //       polylineCoordinates.value = _decodePolyline(polylineEncoded);
+  //
+  //       // Now create a polyline and update the map
+  //       final polyline = Polyline(
+  //         polylineId: PolylineId('route_polyline'),
+  //         points: polylineCoordinates.toList(),
+  //         color: Colors.blue,
+  //         width: 5,
+  //       );
+  //       polylines.value = {polyline};
+  //     } else {
+  //       throw Exception('Error fetching directions: ${data['status']}');
+  //     }
+  //   } else {
+  //     throw Exception('Failed to connect to Google Directions API');
+  //   }
+  // }
+
+
+
+  void addPolylineBetweenLocations(LatLng start, LatLng end) {
+
+
+
+    polylineCoordinates.clear(); // Clear existing polyline points
+
+    polylineCoordinates.add(start); // Add the starting point
+    polylineCoordinates.add(end);   // Add the ending point
+
+    final polyline = Polyline(
+      polylineId: PolylineId('dynamic_polyline'),
+      points: polylineCoordinates.toList(),  // Add dynamic list of points
+      color: Colors.blue,
+      width: 5,
+    );
+
+    polylines.value.add(polyline);  // Update the reactive Set of polylines
+  }
+
+
+
+
 
 
   @override
@@ -123,6 +185,31 @@ class MapController extends GetxController{
             ),
           ),
         );
+
+        addPolylineBetweenLocations(currentpos.value,LatLng(23.767961, 90.423319));
+
+
+        // polylines.add(Polyline(
+        //   polylineId: PolylineId('line1'),
+        //   visible: true,
+        //   //latlng is List<LatLng>
+        //   points: [currentpos.value,LatLng(23.767961, 90.423319)],
+        //   width: 2,
+        //   color: Colors.green,
+        // ));
+
+        //different sections of polyline can have different colors
+
+
+
+        // _polyline.add(Polyline(
+        //   polylineId: PolylineId('line2'),
+        //   visible: true,
+        //   //latlng is List<LatLng>
+        //   points: latlngSegment2,
+        //   width: 2,
+        //   color: Colors.red,
+        // ));
 
 
 

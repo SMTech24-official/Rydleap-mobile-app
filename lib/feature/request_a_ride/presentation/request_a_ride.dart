@@ -9,13 +9,16 @@ import 'package:rydleap/feature/contact/controller/contact_controller.dart';
 import 'package:rydleap/feature/contact/presentation/contact.dart';
 import 'package:rydleap/feature/home/home_controller.dart';
 import '../../../core/global_widgets/ride_type_tile_with_image.dart';
+import '../../home/map_controller.dart';
 import '../../schedule_your_ride/presentation/schedule_your_ride.dart';
-
+import '../controller/request_a_ride_controller.dart';
 
 class RequestARide extends StatefulWidget {
   @override
   State<RequestARide> createState() => _RequestARideState();
   HomeController homeController = Get.find();
+  MapController mapController = Get.find();
+  RequestARideController requestARideController = Get.find();
 }
 
 class _RequestARideState extends State<RequestARide>
@@ -23,24 +26,21 @@ class _RequestARideState extends State<RequestARide>
   TabController? _tabController;
   ScrollController _scrollController = ScrollController();
 
-  ContactController contactController=Get.find();
-
-
-
-
+  ContactController contactController = Get.find();
 
   @override
   void initState() {
     super.initState();
 
-
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(
+        length: widget.homeController.packageModel.value.data!.length + 1,
+        vsync: this);
 
     // Handle tab switching
-    _tabController!.addListener(() {
+    _tabController!.addListener(() async {
       if (_tabController!.indexIsChanging) {
         // Scroll the listview horizontally based on the selected tab
-        _scrollController.animateTo(
+        await _scrollController.animateTo(
           _tabController!.index * MediaQuery.of(context).size.width,
           duration: Duration(milliseconds: 300),
           curve: Curves.easeInOut,
@@ -110,16 +110,16 @@ class _RequestARideState extends State<RequestARide>
                   labelColor: Colors.white,
                   controller: _tabController,
                   tabs: [
-
-
-
-                    for(int i=0;i<widget.homeController.packageModel.value.data!.length;i++)
-                    Tab(text: '${widget.homeController.packageModel.value.data?[i].name}'),
+                    for (int i = 0;
+                        i <
+                            widget
+                                .homeController.packageModel.value.data!.length;
+                        i++)
+                      Tab(
+                          text:
+                              '${widget.homeController.packageModel.value.data?[i].name}'),
                     // Tab(text: 'Premium'),
                     // Tab(text: 'Shared'),
-
-
-
 
                     InkWell(
                         onTap: () {
@@ -134,36 +134,28 @@ class _RequestARideState extends State<RequestARide>
                 Container(
                   width: screenWidth(),
                   height: 260,
-                  child: Obx(()=> ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    controller: _scrollController,
-                    shrinkWrap: true,
-                    itemCount: widget.homeController.packageModel.value.data?.length,
-                    itemBuilder: (BuildContext context, int index) {
-
-                      return   RideTypeTileWithImage(
-                        title: '${widget.homeController.packageModel.value.data?[index].name}',
-                        subtitle: '\$ ${widget.homeController.packageModel.value.data?[index].price}',
-                        time: '${widget.homeController.packageModel.value.data?[index].minutes} mins away',
-                        backgroundColor: Colors.black,
-                        textColor: Colors.white,
-                        image: 'assets/icons/economy_icon.png',
-                      );
-
-                    },
-
-
-
-
-
-
-
+                  child: Obx(
+                    () => ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      controller: _scrollController,
+                      shrinkWrap: true,
+                      itemCount:
+                          widget.homeController.packageModel.value.data?.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return RideTypeTileWithImage(
+                          title:
+                              '${widget.homeController.packageModel.value.data?[index].name}',
+                          subtitle:
+                              '\$ ${widget.homeController.packageModel.value.data?[index].price}',
+                          time:
+                              '${widget.homeController.packageModel.value.data?[index].minutes} mins away',
+                          backgroundColor: Colors.black,
+                          textColor: Colors.white,
+                          image: 'assets/icons/economy_icon.png',
+                        );
+                      },
+                    ),
                   ),
-
-                  )
-
-
-                 ,
                 ),
               ],
             ),
@@ -173,12 +165,18 @@ class _RequestARideState extends State<RequestARide>
               child: CustomGradientButton(
                 text: 'Ride Request',
                 onTap: () {
+                  widget.requestARideController.requestRide(
+                      // mapController.currentpos.value.longitude,
+                      // mapController.currentpos.value.longitude,
+                      23.736598,
+                      90.400872,
+                      23.767961,
+                      90.423319,
+                      '6707637a5ef71f737aa763e7');
 
-
-
-                  contactController.getDriver('67075b4606381f338df574ac');
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => Contact()));
+                  // contactController.getDriver('67075b4606381f338df574ac');
+                  // Navigator.push(
+                  //     context, MaterialPageRoute(builder: (_) => Contact()));
                 },
                 width: getWidth(335),
                 icon: Icons.directions_car,

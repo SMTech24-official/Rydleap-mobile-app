@@ -339,7 +339,7 @@ Future<void> _pickImage(ImageSource source) async {
 
                   //profile section
                   Container(
-                    width: getWidth(162),
+                    width: getWidth(180),
                     child: Column(
                       children: [
                         Row(
@@ -347,11 +347,14 @@ Future<void> _pickImage(ImageSource source) async {
                           children: [
                             
                             Obx(()=> Text(
-                              "${homeController.userDetail.value.data?.name}",
+                              "${homeController.userDetail.value.data?.fullName}",
                               style: GoogleFonts.nunito(
                                   fontSize: getWidth(18),
                                   fontWeight: FontWeight.w500),
                             ),),
+
+
+
                             Text(
                               "(4.7⭐)",
                               style: GoogleFonts.nunito(
@@ -368,41 +371,51 @@ Future<void> _pickImage(ImageSource source) async {
                         //       fontSize: getWidth(15),
                         //       fontWeight: FontWeight.w400),
                         // ),),
-                        FutureBuilder<String?>(
-                    future: SharePref
-                        .getSavedEmail(), // The future that fetches the email
-                    builder: (BuildContext context,
-                        AsyncSnapshot<String?> snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Text(
-                          'Loading...', // Show loading state
-                          style: TextStyle(fontSize: 18),
-                        );
-                      } else if (snapshot.hasError) {
-                        return Text(
-                          'Error: ${snapshot.error}', // Show error message
-                          style: TextStyle(fontSize: 18),
-                        );
-                      } else if (snapshot.hasData && snapshot.data != null) {
-                        return Text(
-                          'Email: ${snapshot.data}', // Show the retrieved email
-                          style: TextStyle(fontSize: 18),
-                        );
-                      } else {
-                        return Text(
-                          'Email: Not provided', // Fallback if no email is found
-                          style: TextStyle(fontSize: 18),
-                        );
-                      }
-                    },
-                  ),
-                        Text(
+                  //       FutureBuilder<String?>(
+                  //   future: SharePref
+                  //       .getSavedEmail(), // The future that fetches the email
+                  //   builder: (BuildContext context,
+                  //       AsyncSnapshot<String?> snapshot) {
+                  //     if (snapshot.connectionState == ConnectionState.waiting) {
+                  //       return Text(
+                  //         'Loading...', // Show loading state
+                  //         style: TextStyle(fontSize: 18),
+                  //       );
+                  //     } else if (snapshot.hasError) {
+                  //       return Text(
+                  //         'Error: ${snapshot.error}', // Show error message
+                  //         style: TextStyle(fontSize: 18),
+                  //       );
+                  //     } else if (snapshot.hasData && snapshot.data != null) {
+                  //       return Text(
+                  //         'Email: ${snapshot.data}', // Show the retrieved email
+                  //         style: TextStyle(fontSize: 18),
+                  //       );
+                  //     } else {
+                  //       return Text(
+                  //         'Email: Not provided', // Fallback if no email is found
+                  //         style: TextStyle(fontSize: 18),
+                  //       );
+                  //     }
+                  //   },
+                  // ),
+
+
+                        Obx(()=> Text(
+                          "${homeController.userDetail.value.data?.phoneNumber}",
+                          style: GoogleFonts.nunito(
+                              color: Color(0xffC3BBBB),
+                              fontSize: getWidth(15),
+                              fontWeight: FontWeight.w400),
+                        ),),
+
+                        Obx(()=>Text(
                           "${homeController.userDetail.value.data?.email}",
                           style: GoogleFonts.nunito(
                               color: Color(0xffC3BBBB),
                               fontSize: getWidth(15),
                               fontWeight: FontWeight.w400),
-                        ),
+                        ),),
                         InkWell(
                           onTap: () {
                             Get.to(ProfileSettings());

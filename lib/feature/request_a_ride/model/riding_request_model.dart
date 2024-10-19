@@ -1,25 +1,29 @@
+
+
+
+
 // To parse this JSON data, do
 //
-//     final userModel = userModelFromJson(jsonString);
+//     final ridingRequestModel = ridingRequestModelFromJson(jsonString);
 
 import 'dart:convert';
 
-UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
+RidingRequestModel ridingRequestModelFromJson(String str) => RidingRequestModel.fromJson(json.decode(str));
 
-String userModelToJson(UserModel data) => json.encode(data.toJson());
+String ridingRequestModelToJson(RidingRequestModel data) => json.encode(data.toJson());
 
-class UserModel {
+class RidingRequestModel {
   bool? success;
   String? message;
   Data? data;
 
-  UserModel({
+  RidingRequestModel({
     this.success,
     this.message,
     this.data,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+  factory RidingRequestModel.fromJson(Map<String, dynamic> json) => RidingRequestModel(
     success: json["success"],
     message: json["message"],
     data: Data.fromJson(json["data"]),
@@ -33,6 +37,26 @@ class UserModel {
 }
 
 class Data {
+  Ride? ride;
+  AssignedRider? assignedRider;
+
+  Data({
+    this.ride,
+    this.assignedRider,
+  });
+
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
+    ride: Ride.fromJson(json["ride"]),
+    assignedRider: AssignedRider.fromJson(json["assignedRider"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "ride": ride?.toJson(),
+    "assignedRider": assignedRider?.toJson(),
+  };
+}
+
+class AssignedRider {
   String? id;
   String? fullName;
   dynamic profileImage;
@@ -40,6 +64,7 @@ class Data {
   dynamic phoneNumber;
   bool? isPhoenVerified;
   dynamic password;
+  dynamic fcpmToken;
   String? role;
   String? status;
   dynamic isOnline;
@@ -47,10 +72,10 @@ class Data {
   bool? isAvailable;
   DateTime? createdAt;
   DateTime? updatedAt;
-  List<RidesAsCustomer>? ridesAsCustomer;
-  List<dynamic>? riderReviewsAsCustomer;
+  List<dynamic>? riderVehicleInfo;
+  List<Location>? locations;
 
-  Data({
+  AssignedRider({
     this.id,
     this.fullName,
     this.profileImage,
@@ -58,6 +83,7 @@ class Data {
     this.phoneNumber,
     this.isPhoenVerified,
     this.password,
+    this.fcpmToken,
     this.role,
     this.status,
     this.isOnline,
@@ -65,11 +91,11 @@ class Data {
     this.isAvailable,
     this.createdAt,
     this.updatedAt,
-    this.ridesAsCustomer,
-    this.riderReviewsAsCustomer,
+    this.riderVehicleInfo,
+    this.locations,
   });
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory AssignedRider.fromJson(Map<String, dynamic> json) => AssignedRider(
     id: json["id"],
     fullName: json["fullName"],
     profileImage: json["profileImage"],
@@ -77,6 +103,7 @@ class Data {
     phoneNumber: json["phoneNumber"],
     isPhoenVerified: json["isPhoenVerified"],
     password: json["password"],
+    fcpmToken: json["fcpmToken"],
     role: json["role"],
     status: json["status"],
     isOnline: json["isOnline"],
@@ -84,8 +111,8 @@ class Data {
     isAvailable: json["isAvailable"],
     createdAt: DateTime.parse(json["createdAt"]),
     updatedAt: DateTime.parse(json["updatedAt"]),
-    ridesAsCustomer: List<RidesAsCustomer>.from(json["ridesAsCustomer"].map((x) => RidesAsCustomer.fromJson(x))),
-    riderReviewsAsCustomer: List<dynamic>.from(json["riderReviewsAsCustomer"].map((x) => x)),
+    riderVehicleInfo: List<dynamic>.from(json["riderVehicleInfo"].map((x) => x)),
+    locations: List<Location>.from(json["locations"].map((x) => Location.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -96,6 +123,7 @@ class Data {
     "phoneNumber": phoneNumber,
     "isPhoenVerified": isPhoenVerified,
     "password": password,
+    "fcpmToken": fcpmToken,
     "role": role,
     "status": status,
     "isOnline": isOnline,
@@ -103,15 +131,51 @@ class Data {
     "isAvailable": isAvailable,
     "createdAt": createdAt?.toIso8601String(),
     "updatedAt": updatedAt?.toIso8601String(),
-    "ridesAsCustomer": List<dynamic>.from(ridesAsCustomer!.map((x) => x.toJson())),
-    "riderReviewsAsCustomer": List<dynamic>.from(riderReviewsAsCustomer!.map((x) => x)),
+    "riderVehicleInfo": List<dynamic>.from(riderVehicleInfo!.map((x) => x)),
+    "locations": List<dynamic>.from(locations!.map((x) => x.toJson())),
   };
 }
 
-class RidesAsCustomer {
+class Location {
   String? id;
   String? userId;
-  dynamic riderId;
+  double? locationLat;
+  double? locationLng;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+
+  Location({
+    this.id,
+    this.userId,
+    this.locationLat,
+    this.locationLng,
+    this.createdAt,
+    this.updatedAt,
+  });
+
+  factory Location.fromJson(Map<String, dynamic> json) => Location(
+    id: json["id"],
+    userId: json["userId"],
+    locationLat: json["locationLat"].toDouble(),
+    locationLng: json["locationLng"].toDouble(),
+    createdAt: DateTime.parse(json["createdAt"]),
+    updatedAt: DateTime.parse(json["updatedAt"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "userId": userId,
+    "locationLat": locationLat,
+    "locationLng": locationLng,
+    "createdAt": createdAt?.toIso8601String(),
+    "updatedAt": updatedAt?.toIso8601String(),
+  };
+}
+
+class Ride {
+  String? id;
+  String? userId;
+  String? riderId;
   double? pickupLat;
   double? pickupLng;
   double? destinationLat;
@@ -123,7 +187,7 @@ class RidesAsCustomer {
   DateTime? createdAt;
   DateTime? updatedAt;
 
-  RidesAsCustomer({
+  Ride({
     this.id,
     this.userId,
     this.riderId,
@@ -139,7 +203,7 @@ class RidesAsCustomer {
     this.updatedAt,
   });
 
-  factory RidesAsCustomer.fromJson(Map<String, dynamic> json) => RidesAsCustomer(
+  factory Ride.fromJson(Map<String, dynamic> json) => Ride(
     id: json["id"],
     userId: json["userId"],
     riderId: json["riderId"],

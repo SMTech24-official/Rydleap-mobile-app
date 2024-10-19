@@ -43,6 +43,8 @@ class Home extends StatelessWidget {
 
 
 
+
+
   void _setCustomMarkerIcon() async {
     customIcon.value = await BitmapDescriptor.asset(
       ImageConfiguration(size: Size(40, 40)), // Adjust size as needed
@@ -300,6 +302,8 @@ class Home extends StatelessWidget {
               width: 100.w,
               margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
               child: Obx(()=>GoogleMap(
+
+                //polylines: _polyline,
 
                 markers: {
                   Marker(

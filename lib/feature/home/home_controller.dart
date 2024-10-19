@@ -24,6 +24,7 @@ class HomeController extends GetxController{
 
 
 
+
   Rx<UserModel> userDetail=UserModel().obs;
   Rx<RidingHistoryModel> ridingHistoryModel=RidingHistoryModel().obs;
   Rx<PromotionModel> promotionModel=PromotionModel().obs;
@@ -66,6 +67,45 @@ class HomeController extends GetxController{
       throw const HttpException('getCustomerAddressData Error');
     }
   }
+
+
+
+  Future<void> getUser() async {
+
+
+
+
+
+    final url = Uri.parse('https://rydleap-backend-eight.vercel.app/api/v1/users/67075b4606381f338df574a6');
+    var response = await http.get(
+      url,
+    );
+
+    // log('log me', name: response.body);
+
+    debugPrint("+++++++++++status code....."+response.statusCode.toString());
+
+
+    if (response.statusCode == 200) {
+
+      userDetail.value= userModelFromJson(response.body);
+
+
+      debugPrint("+++++++++++++++++++++++++++User Data++++++++++++++++++++++"+response.body);
+      //return userModelFromJson(response.body);
+    } else if (response.statusCode == 400) {
+      throw const HttpException('getCustomerAddressData Error');
+    } else {
+      throw const HttpException('getCustomerAddressData Error');
+    }
+  }
+
+
+
+
+
+
+
 
 
 
@@ -229,6 +269,7 @@ class HomeController extends GetxController{
     getPromo();
     getRidingHistory();
     getPackage();
+    getUser();
 
 
 
