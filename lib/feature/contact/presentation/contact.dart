@@ -30,7 +30,7 @@ class Contact extends StatelessWidget {
 
 
     customDestinationIcon.value = await BitmapDescriptor.asset(
-      ImageConfiguration(size: Size(40, 40)), // Adjust size as needed
+      ImageConfiguration(size: Size(24, 24)), // Adjust size as needed
       'assets/images/destination.png', // Path to the image in assets
     );
 
@@ -57,6 +57,7 @@ class Contact extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    contactController.getDriver('6708fca149eac1ee4a4dd86c');
 
     setCustomDestinationMarkerIcon();
     // TODO: implement build
@@ -220,30 +221,44 @@ class Contact extends StatelessWidget {
                                   children: [
                                     Container(
                                       alignment: Alignment.center,
-                                      width: getWidth(70),
-                                      height: getHeight(24),
-                                      color: Colors.white,
-                                      child: Text(
-                                        'Plate No',
+                                      width: getWidth(77),
+                                      height: getHeight(29),
+
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      padding: EdgeInsets.symmetric(horizontal: 2,vertical: 0),
+                                      child:
+
+                                      Obx(()=>Text(
+                                        '${contactController.riderModel.value.data?.riderVehicleInfo?.first.vehicleLicensePlateNumber}',
                                         style: GoogleFonts.inter(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w500,
                                             color: Colors.black),
-                                      ),
+                                        maxLines: 1,
+                                      ),),
+
                                     ),
                             
                             
                                     SizedBox(height: 10,),
-                                    Text(
-                                      'Toyota Corola, Gray',
+
+                                    Obx(()=>Text(
+                                      '${contactController.riderModel.value.data?.riderVehicleInfo?.first.vehicleModel}, ${contactController.riderModel.value.data?.riderVehicleInfo?.first.vehicleColor}',
                                       style: GoogleFonts.inter(
                                           fontSize: 15,
                                           fontWeight: FontWeight.w500,
                                           color: Colors.white),
-                                    ),
+                                    ),),
+
                                   ],
                                 ),
-                                Image.asset('assets/images/car3d.png',width: getWidth(86),height: getHeight(68),)
+
+
+                                Obx(()=>Image.asset('${contactController.riderModel.value.data?.profileImage??'assets/images/car3d.png'}',width: getWidth(86),height: getHeight(68),))
+                                //assets/images/car3d.png
                               ],
                             ),
                           ),
@@ -289,7 +304,7 @@ class Contact extends StatelessWidget {
                                               fontWeight: FontWeight.w400,
                                               color: Colors.white),),
 
-                                          Obx(()=>Text('(${contactController.contactModel.value.data?.ridesAsRider?.length} trips)',style: GoogleFonts.inter(
+                                          Obx(()=>Text('(${contactController.riderModel.value.data?.ridesAsRider?.length} trips)',style: GoogleFonts.inter(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w400,
                                               color: Colors.white),),),
