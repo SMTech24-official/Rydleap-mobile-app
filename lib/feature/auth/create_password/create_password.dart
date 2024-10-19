@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 import 'package:rydleap/feature/auth/registration/controller/email_registration_controller.dart';
@@ -101,14 +102,16 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
             SizedBox(
               height: getHeight(35),
             ),
-            Text(
-              "Create your Password",
-              style: Theme.of(context).textTheme.titleMedium,
+            CustomTextNunito(
+              text: "Create your Password",
+              fontSize: getWidth(20),
             ),
-            Text(
-              "Ensure your password is strong and meets the criteria.",
-              style: Theme.of(context).textTheme.titleSmall,
+            CustomTextNunito(
+              text: "Ensure your password is strong and meets the criteria.",
+              fontSize: getWidth(15),
+              fontWeight: FontWeight.w400,
             ),
+
             SizedBox(
               height: getHeight(24),
             ),
@@ -167,9 +170,10 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                 SizedBox(
                   width: 10,
                 ),
-                Text(
-                  passwordStrengthMessage,
-                  style: Theme.of(context).textTheme.bodyMedium,
+                CustomTextNunito(
+                  text: passwordStrengthMessage,
+                  fontSize: getWidth(14),
+                  fontWeight: FontWeight.w400,
                 ),
               ],
             ),
@@ -225,12 +229,11 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
                       SizedBox(
                         width: 10,
                       ),
-                      Text(
-                        condition,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color:
-                                  Theme.of(context).textTheme.bodySmall?.color,
-                            ),
+                      CustomTextNunito(
+                        text: condition,
+                        fontSize: getWidth(11),
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xffD6D3D3),
                       ),
                     ],
                   ),
