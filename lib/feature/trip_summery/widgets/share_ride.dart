@@ -3,6 +3,9 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_inter.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
+import 'package:rydleap/core/global_widgets/custom_app_bar.dart';
 import 'package:rydleap/core/global_widgets/custom_back_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 
@@ -20,17 +23,9 @@ class ShareRideScreen extends StatelessWidget {
       AppIcons.instagram,
     ];
     return Scaffold(
-      backgroundColor: AppColors.textBlack,
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-          backgroundColor: AppColors.appbarColor,
-          centerTitle: true,
-          title: Text(
-            "Share Via",
-            style: GoogleFonts.inter(
-                fontSize: getWidth(20), fontWeight: FontWeight.w600),
-          ),
-          leading: CustomBackButton()),
+      appBar: CustomAppBar(
+        title: "Share Via",
+      ),
       body: Stack(
         children: [
           Container(
@@ -52,11 +47,10 @@ class ShareRideScreen extends StatelessWidget {
                 SizedBox(
                   height: getHeight(25),
                 ),
-                Text(
-                  "Share Via",
-                  style: GoogleFonts.inter(
-                      fontSize: getWidth(20), fontWeight: FontWeight.w500),
-                ),
+                CustomTextNunito(
+                    text: "Share Via",
+                    fontSize: getWidth(20),
+                    fontWeight: FontWeight.w500),
                 SizedBox(
                   height: getHeight(16),
                 ),
@@ -77,11 +71,10 @@ class ShareRideScreen extends StatelessWidget {
                 SizedBox(
                   height: getHeight(38),
                 ),
-                Text(
-                  "Pre-filled Message",
-                  style: GoogleFonts.inter(
-                      fontSize: getWidth(20), fontWeight: FontWeight.w500),
-                ),
+                CustomTextInter(
+                    text: "Pre-filled Message",
+                    fontSize: getWidth(20),
+                    fontWeight: FontWeight.w500),
                 SizedBox(
                   height: getHeight(16),
                 ),
@@ -93,11 +86,11 @@ class ShareRideScreen extends StatelessWidget {
                       color: Colors.white.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(width: 0.6, color: Colors.white)),
-                  child: Text(
-                    """"I just completed a trip from 123 Main St to 456 Elm St on 2023-07-20 at 14:30. The total fare was \$20.00." """,
-                    style: GoogleFonts.nunito(
-                        fontSize: getWidth(18), fontWeight: FontWeight.w400),
-                  ),
+                  child: CustomTextNunito(
+                      text:
+                          """"I just completed a trip from 123 Main St to 456 Elm St on 2023-07-20 at 14:30. The total fare was \$20.00." """,
+                      fontSize: getWidth(18),
+                      fontWeight: FontWeight.w400),
                 )
               ],
             ),

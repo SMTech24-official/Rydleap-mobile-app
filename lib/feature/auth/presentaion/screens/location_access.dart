@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 import 'package:rydleap/core/global_widgets/custom_back_button.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_container.dart';
@@ -29,18 +30,22 @@ class LocationAccessScreen extends StatelessWidget {
                 SizedBox(
                   height: getHeight(49),
                 ),
-                Text(
-                  "Location",
-                  style: Theme.of(context).textTheme.titleLarge,
+                CustomTextNunito(
+                  text: "Location",
+                  fontSize: getWidth(23),
+                  fontWeight: FontWeight.w600,
                 ),
                 SizedBox(
                   height: getHeight(30),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: getWidth(35)),
-                  child: Text(
-                    "We need access to your location to show you nearby drivers and provide accurate pickup points.",
-                    style: Theme.of(context).textTheme.bodyLarge,
+                  child: CustomTextNunito(
+                    text:
+                        "We need access to your location to show you nearby drivers and provide accurate pickup points.",
+                    fontSize: getWidth(18),
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xffE5E5E5),
                   ),
                 ),
                 Spacer(),

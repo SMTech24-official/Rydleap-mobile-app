@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 import 'package:rydleap/core/global_widgets/custom_back_button.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_container.dart';
@@ -30,18 +31,22 @@ class NotificationsAccessScreen extends StatelessWidget {
                 SizedBox(
                   height: getHeight(49),
                 ),
-                Text(
-                  "Notifications",
-                  style: Theme.of(context).textTheme.titleLarge,
+                CustomTextNunito(
+                  text: "Notifications",
+                  fontSize: getWidth(23),
+                  fontWeight: FontWeight.w600,
                 ),
                 SizedBox(
                   height: getHeight(30),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: getWidth(35)),
-                  child: Text(
-                    "We need permission to send you notifications for ride updates, promotions, and more.",
-                    style: Theme.of(context).textTheme.bodyLarge,
+                  child: CustomTextNunito(
+                    text:
+                        "We need permission to send you notifications for ride updates, promotions, and more.",
+                    fontSize: getWidth(18),
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xffE5E5E5),
                   ),
                 ),
                 Spacer(),

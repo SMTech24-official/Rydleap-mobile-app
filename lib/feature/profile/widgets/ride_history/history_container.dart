@@ -3,9 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 
 class CustomHistoryContainer extends StatefulWidget {
-  const CustomHistoryContainer({super.key, required this.ridingDate, required this.pickupDest, required this.dropOff});
+  const CustomHistoryContainer(
+      {super.key,
+      required this.ridingDate,
+      required this.pickupDest,
+      required this.dropOff});
 
   final String ridingDate;
   final String pickupDest;
@@ -212,13 +217,11 @@ class _CustomHistoryContainerState extends State<CustomHistoryContainer> {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(90)),
                             child: Center(
-                              child: Text(
-                                "Burkina Faso (4.7⭐)",
-                                style: GoogleFonts.nunito(
-                                    fontSize: getWidth(12),
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xff001B26)),
-                              ),
+                              child: CustomTextNunito(
+                                  text: "Burkina Faso (4.7⭐)",
+                                  fontSize: getWidth(12),
+                                  fontWeight: FontWeight.w500,
+                                  color: Color(0xff001B26)),
                             ),
                           ),
                         )

@@ -4,6 +4,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
+import 'package:rydleap/core/global_widgets/custom_app_bar.dart';
+import 'package:rydleap/core/global_widgets/custom_back_button.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/home/home_controller.dart';
@@ -18,27 +21,11 @@ class RideHistoryScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.textBlack,
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: AppColors.appbarColor,
-        title: Text(
-          CustomGlobalVariable.userType == 'Driver'
-              ? "Drive history"
-              : "Ride history",
-          style: GoogleFonts.inter(
-            fontSize: getWidth(20),
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            Icons.arrow_back_ios,
-            size: 16,
-          ),
-        ),
+      appBar: CustomAppBar(
+        title: CustomGlobalVariable.userType == 'Driver'
+            ? "Drive history"
+            : "Ride history",
+        icon: CustomBackButton(),
       ),
       body: Stack(
         children: [
@@ -66,13 +53,12 @@ class RideHistoryScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
-                  child: Text(
-                    CustomGlobalVariable.userType == 'Driver'
-                        ? "Your previous Drives with Redleap Rideers"
-                        : "Your previous Rides with Redleap Drivers",
-                    style: GoogleFonts.nunito(
-                        fontSize: getWidth(14), fontWeight: FontWeight.w400),
-                  ),
+                  child: CustomTextNunito(
+                      text: CustomGlobalVariable.userType == 'Driver'
+                          ? "Your previous Drives with Redleap Rideers"
+                          : "Your previous Rides with Redleap Drivers",
+                      fontSize: getWidth(14),
+                      fontWeight: FontWeight.w400),
                 ),
                 SizedBox(
                   height: getHeight(12),
