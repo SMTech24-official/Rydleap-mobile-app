@@ -23,6 +23,10 @@ class HomeController extends GetxController{
 
 
 
+  String accessToken =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGM5NTkyYTJkZjcxZDkwOGJhN2MzYiIsImVtYWlsIjoic2Fnb3JAZ21haWwuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3MjkyMzEwMjcsImV4cCI6MTczMTgyMzAyN30.t6hXXeAzxkqG4bQqRZMvwZ1ZIK75YVpzMFk40F7anLY';
+
+
 
 
   Rx<UserModel> userDetail=UserModel().obs;
@@ -114,10 +118,17 @@ class HomeController extends GetxController{
     print('into promo');
       debugPrint("++++++++++++++++++Start++++++++++++++++++++++");
 
+    Map<String, String> headers = {
+      "Authorization": "$accessToken",
+      "Content-Type": "application/json",
+      //"Bearer ${SharePref.getUserAccessToken()}",
+    };
 
-    final url = Uri.parse('https://rydleaps.vercel.app/api/v1/promotions');
+
+    final url = Uri.parse('https://rydleap-backend-eight.vercel.app/api/v1/promotions');
     var response = await http.get(
       url,
+      headers: headers
     );
 
     // log('log me', name: response.body);
