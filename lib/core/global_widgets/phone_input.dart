@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:rydleap/core/app_sizes.dart';
 
 class CustomPhoneInput extends StatelessWidget {
-  const CustomPhoneInput({
-    super.key,
-    required this.controller
-    });
+  const CustomPhoneInput({super.key, required this.controller});
   final TextEditingController controller;
 
   @override
@@ -35,13 +33,13 @@ class CustomPhoneInput extends StatelessWidget {
       ),
       padding: EdgeInsets.symmetric(horizontal: getWidth(16)),
       child: IntlPhoneField(
-        controller:controller ,
+        controller: controller,
         textAlignVertical: TextAlignVertical.center,
         showCursor: true,
         decoration: InputDecoration(
-          contentPadding:  EdgeInsets.only(bottom: getHeight(10)),
+          contentPadding: EdgeInsets.only(bottom: getHeight(10)),
           hintText: "Phone Number",
-          hintStyle: TextStyle(
+          hintStyle: GoogleFonts.nunito(
             color: Color(0xffC3BBBB),
             fontSize: getWidth(15),
             fontWeight: FontWeight.w400,

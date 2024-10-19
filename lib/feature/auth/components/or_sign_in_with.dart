@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 
 class OrSignInWith extends StatelessWidget {
   const OrSignInWith({
@@ -30,12 +31,10 @@ class OrSignInWith extends StatelessWidget {
         SizedBox(
           width: 5,
         ),
-        Text(
-          "or_sign_in_with".tr,
-          style: TextStyle(
-              color: Color(0xffF9F9F9),
-              fontSize: getWidth(14),
-              fontWeight: FontWeight.w500),
+        CustomTextNunito(
+          text: "or_sign_in_with".tr,
+          color: Color(0xffF9F9F9),
+          fontSize: getWidth(14),
         ),
         SizedBox(
           width: 5,

@@ -5,6 +5,7 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/global_widgets/app_text_button.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/feature/auth/presentaion/screens/name_email_screen.dart';
 import 'package:rydleap/feature/auth/registration/controller/f_registration_controller.dart';
@@ -113,13 +114,14 @@ class _FOtpScreenState extends State<FOtpScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: getHeight(35)),
-              Text(
-                "Enter 6-digit code",
-                style: Theme.of(context).textTheme.titleMedium,
+              CustomTextNunito(
+                text: "Enter 6-digit code",
+                fontSize: getWidth(20),
               ),
-              Text(
-                "Your code was sent to $phoneNumber",
-                style: Theme.of(context).textTheme.titleSmall,
+              CustomTextNunito(
+                text: "Your code was sent to $phoneNumber",
+                fontSize: getWidth(15),
+                fontWeight: FontWeight.w400,
               ),
               SizedBox(height: getHeight(24)),
               Row(
@@ -162,13 +164,10 @@ class _FOtpScreenState extends State<FOtpScreen> {
                   SizedBox(
                     width: getWidth(10),
                   ),
-                  Text(
-                    timerText,
-                    style: GoogleFonts.nunito(
-                      fontSize: getWidth(15),
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xffEEEEEE),
-                    ),
+                  CustomTextNunito(
+                    text: timerText,
+                    fontSize: getWidth(15),
+                    fontWeight: FontWeight.w500,
                   ),
                 ],
               ),
