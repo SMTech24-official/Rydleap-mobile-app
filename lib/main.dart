@@ -19,6 +19,7 @@ import 'package:rydleap/firebase_options.dart';
 import 'feature/auth/login/controller/forgot_controller.dart';
 import 'feature/auth/login/controller/login_controller.dart';
 import 'feature/profile/widgets/contact_support/contact_support_controller.dart';
+import 'feature/request_a_ride/controller/request_a_ride_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +32,7 @@ void main() async {
   Get.put(MapController());
   Get.put(HomeController());
   Get.put(ProfileController());
+  Get.put(RequestARideController());
   Get.put(AuthController());
   Get.put(ForgotController());
   // Get.put(OtpController());

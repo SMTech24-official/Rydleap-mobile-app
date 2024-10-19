@@ -9,20 +9,57 @@ import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/feature/contact/controller/contact_controller.dart';
 import 'package:rydleap/feature/driver_tracking/presentation/driver_tracking.dart';
 import 'package:rydleap/feature/home/map_controller.dart';
+import 'package:rydleap/feature/request_a_ride/model/riding_request_model.dart';
 
 import '../../../core/utility/app_colors.dart';
 
 class Contact extends StatelessWidget {
+
+
+  Rx<BitmapDescriptor> customIcon=BitmapDescriptor.defaultMarker.obs;
+  Rx<BitmapDescriptor> customDestinationIcon=BitmapDescriptor.defaultMarker.obs;
+
+
+
+
+
+
+
+
+  void setCustomDestinationMarkerIcon() async {
+
+
+    customDestinationIcon.value = await BitmapDescriptor.asset(
+      ImageConfiguration(size: Size(24, 24)), // Adjust size as needed
+      'assets/images/destination.png', // Path to the image in assets
+    );
+
+
+    // setState(() {}); // Trigger a rebuild once the icon is loaded
+  }
+
+
+
+  final RidingRequestModel ridingRequestModel;
 //jdfgjdfgjsfdg
-  double poslat = 0.00;
-  double poslong = 0.00;
-  LatLng currentpos = LatLng(31.119318, -99.245435);
+//   double poslat = 0.00;
+//   double poslong = 0.00;
+//   LatLng currentpos = LatLng(31.119318, -99.245435);
+
+
+
 
   MapController mapController = Get.find();
   ContactController contactController=Get.find();
 
+   Contact({super.key, required this.ridingRequestModel});
+
   @override
   Widget build(BuildContext context) {
+
+    contactController.getDriver('6708fca149eac1ee4a4dd86c');
+
+    setCustomDestinationMarkerIcon();
     // TODO: implement build
     return Scaffold(
 
@@ -65,18 +102,41 @@ class Contact extends StatelessWidget {
             width: 100.w,
             margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
             child: Obx(()=>GoogleMap(
+
+              // polylines: mapController.polylines,
               //initialCameraPosition: _kGoogle,
               markers: {
+
+
+
+                // Marker(
+                //   icon: customIcon.value,
+                //   markerId: MarkerId("?Source"),
+                //   position: LatLng(ridingRequestModel.data?.assignedRider?.locations?.first.locationLat??0.00, ridingRequestModel.data?.assignedRider?.locations?.first.locationLng??0.00,),
+                // ),
+
                 Marker(
                   markerId: MarkerId("Source"),
-                  position: mapController.currentpos.value,
+                  position: LatLng(ridingRequestModel.data?.ride?.pickupLat??0.00, ridingRequestModel.data?.ride?.pickupLng??0.00),
                 ),
+
+
+                Marker(
+                  icon: customDestinationIcon.value,
+                  markerId: MarkerId("?Source"),
+                  position: LatLng(ridingRequestModel.data?.ride?.destinationLat??0.00, ridingRequestModel.data?.ride?.destinationLng??0.00,),
+                ),
+
+                // Marker(
+                //   markerId: MarkerId("Source"),
+                //   position: mapController.currentpos.value,
+                // ),
               },
               mapType: MapType.normal,
               myLocationEnabled: true,
               compassEnabled: true,
               initialCameraPosition: CameraPosition(
-                target: mapController.currentpos.value,
+                target: LatLng(ridingRequestModel.data?.ride?.pickupLat??0.00, ridingRequestModel.data?.ride?.pickupLng??0.00),
                 zoom: 13,
               ),
               onMapCreated: (GoogleMapController controller) {
@@ -84,8 +144,7 @@ class Contact extends StatelessWidget {
                 mapController.getCurrentPos(controller);
                 //_controller.complete(controller);
               },
-            ),
-            ),
+            ),),
           ),
 
 
@@ -162,30 +221,44 @@ class Contact extends StatelessWidget {
                                   children: [
                                     Container(
                                       alignment: Alignment.center,
-                                      width: getWidth(70),
-                                      height: getHeight(24),
-                                      color: Colors.white,
-                                      child: Text(
-                                        'Plate No',
+                                      width: getWidth(77),
+                                      height: getHeight(29),
+
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      padding: EdgeInsets.symmetric(horizontal: 2,vertical: 0),
+                                      child:
+
+                                      Obx(()=>Text(
+                                        '${contactController.riderModel.value.data?.riderVehicleInfo?.first.vehicleLicensePlateNumber}',
                                         style: GoogleFonts.inter(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w500,
                                             color: Colors.black),
-                                      ),
+                                        maxLines: 1,
+                                      ),),
+
                                     ),
                             
                             
                                     SizedBox(height: 10,),
-                                    Text(
-                                      'Toyota Corola, Gray',
+
+                                    Obx(()=>Text(
+                                      '${contactController.riderModel.value.data?.riderVehicleInfo?.first.vehicleModel}, ${contactController.riderModel.value.data?.riderVehicleInfo?.first.vehicleColor}',
                                       style: GoogleFonts.inter(
                                           fontSize: 15,
                                           fontWeight: FontWeight.w500,
                                           color: Colors.white),
-                                    ),
+                                    ),),
+
                                   ],
                                 ),
-                                Image.asset('assets/images/car3d.png',width: getWidth(86),height: getHeight(68),)
+
+
+                                Obx(()=>Image.asset('${contactController.riderModel.value.data?.profileImage??'assets/images/car3d.png'}',width: getWidth(86),height: getHeight(68),))
+                                //assets/images/car3d.png
                               ],
                             ),
                           ),
@@ -211,10 +284,10 @@ class Contact extends StatelessWidget {
                                     children: [
 
 
-                                      Obx(()=>Text('${contactController.contactModel.value.data?.fullName}',style: GoogleFonts.inter(
+                                      Text('${ridingRequestModel.data?.assignedRider?.fullName}',style: GoogleFonts.inter(
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500,
-                                          color: Colors.white),),),
+                                          color: Colors.white),),
 
                                       Row(
                                         children: [
@@ -231,7 +304,7 @@ class Contact extends StatelessWidget {
                                               fontWeight: FontWeight.w400,
                                               color: Colors.white),),
 
-                                          Obx(()=>Text('(${contactController.contactModel.value.data?.ridesAsRider?.length} trips)',style: GoogleFonts.inter(
+                                          Obx(()=>Text('(${contactController.riderModel.value.data?.ridesAsRider?.length} trips)',style: GoogleFonts.inter(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w400,
                                               color: Colors.white),),),
@@ -277,7 +350,7 @@ class Contact extends StatelessWidget {
                     
                     CustomGradientButton(text: 'Confirm', onTap: (){
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => DriverTracking()));
+                          MaterialPageRoute(builder: (_) => DriverTracking(ridingRequestModel: ridingRequestModel,)));
                     },width: screenWidth()-32,),
                     // CustomGradientButton(text: 'Cancel Ride', onTap: (){},icon: Icons.cancel,width: screenWidth()-32,)
 

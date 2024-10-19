@@ -65,11 +65,13 @@ class RideHistoryScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: Obx(
-                    () => ListView.builder(
+                    () => homeController.userDetail.value.data?.ridesAsCustomer?.length!=0?
+
+
+                        ListView.builder(
                       padding: EdgeInsets.zero,
                       shrinkWrap: true,
-                      itemCount:
-                          homeController.ridingHistoryModel.value.data?.length,
+                      itemCount: homeController.userDetail.value.data?.ridesAsCustomer?.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 16.0),
@@ -84,7 +86,11 @@ class RideHistoryScreen extends StatelessWidget {
                           ),
                         );
                       },
-                    ),
+                    ):
+
+                    Center(child: Text("No Riding History Found"),),
+
+
                   ),
                 )
               ],

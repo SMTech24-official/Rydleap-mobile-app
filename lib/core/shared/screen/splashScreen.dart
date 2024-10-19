@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/feature/auth/login/login_screen.dart';
+import 'package:rydleap/feature/home/presentation/screens/home.dart';
 import 'package:rydleap/feature/profile/screen/f_profile_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart'; // Import shared_preferences
 
@@ -31,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => isLoggedIn ? FProfileScreen() : LoginScreen(),
+        builder: (context) => isLoggedIn ? Home() : LoginScreen(),
       ),
     );
   }

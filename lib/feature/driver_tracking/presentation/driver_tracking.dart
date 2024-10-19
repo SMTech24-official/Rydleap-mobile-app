@@ -15,16 +15,36 @@ import '../../../core/global_widgets/custom_gradient_button.dart';
 import '../../../core/global_widgets/pickup_and_drop_input_tile.dart';
 import '../../../core/utility/app_colors.dart';
 import '../../home/map_controller.dart';
+import '../../request_a_ride/model/riding_request_model.dart';
 
 class DriverTracking extends StatelessWidget{
+
+  final RidingRequestModel ridingRequestModel;
   double poslat = 0.00;
   double poslong = 0.00;
   // LatLng currentpos = LatLng(31.119318, -99.245435);
 
+  Rx<BitmapDescriptor> customIcon=BitmapDescriptor.defaultMarker.obs;
+
+  void _setCustomMarkerIcon() async {
+    customIcon.value = await BitmapDescriptor.asset(
+      ImageConfiguration(size: Size(40, 40)), // Adjust size as needed
+      'assets/images/car_map.png', // Path to the image in assets
+    );
+
+
+
+
+    // setState(() {}); // Trigger a rebuild once the icon is loaded
+  }
+
 
   MapController mapController = Get.find();
+
+   DriverTracking({super.key, required this.ridingRequestModel});
   @override
   Widget build(BuildContext context) {
+    _setCustomMarkerIcon();
     // TODO: implement build
     return Scaffold(
 
@@ -68,15 +88,21 @@ class DriverTracking extends StatelessWidget{
                 //initialCameraPosition: _kGoogle,
                 markers: {
                   Marker(
+                    icon: customIcon.value,
+                    markerId: MarkerId("?Source"),
+                    position: LatLng(ridingRequestModel.data?.assignedRider?.locations?.first.locationLat??0.00, ridingRequestModel.data?.assignedRider?.locations?.first.locationLng??0.00,),
+                  ),
+
+                  Marker(
                     markerId: MarkerId("Source"),
-                    position: mapController.currentpos.value,
+                    position: LatLng(ridingRequestModel.data?.ride?.pickupLat??0.00, ridingRequestModel.data?.ride?.pickupLng??0.00),
                   ),
                 },
                 mapType: MapType.normal,
                 myLocationEnabled: true,
                 compassEnabled: true,
                 initialCameraPosition: CameraPosition(
-                  target: mapController.currentpos.value,
+                  target: LatLng(ridingRequestModel.data?.ride?.pickupLat??0.00, ridingRequestModel.data?.ride?.pickupLng??0.00),
                   zoom: 13,
                 ),
                 onMapCreated: (GoogleMapController controller) {

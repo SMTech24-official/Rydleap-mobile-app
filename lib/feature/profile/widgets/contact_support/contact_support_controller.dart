@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 class ContactSupportController extends GetxController{
 
 
-  Future<dynamic> ChangePassword(
+  Future<void> emailSend(
 
       String issue,
       String subject,

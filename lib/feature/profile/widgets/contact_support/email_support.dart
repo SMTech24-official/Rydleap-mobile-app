@@ -308,6 +308,12 @@ class _EmailSupportScreenState extends State<EmailSupportScreen> {
                   color: Color(0xff3AD896),
                   child: InkWell(
                     onTap: () {
+
+
+
+
+
+
                       // _customBottomSheet(context);
                       customBottomSheet(context, 
                       "Your support request has been sent.", 
