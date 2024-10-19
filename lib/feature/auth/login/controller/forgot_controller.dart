@@ -6,52 +6,35 @@ import 'package:get/get.dart';
 import '../../../../core/api_url.dart';
 import 'package:http/http.dart' as http;
 
-import '../../otp/otp2_screen.dart';
-
 class ForgotController extends GetxController {
-
-
-
-
-
-
-
-
   TextEditingController emailController = TextEditingController();
   var isFormValid = false.obs;
 
-
-
   void sendMail() async {
-
-
     Map<String, String> userData = Map();
 
     userData['phoneNumber'] = emailController.text;
 
-
     debugPrint("userData" + userData.toString());
     //
-    final url = Uri.parse(ApiUrl.baseUrl +'/api/v1/otp/send-otp');
-
+    final url = Uri.parse(ApiUrl.baseUrl + '/api/v1/otp/send-otp');
 
     var response = await http.post(url, body: userData);
 
-    debugPrint("Response Code..................." + response.statusCode.toString());
-    debugPrint("Response Success:..................." + jsonDecode(response.body)['success'].toString());
+    debugPrint(
+        "Response Code..................." + response.statusCode.toString());
+    debugPrint("Response Success:..................." +
+        jsonDecode(response.body)['success'].toString());
 
+    debugPrint(
+        '++++++++++++++++++++++++++++${jsonDecode(response.body)['data']['body']}+++++++++++++++++++++++++');
 
-    debugPrint('++++++++++++++++++++++++++++${jsonDecode(response.body)['data']['body']}+++++++++++++++++++++++++');
-
-
-    if(response.statusCode==200){
-
-      if(jsonDecode(response.body)['success']==true){
-        Get.to(()=>OtpScreen2());
+    if (response.statusCode == 200) {
+      if (jsonDecode(response.body)['success'] == true) {
+        // Get.to(()=>OtpScreen2());
       }
 
       // Get.to(()=>OtpScreen2());
-
     }
 
     // if (response.statusCode == 200) {
@@ -79,15 +62,6 @@ class ForgotController extends GetxController {
     // }
   }
 
-
-
-
-
-
-
-
-
-
   // Observable variable for reactivity
 
   @override
@@ -97,7 +71,8 @@ class ForgotController extends GetxController {
   }
 
   void validateForm() {
-    isFormValid.value = emailController.text.isNotEmpty;  // Update the reactive variable
+    isFormValid.value =
+        emailController.text.isNotEmpty; // Update the reactive variable
   }
 
   @override

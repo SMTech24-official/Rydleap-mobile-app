@@ -3,6 +3,8 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
+import 'package:rydleap/core/global_widgets/custom_app_bar.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/profile/widgets/contact_support/call_support.dart';
@@ -14,17 +16,8 @@ class ContactSupportScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.textBlack,
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: AppColors.appbarColor,
-        centerTitle: true,
-        title: Text(
-          "Contact Support",
-          style: GoogleFonts.inter(
-              fontSize: getWidth(20), fontWeight: FontWeight.w600),
-        ),
-        leading: CustomCloseButton()
+      appBar: CustomAppBar(
+        title: "Contact Support",
       ),
       body: Stack(
         children: [
@@ -44,7 +37,7 @@ class ContactSupportScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(bottom: getHeight(14.5)),
                 child: Container(
-                   padding: EdgeInsets.only(left: getWidth(15)),
+                  padding: EdgeInsets.only(left: getWidth(15)),
                   margin: EdgeInsets.symmetric(horizontal: getWidth(15)),
                   height: getHeight(51),
                   width: double.infinity,
@@ -55,20 +48,19 @@ class ContactSupportScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "Call support",
-                        style: GoogleFonts.nunito(
-                            fontSize: getWidth(16),
-                            fontWeight: FontWeight.w400),
-                      ),
-                       ClipOval(
+                      CustomTextNunito(
+                          text: "Call support",
+                          fontSize: getWidth(16),
+                          fontWeight: FontWeight.w400),
+
+                      ClipOval(
                         child: Material(
                           color: Colors.transparent,
                           child: InkWell(
                             splashColor: Colors.white.withOpacity(0.2),
-                             onTap: () {
-                          Get.to(CallSupportScreen());
-                        },
+                            onTap: () {
+                              Get.to(CallSupportScreen());
+                            },
                             child: SizedBox(
                               height: getWidth(24),
                               width: getWidth(24),
@@ -113,14 +105,14 @@ class ContactSupportScreen extends StatelessWidget {
                             fontSize: getWidth(16),
                             fontWeight: FontWeight.w400),
                       ),
-                       ClipOval(
+                      ClipOval(
                         child: Material(
                           color: Colors.transparent,
                           child: InkWell(
                             splashColor: Colors.white.withOpacity(0.2),
                             onTap: () {
-                          Get.to(EmailSupportScreen());
-                        },
+                              Get.to(EmailSupportScreen());
+                            },
                             child: SizedBox(
                               height: getWidth(24),
                               width: getWidth(24),

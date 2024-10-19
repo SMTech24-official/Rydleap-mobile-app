@@ -4,6 +4,8 @@ import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
+import 'package:rydleap/core/global_widgets/custom_app_bar.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
@@ -15,18 +17,8 @@ class BalanceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: AppColors.appbarColor,
-          leading: CustomCloseButton(),
-          title: Text(
-            "About me",
-            style: GoogleFonts.inter(
-                fontSize: getWidth(20), fontWeight: FontWeight.w600),
-          ),
-          // actions: [
-          //   Image.asset(AppIcons.payment,color: Colors.white,)
-          // ],
+        appBar: CustomAppBar(
+          title: "About me",
         ),
         body: Stack(
           children: [
@@ -56,36 +48,35 @@ class BalanceScreen extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "Balance",
-                          style: GoogleFonts.nunito(
-                              fontSize: getWidth(16),
-                              fontWeight: FontWeight.w400),
-                        ),
-                        Text(
-                          "\$ 2000.34",
-                          style: GoogleFonts.inter(
-                              fontSize: getWidth(35),
-                              fontWeight: FontWeight.w500),
-                        ),
+                        CustomTextNunito(
+                            text: "Balance",
+                            fontSize: getWidth(16),
+                            fontWeight: FontWeight.w400),
+                        CustomTextNunito(
+                            text: "\$ 2000.34",
+                            fontSize: getWidth(35),
+                            fontWeight: FontWeight.w500),
                       ],
                     ),
                   ),
                   SizedBox(
                     height: getHeight(15),
                   ),
-                  Text(
-                    "Add the bank account where you want to recieve payouts",
-                    style: GoogleFonts.nunito(
-                        color: Color(0xffE6E6E6),
-                        fontSize: getWidth(16),
-                        fontWeight: FontWeight.w400),
-                  ),
+                  CustomTextNunito(
+                      text:
+                          "Add the bank account where you want to recieve payouts",
+                      color: Color(0xffE6E6E6),
+                      fontSize: getWidth(16),
+                      fontWeight: FontWeight.w400),
                   Spacer(),
-                  CustomGradientButton(text: "Add Account", onTap: () {
-                    Get.to(AddAccountScreen());
-                  }),
-                  SizedBox(height: getHeight(20),)
+                  CustomGradientButton(
+                      text: "Add Account",
+                      onTap: () {
+                        Get.to(AddAccountScreen());
+                      }),
+                  SizedBox(
+                    height: getHeight(20),
+                  )
                 ],
               ),
             ),

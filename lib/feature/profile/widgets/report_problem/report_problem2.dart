@@ -8,6 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 import 'package:rydleap/core/global_widgets/custom_buttomsheet/custom_bottomsheet.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/custom_next_button.dart';
@@ -173,13 +174,11 @@ class _ReportProblem2State extends State<ReportProblem2> {
                 SizedBox(
                   height: getHeight(20),
                 ),
-                Text(
-                  "You can upload png/jpg/mov",
-                  style: GoogleFonts.nunito(
-                      fontSize: getWidth(14),
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xffB6B3B3)),
-                ),
+                CustomTextNunito(
+                    text: "You can upload png/jpg/mov",
+                    fontSize: getWidth(14),
+                    fontWeight: FontWeight.w400,
+                    color: Color(0xffB6B3B3)),
                 SizedBox(
                   height: getHeight(12),
                 ),
@@ -231,13 +230,11 @@ class _ReportProblem2State extends State<ReportProblem2> {
                                     children: [
                                       Image.asset(AppIcons.upload),
                                       SizedBox(width: getWidth(8)),
-                                      Text(
-                                        "Upload",
-                                        style: GoogleFonts.nunito(
-                                          fontSize: getWidth(12),
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
+                                      CustomTextNunito(
+                                        text: "Upload",
+                                        fontSize: getWidth(12),
+                                        fontWeight: FontWeight.w500,
+                                      )
                                     ],
                                   ),
                                 ),

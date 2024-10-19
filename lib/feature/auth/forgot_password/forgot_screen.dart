@@ -7,8 +7,6 @@ import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
 import 'package:rydleap/feature/auth/login/controller/forgot_controller.dart';
-import 'package:rydleap/feature/auth/otp/otp2_screen.dart';
-import 'package:rydleap/feature/auth/otp/otp_screen.dart';
 
 class ForgotScreen extends StatefulWidget {
   const ForgotScreen({super.key});
@@ -42,20 +40,19 @@ class _ForgotScreenState extends State<ForgotScreen> {
           children: [
             SizedBox(height: getHeight(35)),
             Text(
-              "Forgot Password?",
+              "forgot_password".tr,
               style: Theme.of(context).textTheme.titleMedium,
             ),
             Text(
-              "Enter your phone number to reclaim your password to continue with Rydleap",
+              "email".tr,
               style: Theme.of(context).textTheme.titleSmall,
             ),
             SizedBox(height: getHeight(24)),
             CustomTextfield(
               controller: _forgotController.emailController,
-              hintext: "Phone Number",
+              hintext: "phone_number".tr,
               suffixIcon: SizedBox(),
               textInputType: TextInputType.phone,
-
             ),
             SizedBox(height: getHeight(34)),
             Spacer(),
@@ -63,16 +60,8 @@ class _ForgotScreenState extends State<ForgotScreen> {
                 ? CustomGradientButton(
                     text: "confirm".tr,
                     onTap: () {
-
-
-
-                      //Get.to(()=>OtpScreen2());
-                      _forgotController.sendMail();
-
-
-
-
-
+                      // Get.to(()=>OtpScreen2());
+                      // _forgotController.sendMail();
                     },
                   )
                 : CustomBlurButton(text: "confirm".tr)),
@@ -82,6 +71,4 @@ class _ForgotScreenState extends State<ForgotScreen> {
       ),
     );
   }
-
-
 }

@@ -4,6 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_inter.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
+import 'package:rydleap/core/global_widgets/custom_app_bar.dart';
+import 'package:rydleap/core/global_widgets/custom_back_button.dart';
 import 'package:rydleap/core/global_widgets/custom_success_bottom_sheet.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/payment_options/screen/add_card_screen.dart';
@@ -27,23 +31,9 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: AppColors.appbarColor,
-        leading: SizedBox(
-          height: getHeight(26),
-          width: getHeight(26),
-          child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back_ios)),
-        ),
-        title: Text(
-          'payment_options'.tr,
-          style: GoogleFonts.inter(
-              fontSize: getWidth(20), fontWeight: FontWeight.w600),
-        ),
+      appBar: CustomAppBar(
+        title: 'payment_options'.tr,
+        icon: CustomBackButton(),
       ),
       body: Custombackground(
         widget: SizedBox(),
@@ -68,11 +58,10 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "cash_after_reaching".tr,
-                    style: GoogleFonts.nunito(
-                        fontSize: getWidth(18), fontWeight: FontWeight.w400),
-                  ),
+                  CustomTextNunito(
+                      text: "cash_after_reaching".tr,
+                      fontSize: getWidth(18),
+                      fontWeight: FontWeight.w400),
                   SizedBox(
                     height: getHeight(16),
                   ),
@@ -92,8 +81,8 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                           Row(
                             children: [
                               GestureDetector(
-                                onTap: (){
-                                Get.to(EarningsDetailsBreakdownScreen());
+                                onTap: () {
+                                  Get.to(EarningsDetailsBreakdownScreen());
                                 },
                                 child: Image.asset(
                                   AppImagese.cash,
@@ -108,19 +97,15 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    'Cash',
-                                    style: GoogleFonts.nunito(
-                                        fontSize: getWidth(16),
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                  Text(
-                                    'USDT 08',
-                                    style: GoogleFonts.nunito(
-                                      color: Color(0xFFCABDBD),
-                                      fontSize: getWidth(12),
-                                      fontWeight: FontWeight.w400,
-                                    ),
+                                  CustomTextNunito(
+                                      text: 'cash'.tr,
+                                      fontSize: getWidth(16),
+                                      fontWeight: FontWeight.w400),
+                                  CustomTextNunito(
+                                    text: 'USDT 08',
+                                    color: Color(0xFFCABDBD),
+                                    fontSize: getWidth(12),
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ],
                               ),
@@ -156,12 +141,10 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                             onTap: () {
                               Get.to(AddCardScreen());
                             },
-                            child: Text(
-                               'add_payment_method'.tr,
-                              style: GoogleFonts.nunito(
-                                  fontSize: getWidth(15),
-                                  fontWeight: FontWeight.w400),
-                            ),
+                            child: CustomTextInter(
+                                text: 'add_payment_method'.tr,
+                                fontSize: getWidth(15),
+                                fontWeight: FontWeight.w400),
                           ),
                           oneSelected
                               ? SizedBox(
@@ -169,13 +152,11 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                                   width: getWidth(40),
                                   child: Row(
                                     children: [
-                                      Text(
-                                        'edit'.tr,
-                                        style: GoogleFonts.nunito(
-                                            color: Color(0xFFCABDBD),
-                                            fontSize: getWidth(12),
-                                            fontWeight: FontWeight.w400),
-                                      ),
+                                      CustomTextNunito(
+                                          text: 'edit'.tr,
+                                          color: Color(0xFFCABDBD),
+                                          fontSize: getWidth(12),
+                                          fontWeight: FontWeight.w400),
                                       SizedBox(
                                         width: getWidth(2),
                                       ),
@@ -235,12 +216,10 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                                         width: getWidth(36),
                                       ),
                                       SizedBox(width: getWidth(2)),
-                                      Text(
-                                        data.title,
-                                        style: GoogleFonts.nunito(
-                                            fontSize: getWidth(16),
-                                            fontWeight: FontWeight.w400),
-                                      ),
+                                      CustomTextNunito(
+                                          text: data.title,
+                                          fontSize: getWidth(16),
+                                          fontWeight: FontWeight.w400),
                                     ],
                                   ),
                                   GestureDetector(
@@ -292,12 +271,10 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    'promo_Code'.tr,
-                                    style: GoogleFonts.nunito(
-                                        fontSize: getWidth(15),
-                                        fontWeight: FontWeight.w400),
-                                  ),
+                                  CustomTextNunito(
+                                      text: 'promo_Code'.tr,
+                                      fontSize: getWidth(15),
+                                      fontWeight: FontWeight.w400),
                                   Image.asset(
                                     AppIcons.addIcon,
                                     height: getHeight(16),
@@ -313,7 +290,7 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
                       ? GestureDetector(
                           onTap: () {},
                           child: CustomBlurButton(
-                            text:  "continue".tr,
+                            text: "continue".tr,
                           ),
                         )
                       : SizedBox.shrink(),
@@ -325,7 +302,6 @@ class _PaymentOptionsScreenState extends State<PaymentOptionsScreen> {
       ),
     );
   }
-
 
   Future<dynamic> showSuccessBottomSheet({
     required BuildContext context,

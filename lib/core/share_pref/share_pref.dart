@@ -1,23 +1,32 @@
 import 'dart:convert';
 import 'dart:ui';
-import 'package:rydleap/feature/auth/domain/model/login_model.dart';
 import 'package:rydleap/feature/auth/login/model/login_model.dart';
 import 'package:rydleap/feature/profile/model/profile_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharePref {
-  static const String _accessTokenKey = 'accessToken';
   static const String _userDataKey = 'user-data';
   static const String _languageKey = 'selected-language';
   static const String _selectedIndexKey = "selectedIndex";
   static const String _rememberMeKey = 'remember-me';
   static const String _emailKey = 'email';
   static const String _passwordKey = 'password';
+  static const String _fcmTokenKey = 'fcm-token';
 
-  static String accessToken = '';
   static bool rememberMe = false;
   static String? savedEmail;
   static String? savedPassword;
+  // Method to save FCM token
+  static Future<void> saveFcmToken(String token) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setString(_fcmTokenKey, token);
+  }
+
+  // Method to get FCM token
+  static Future<String?> getFcmToken() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    return sharedPreferences.getString(_fcmTokenKey);
+  }
 
   static Future<void> saveSelectedIndex(int index) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -27,26 +36,6 @@ class SharePref {
   static Future<int> getSelectedIndex() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getInt(_selectedIndexKey) ?? 0; // Default to 0 if not found
-  }
-  
-
-  // Save access token
-  static Future<void> saveAccessToken(String token) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.setString(_accessTokenKey, token);
-    accessToken = token; // Store it in the static variable for quick access
-  }
-
-  // Retrieve access token
-  static Future<String?> getUserAccessToken() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    return sharedPreferences.getString(_accessTokenKey);
-  }
-
-  // Check if the user is authenticated
-  static Future<bool> checkAuthState() async {
-    String? token = await getUserAccessToken();
-    return token != null; // Return true if token exists
   }
 
   // Save selected language
@@ -74,32 +63,6 @@ class SharePref {
     }
   }
 
-  // Save login response (user data)
-  static Future<void> saveLoginResponse(LoginModel loginModel) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String userDataJson =
-        jsonEncode(loginModel.toJson()); // Convert to JSON string
-    await sharedPreferences.setString(_userDataKey, userDataJson);
-  }
-   static Future<void> saveUser(User user) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-     String userDataJson =
-        jsonEncode(user.toJson()); // Convert to JSON string
-    await sharedPreferences.setString("user-data", userDataJson);
-  }
-
-  // Retrieve login response (user data)
-  static Future<LoginModel?> getUserData() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String? userDataJson = sharedPreferences.getString(_userDataKey);
-
-    if (userDataJson != null) {
-      Map<String, dynamic> userMap = jsonDecode(userDataJson);
-      return LoginModel.fromJson(userMap); // Convert back to LoginModel
-    }
-    return null;
-  }
-
   static Future<void> saveRememberMe(
       bool rememberMe, String email, String password) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
@@ -118,33 +81,13 @@ class SharePref {
     return sharedPreferences.getBool(_rememberMeKey) ?? false;
   }
 
-  // static Future<String?> getSavedEmail() async {
-  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  //   return sharedPreferences.getString(_emailKey);
-  // }
-static Future<String?> getSavedEmail() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    return sharedPreferences.getString('email');
-  }
-  static Future<String?> getSavedName() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    return sharedPreferences.getString('name');
-  }
-
-  static Future<String?> getSavedPassword() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    return sharedPreferences.getString(_passwordKey);
-  }
-
   // Method to clear all saved preferences (clearAll)
   static Future<void> clearAll() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.remove(_accessTokenKey);
     await sharedPreferences.remove(_userDataKey);
     await sharedPreferences.remove(_rememberMeKey);
     await sharedPreferences.remove(_emailKey);
     await sharedPreferences
         .remove(_passwordKey); // This will remove all stored data
-    accessToken = ''; // Reset the static variable for accessToken
   }
 }

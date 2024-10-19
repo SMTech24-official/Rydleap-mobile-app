@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rydleap/core/app_sizes.dart';
-import 'package:rydleap/core/global_widgets/custom_buttomsheet/bottomsheet_onebutton.dart';
 
 class OrSignInWith extends StatelessWidget {
   const OrSignInWith({

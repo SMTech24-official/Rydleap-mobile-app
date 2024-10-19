@@ -50,19 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCTSHzBwxBPVB2W44Eg17L-Tstgz1Uv6Lg',
-    appId: '1:120600237441:android:2f082e1c9f8fd90f8d4480',
-    messagingSenderId: '120600237441',
-    projectId: 'ryd-leap',
-    storageBucket: 'ryd-leap.appspot.com',
+    apiKey: 'AIzaSyD2y4Jgw4ZgRmydkiIm0N5BBVS7W8hHBYk',
+    appId: '1:171367264608:android:6d9cf2819033428c4a6e05',
+    messagingSenderId: '171367264608',
+    projectId: 'ryd-leap-peach',
+    storageBucket: 'ryd-leap-peach.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDzgiQ6m9KZBaGKPbqwJgPhggDwmHkIoFU',
-    appId: '1:120600237441:ios:8b53801942e422df8d4480',
-    messagingSenderId: '120600237441',
-    projectId: 'ryd-leap',
-    storageBucket: 'ryd-leap.appspot.com',
+    apiKey: 'AIzaSyCr7KWxRvmyJMpMBb81yBBlgTMz80dbU4k',
+    appId: '1:171367264608:ios:01a622f71a073ecc4a6e05',
+    messagingSenderId: '171367264608',
+    projectId: 'ryd-leap-peach',
+    storageBucket: 'ryd-leap-peach.appspot.com',
     iosBundleId: 'com.example.rydleap',
   );
+
 }

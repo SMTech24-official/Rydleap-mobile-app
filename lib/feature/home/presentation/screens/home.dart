@@ -12,6 +12,7 @@ import 'package:rydleap/core/app_sizes.dart';
 import 'package:rydleap/core/global_widgets/pickup_and_drop_input_tile.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/core/utility/destination_tile.dart';
+import 'package:rydleap/feature/profile/screen/f_profile_screen.dart';
 
 import '../../../profile/screen/profile_screen.dart';
 import '../../../request_a_ride/presentation/request_a_ride.dart';
@@ -39,9 +40,7 @@ class Home extends StatelessWidget {
   // final Completer<GoogleMapController> _controller =
   //     Completer<GoogleMapController>();
 
-  Rx<BitmapDescriptor> customIcon=BitmapDescriptor.defaultMarker.obs;
-
-
+  Rx<BitmapDescriptor> customIcon = BitmapDescriptor.defaultMarker.obs;
 
 
 
@@ -104,14 +103,12 @@ class Home extends StatelessWidget {
     return await Geolocator.getCurrentPosition();
   }
 
-
   final LocationSettings locationSettings = LocationSettings(
     accuracy: LocationAccuracy.high,
     distanceFilter: 100,
   );
 
   // Position position = await Geolocator.getCurrentPosition(locationSettings: locationSettings);
-
 
   // Future<void> getCurrentPos() async {
   //   //
@@ -231,16 +228,8 @@ class Home extends StatelessWidget {
 //
 //   }
 
-
-
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
-
     _setCustomMarkerIcon();
 
     return Scaffold(

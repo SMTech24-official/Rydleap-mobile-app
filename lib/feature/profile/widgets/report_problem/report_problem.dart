@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/custom_next_button.dart';
 import 'package:rydleap/core/global_widgets/global_variable.dart';
@@ -39,9 +40,7 @@ class _ReportProblemScreenState extends State<ReportProblemScreen> {
       backgroundColor: AppColors.textBlack,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: AppColors.appbarColor,
-        leading: CustomCloseButton()
-      ),
+          backgroundColor: AppColors.appbarColor, leading: CustomCloseButton()),
       body: Stack(
         children: [
           Container(
@@ -65,8 +64,7 @@ class _ReportProblemScreenState extends State<ReportProblemScreen> {
                     isSelected[index] = !isSelected[index];
                   });
                 },
-                child: 
-                Padding(
+                child: Padding(
                   padding: EdgeInsets.only(bottom: getHeight(14.5)),
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: getWidth(15)),
@@ -89,12 +87,10 @@ class _ReportProblemScreenState extends State<ReportProblemScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          data,
-                          style: GoogleFonts.nunito(
-                              fontSize: getWidth(16),
-                              fontWeight: FontWeight.w400),
-                        ),
+                        CustomTextNunito(
+                            text: data,
+                            fontSize: getWidth(16),
+                            fontWeight: FontWeight.w400),
                         if (isSelected[index]) Image.asset(AppIcons.checkFill)
                       ],
                     ),
@@ -113,7 +109,6 @@ class _ReportProblemScreenState extends State<ReportProblemScreen> {
                   onTap: () {
                     Get.to(ReportProblem2());
                   },
-                  
                 )),
           )
         ],

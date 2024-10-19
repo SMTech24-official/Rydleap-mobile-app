@@ -288,10 +288,14 @@ class Contact extends StatelessWidget {
                                               fontSize: 14,
                                               fontWeight: FontWeight.w400,
                                               color: Colors.white),),
-                                          Text('(126 trips)',style: GoogleFonts.inter(
+
+                                          Obx(()=>Text('(${contactController.contactModel.value.data?.ridesAsRider?.length} trips)',style: GoogleFonts.inter(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w400,
-                                              color: Colors.white),),
+                                              color: Colors.white),),),
+
+
+
                                         ],
                                       )
 

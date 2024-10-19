@@ -3,6 +3,8 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
+import 'package:rydleap/core/global_widgets/custom_app_bar.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -21,17 +23,9 @@ class _CallSupportScreenState extends State<CallSupportScreen> {
   Widget build(BuildContext context) {
     final TextEditingController _phoneController = TextEditingController();
     return Scaffold(
-      backgroundColor: AppColors.textBlack,
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: AppColors.appbarColor,
-        centerTitle: true,
-        title: Text(
-          "Call Support",
-          style: GoogleFonts.inter(
-              fontSize: getWidth(20), fontWeight: FontWeight.w600),
-        ),
-        leading: CustomCloseButton()
+      appBar: CustomAppBar(
+        title: "Call Support",
       ),
       body: Stack(
         children: [
@@ -110,8 +104,7 @@ class _CallSupportScreenState extends State<CallSupportScreen> {
                                       getWidth(150));
                             });
 
-                           // debugPrint('++++++++++Call Going++++++++++++++++++++++++++++++++++++++++');
-
+                            // debugPrint('++++++++++Call Going++++++++++++++++++++++++++++++++++++++++');
                           },
                           onHorizontalDragEnd: (details) {
                             setState(() {
@@ -119,22 +112,16 @@ class _CallSupportScreenState extends State<CallSupportScreen> {
                               if (_slidePosition >
                                   MediaQuery.of(context).size.width -
                                       getWidth(150)) {
-
-                               // debugPrint('++++++++++Call end1++++++++++++++++++++++++++++++++++++++++');
-
+                                // debugPrint('++++++++++Call end1++++++++++++++++++++++++++++++++++++++++');
                               }
                               _slidePosition =
                                   0; // Reset to initial position after slide
                             });
 
-
-                            debugPrint('++++++++++Call end2++++++++++++++++++++++++++++++++++++++++');
+                            debugPrint(
+                                '++++++++++Call end2++++++++++++++++++++++++++++++++++++++++');
 
                             phoneCall('01726222954');
-
-
-
-
                           },
                           child: AnimatedContainer(
                             duration: Duration(milliseconds: 300),
@@ -152,13 +139,10 @@ class _CallSupportScreenState extends State<CallSupportScreen> {
                                   SizedBox(
                                     width: getWidth(15),
                                   ),
-                                  Text(
-                                    "Slide to call!",
-                                    style: GoogleFonts.nunito(
-                                      fontSize: getWidth(16),
-                                      fontWeight: FontWeight.w400,
-                                    ),
-
+                                  CustomTextNunito(
+                                    text: "Slide to call!",
+                                    fontSize: getWidth(16),
+                                    fontWeight: FontWeight.w400,
                                   ),
                                 ],
                               ),
@@ -178,18 +162,10 @@ class _CallSupportScreenState extends State<CallSupportScreen> {
         ],
       ),
     );
-
-
-
-
   }
 
-
   Future<void> phoneCall(String phoneNumber) async {
-
-
     var url = Uri.parse("tel:${phoneNumber}");
     await launchUrl(url);
-
   }
 }

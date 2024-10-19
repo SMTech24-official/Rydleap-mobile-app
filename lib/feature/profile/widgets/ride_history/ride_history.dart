@@ -10,17 +10,8 @@ import 'package:rydleap/feature/home/home_controller.dart';
 import 'package:rydleap/feature/profile/widgets/ride_history/custom_search.dart';
 import 'package:rydleap/feature/profile/widgets/ride_history/history_container.dart';
 
-// class RideHistoryScreen extends StatefulWidget {
-//   const RideHistoryScreen({super.key});
-//
-//   @override
-//   _RideHistoryScreenState createState() => _RideHistoryScreenState();
-// }
-
 class RideHistoryScreen extends StatelessWidget {
   HomeController homeController = Get.find();
-
-  // bool _isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -99,10 +90,13 @@ class RideHistoryScreen extends StatelessWidget {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 16.0),
                           child: CustomHistoryContainer(
-                            ridingDate:'${homeController.ridingHistoryModel.value.data?[index].createdAt}',
-                                //'${dateTimePersing('${homeController.ridingHistoryModel.value.data?[index].createdAt}')}',
-                            pickupDest: '${homeController.ridingHistoryModel.value.data?[index].pickupLocation}',
-                            dropOff: '${homeController.ridingHistoryModel.value.data?[index].dropoffLocation}',
+                            ridingDate:
+                                '${homeController.ridingHistoryModel.value.data?[index].createdAt}',
+                            //'${dateTimePersing('${homeController.ridingHistoryModel.value.data?[index].createdAt}')}',
+                            pickupDest:
+                                '${homeController.ridingHistoryModel.value.data?[index].pickupLocation}',
+                            dropOff:
+                                '${homeController.ridingHistoryModel.value.data?[index].dropoffLocation}',
                           ),
                         );
                       },
@@ -121,22 +115,13 @@ class RideHistoryScreen extends StatelessWidget {
     );
   }
 
-  String dateTimePersing(String date){
-
-
-
+  String dateTimePersing(String date) {
     DateTime parseDate =
-    new DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(date);
+        new DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(date);
     var inputDate = DateTime.parse(parseDate.toString());
     var outputFormat = DateFormat('MM/dd/yyyy hh:mm a');
     var outputDate = outputFormat.format(inputDate);
 
     return outputDate;
-
-
-
   }
-
-
-
 }

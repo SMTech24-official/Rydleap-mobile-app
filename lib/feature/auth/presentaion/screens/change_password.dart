@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
 import 'package:rydleap/core/global_widgets/custom_buttomsheet/custom_bottomsheet.dart';
 import 'package:rydleap/core/global_widgets/custom_textfield.dart';
-
 import '../../../../core/global_widgets/custom_gradient_button.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
@@ -91,11 +91,14 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: getHeight(35),),
-            Text(
-              "Change Password",
-              style: Theme.of(context).textTheme.titleMedium,
+            SizedBox(
+              height: getHeight(35),
             ),
+            CustomTextNunito(
+              text: "Change Password",
+              fontSize: getWidth(20),
+            ),
+
             SizedBox(
               height: getHeight(24),
             ),
@@ -166,10 +169,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 SizedBox(
                   width: 10,
                 ),
-                Text(
-                  passwordStrengthMessage,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
+                CustomTextNunito(
+                    text: passwordStrengthMessage,
+                    fontSize: getWidth(14),
+                    fontWeight: FontWeight.w400),
               ],
             ),
             //password conditon section
@@ -226,12 +229,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       SizedBox(
                         width: 10,
                       ),
-                      Text(
-                        condition,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color:
-                                  Theme.of(context).textTheme.bodySmall?.color,
-                            ),
+                      CustomTextNunito(
+                        text: condition,
+                        fontSize: getWidth(12),
+                        color: Color(0xffD6D3D3),
+                        fontWeight: FontWeight.w400,
                       ),
                     ],
                   ),
@@ -248,14 +250,12 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       _confirmPasswordController.clear();
                       // _customBottomSheet(context);
                       customBottomSheet(
-                        context, 
-                        "Your password has been changed successfully!",
-                      
-                        AppImagese.successIcon,
+                          context,
+                          "Your password has been changed successfully!",
+                          AppImagese.successIcon,
                           "",
-                        getWidth(17),
-                        0
-                        );
+                          getWidth(17),
+                          0);
                     })
                 : CustomBlurButton(
                     text: "Continue",
@@ -274,7 +274,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     );
   }
 
- 
   @override
   void dispose() {
     _currentPasswordController.clear();

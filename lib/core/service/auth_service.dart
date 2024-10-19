@@ -6,21 +6,21 @@ import 'package:rydleap/core/share_pref/share_pref.dart';
 import 'package:rydleap/feature/auth/domain/model/login_model.dart';
 import 'package:rydleap/feature/auth/login/model/login_model.dart';
 import 'package:rydleap/feature/auth/otp/model/otp_response.dart';
-import 'package:rydleap/feature/auth/presentaion/screens/registration/model/registration_response.dart';
-import 'package:rydleap/feature/auth/presentaion/screens/registration/register_screen.dart';
+import 'package:rydleap/feature/auth/registration/model/registration_response.dart';
+
+import 'package:rydleap/feature/auth/registration/screen/register_screen.dart';
 
 class AuthService {
+  bool isLoading = false;
 
-  bool isLoading=false;
-
-
-  Future<OtpResponse?> sendOtp(String phoneNumber) async {
+  Future<OtpResponse?> sendOtp(String phoneNumber, String role) async {
     // final url = Uri.parse('https://rydleaps.vercel.app/api/v1/otp/send-otp');
     final url = Uri.parse(ApiUrl.otpUrl);
     try {
       // Adjust the key name if necessary
       final bodyData = json.encode({
-        'phoneNumber': phoneNumber, // Change key if required
+        'phoneNumber': phoneNumber,
+        'role': role,
       });
 
       print('Sending request with body: $bodyData');
@@ -56,12 +56,16 @@ class AuthService {
     }
   }
 
-  Future<OtpResponse?> verifyOtp(String phoneNumber, String otpCode) async {
+  Future<OtpResponse?> verifyOtp(
+    String phoneNumber,
+    String otpCode,
+  ) async {
     final url = Uri.parse(ApiUrl.verifyOtpUrl);
     try {
       // Construct the request body
       final bodyData = json.encode({
         'phoneNumber': phoneNumber, // Adjust key if necessary
+        // Adjust key if necessary
         'otp': otpCode, // Adjust key if necessary
       });
 
@@ -77,6 +81,7 @@ class AuthService {
       );
 
       // Log full response details
+      print("Api url-----${url}");
       print('Status code: ${response.statusCode}');
       print('Headers: ${response.headers}');
       print('Response body: ${response.body}');
@@ -103,10 +108,13 @@ class AuthService {
     final url = Uri.parse(
         ApiUrl.userRegistrationUrl); // Replace with your registration endpoint
     try {
+      // Prepare the body data
       final bodyData = json.encode(request.toJson());
 
-      print('Sending registration request with body: $bodyData');
+      // print('Sending registration request with body: $bodyData');
+      print("API URL: $url");
 
+      // Send POST request
       final response = await http.post(
         url,
         body: bodyData,
@@ -114,31 +122,39 @@ class AuthService {
           "Content-Type": "application/json",
         },
       );
+      print("body---${response.body}");
 
-      print('Status code: ${response.statusCode}');
-      print('Headers: ${response.headers}');
-      print('Response body: ${response.body}');
+      // Log response details
+      // print('Status code: ${response.statusCode}');
+      // print('Headers: ${response.headers}');
+      // print('Response body: ${response.body}');
 
+      // Check the response status code
       if (response.statusCode == 200) {
+        // Parse the response body if the registration is successful
         final jsonResponse = json.decode(response.body);
         print("Registration successful");
-
         return RegistrationResponse.fromJson(jsonResponse);
       } else {
+        // Handle non-200 status codes
         print('Error response: ${response.body}');
-        throw Exception(
-            'Failed to register user, status code: ${response.statusCode}');
+        final errorResponse = json.decode(response.body);
+        // throw Exception(
+        //   'Failed to register user: ${errorResponse['message'] ?? 'Unknown error'}, status code: ${response.statusCode}'
+        // );
       }
     } catch (e) {
-      print('Exception caught: ${e.toString()}');
+      // Log the exception and rethrow it
+      // print('Exception caught: ${e.toString()}');
       rethrow;
     }
+    return null;
   }
 
   Future<RegistrationResponse?> registerDriver(
       RegistrationRequest request) async {
-    final url = Uri.parse(
-        ApiUrl.driverRegistrationUrl); // Replace with your registration endpoint
+    final url = Uri.parse(ApiUrl
+        .driverRegistrationUrl); // Replace with your registration endpoint
     try {
       final bodyData = json.encode(request.toJson());
 
@@ -172,9 +188,8 @@ class AuthService {
     }
   }
 
-
- Future<LoginModel?> login(String email, String password) async {
-  // print('into the login fun');
+  Future<LoginModel?> login(String email, String password) async {
+    // print('into the login fun');
     try {
       // print('into try fun');
       final response = await http.post(
@@ -190,7 +205,7 @@ class AuthService {
 // print(response.body);
       if (response.statusCode == 200) {
         final Map<String, dynamic> jsonResponse = json.decode(response.body);
-      return LoginModel.fromJson(jsonResponse);
+        return LoginModel.fromJson(jsonResponse);
       } else {
         // Log the error response
         print('Login failed: ${response.statusCode} - ${response.body}');

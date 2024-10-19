@@ -48,6 +48,8 @@ class Data {
   DateTime? createdAt;
   DateTime? updatedAt;
   List<dynamic>? riderVehicleInfo;
+  List<dynamic>? riderReviewsAsRider;
+  List<dynamic>? ridesAsRider;
 
   Data({
     this.id,
@@ -65,6 +67,8 @@ class Data {
     this.createdAt,
     this.updatedAt,
     this.riderVehicleInfo,
+    this.riderReviewsAsRider,
+    this.ridesAsRider,
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
@@ -83,6 +87,8 @@ class Data {
     createdAt: DateTime.parse(json["createdAt"]),
     updatedAt: DateTime.parse(json["updatedAt"]),
     riderVehicleInfo: List<dynamic>.from(json["riderVehicleInfo"].map((x) => x)),
+    riderReviewsAsRider: List<dynamic>.from(json["riderReviewsAsRider"].map((x) => x)),
+    ridesAsRider: List<dynamic>.from(json["ridesAsRider"].map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
@@ -101,5 +107,7 @@ class Data {
     "createdAt": createdAt?.toIso8601String(),
     "updatedAt": updatedAt?.toIso8601String(),
     "riderVehicleInfo": List<dynamic>.from(riderVehicleInfo!.map((x) => x)),
+    "riderReviewsAsRider": List<dynamic>.from(riderReviewsAsRider!.map((x) => x)),
+    "ridesAsRider": List<dynamic>.from(ridesAsRider!.map((x) => x)),
   };
 }

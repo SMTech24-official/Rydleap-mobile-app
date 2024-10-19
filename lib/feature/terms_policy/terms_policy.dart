@@ -4,6 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_icons.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_inter.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
+import 'package:rydleap/core/global_widgets/custom_app_bar.dart';
 import 'package:rydleap/core/global_widgets/custom_back_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/terms_policy/dummy_data/terms_policy_model.dart';
@@ -22,17 +25,9 @@ class _TermsPolicyScreenState extends State<TermsPolicyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.appbarColor,
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: AppColors.appbarColor,
-        title: Text(
-          "Terms and Policies",
-          style: GoogleFonts.inter(
-            fontSize: getWidth(20),
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        leading: CustomBackButton(),
+      appBar: CustomAppBar(
+        title: "Terms and Policies",
+        icon: CustomBackButton(),
       ),
       body: Stack(
         children: [
@@ -63,20 +58,16 @@ class _TermsPolicyScreenState extends State<TermsPolicyScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            "Terms of Service, Privacy Policy",
-                            style: GoogleFonts.inter(
-                              fontSize: getWidth(24),
-                              fontWeight: FontWeight.w600,
-                            ),
+                          CustomTextInter(
+                            text: "Terms of Service, Privacy Policy",
+                            fontSize: getWidth(24),
+                            fontWeight: FontWeight.w600,
                           ),
                           SizedBox(height: getHeight(6)),
-                          Text(
-                            "Terms of Service, Privacy Policy",
-                            style: GoogleFonts.nunito(
-                              fontSize: getWidth(12),
-                              fontWeight: FontWeight.w400,
-                            ),
+                          CustomTextNunito(
+                            text: "Terms of Service, Privacy Policy",
+                            fontSize: getWidth(12),
+                            fontWeight: FontWeight.w400,
                           ),
                         ],
                       ),
@@ -88,7 +79,6 @@ class _TermsPolicyScreenState extends State<TermsPolicyScreen> {
                   child: Container(
                     padding: EdgeInsets.only(bottom: getHeight(200)),
                     child: ListView.builder(
-                      
                       shrinkWrap: true,
                       itemCount: termsPolicyItems.length,
                       itemBuilder: (context, index) {
@@ -97,22 +87,17 @@ class _TermsPolicyScreenState extends State<TermsPolicyScreen> {
                           padding: EdgeInsets.only(bottom: getHeight(15)),
                           child: ListTile(
                             title: Padding(
-                              padding:  EdgeInsets.only(bottom: getHeight(10)),
-                              child: Text(
-                                data.title,
-                                style: GoogleFonts.inter(
+                                padding: EdgeInsets.only(bottom: getHeight(10)),
+                                child: CustomTextInter(
+                                  text: data.title,
                                   fontSize: getWidth(17),
                                   fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                            subtitle: Text(
-                              data.subTitle,
-                              style: GoogleFonts.nunito(
-                                fontSize: getWidth(14),
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xffDED9D9),
-                              ),
+                                )),
+                            subtitle: CustomTextNunito(
+                              text: data.subTitle,
+                              fontSize: getWidth(14),
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xffDED9D9),
                             ),
                           ),
                         );
@@ -168,7 +153,9 @@ class _TermsPolicyScreenState extends State<TermsPolicyScreen> {
                                 height: getHeight(22),
                                 width: getWidth(22),
                                 child: Image.asset(
-                                  isSelected ? AppIcons.checkFill : AppIcons.checkWhite,
+                                  isSelected
+                                      ? AppIcons.checkFill
+                                      : AppIcons.checkWhite,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -222,14 +209,11 @@ class _TermsPolicyScreenState extends State<TermsPolicyScreen> {
                               ),
                             ),
                             child: Center(
-                              child: Text(
-                                "Decline",
-                                style: GoogleFonts.nunito(
+                              child: CustomTextNunito(
+                                  text: "Decline",
                                   fontSize: getWidth(13),
                                   fontWeight: FontWeight.w400,
-                                  color: Color(0xffB7BBBD),
-                                ),
-                              ),
+                                  color: Color(0xffB7BBBD)),
                             ),
                           ),
                         ),
@@ -255,15 +239,12 @@ class _TermsPolicyScreenState extends State<TermsPolicyScreen> {
                               ),
                             ),
                             child: Center(
-                              child: Text(
-                                "Accept",
-                                style: GoogleFonts.nunito(
-                                  fontSize: getWidth(13),
-                                  fontWeight: FontWeight.w400,
-                                  color: Color(0xff001B26),
-                                ),
-                              ),
-                            ),
+                                child: CustomTextNunito(
+                              text: "Accept",
+                              fontSize: getWidth(13),
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xff001B26),
+                            )),
                           ),
                         ),
                       ),

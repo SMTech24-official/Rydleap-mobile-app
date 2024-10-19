@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -37,12 +30,8 @@ class HomeController extends GetxController{
 
 
   Future<void> getUserDetail(String accessToken) async {
-
-
-
     Map<String, String> headers = {
       "Authorization": "$accessToken",
-
 
       //"Bearer ${SharePref.getUserAccessToken()}",
     };

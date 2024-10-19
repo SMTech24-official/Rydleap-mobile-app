@@ -9,7 +9,7 @@ class AppColors {
   static const Color darkBG = Colors.black;
   static const Color primaryPurple = Color(0xFF6334DC);
 
-  static const Color textWhite = Color.fromARGB(255, 255, 255, 255);
+  // static const Color textWhite = Color.fromARGB(255, 255, 255, 255);
   static const Color primaryWhiteSmoke = Color(0xFFF5F5F5);
   static const Color mediumYellow = Color(0xffFDB846);
   static const Color darkYellow = Color(0xffE99E22);
@@ -64,4 +64,7 @@ class AppColors {
   static const Color appbarColor = Color(0xff001B26);
   static const Color whiteGrayColor = Color(0xffF0EFEF);
   static const Color redColor = Color(0xffC61515);
+  static const Color diveiderColor = Color(0xffF9F9F9);
+  static const Color textWhite = Color(0xffEEEEEE);
+  static const Color hintext = Color(0xffC3BBBB);
 }

@@ -6,9 +6,12 @@ import '../app_sizes.dart';
 import '../utility/app_colors.dart';
 
 class CustomErrorBottomSheet extends StatelessWidget {
-final VoidCallback onCancelBottomTap;
-final VoidCallback onRetryBottomTap;
-  const CustomErrorBottomSheet({super.key, required this.onCancelBottomTap, required this.onRetryBottomTap});
+  final VoidCallback onCancelBottomTap;
+  final VoidCallback onRetryBottomTap;
+  const CustomErrorBottomSheet(
+      {super.key,
+      required this.onCancelBottomTap,
+      required this.onRetryBottomTap});
 
   @override
   Widget build(BuildContext context) {

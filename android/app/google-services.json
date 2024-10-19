@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "120600237441",
-    "project_id": "ryd-leap",
-    "storage_bucket": "ryd-leap.appspot.com"
+    "project_number": "171367264608",
+    "project_id": "ryd-leap-peach",
+    "storage_bucket": "ryd-leap-peach.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:120600237441:android:2f082e1c9f8fd90f8d4480",
+        "mobilesdk_app_id": "1:171367264608:android:6d9cf2819033428c4a6e05",
         "android_client_info": {
           "package_name": "com.example.rydleap"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCTSHzBwxBPVB2W44Eg17L-Tstgz1Uv6Lg"
+          "current_key": "AIzaSyD2y4Jgw4ZgRmydkiIm0N5BBVS7W8hHBYk"
         }
       ],
       "services": {

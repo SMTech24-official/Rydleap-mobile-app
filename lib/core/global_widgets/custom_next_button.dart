@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_inter.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 
 class CustomNextButton extends StatelessWidget {
   final String text;
@@ -41,14 +43,11 @@ class CustomNextButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                text,
-                style: GoogleFonts.inter(
-                  fontSize: getWidth(17),
-                  fontWeight: FontWeight.w400,
-                ),
+              CustomTextInter(
+                text: text,
+                fontSize: getWidth(17),
+                fontWeight: FontWeight.w400,
               ),
-              
               if (icon != null) ...[
                 SizedBox(),
                 SizedBox(

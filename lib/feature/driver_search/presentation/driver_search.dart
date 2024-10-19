@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -54,24 +50,20 @@ class DriverSearch extends StatelessWidget {
       body: Stack(
         children: [
           MapWidget(height: screenHeight(), width: double.infinity),
-
-
           Positioned(
               top: 350,
               child: Container(
-            height: 500,
-            width: screenWidth(),
-            color: AppColors.navy_blue,
-          )),
-
-
+                height: 500,
+                width: screenWidth(),
+                color: AppColors.navy_blue,
+              )),
           Positioned(
             top: 350,
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 11),
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               height: getHeight(250),
-              width: screenWidth()-32,
+              width: screenWidth() - 32,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(width: 1, color: Colors.white),
@@ -79,7 +71,8 @@ class DriverSearch extends StatelessWidget {
                   colors: [
                     const Color(0xFF001B26),
                     const Color(0xFF00638C),
-                  ],),
+                  ],
+                ),
               ),
               child: Column(
                 children: [
@@ -186,8 +179,6 @@ class DriverSearch extends StatelessWidget {
               ),
             ),
           ),
-
-
           Positioned(
             top: 20,
             child: Align(
@@ -211,8 +202,6 @@ class DriverSearch extends StatelessWidget {
               ),
             ),
           ),
-
-
           Positioned(
               top: 21,
               right: 18,
@@ -221,17 +210,12 @@ class DriverSearch extends StatelessWidget {
                 width: 80,
                 color: Colors.white,
                 child: IconButton(
-                    onPressed: () {
-
-                    },
+                    onPressed: () {},
                     icon: Icon(
                       Icons.search,
                       color: Colors.black,
                     )),
               ))
-
-
-
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
@@ -259,7 +243,7 @@ class DriverSearch extends StatelessWidget {
                     // This bool value toggles the switch.
                     value: true, //light.value,
                     thumbColor:
-                    const MaterialStatePropertyAll<Color>(Colors.black),
+                        const WidgetStatePropertyAll<Color>(Colors.black),
                     trackColor: WidgetStatePropertyAll(Colors.white),
                     activeColor: Colors.white,
                     onChanged: (bool value) {
