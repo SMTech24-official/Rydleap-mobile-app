@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
+import 'package:rydleap/core/global_widgets/custom_app_bar.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/profile/widgets/notifcation/widget/all.dart';
@@ -17,7 +19,7 @@ class NotificationScreen extends StatefulWidget {
 
 class _NotificationScreenState extends State<NotificationScreen> {
   int tabIndex = 0;
- PageController _pageController = PageController();
+  PageController _pageController = PageController();
 
   @override
   void initState() {
@@ -35,15 +37,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.textBlack,
-      appBar: AppBar(
-        backgroundColor: AppColors.appbarColor,
-        centerTitle: true,
-        title: Text(
-          "Notifications",
-          style: GoogleFonts.inter(
-              fontSize: getWidth(20), fontWeight: FontWeight.w600),
-        ),
-        leading: CustomCloseButton()
+      appBar: CustomAppBar(
+        title: "Notifications",
       ),
       body: Stack(
         children: [
@@ -117,7 +112,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                               borderRadius: BorderRadius.circular(41),
                             ),
                             child: Center(
-                              child: Text(notificationTab[index]),
+                              child: CustomTextNunito(
+                                  text: notificationTab[index]),
                             ),
                           ),
                         ),
@@ -126,7 +122,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   ),
                 ),
                 SizedBox(height: getHeight(20)),
-                
+
                 Expanded(
                   child: PageView.builder(
                     controller: _pageController,
@@ -138,7 +134,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                     },
                     itemBuilder: (context, index) {
                       return Container(
-                       child: getTabColor(index),
+                        child: getTabColor(index),
                       );
                     },
                   ),
@@ -154,7 +150,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Widget getTabColor(int index) {
     switch (index) {
       case 0: // All
-        return NotificationAllWidget() ;
+        return NotificationAllWidget();
       case 1: // Unread
         return UnreadWidget();
       case 2: // Today

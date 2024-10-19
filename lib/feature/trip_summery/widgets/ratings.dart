@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_inter.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
+import 'package:rydleap/core/global_widgets/custom_app_bar.dart';
 import 'package:rydleap/core/global_widgets/custom_background.dart';
 import 'package:rydleap/core/global_widgets/custom_buttomsheet/custom_bottomsheet.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
@@ -19,15 +22,8 @@ class _RatingsScreenState extends State<RatingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.appbarColor,
-        centerTitle: true,
-        title: Text(
-          "Rate your Ride",
-          style: GoogleFonts.inter(
-              fontSize: getWidth(20), fontWeight: FontWeight.w600),
-        ),
-        leading: CustomCloseButton(),
+      appBar: CustomAppBar(
+        title: "Rate your Ride",
       ),
       body: Custombackground(
         widget: SizedBox(),
@@ -52,11 +48,10 @@ class _RatingsScreenState extends State<RatingsScreen> {
               Column(
                 children: [
                   Image.asset(AppImagese.appLogo),
-                  Text(
-                    "USDT 08",
-                    style: GoogleFonts.nunito(
-                        fontWeight: FontWeight.w700, fontSize: getWidth(23)),
-                  )
+                  CustomTextNunito(
+                      text: "USDT 08",
+                      fontWeight: FontWeight.w700,
+                      fontSize: getWidth(23)),
                 ],
               ),
               SizedBox(
@@ -81,18 +76,15 @@ class _RatingsScreenState extends State<RatingsScreen> {
                       height: getHeight(24),
                     ),
                     Image.asset(AppImagese.profileImage),
-                    Text(
-                      "Rate your Driver",
-                      style: GoogleFonts.nunito(
-                          fontWeight: FontWeight.w500, fontSize: getWidth(18)),
-                    ),
-                    Text(
-                      "Rate your Driver",
-                      style: GoogleFonts.nunito(
-                          color: Color(0xffD0CACA),
-                          fontWeight: FontWeight.w400,
-                          fontSize: getWidth(14)),
-                    ),
+                    CustomTextNunito(
+                        text: "Rate your Driver",
+                        fontWeight: FontWeight.w500,
+                        fontSize: getWidth(18)),
+                    CustomTextNunito(
+                        text: "Rate your Driver",
+                        color: Color(0xffD0CACA),
+                        fontWeight: FontWeight.w400,
+                        fontSize: getWidth(14)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(5, (index) {
@@ -116,16 +108,10 @@ class _RatingsScreenState extends State<RatingsScreen> {
                       height: getHeight(20),
                     ),
                     InkWell(
-                      onTap: (){
+                      onTap: () {
                         // _customBottomSheet(context);
-                        customBottomSheet(context,
-                        "Thank you!",
-
-                        AppImagese.like,
-                        "",
-                        getWidth(35),
-                        0
-                        );
+                        customBottomSheet(context, "Thank you!",
+                            AppImagese.like, "", getWidth(35), 0);
                       },
                       child: Container(
                         height: getHeight(40),
@@ -134,16 +120,15 @@ class _RatingsScreenState extends State<RatingsScreen> {
                             borderRadius: BorderRadius.circular(88),
                             color: Color(0xff3AD896)),
                         child: Center(
-                          child: Text(
-                            "Done",
-                            style: GoogleFonts.inter(
+                            child: CustomTextInter(
+                                text: "Done",
                                 fontSize: getWidth(14),
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ),
+                                fontWeight: FontWeight.w400)),
                       ),
                     ),
-                     SizedBox(height: getHeight(20),)
+                    SizedBox(
+                      height: getHeight(20),
+                    )
                   ],
                 ),
               ),
@@ -153,5 +138,4 @@ class _RatingsScreenState extends State<RatingsScreen> {
       ),
     );
   }
- 
 }

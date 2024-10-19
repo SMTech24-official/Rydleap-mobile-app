@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 import 'package:rydleap/feature/profile/widgets/notifcation/dummy_data/notification_model.dart';
 
 class NotificationAllWidget extends StatelessWidget {
@@ -14,17 +15,14 @@ class NotificationAllWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Padding(
-              padding: EdgeInsets.only(left: getWidth(20)),
-              child: Text(
-                "New",
-                style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: getWidth(18),
-                ),
-              ),
-            ),
-            SizedBox(height: getHeight(12)),
+          Padding(
+            padding: EdgeInsets.only(left: getWidth(20)),
+            child: CustomTextNunito(
+                text: "New",
+                fontWeight: FontWeight.w500,
+                fontSize: getWidth(18)),
+          ),
+          SizedBox(height: getHeight(12)),
           ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
@@ -56,7 +54,9 @@ class NotificationAllWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(width: getWidth(12)), // Spacing between image and text
+                      SizedBox(
+                          width:
+                              getWidth(12)), // Spacing between image and text
                       // Text and Time
                       Expanded(
                         child: Container(
@@ -64,28 +64,22 @@ class NotificationAllWidget extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               // Notification Text
-                              Text(
-                                data.text,
-                                style: TextStyle(
-                                  fontSize: getWidth(13),
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.white,
-                                ),
+                              CustomTextNunito(
+                                text: data.text,
+                                fontSize: getWidth(13),
+                                fontWeight: FontWeight.w400,
                               ),
+
                               SizedBox(height: getHeight(5)),
                               // Time Text
                               Padding(
                                 padding: EdgeInsets.only(right: getWidth(15)),
                                 child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: Text(
-                                    "1 min",
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: getWidth(13),
-                                    ),
-                                  ),
-                                ),
+                                    alignment: Alignment.centerRight,
+                                    child: CustomTextNunito(
+                                        text: "1 min",
+                                        color: Colors.grey,
+                                        fontSize: getWidth(13))),
                               ),
                             ],
                           ),

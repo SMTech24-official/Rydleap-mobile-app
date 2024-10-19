@@ -3,6 +3,7 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_inter.dart';
 import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 import 'package:rydleap/core/global_widgets/custom_buttomsheet/button_subtitle.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
@@ -59,10 +60,10 @@ class _CashoutScreenState extends State<CashoutScreen> {
                           text: "We owe you",
                           fontSize: getWidth(16),
                           fontWeight: FontWeight.w400),
-                      Text("\$ 2000.34",
-                          style: GoogleFonts.inter(
-                              fontSize: getWidth(34),
-                              fontWeight: FontWeight.w500)),
+                      CustomTextInter(
+                          text: "\$ 2000.34",
+                          fontSize: getWidth(34),
+                          fontWeight: FontWeight.w500),
                       SizedBox(
                         height: getHeight(65),
                       ),
@@ -89,15 +90,15 @@ class _CashoutScreenState extends State<CashoutScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text("***** 1234",
-                                        style: GoogleFonts.nunito(
-                                            fontSize: getWidth(15),
-                                            fontWeight: FontWeight.w400)),
-                                    Text("Bank of America",
-                                        style: GoogleFonts.nunito(
-                                            color: Color(0xffE8E2E2),
-                                            fontSize: getWidth(10),
-                                            fontWeight: FontWeight.w400)),
+                                    CustomTextNunito(
+                                        text: "***** 1234",
+                                        fontSize: getWidth(15),
+                                        fontWeight: FontWeight.w400),
+                                    CustomTextNunito(
+                                        text: "Bank of America",
+                                        color: Color(0xffE8E2E2),
+                                        fontSize: getWidth(10),
+                                        fontWeight: FontWeight.w400)
                                   ],
                                 ),
                               ],
