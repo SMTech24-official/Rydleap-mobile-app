@@ -16,7 +16,7 @@ class HomeController extends GetxController{
 
 
 
-  Set<Marker> markers = <Marker>{};
+  RxSet<Marker> markers = <Marker>{}.obs;
 
 
 
@@ -224,7 +224,7 @@ class HomeController extends GetxController{
 
 
     Map<String, String> headers = {
-      "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWI4ZGFkOGY5MzdjYWU1ZWM1MjEzNSIsImVtYWlsIjoicmlkZXJAZ21haWwuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3Mjc5NDkxMDEsImV4cCI6MTcyODAzNTUwMX0.NHn-e77UT6H_2vNjdnt4z9qJ8-B2xITl0wwkvvBasX0",
+      "Authorization": accessToken,
 
 
       //"Bearer ${SharePref.getUserAccessToken()}",
@@ -261,6 +261,11 @@ class HomeController extends GetxController{
   Future<void> getAllRiders() async {
 
 
+    BitmapDescriptor customMerkerIcon=await BitmapDescriptor.asset(
+      ImageConfiguration(size: Size(40, 40)), // Adjust size as needed
+      'assets/images/car_map.png', // Path to the image in assets
+    );
+
 
     Map<String, String> headers = {
       "Authorization": accessToken,
@@ -284,7 +289,18 @@ class HomeController extends GetxController{
 
       for(int i=0;i<allRidersModel.value.data!.data!.length;i++){
         
-        if(allRidersModel.value.data!.data![i].locations!=null){
+        if(allRidersModel.value.data!.data![i].locations != null){
+
+
+          markers.add(   Marker(
+            markerId: MarkerId("Source$i"),
+            position: LatLng(allRidersModel.value.data!.data![i].locations!.locationLat!, allRidersModel.value.data!.data![i].locations!.locationLng!),
+            icon: customMerkerIcon, //?? BitmapDescriptor.defaultMarker,//BitmapDescriptor.asset(ImageConfiguration(size: Size(24, 24)), 'assets/custom_marker.png',),
+            // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+          ),);
+
+
+
           // markers.add()
         }
         
