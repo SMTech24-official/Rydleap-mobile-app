@@ -3,6 +3,7 @@ import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_imagese.dart';
 import 'package:rydleap/core/app_sizes.dart';
+import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 import 'package:rydleap/core/global_widgets/custom_buttomsheet/button_subtitle.dart';
 import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/global_widgets/custom_gradient_button.dart';
@@ -54,10 +55,10 @@ class _CashoutScreenState extends State<CashoutScreen> {
                       SizedBox(
                         height: getHeight(30),
                       ),
-                      Text("We owe you",
-                          style: GoogleFonts.nunito(
-                              fontSize: getWidth(16),
-                              fontWeight: FontWeight.w400)),
+                      CustomTextNunito(
+                          text: "We owe you",
+                          fontSize: getWidth(16),
+                          fontWeight: FontWeight.w400),
                       Text("\$ 2000.34",
                           style: GoogleFonts.inter(
                               fontSize: getWidth(34),
@@ -102,24 +103,22 @@ class _CashoutScreenState extends State<CashoutScreen> {
                               ],
                             ),
                             ClipOval(
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            splashColor: Colors.white.withOpacity(0.2),
-                             onTap: () {
-                          
-                        },
-                            child: SizedBox(
-                              height: getWidth(24),
-                              width: getWidth(24),
-                              child: Icon(
-                                Icons.arrow_forward_ios,
-                                size: 16,
+                              child: Material(
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  splashColor: Colors.white.withOpacity(0.2),
+                                  onTap: () {},
+                                  child: SizedBox(
+                                    height: getWidth(24),
+                                    width: getWidth(24),
+                                    child: Icon(
+                                      Icons.arrow_forward_ios,
+                                      size: 16,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
                           ],
                         ),
                       )
@@ -166,10 +165,16 @@ class _CashoutScreenState extends State<CashoutScreen> {
                 Spacer(),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: getWidth(20)),
-                  child: CustomGradientButton(text: "Cash Out", onTap: () {
-                    // _customBottomSheet(context);
-                    buttonSubTitleBottomSheet(context, "\$1999.34 cashed out Successfully!", AppImagese.successIcon, "Your money should be available after 2 - 3 hours");
-                  }),
+                  child: CustomGradientButton(
+                      text: "Cash Out",
+                      onTap: () {
+                        // _customBottomSheet(context);
+                        buttonSubTitleBottomSheet(
+                            context,
+                            "\$1999.34 cashed out Successfully!",
+                            AppImagese.successIcon,
+                            "Your money should be available after 2 - 3 hours");
+                      }),
                 ),
                 SizedBox(
                   height: getHeight(20),
@@ -179,5 +184,4 @@ class _CashoutScreenState extends State<CashoutScreen> {
           ],
         ));
   }
- 
 }
