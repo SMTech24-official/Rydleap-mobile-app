@@ -22,20 +22,16 @@ class FLoginController extends GetxController {
   Future<void> login(String identifier, String password) async {
     isLoading.value = true;
 
-    // Prepare the data to print before login
     Map<String, dynamic> loginData = {
       "identifier": identifier,
-      "password":
-          password, // Be careful about printing sensitive data like passwords in production
+      "password": password,
     };
 
-    // Print the login data as JSON before proceeding
     print('Login Data (JSON Format): ${loginData.toString()}');
 
     UserCredential? userCredential;
 
     try {
-      // Check if identifier is email or phone number
       if (_isEmail(identifier)) {
         print('Logging in with email...');
         userCredential = await _auth.signInWithEmailAndPassword(
@@ -57,9 +53,7 @@ class FLoginController extends GetxController {
             Get.snackbar("Code Sent", "Verification code sent to $identifier",
                 backgroundColor: Colors.orange, colorText: Colors.white);
           },
-          codeAutoRetrievalTimeout: (String verificationId) {
-            // Auto-retrieval timeout logic
-          },
+          codeAutoRetrievalTimeout: (String verificationId) {},
         );
       } else {
         errorToast(message: "Please enter a valid email or phone number");
@@ -115,37 +109,32 @@ class FLoginController extends GetxController {
       await saveData(email, fcmToken!, userData);
       successToast(message: "Logged in successfully");
     } catch (e) {
-      Get.snackbar("Error", e.toString(),
-          backgroundColor: Colors.red, colorText: Colors.white);
+      errorToast(message: "Something wrong please try again");
     } finally {
       isLoading.value = false;
     }
   }
 
-  // Method to save user data and post to API with email and fcm_token as parameters
   Future<void> saveData(
       String email, String fcmToken, Map<String, dynamic> userData) async {
     try {
       print("///////////$fcmToken");
-      // Remove email and fcm_token from userData if they exist in the map
       Map<String, dynamic> modifiedUserData = Map.from(userData);
       modifiedUserData.remove('email');
       modifiedUserData.remove('fcm_token');
 
-      // Construct the request body to include email and fcm_token as parameters
       Map<String, dynamic> requestBody = {
         "fullName": userData["full_name"],
-        "phone": userData["phone"],
-        "role": userData["role"],
+        "phoneNumber": userData["phone"],
       };
 
-      // Perform the PATCH request
       final response = await http.patch(
         Uri.parse(
             "https://rydleap-backend-eight.vercel.app/api/v1/auth/update-fcp/${email}/${fcmToken}"),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(requestBody),
       );
+      print("req ${requestBody}");
       print(
           "//////////https://rydleap-backend-eight.vercel.app/api/v1/auth/update-fcp/${email}/${fcmToken}");
       print(' save data: ${response.body}');
@@ -161,7 +150,8 @@ class FLoginController extends GetxController {
       }
     } catch (e) {
       print('Error saving data: $e');
-      errorToast(message: "Error saving data: $e");
+      errorToast(message: "Something wrong please try again");
+      // errorToast(message: "Error saving data: $e");
     }
   }
 
@@ -183,10 +173,8 @@ class FLoginController extends GetxController {
   void onInit() {
     super.onInit();
 
-    // Initialize local notifications
     _initializeNotifications();
 
-    // Request notification permissions (for iOS)
     messaging.requestPermission(
       alert: true,
       badge: true,
@@ -195,28 +183,24 @@ class FLoginController extends GetxController {
       criticalAlert: true,
     );
 
-    // Handle foreground messages
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print('Received a foreground message: ${message.notification?.title}');
       _showNotification(
         message.notification?.title,
         message.notification?.body,
-        message.data, // pass additional data for click handling
+        message.data,
       );
     });
 
-    // Handle background and terminated message taps
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       print('Notification clicked! Opened app from background or terminated.');
       _navigateToDetails(message);
     });
 
-    // Check for messages when app is launched from a terminated state
     _checkForInitialMessage();
   }
 
   Future<void> _checkForInitialMessage() async {
-    // Check if the app was opened via a notification when the app was terminated
     RemoteMessage? initialMessage =
         await FirebaseMessaging.instance.getInitialMessage();
     if (initialMessage != null) {
@@ -228,30 +212,24 @@ class FLoginController extends GetxController {
     Get.to(() => NotificationScreen());
   }
 
-  // Initialize and create notification channel
   Future<void> _initializeNotifications() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
 
     const InitializationSettings initializationSettings =
         InitializationSettings(android: initializationSettingsAndroid);
-
-    // Define how to handle notification responses (taps)
     await flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
       onDidReceiveNotificationResponse: (NotificationResponse response) async {
         if (response.payload != null) {
-          // Use the payload to navigate to NotificationDetailsPage when the notification is tapped
-
           Get.to(() => NotificationScreen());
         }
       },
     );
 
-    // Create a notification channel (only for Android 8.0 or higher)
     const AndroidNotificationChannel channel = AndroidNotificationChannel(
-      'high_importance_channel', // id for the channel
-      'High Importance Notifications', // name of the channel
+      'high_importance_channel',
+      'High Importance Notifications',
       description: 'This channel is used for important notifications.',
       importance: Importance.high,
     );
@@ -262,13 +240,12 @@ class FLoginController extends GetxController {
         ?.createNotificationChannel(channel);
   }
 
-  // Function to show a notification using flutter_local_notifications
   Future<void> _showNotification(
       String? title, String? body, Map<String, dynamic> data) async {
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
-      'high_importance_channel', // id for the channel
-      'High Importance Notifications', // name of the channel
+      'high_importance_channel',
+      'High Importance Notifications',
       importance: Importance.max,
       priority: Priority.high,
     );
@@ -277,11 +254,11 @@ class FLoginController extends GetxController {
         NotificationDetails(android: androidPlatformChannelSpecifics);
 
     await flutterLocalNotificationsPlugin.show(
-      0, // Notification ID
-      title, // Notification title
-      body, // Notification body
+      0,
+      title,
+      body,
       platformChannelSpecifics,
-      payload: body, // Add the body as payload for click actions
+      payload: body,
     );
   }
 }
