@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:rydleap/core/app_sizes.dart';
-import 'package:rydleap/core/global_widgets/app_texts/custom_text_inter.dart';
 import 'package:rydleap/core/global_widgets/app_texts/custom_text_nunito.dart';
 import 'package:rydleap/core/global_widgets/custom_app_bar.dart';
 import 'package:rydleap/core/global_widgets/custom_blur_button.dart';
-import 'package:rydleap/core/global_widgets/custom_close_button.dart';
 import 'package:rydleap/core/utility/app_colors.dart';
 import 'package:rydleap/feature/profile/components/custom_profile_items_section.dart';
 import 'package:rydleap/feature/profile/components/custom_profile_section.dart';

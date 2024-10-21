@@ -2,15 +2,17 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:rydleap/feature/home/model/all_riders_model.dart';
+import 'package:rydleap/core/share_pref/share_pref.dart';
 import 'package:rydleap/feature/home/model/package_model.dart';
 import 'package:rydleap/feature/home/model/promotion_model.dart';
 import 'package:rydleap/feature/home/model/riding_history_model.dart';
-
+// import 'package:rydleap/feature/auth/domain/model/user_model.dart';
 
 import 'model/user_model.dart';
 import 'package:http/http.dart' as http;
+
+
+
 
 class HomeController extends GetxController{
 
@@ -48,15 +50,13 @@ class HomeController extends GetxController{
 
     // log('log me', name: response.body);
 
-     debugPrint("+++++++++++status code....."+response.statusCode.toString());
-
+    debugPrint("+++++++++++status code....." + response.statusCode.toString());
 
     if (response.statusCode == 201) {
+      userDetail.value = userModelFromJson(response.body);
 
-      userDetail.value= userModelFromJson(response.body);
-
-
-      debugPrint("+++++++++++++++++++++++++++User Data++++++++++++++++++++++"+response.body);
+      debugPrint("+++++++++++++++++++++++++++User Data++++++++++++++++++++++" +
+          response.body);
       //return userModelFromJson(response.body);
     } else if (response.statusCode == 400) {
       throw const HttpException('getCustomerAddressData Error');
@@ -64,80 +64,27 @@ class HomeController extends GetxController{
       throw const HttpException('getCustomerAddressData Error');
     }
   }
-
-
-
-  Future<void> getUser() async {
-
-
-
-
-
-    final url = Uri.parse('https://rydleap-backend-eight.vercel.app/api/v1/users/67075b4606381f338df574a6');
-    var response = await http.get(
-      url,
-    );
-
-    // log('log me', name: response.body);
-
-    debugPrint("+++++++++++status code....."+response.statusCode.toString());
-
-
-    if (response.statusCode == 200) {
-
-      userDetail.value= userModelFromJson(response.body);
-
-
-      debugPrint("+++++++++++++++++++++++++++User Data++++++++++++++++++++++"+response.body);
-      //return userModelFromJson(response.body);
-    } else if (response.statusCode == 400) {
-      throw const HttpException('getCustomerAddressData Error');
-    } else {
-      throw const HttpException('getCustomerAddressData Error');
-    }
-  }
-
-
-
-
-
-
-
-
-
 
   Future<void> getPromo() async {
-
     print('into promo');
-      debugPrint("++++++++++++++++++Start++++++++++++++++++++++");
+    debugPrint("++++++++++++++++++Start++++++++++++++++++++++");
 
-    Map<String, String> headers = {
-      "Authorization": "$accessToken",
-      "Content-Type": "application/json",
-      //"Bearer ${SharePref.getUserAccessToken()}",
-    };
-
-
-    final url = Uri.parse('https://rydleap-backend-eight.vercel.app/api/v1/promotions');
+    final url = Uri.parse('https://rydleaps.vercel.app/api/v1/promotions');
     var response = await http.get(
       url,
-      headers: headers
     );
 
     // log('log me', name: response.body);
 
-    debugPrint("+++++++++++status code....."+response.statusCode.toString());
+    // debugPrint("+++++++++++status code....."+response.statusCode.toString());
 
-
-    debugPrint("+++++++++++++++++++++++++++Promo Data++++++++++++++++++++++"+response.body);
-
+    // debugPrint("+++++++++++++++++++++++++++Promo Data++++++++++++++++++++++"+response.body);
 
     if (response.statusCode == 200) {
+      promotionModel.value = promotionModelFromJson(response.body);
 
-      promotionModel.value= promotionModelFromJson(response.body);
-
-
-      debugPrint("+++++++++++++++++++++++++++ OK Data++++++++++++++++++++++"+response.body);
+      debugPrint("+++++++++++++++++++++++++++ OK Data++++++++++++++++++++++" +
+          response.body);
       //return userModelFromJson(response.body);
     } else if (response.statusCode == 400) {
       throw const HttpException('getCustomerAddressData Error');
@@ -146,33 +93,28 @@ class HomeController extends GetxController{
     }
   }
 
-
   Future<void> getPackage() async {
-
     print('into Packages');
     debugPrint("++++++++++++++++++Start++++++++++++++++++++++");
 
-
-    final url = Uri.parse('https://rydleap-backend-eight.vercel.app/api/v1/package');
+    final url =
+        Uri.parse('https://rydleap-backend-eight.vercel.app/api/v1/package');
     var response = await http.get(
       url,
     );
 
     // log('log me', name: response.body);
 
-    debugPrint("+++++++++++status code....."+response.statusCode.toString());
+    debugPrint("+++++++++++status code....." + response.statusCode.toString());
 
-
-    debugPrint("+++++++++++++++++++++++++++Package Data++++++++++++++++++++++"+response.body);
-
+    debugPrint("+++++++++++++++++++++++++++Package Data++++++++++++++++++++++" +
+        response.body);
 
     if (response.statusCode == 200) {
+      packageModel.value = packageModelFromJson(response.body);
 
-      packageModel.value= packageModelFromJson(response.body);
-
-
-
-      debugPrint("+++++++++++++++++++++++++++ OK Data++++++++++++++++++++++"+response.body);
+      debugPrint("+++++++++++++++++++++++++++ OK Data++++++++++++++++++++++" +
+          response.body);
       //return userModelFromJson(response.body);
     } else if (response.statusCode == 400) {
       throw const HttpException('getCustomerAddressData Error');
@@ -180,8 +122,6 @@ class HomeController extends GetxController{
       throw const HttpException('getCustomerAddressData Error');
     }
   }
-
-
 
   // Future<void> getRidingHistory() async {
   //
@@ -216,21 +156,18 @@ class HomeController extends GetxController{
   //   }
   // }
 
-
-
-
   Future<void> getRidingHistory() async {
-
-
-
     Map<String, String> headers = {
+
       "Authorization": accessToken,
+
 
 
       //"Bearer ${SharePref.getUserAccessToken()}",
     };
 
-    final url = Uri.parse('https://rydleap-backend-eight.vercel.app/api/v1/ride-history');
+    final url = Uri.parse(
+        'https://rydleap-backend-eight.vercel.app/api/v1/ride-history');
     var response = await http.get(
       url,
       headers: headers,
@@ -238,15 +175,15 @@ class HomeController extends GetxController{
 
     // log('log me', name: response.body);
 
-    debugPrint("+++++++++++Riding history code....."+response.statusCode.toString());
-
+    debugPrint(
+        "+++++++++++Riding history code....." + response.statusCode.toString());
 
     if (response.statusCode == 200) {
+      ridingHistoryModel.value = ridingHistoryModelFromJson(response.body);
 
-      ridingHistoryModel.value= ridingHistoryModelFromJson(response.body);
-
-
-      debugPrint("+++++++++++++++++++++++++++Riding History Data++++++++++++++++++++++"+response.body);
+      debugPrint(
+          "+++++++++++++++++++++++++++Riding History Data++++++++++++++++++++++" +
+              response.body);
       //return userModelFromJson(response.body);
     } else if (response.statusCode == 400) {
       throw const HttpException('getCustomerAddressData Error');
@@ -254,6 +191,7 @@ class HomeController extends GetxController{
       throw const HttpException('getCustomerAddressData Error');
     }
   }
+
 
 
 
@@ -324,6 +262,7 @@ class HomeController extends GetxController{
 
 
 
+
   @override
   void onInit() {
     super.onInit();
@@ -334,23 +273,11 @@ class HomeController extends GetxController{
     getPromo();
     getRidingHistory();
     getPackage();
-    getUser();
-    getAllRiders();
-
-
-
-
-
-
   }
 
   @override
-  void onClose() {
-
-  }
+  void onClose() {}
 
   @override
-  void onReady() {
-
-  }
+  void onReady() {}
 }
