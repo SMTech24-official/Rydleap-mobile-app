@@ -86,7 +86,7 @@ class FLoginController extends GetxController {
             .update({'fcm_token': fcmToken});
         print('FCM Token saved: $fcmToken');
       }
-
+      print("fcm $fcmToken");
       Map<String, dynamic> userData = {
         "full_name": userDoc.get('full_name'),
         "email": userCredential!.user!.email,
@@ -109,6 +109,7 @@ class FLoginController extends GetxController {
       await saveData(email, fcmToken!, userData);
       successToast(message: "Logged in successfully");
     } catch (e) {
+      print("------------------$e");
       errorToast(message: "Something wrong please try again");
     } finally {
       isLoading.value = false;
@@ -125,7 +126,7 @@ class FLoginController extends GetxController {
 
       Map<String, dynamic> requestBody = {
         "fullName": userData["full_name"],
-        "phoneNumber": userData["phone"],
+        // "phoneNumber": userData["phone"],
       };
 
       final response = await http.patch(
