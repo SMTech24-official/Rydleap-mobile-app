@@ -16,6 +16,7 @@ import 'package:rydleap/feature/profile/screen/f_profile_screen.dart';
 
 import '../../../profile/screen/profile_screen.dart';
 import '../../../request_a_ride/presentation/request_a_ride.dart';
+import '../../home_controller.dart';
 import '../../map_controller.dart';
 
 // class Home extends StatefulWidget {
@@ -55,6 +56,7 @@ class Home extends StatelessWidget {
 
 
   MapController mapController = Get.find();
+  HomeController homeController = Get.find();
 
   double poslat = 0.00;
   double poslong = 0.00;
@@ -232,6 +234,12 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     _setCustomMarkerIcon();
 
+    homeController.markers.add( Marker(
+          markerId: MarkerId("Source"),
+          position: mapController.currentpos.value,
+        ),);
+
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff001B26),
@@ -294,7 +302,9 @@ class Home extends StatelessWidget {
 
                 //polylines: _polyline,
 
-                markers: {
+                markers: //homeController.markers,
+
+                {
 
 
 
@@ -334,6 +344,9 @@ class Home extends StatelessWidget {
 
 
                 },
+
+
+
                 mapType: MapType.normal,
                 myLocationEnabled: true,
                 compassEnabled: true,
