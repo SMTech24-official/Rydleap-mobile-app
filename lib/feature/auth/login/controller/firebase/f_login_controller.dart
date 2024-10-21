@@ -5,11 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rydleap/core/global_widgets/custom_snackbar.dart';
 import 'package:rydleap/core/share_pref/share_pref.dart';
-import 'package:shared_preferences/shared_preferences.dart'; // Import shared_preferences
+import 'package:rydleap/feature/profile/widgets/notifcation/notification_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:rydleap/feature/profile/screen/f_profile_screen.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class FLoginController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -80,8 +83,8 @@ class FLoginController extends GetxController {
       String? fcmToken = await FirebaseMessaging.instance.getToken();
       if (fcmToken != null) {
         final SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setBool('isLoggedIn', true); // Save login state
-        await SharePref.saveFcmToken(fcmToken); // Save FCM token
+        await prefs.setBool('isLoggedIn', true);
+        await SharePref.saveFcmToken(fcmToken);
 
         await _firestore
             .collection('users')
@@ -102,7 +105,6 @@ class FLoginController extends GetxController {
 
       print('User Data (JSON Format): ${userData.toString()}');
 
-// Get.to(() => FProfileScreen());
       String? email = userCredential!.user!.email;
 
       if (email == null) {
@@ -124,6 +126,7 @@ class FLoginController extends GetxController {
   Future<void> saveData(
       String email, String fcmToken, Map<String, dynamic> userData) async {
     try {
+      print("///////////$fcmToken");
       // Remove email and fcm_token from userData if they exist in the map
       Map<String, dynamic> modifiedUserData = Map.from(userData);
       modifiedUserData.remove('email');
@@ -143,6 +146,8 @@ class FLoginController extends GetxController {
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(requestBody),
       );
+      print(
+          "//////////https://rydleap-backend-eight.vercel.app/api/v1/auth/update-fcp/${email}/${fcmToken}");
       print(' save data: ${response.body}');
 
       if (response.statusCode == 200) {
@@ -168,5 +173,115 @@ class FLoginController extends GetxController {
   bool _isPhoneNumber(String identifier) {
     final phoneRegex = RegExp(r'^\+?[0-9]{10,15}$');
     return phoneRegex.hasMatch(identifier);
+  }
+
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    // Initialize local notifications
+    _initializeNotifications();
+
+    // Request notification permissions (for iOS)
+    messaging.requestPermission(
+      alert: true,
+      badge: true,
+      sound: true,
+      announcement: true,
+      criticalAlert: true,
+    );
+
+    // Handle foreground messages
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print('Received a foreground message: ${message.notification?.title}');
+      _showNotification(
+        message.notification?.title,
+        message.notification?.body,
+        message.data, // pass additional data for click handling
+      );
+    });
+
+    // Handle background and terminated message taps
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('Notification clicked! Opened app from background or terminated.');
+      _navigateToDetails(message);
+    });
+
+    // Check for messages when app is launched from a terminated state
+    _checkForInitialMessage();
+  }
+
+  Future<void> _checkForInitialMessage() async {
+    // Check if the app was opened via a notification when the app was terminated
+    RemoteMessage? initialMessage =
+        await FirebaseMessaging.instance.getInitialMessage();
+    if (initialMessage != null) {
+      _navigateToDetails(initialMessage);
+    }
+  }
+
+  void _navigateToDetails(RemoteMessage message) {
+    Get.to(() => NotificationScreen());
+  }
+
+  // Initialize and create notification channel
+  Future<void> _initializeNotifications() async {
+    const AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings('@mipmap/ic_launcher');
+
+    const InitializationSettings initializationSettings =
+        InitializationSettings(android: initializationSettingsAndroid);
+
+    // Define how to handle notification responses (taps)
+    await flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+      onDidReceiveNotificationResponse: (NotificationResponse response) async {
+        if (response.payload != null) {
+          // Use the payload to navigate to NotificationDetailsPage when the notification is tapped
+
+          Get.to(() => NotificationScreen());
+        }
+      },
+    );
+
+    // Create a notification channel (only for Android 8.0 or higher)
+    const AndroidNotificationChannel channel = AndroidNotificationChannel(
+      'high_importance_channel', // id for the channel
+      'High Importance Notifications', // name of the channel
+      description: 'This channel is used for important notifications.',
+      importance: Importance.high,
+    );
+
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
+  }
+
+  // Function to show a notification using flutter_local_notifications
+  Future<void> _showNotification(
+      String? title, String? body, Map<String, dynamic> data) async {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails(
+      'high_importance_channel', // id for the channel
+      'High Importance Notifications', // name of the channel
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+
+    const NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+
+    await flutterLocalNotificationsPlugin.show(
+      0, // Notification ID
+      title, // Notification title
+      body, // Notification body
+      platformChannelSpecifics,
+      payload: body, // Add the body as payload for click actions
+    );
   }
 }
