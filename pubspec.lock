@@ -704,6 +704,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
+  linear_calender:
+    dependency: "direct main"
+    description:
+      name: linear_calender
+      sha256: ba663373a2dd303942b6e0254633ab215caf0f4d48fb5c3e18c5599c7cfbcc42
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.5"
   lints:
     dependency: transitive
     description:
