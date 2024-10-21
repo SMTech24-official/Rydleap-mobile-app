@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:rydleap/core/share_pref/share_pref.dart';
+import 'package:rydleap/feature/home/model/all_riders_model.dart';
 import 'package:rydleap/feature/home/model/package_model.dart';
 import 'package:rydleap/feature/home/model/promotion_model.dart';
 import 'package:rydleap/feature/home/model/riding_history_model.dart';
@@ -11,29 +13,17 @@ import 'package:rydleap/feature/home/model/riding_history_model.dart';
 import 'model/user_model.dart';
 import 'package:http/http.dart' as http;
 
-
-
-
-class HomeController extends GetxController{
-
-
-
+class HomeController extends GetxController {
   RxSet<Marker> markers = <Marker>{}.obs;
 
+  String accessToken =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGM5NTkyYTJkZjcxZDkwOGJhN2MzYiIsImVtYWlsIjoic2Fnb3JAZ21haWwuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3MjkyMzEwMjcsImV4cCI6MTczMTgyMzAyN30.t6hXXeAzxkqG4bQqRZMvwZ1ZIK75YVpzMFk40F7anLY';
 
-
-  String accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MGM5NTkyYTJkZjcxZDkwOGJhN2MzYiIsImVtYWlsIjoic2Fnb3JAZ21haWwuY29tIiwicm9sZSI6IlVTRVIiLCJpYXQiOjE3MjkyMzEwMjcsImV4cCI6MTczMTgyMzAyN30.t6hXXeAzxkqG4bQqRZMvwZ1ZIK75YVpzMFk40F7anLY';
-
-
-
-
-  Rx<UserModel> userDetail=UserModel().obs;
-  Rx<RidingHistoryModel> ridingHistoryModel=RidingHistoryModel().obs;
-  Rx<PromotionModel> promotionModel=PromotionModel().obs;
-  Rx<AllRidersModel> allRidersModel=AllRidersModel().obs;
-  Rx<PackageModel> packageModel=PackageModel(data: []).obs;
-
-
+  Rx<UserModel> userDetail = UserModel().obs;
+  Rx<RidingHistoryModel> ridingHistoryModel = RidingHistoryModel().obs;
+  Rx<PromotionModel> promotionModel = PromotionModel().obs;
+  Rx<AllRidersModel> allRidersModel = AllRidersModel().obs;
+  Rx<PackageModel> packageModel = PackageModel(data: []).obs;
 
   Future<void> getUserDetail(String accessToken) async {
     Map<String, String> headers = {
@@ -158,10 +148,7 @@ class HomeController extends GetxController{
 
   Future<void> getRidingHistory() async {
     Map<String, String> headers = {
-
       "Authorization": accessToken,
-
-
 
       //"Bearer ${SharePref.getUserAccessToken()}",
     };
@@ -192,25 +179,19 @@ class HomeController extends GetxController{
     }
   }
 
-
-
-
-
   Future<void> getAllRiders() async {
-
-
-    BitmapDescriptor customMerkerIcon=await BitmapDescriptor.asset(
+    BitmapDescriptor customMerkerIcon = await BitmapDescriptor.asset(
       ImageConfiguration(size: Size(40, 40)), // Adjust size as needed
       'assets/images/car_map.png', // Path to the image in assets
     );
-
 
     Map<String, String> headers = {
       "Authorization": accessToken,
       //"Bearer ${SharePref.getUserAccessToken()}",
     };
 
-    final url = Uri.parse('https://rydleap-backend-eight.vercel.app/api/v1/users/riders');
+    final url = Uri.parse(
+        'https://rydleap-backend-eight.vercel.app/api/v1/users/riders');
     var response = await http.get(
       url,
       headers: headers,
@@ -218,34 +199,33 @@ class HomeController extends GetxController{
 
     // log('log me', name: response.body);
 
-    debugPrint("+++++++++++All riders code....."+response.statusCode.toString());
-
+    debugPrint(
+        "+++++++++++All riders code....." + response.statusCode.toString());
 
     if (response.statusCode == 200) {
+      allRidersModel.value = allRidersModelFromJson(response.body);
 
-      allRidersModel.value= allRidersModelFromJson(response.body);
-
-      for(int i=0;i<allRidersModel.value.data!.data!.length;i++){
-        
-        if(allRidersModel.value.data!.data![i].locations != null){
-
-
-          markers.add(   Marker(
-            markerId: MarkerId("Source$i"),
-            position: LatLng(allRidersModel.value.data!.data![i].locations!.locationLat!, allRidersModel.value.data!.data![i].locations!.locationLng!),
-            icon: customMerkerIcon, //?? BitmapDescriptor.defaultMarker,//BitmapDescriptor.asset(ImageConfiguration(size: Size(24, 24)), 'assets/custom_marker.png',),
-            // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-          ),);
-
-
+      for (int i = 0; i < allRidersModel.value.data!.data!.length; i++) {
+        if (allRidersModel.value.data!.data![i].locations != null) {
+          markers.add(
+            Marker(
+              markerId: MarkerId("Source$i"),
+              position: LatLng(
+                  allRidersModel.value.data!.data![i].locations!.locationLat!,
+                  allRidersModel.value.data!.data![i].locations!.locationLng!),
+              icon:
+                  customMerkerIcon, //?? BitmapDescriptor.defaultMarker,//BitmapDescriptor.asset(ImageConfiguration(size: Size(24, 24)), 'assets/custom_marker.png',),
+              // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+            ),
+          );
 
           // markers.add()
         }
-        
       }
 
-
-      debugPrint("+++++++++++++++++++++++++++All riders data ++++++++++++++++++++++"+response.body);
+      debugPrint(
+          "+++++++++++++++++++++++++++All riders data ++++++++++++++++++++++" +
+              response.body);
       //return userModelFromJson(response.body);
     } else if (response.statusCode == 400) {
       throw const HttpException('getCustomerAddressData Error');
@@ -253,15 +233,6 @@ class HomeController extends GetxController{
       throw const HttpException('getCustomerAddressData Error');
     }
   }
-
-
-
-
-
-
-
-
-
 
   @override
   void onInit() {
